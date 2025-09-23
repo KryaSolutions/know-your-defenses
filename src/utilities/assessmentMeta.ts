@@ -1,0 +1,18 @@
+export type titleType = string;
+
+export type descType = string;
+
+export type dataType = {
+    [category: string]: {
+        icon: string;
+        color: string;
+        questions: string[];
+    };
+};
+
+export type optionType = {
+    value: string;
+    label: string;
+    score: number;
+    color: string;
+};

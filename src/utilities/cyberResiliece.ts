@@ -1,12 +1,15 @@
-type assessmentTypes = {
-    [category: string]: {
-        icon: string;
-        color: string;
-        questions: string[];
-    };
-};
+import type {
+    titleType,
+    descType,
+    dataType,
+    optionType,
+} from "./assessmentMeta";
 
-export const assessmentData: assessmentTypes = {
+export const resilienceTitle: titleType = "";
+
+export const resilienceDesc: descType = "";
+
+export const resilienceData: dataType = {
     Identity: {
         icon: "🛡️",
         color: "#3b82f6",
@@ -61,14 +64,7 @@ export const assessmentData: assessmentTypes = {
     },
 };
 
-type option = {
-    value: string;
-    label: string;
-    score: number;
-    color: string;
-};
-
-export const options: option[] = [
+export const resilienceOptions: optionType[] = [
     {
         value: "not-implemented",
         label: "No/Not Implemented",
