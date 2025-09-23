@@ -1,6 +1,7 @@
 import React, { useState, createContext } from "react";
+import securityMaturity from "../utilities/securityMaturity";
+import zeroTrust from "../utilities/zeroTrust";
 import Assessment from "./Assessment";
-import { resilienceTitle, resilienceDesc, resilienceData, resilienceOptions } from "../utilities/cyberResiliece";
 
 type ResponseContextType = {
     response: responseType,
@@ -19,7 +20,8 @@ const App = () => {
     return (
         <div>
             <ResponseContext.Provider value={{ response, setResponse }}>
-                <Assessment assessment={resilienceTitle} desc={resilienceDesc} data={resilienceData} options={resilienceOptions} />
+                <Assessment assessment={securityMaturity.title} desc={securityMaturity.desc} data={securityMaturity.questions} options={securityMaturity.options} />
+                <Assessment assessment={zeroTrust.title} desc={zeroTrust.desc} data={zeroTrust.questions} options={zeroTrust.options} />
             </ResponseContext.Provider>
         </div>
     );

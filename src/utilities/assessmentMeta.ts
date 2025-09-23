@@ -16,3 +16,10 @@ export type optionType = {
     score: number;
     color: string;
 };
+
+export type assessmentType = {
+    title: titleType;
+    desc: descType;
+    questions: dataType;
+    options: optionType[];
+};
