@@ -1,3 +1,6 @@
+import securityMaturity from "./securityMaturity";
+import zeroTrustAssessment from "./zeroTrust";
+
 export type titleType = string;
 
 export type descType = string;
@@ -23,3 +26,10 @@ export type assessmentType = {
     questions: dataType;
     options: optionType[];
 };
+
+const assessmentData: assessmentType[] = [
+    { ...securityMaturity },
+    { ...zeroTrustAssessment },
+];
+
+export default assessmentData;

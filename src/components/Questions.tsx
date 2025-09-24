@@ -11,19 +11,20 @@ type Props = {
     options: optionType[];
 };
 
-const Assessment = ({ assessment, desc, data, options }: Props) => {
+const Questions = ({ assessment, desc, data, options }: Props) => {
     const [expand, setExpand] = useState<Record<string, boolean>>({});
 
     const context = useContext(ResponseContext);
     if (!context) return null;
     const { response, setResponse } = context;
 
-    const handleResults = (category: string, questionIndex: number, value: string) => {
+    const handleResults = (category: string, questionIndex: number, value: string, score: number) => {
         setResponse((prevResponse: responseType) => ({
             ...prevResponse,
             [category]: {
                 ...prevResponse[category],
                 [questionIndex]: value,
+                score: score,
             },
         }));
     };
@@ -124,7 +125,7 @@ const Assessment = ({ assessment, desc, data, options }: Props) => {
                                                         <button
                                                             key={option.value}
                                                             onClick={() =>
-                                                                handleResults(categoryName, questionIndex, option.value)
+                                                                handleResults(categoryName, questionIndex, option.value, option.score)
                                                             }
                                                             className={`w-full p-4 rounded-xl border-2 transition-all duration-300 text-left transform ${currentResponse === option.value
                                                                 ? "border-blue-500 bg-blue-500/10 shadow-md"
@@ -169,4 +170,4 @@ const Assessment = ({ assessment, desc, data, options }: Props) => {
     );
 };
 
-export default Assessment;
+export default Questions;
