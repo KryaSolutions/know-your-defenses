@@ -1,5 +1,5 @@
 import { useState, useContext } from "react";
-import { ChevronDown, CheckCircle } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 import { ResponseContext } from "./App";
 import type { responseType } from "./App";
 import type { dataType, optionType } from "../utilities/assessmentMeta";
@@ -19,55 +19,75 @@ const Questions = ({ assessment, desc, data, options }: Props) => {
     const { response, setResponse } = context;
 
     const handleResults = (
+        assessmentTitle: string,
         category: string,
         questionIndex: number,
         value: string,
         score: number
     ) => {
         setResponse((prevResponse: responseType) => {
-            const prevCategory = prevResponse[category] || { score: 0 };
+            // Get previous responses for this assessment
+            const prevAssessment = prevResponse[assessmentTitle] || {};
+
+            // Get previous responses for this category
+            const prevCategory = prevAssessment[category] || { score: 0 };
             const prevQuestionScore = prevCategory[questionIndex]
                 ? options.find(
                     (opt) => opt.value === prevCategory[questionIndex]
                 )?.score || 0
                 : 0;
 
+            // If same answer clicked, remove it
+            if (prevCategory[questionIndex] === value) {
+                const { [questionIndex]: _, ...restOfPrevCategory } =
+                    prevCategory;
+
+                return {
+                    ...prevResponse,
+                    [assessmentTitle]: {
+                        ...prevAssessment,
+                        [category]: {
+                            ...restOfPrevCategory,
+                            score: prevCategory.score - prevQuestionScore,
+                        },
+                    },
+                };
+            }
+
+            // Otherwise, update the answer
             return {
                 ...prevResponse,
-                [category]: {
-                    ...prevCategory,
-                    [questionIndex]: value,
-                    score: prevCategory.score - prevQuestionScore + score,
+                [assessmentTitle]: {
+                    ...prevAssessment,
+                    [category]: {
+                        ...prevCategory,
+                        [questionIndex]: value,
+                        score: prevCategory.score - prevQuestionScore + score,
+                    },
                 },
             };
         });
     };
 
-    const toggleSection = (domain: string) => {
+    const toggleSection = (assessment: string, category: string) => {
+        const key = `${assessment}-${category}`;
         setExpand((prev) => ({
             ...prev,
-            [domain]: !prev[domain],
+            [key]: !prev[key],
         }));
     };
 
     return (
         <div className="max-w-6xl mx-auto p-6 bg-gray-50 min-h-screen">
-            {/* Header */}
-            <div className="mb-8 text-center">
-                <h1 className="text-3xl font-bold text-gray-900 mb-2">
-                    {assessment}
-                </h1>
-                <p className="text-lg text-gray-600">{desc}</p>
-            </div>
-
             {/* Categories */}
             <div className="space-y-6">
                 {Object.entries(data).map(([categoryName, categoryData]) => {
-                    const answers = response[categoryName] ?? {};
-                    const answerKeys = Object.keys(answers);
-                    const answeredCount = answerKeys.filter(key => !isNaN(Number(key)) && Number(key) >= 0).length;
+                    const answers = response[assessment]?.[categoryName] ?? {};
+                    const answeredCount = Object.keys(answers).filter(
+                        (key) => !isNaN(Number(key)) && Number(key) >= 0
+                    ).length;
 
-                    const isExpanded = expand[categoryName];
+                    const isExpanded = expand[`${assessment}-${categoryName}`];
 
                     return (
                         <div
@@ -76,7 +96,9 @@ const Questions = ({ assessment, desc, data, options }: Props) => {
                         >
                             {/* Category Header */}
                             <button
-                                onClick={() => toggleSection(categoryName)}
+                                onClick={() =>
+                                    toggleSection(assessment, categoryName)
+                                }
                                 className="w-full flex items-center justify-between p-6 text-left rounded-xl"
                             >
                                 <div className="flex items-center">
@@ -133,9 +155,9 @@ const Questions = ({ assessment, desc, data, options }: Props) => {
                                     {categoryData.questions.map(
                                         (question, questionIndex) => {
                                             const currentResponse =
-                                                response[categoryName]?.[
-                                                questionIndex
-                                                ];
+                                                response[assessment]?.[
+                                                categoryName
+                                                ]?.[questionIndex];
 
                                             return (
                                                 <div
@@ -166,6 +188,7 @@ const Questions = ({ assessment, desc, data, options }: Props) => {
                                                                     }
                                                                     onClick={() =>
                                                                         handleResults(
+                                                                            assessment,
                                                                             categoryName,
                                                                             questionIndex,
                                                                             option.value,
@@ -198,31 +221,6 @@ const Questions = ({ assessment, desc, data, options }: Props) => {
                                                             )
                                                         )}
                                                     </div>
-
-                                                    {/* Response recorded */}
-                                                    {currentResponse && (
-                                                        <div className="ml-11 mt-4 p-3 bg-green-500/10 border border-green-500/20 rounded-lg transition-all duration-300">
-                                                            <div className="flex items-center text-sm">
-                                                                <CheckCircle
-                                                                    className="text-green-500 mr-2"
-                                                                    size={16}
-                                                                />
-                                                                <span className="text-green-600 font-medium">
-                                                                    Response
-                                                                    recorded:{" "}
-                                                                    {
-                                                                        options.find(
-                                                                            (
-                                                                                opt
-                                                                            ) =>
-                                                                                opt.value ===
-                                                                                currentResponse
-                                                                        )?.label
-                                                                    }
-                                                                </span>
-                                                            </div>
-                                                        </div>
-                                                    )}
                                                 </div>
                                             );
                                         }
