@@ -28,11 +28,11 @@ const Questions = ({ assessment, desc, data, options }: Props) => {
             const prevCategory = prevResponse[category] || { score: 0 };
             const prevQuestionScore = prevCategory[questionIndex]
                 ? options.find(
-                      (opt) => opt.value === prevCategory[questionIndex]
-                  )?.score || 0
+                    (opt) => opt.value === prevCategory[questionIndex]
+                )?.score || 0
                 : 0;
 
-            const object = {
+            return {
                 ...prevResponse,
                 [category]: {
                     ...prevCategory,
@@ -40,9 +40,6 @@ const Questions = ({ assessment, desc, data, options }: Props) => {
                     score: prevCategory.score - prevQuestionScore + score,
                 },
             };
-
-            console.log(object);
-            return object;
         });
     };
 
@@ -66,9 +63,10 @@ const Questions = ({ assessment, desc, data, options }: Props) => {
             {/* Categories */}
             <div className="space-y-6">
                 {Object.entries(data).map(([categoryName, categoryData]) => {
-                    const answeredCount = Object.keys(
-                        response[categoryName] ?? {}
-                    ).length;
+                    const answers = response[categoryName] ?? {};
+                    const answerKeys = Object.keys(answers);
+                    const answeredCount = answerKeys.filter(key => !isNaN(Number(key)) && Number(key) >= 0).length;
+
                     const isExpanded = expand[categoryName];
 
                     return (
@@ -114,11 +112,10 @@ const Questions = ({ assessment, desc, data, options }: Props) => {
                                         {categoryData.questions.length}
                                     </span>
                                     <div
-                                        className={`transition-transform duration-300 ${
-                                            isExpanded
-                                                ? "rotate-180"
-                                                : "rotate-0"
-                                        }`}
+                                        className={`transition-transform duration-300 ${isExpanded
+                                            ? "rotate-180"
+                                            : "rotate-0"
+                                            }`}
                                     >
                                         <ChevronDown className="text-gray-400" />
                                     </div>
@@ -127,18 +124,17 @@ const Questions = ({ assessment, desc, data, options }: Props) => {
 
                             {/* Questions Section */}
                             <div
-                                className={`overflow-hidden transition-all duration-300 ease-in-out ${
-                                    isExpanded
-                                        ? "max-h-[2000px] opacity-100"
-                                        : "max-h-0 opacity-0"
-                                }`}
+                                className={`overflow-hidden transition-all duration-300 ease-in-out ${isExpanded
+                                    ? "max-h-[2000px] opacity-100"
+                                    : "max-h-0 opacity-0"
+                                    }`}
                             >
                                 <div className="px-6 pb-6 space-y-6">
                                     {categoryData.questions.map(
                                         (question, questionIndex) => {
                                             const currentResponse =
                                                 response[categoryName]?.[
-                                                    questionIndex
+                                                questionIndex
                                                 ];
 
                                             return (
@@ -176,12 +172,11 @@ const Questions = ({ assessment, desc, data, options }: Props) => {
                                                                             option.score
                                                                         )
                                                                     }
-                                                                    className={`w-full p-4 rounded-xl border-2 transition-all duration-300 text-left transform ${
-                                                                        currentResponse ===
+                                                                    className={`w-full p-4 rounded-xl border-2 transition-all duration-300 text-left transform ${currentResponse ===
                                                                         option.value
-                                                                            ? "border-blue-500 bg-blue-500/10 shadow-md"
-                                                                            : "border-gray-300 hover:border-gray-400 hover:bg-gray-100"
-                                                                    }`}
+                                                                        ? "border-blue-500 bg-blue-500/10 shadow-md"
+                                                                        : "border-gray-300 hover:border-gray-400 hover:bg-gray-100"
+                                                                        }`}
                                                                 >
                                                                     <div className="flex items-center">
                                                                         <div
