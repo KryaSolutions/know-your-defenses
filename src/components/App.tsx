@@ -7,8 +7,8 @@ type ResponseContextType = {
 };
 export type responseType = {
     [category: string]: {
-        [questionIndex: number]: string,
-        score: number,
+        [questionIndex: number]: string;
+        score: number;
     };
 };
 

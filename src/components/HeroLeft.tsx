@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import { ResponseContext } from "./App";
 import assessmentData from "../utilities/assessmentMeta";
 
-const HeroLeft() = () => {
+const HeroLeft = () => {
     const response = useContext(ResponseContext);
 
     const countPerCategory: {
@@ -24,5 +24,4 @@ const HeroLeft() = () => {
     const totalCount = countPerCategory.reduce((sum, object) => {
         return sum + object.count;
     }, 0);
-
-}
+};
