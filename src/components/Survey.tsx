@@ -133,7 +133,6 @@ const Survey = () => {
                         <div className="p-8 h-full overflow-y-auto scrollbar-hide">
                             <Questions
                                 assessment={selectedAssessment.title}
-                                desc={selectedAssessment.desc}
                                 data={selectedAssessment.questions}
                                 options={selectedAssessment.options}
                             />

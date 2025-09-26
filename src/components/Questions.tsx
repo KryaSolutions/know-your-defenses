@@ -6,12 +6,11 @@ import type { dataType, optionType } from "../utilities/assessmentMeta";
 
 type Props = {
     assessment: string;
-    desc: string;
     data: dataType;
     options: optionType[];
 };
 
-const Questions = ({ assessment, desc, data, options }: Props) => {
+const Questions = ({ assessment, data, options }: Props) => {
     const [expand, setExpand] = useState<Record<string, boolean>>({});
 
     const context = useContext(ResponseContext);

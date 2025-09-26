@@ -199,7 +199,7 @@ const Results = () => {
                                             animationDuration={1200}
                                             animationEasing="ease-in-out"
                                         >
-                                            {chartData.map((entry, index) => (
+                                            {chartData.map((_entry, index) => (
                                                 <Cell
                                                     key={`cell-${index}`}
                                                     fill={COLORS.gradient[index === 0 ? 'addressed' : 'ignored']}
