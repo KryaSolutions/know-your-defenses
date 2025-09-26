@@ -1,6 +1,6 @@
 import { useContext } from "react";
-import { ResponseContext } from "./App";
-import type { ResponseContextType } from "./App";
+import { ResponseContext } from "./Hero";
+import type { ResponseContextType } from "./Hero";
 import assessmentData, { type assessmentType } from "../utilities/assessmentMeta";
 import {
     PieChart,
@@ -154,19 +154,13 @@ const Results = () => {
                                     <div className="flex justify-between items-center">
                                         <span className="text-gray-600">Points Scored:</span>
                                         <span className="font-semibold text-emerald-600">
-                                            {currentScore}
+                                            {((currentScore / totalScore) * 100).toFixed(2)} %
                                         </span>
                                     </div>
                                     <div className="flex justify-between items-center">
                                         <span className="text-gray-600">Areas for Improvement:</span>
                                         <span className="font-semibold text-red-500">
-                                            {totalScore - currentScore}
-                                        </span>
-                                    </div>
-                                    <div className="flex justify-between items-center pt-2 border-t border-gray-200">
-                                        <span className="text-gray-900 font-medium">Total Possible:</span>
-                                        <span className="font-bold text-gray-900">
-                                            {totalScore}
+                                            {(((totalScore - currentScore) / totalScore) * 100).toFixed(2)} %
                                         </span>
                                     </div>
                                 </div>

@@ -1,7 +1,7 @@
 import { useState, useContext } from "react";
 import { ChevronDown } from "lucide-react";
-import { ResponseContext } from "./App";
-import type { responseType } from "./App";
+import { ResponseContext } from "./Hero";
+import type { responseType } from "./Hero";
 import type { dataType, optionType } from "../utilities/assessmentMeta";
 
 type Props = {
