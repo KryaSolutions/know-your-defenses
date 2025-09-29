@@ -18,25 +18,78 @@ export type ResponseContextType = {
 export type responseType = {
     [title: string]: {
         [category: string]: {
-            [questionIndex: number]: string;
-            score: number;
+            [questionIndex: number]: {
+                question: string;
+                answer: string;
+                score: number;
+            };
+            categoryScore: number;
         };
     };
 };
 
 export const ResponseContext = createContext<ResponseContextType | null>(null);
 
+const personalEmailDomains: string[] = [
+    "gmail.com",
+    "yahoo.com",
+    "hotmail.com",
+    "outlook.com",
+    "aol.com",
+    "icloud.com",
+    "me.com",
+    "mac.com",
+    "protonmail.com",
+    "yandex.com",
+    "mail.com",
+    "zoho.com",
+    "rediffmail.com",
+    "live.com",
+    "msn.com",
+    "yahoo.co.uk",
+    "yahoo.ca",
+    "yahoo.in",
+    "googlemail.com",
+    "hotmail.co.uk",
+    "hotmail.fr",
+    "outlook.co.uk",
+];
+
+const isValidOrganizationalEmail = (email: string) => {
+    const basicEmailRegex = /\S+@\S+\.\S+/;
+    if (!basicEmailRegex.test(email)) {
+        return false;
+    }
+    const domain = email.split("@")[1]?.toLowerCase();
+    return domain ? !personalEmailDomains.includes(domain) : false;
+};
+
+const getEmailValidationMessage = (email: string) => {
+    if (!email) return "";
+    if (!/\S+@\S+\.\S+/.test(email)) {
+        return "Please enter a valid email address";
+    }
+    const domain = email.split("@")[1]?.toLowerCase();
+    if (personalEmailDomains.includes(domain)) {
+        return "Please use your work email address";
+    }
+    return "";
+};
+
 const Hero = () => {
     const [response, setResponse] = useState<responseType>({});
     const [open, setOpen] = useState(false);
     const [showResults, setShowResults] = useState(false);
-    const [form, setForm] = useState({
-        name: "",
-        org: "",
-        email: "",
-    });
+    const [emailError, setEmailError] = useState<string>("");
+    const [form, setForm] = useState({ name: "", org: "", email: "" });
 
-    const isValid = form.name && form.org && /\S+@\S+\.\S+/.test(form.email);
+    const isValid = form.name && form.org && isValidOrganizationalEmail(form.email);
+
+    const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const email = e.target.value;
+        setForm({ ...form, email });
+        setEmailError(getEmailValidationMessage(email));
+    };
 
     const handleSubmit = () => {
         if (!isValid) return;
@@ -45,7 +98,10 @@ const Hero = () => {
     };
 
     return (
-        <div id="hero-section" className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 relative overflow-hidden">
+        <div
+            id="hero-section"
+            className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 relative overflow-hidden"
+        >
             {/* Background Elements */}
             <div className="absolute inset-0 opacity-5">
                 <div className="absolute top-20 left-10 w-64 h-64 border border-blue-300 rounded-full"></div>
@@ -56,68 +112,64 @@ const Hero = () => {
 
             {/* Floating Gradient Orbs */}
             <div className="absolute top-1/4 left-1/4 w-32 h-32 bg-gradient-to-r from-blue-400/10 to-cyan-400/10 rounded-full blur-xl animate-pulse"></div>
-            <div className="absolute bottom-1/3 right-1/4 w-48 h-48 bg-gradient-to-r from-purple-400/10 to-pink-400/10 rounded-full blur-xl animate-pulse" style={{ animationDelay: '2s' }}></div>
+            <div
+                className="absolute bottom-1/3 right-1/4 w-48 h-48 bg-gradient-to-r from-purple-400/10 to-pink-400/10 rounded-full blur-xl animate-pulse"
+                style={{ animationDelay: "2s" }}
+            ></div>
 
             <div className="relative max-w-5xl mx-auto px-6 py-12">
                 <ResponseContext.Provider value={{ response, setResponse }}>
-                    {/* Main Content Container */}
-                    <div className="bg-white/60 backdrop-blur-lg rounded-3xl border border-white/20 shadow-2xl shadow-blue-500/10 overflow-hidden">
-                        {/* Header Section */}
-                        <div className="bg-gradient-to-r from-blue-600/5 to-cyan-600/5 p-8 border-b border-blue-100/50">
-                            <div className="flex items-center justify-center space-x-4 mb-6">
-                                <div className="p-3 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full">
-                                    <Shield className="w-8 h-8 text-white" />
-                                </div>
-                                <h2 className="text-3xl font-bold bg-gradient-to-r from-blue-700 to-cyan-700 bg-clip-text text-transparent">
-                                    {!showResults ? "Security Assessment" : "Your Security Report"}
-                                </h2>
+                    {/* Header Section */}
+                    <div className="bg-gradient-to-r from-blue-600/5 to-cyan-600/5 p-8 mb-6 rounded-xl">
+                        <div className="flex items-center justify-center space-x-4 mb-6">
+                            <div className="p-3 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full">
+                                <Shield className="w-8 h-8 text-white" />
                             </div>
+                            <h2 className="text-3xl font-bold bg-gradient-to-r from-blue-700 to-cyan-700 bg-clip-text text-transparent">
+                                {!showResults ? "Security Assessment" : "Your Security Report"}
+                            </h2>
+                        </div>
 
-                            {!showResults && (
-                                <div className="flex justify-center space-x-8 text-sm">
-                                    <div className="flex items-center space-x-2 text-gray-600">
-                                        <CheckCircle className="w-4 h-4 text-green-500" />
-                                        <span>Comprehensive Analysis</span>
-                                    </div>
-                                    <div className="flex items-center space-x-2 text-gray-600">
-                                        <TrendingUp className="w-4 h-4 text-blue-500" />
-                                        <span>Actionable Insights</span>
-                                    </div>
-                                    <div className="flex items-center space-x-2 text-gray-600">
-                                        <Users className="w-4 h-4 text-purple-500" />
-                                        <span>Expert Recommendations</span>
-                                    </div>
+                        {!showResults && (
+                            <div className="flex justify-center space-x-8 text-sm">
+                                <div className="flex items-center space-x-2 text-gray-600">
+                                    <CheckCircle className="w-4 h-4 text-green-500" />
+                                    <span>Comprehensive Analysis</span>
                                 </div>
-                            )}
-                        </div>
-
-                        {/* Assessment/Results Content */}
-                        <div className="p-8">
-                            {!showResults ? <Survey /> : <Results />}
-                        </div>
-
-                        {/* Action Buttons */}
-                        <div className="bg-gradient-to-r from-gray-50 to-blue-50/30 p-8 border-t border-blue-100/50">
-                            <div className="flex justify-center">
-                                {!showResults ? (
-                                    <Button
-                                        onClick={() => setOpen(true)}
-                                        className="bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold text-lg transition-all duration-300 transform hover:scale-105 hover:shadow-xl hover:shadow-blue-500/25 flex items-center space-x-3"
-                                    >
-                                        <span>Get My Results</span>
-                                        <ArrowRight className="w-5 h-5" />
-                                    </Button>
-                                ) : (
-                                    <Button
-                                        variant="outline"
-                                        onClick={() => setShowResults(false)}
-                                        className="border-2 border-blue-200 hover:border-blue-300 text-blue-700 hover:text-blue-800 hover:bg-blue-50 px-8 py-3 rounded-lg font-semibold text-lg transition-all duration-300 transform hover:scale-105"
-                                    >
-                                        Return to Assessment
-                                    </Button>
-                                )}
+                                <div className="flex items-center space-x-2 text-gray-600">
+                                    <TrendingUp className="w-4 h-4 text-blue-500" />
+                                    <span>Actionable Insights</span>
+                                </div>
+                                <div className="flex items-center space-x-2 text-gray-600">
+                                    <Users className="w-4 h-4 text-purple-500" />
+                                    <span>Expert Recommendations</span>
+                                </div>
                             </div>
-                        </div>
+                        )}
+                    </div>
+
+                    {/* Assessment/Results Content */}
+                    <div className="mb-8">{!showResults ? <Survey /> : <Results />}</div>
+
+                    {/* Action Buttons */}
+                    <div className="p-8 flex justify-center">
+                        {!showResults ? (
+                            <Button
+                                onClick={() => setOpen(true)}
+                                className="bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold text-lg transition-all duration-300 transform hover:scale-105 hover:shadow-xl hover:shadow-blue-500/25 flex items-center space-x-3"
+                            >
+                                <span>Get My Results</span>
+                                <ArrowRight className="w-5 h-5" />
+                            </Button>
+                        ) : (
+                            <Button
+                                variant="outline"
+                                onClick={() => setShowResults(false)}
+                                className="border-2 border-blue-200 hover:border-blue-300 text-blue-700 hover:text-blue-800 hover:bg-blue-50 px-8 py-3 rounded-lg font-semibold text-lg transition-all duration-300 transform hover:scale-105"
+                            >
+                                Return to Assessment
+                            </Button>
+                        )}
                     </div>
 
                     {/* Form Dialog */}
@@ -144,13 +196,18 @@ const Hero = () => {
                                     className="h-10"
                                 />
 
-                                <Input
-                                    placeholder="Work Email"
-                                    type="email"
-                                    value={form.email}
-                                    onChange={(e) => setForm({ ...form, email: e.target.value })}
-                                    className="h-10"
-                                />
+                                <div>
+                                    <Input
+                                        placeholder="Work Email"
+                                        type="email"
+                                        value={form.email}
+                                        onChange={handleEmailChange}
+                                        className={`h-10 ${emailError ? "border-red-500" : ""}`}
+                                    />
+                                    {emailError && (
+                                        <p className="text-red-500 text-xs mt-1">{emailError}</p>
+                                    )}
+                                </div>
 
                                 <Button
                                     className="w-full"

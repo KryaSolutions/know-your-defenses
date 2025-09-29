@@ -21,25 +21,30 @@ const Questions = ({ assessment, data, options }: Props) => {
         assessmentTitle: string,
         category: string,
         questionIndex: number,
-        value: string,
+        question: string,
+        optionLabel: string,
         score: number
     ) => {
         setResponse((prevResponse: responseType) => {
-            // Get previous responses for this assessment
+            const newAnswerObject = {
+                question: question,
+                answer: optionLabel,
+                score: score,
+            };
+
             const prevAssessment = prevResponse[assessmentTitle] || {};
 
-            // Get previous responses for this category
-            const prevCategory = prevAssessment[category] || { score: 0 };
-            const prevQuestionScore = prevCategory[questionIndex]
-                ? options.find(
-                    (opt) => opt.value === prevCategory[questionIndex]
-                )?.score || 0
-                : 0;
+            const prevCategory = prevAssessment[category] || { categoryScore: 0 };
 
-            // If same answer clicked, remove it
-            if (prevCategory[questionIndex] === value) {
-                const { [questionIndex]: _, ...restOfPrevCategory } =
-                    prevCategory;
+            const prevAnswerObject = prevCategory[questionIndex] as
+                { question: string, answer: string, score: number } | undefined;
+
+            const prevQuestionScore = prevAnswerObject?.score || 0;
+
+            if (prevAnswerObject?.answer === optionLabel) {
+                const { [questionIndex]: _, ...restOfPrevCategory } = prevCategory;
+
+                const newCategoryTotalScore = prevCategory.categoryScore - prevQuestionScore;
 
                 return {
                     ...prevResponse,
@@ -47,21 +52,22 @@ const Questions = ({ assessment, data, options }: Props) => {
                         ...prevAssessment,
                         [category]: {
                             ...restOfPrevCategory,
-                            score: prevCategory.score - prevQuestionScore,
+                            categoryScore: newCategoryTotalScore,
                         },
                     },
                 };
             }
 
-            // Otherwise, update the answer
+            const newCategoryTotalScore = prevCategory.categoryScore - prevQuestionScore + score;
+
             return {
                 ...prevResponse,
                 [assessmentTitle]: {
                     ...prevAssessment,
                     [category]: {
                         ...prevCategory,
-                        [questionIndex]: value,
-                        score: prevCategory.score - prevQuestionScore + score,
+                        [questionIndex]: newAnswerObject,
+                        categoryScore: newCategoryTotalScore,
                     },
                 },
             };
@@ -171,11 +177,12 @@ const Questions = ({ assessment, data, options }: Props) => {
                                                                     assessment,
                                                                     categoryName,
                                                                     questionIndex,
+                                                                    question,
                                                                     option.value,
                                                                     option.score
                                                                 )
                                                             }
-                                                            className={`w-full p-3 rounded-lg border-2 transition-all duration-300 text-left ${currentResponse === option.value
+                                                            className={`w-full p-3 rounded-lg border-2 transition-all duration-300 text-left ${currentResponse?.answer === option.value
                                                                 ? "border-blue-500 bg-blue-500/10 shadow-md"
                                                                 : "border-gray-300 hover:border-gray-400 hover:bg-gray-100"
                                                                 }`}

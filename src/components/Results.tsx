@@ -11,8 +11,8 @@ import {
 } from "recharts";
 
 const COLORS = {
-    addressed: "#10b981", // Emerald green for success
-    ignored: "#ef4444", // Red for areas needing attention
+    addressed: "#10b981",
+    ignored: "#ef4444",
     gradient: {
         addressed: "url(#addressedGradient)",
         ignored: "url(#ignoredGradient)"
@@ -60,11 +60,13 @@ const CustomTooltip = ({ active, payload }: any) => {
 };
 
 const Results = () => {
+
     const context = useContext<ResponseContextType | null>(ResponseContext);
     if (!context) return null;
     const { response } = context;
 
-    // Total possible score (all questions × 100)
+    console.log(response);
+
     const countPerAssessment: { [title: string]: number } = assessmentData.reduce<
         { [title: string]: number }
     >((acc, assessment: assessmentType) => {
@@ -86,7 +88,7 @@ const Results = () => {
     const currentScore = Object.values(response).reduce(
         (assessmentAcc, assessment) => {
             const assessmentScore = Object.values(assessment).reduce(
-                (catAcc, category) => catAcc + (category.score || 0),
+                (catAcc, category) => catAcc + (category.categoryScore || 0),
                 0
             );
             return assessmentAcc + assessmentScore;
@@ -126,7 +128,7 @@ const Results = () => {
                 <div className="bg-blue-500 p-8 text-center">
                     <div className="inline-flex flex-col items-center">
                         <p className="text-white/80 text-sm font-medium tracking-wide mb-2">
-                            Your Results
+                            Your Security Strength is at
                         </p>
                         <div className={`inline-flex items-center justify-center w-24 h-24 rounded-2xl text-4xl font-black border-4 ${rankColors[rank]} shadow-lg transition-transform transform hover:scale-105`}>
                             {Math.round(percentage)}%
