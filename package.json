@@ -1,5 +1,6 @@
 {
     "name": "cr",
+    "homepage": "https://kryasolutions.github.io/security-assessments",
     "private": true,
     "version": "0.0.0",
     "type": "module",
