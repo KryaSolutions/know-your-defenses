@@ -58,7 +58,7 @@ const Hero = () => {
             <div className="absolute top-1/4 left-1/4 w-32 h-32 bg-gradient-to-r from-blue-400/10 to-cyan-400/10 rounded-full blur-xl animate-pulse"></div>
             <div className="absolute bottom-1/3 right-1/4 w-48 h-48 bg-gradient-to-r from-purple-400/10 to-pink-400/10 rounded-full blur-xl animate-pulse" style={{ animationDelay: '2s' }}></div>
 
-            <div className="relative max-w-7xl mx-auto px-6 py-12">
+            <div className="relative max-w-5xl mx-auto px-6 py-12">
                 <ResponseContext.Provider value={{ response, setResponse }}>
                     {/* Main Content Container */}
                     <div className="bg-white/60 backdrop-blur-lg rounded-3xl border border-white/20 shadow-2xl shadow-blue-500/10 overflow-hidden">
@@ -113,7 +113,7 @@ const Hero = () => {
                                         onClick={() => setShowResults(false)}
                                         className="border-2 border-blue-200 hover:border-blue-300 text-blue-700 hover:text-blue-800 hover:bg-blue-50 px-8 py-3 rounded-lg font-semibold text-lg transition-all duration-300 transform hover:scale-105"
                                     >
-                                        Take Assessment Again
+                                        Return to Assessment
                                     </Button>
                                 )}
                             </div>
@@ -122,7 +122,7 @@ const Hero = () => {
 
                     {/* Form Dialog */}
                     <Dialog open={open} onOpenChange={setOpen}>
-                        <DialogContent className="w-full max-w-md">
+                        <DialogContent className="w-full max-w-sm p-4">
                             <DialogHeader>
                                 <DialogTitle className="text-xl font-semibold text-gray-900">
                                     Generate Your Report

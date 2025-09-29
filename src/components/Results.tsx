@@ -125,19 +125,11 @@ const Results = () => {
                 {/* Rank Section */}
                 <div className="bg-blue-500 p-8 text-center">
                     <div className="inline-flex flex-col items-center">
-                        <p className="text-white/80 text-sm font-medium uppercase tracking-wide mb-2">
-                            Your Grade
+                        <p className="text-white/80 text-sm font-medium tracking-wide mb-2">
+                            Your Results
                         </p>
                         <div className={`inline-flex items-center justify-center w-24 h-24 rounded-2xl text-4xl font-black border-4 ${rankColors[rank]} shadow-lg transition-transform transform hover:scale-105`}>
-                            {rank}
-                        </div>
-                        <div className="mt-4 text-white">
-                            <p className="text-2xl font-bold">
-                                {Math.round(percentage)}%
-                            </p>
-                            <p className="text-white/90 text-sm">
-                                Overall Score
-                            </p>
+                            {Math.round(percentage)}%
                         </div>
                     </div>
                 </div>

@@ -22,7 +22,7 @@ export default function SecurityAssessmentHeader() {
                 <div className="absolute bottom-32 right-1/3 w-20 h-20 border border-green-400 rounded-full"></div>
             </div>
 
-            <div className="relative max-w-7xl mx-auto px-6 py-16 lg:py-24">
+            <div className="relative max-w-5xl mx-auto px-6 py-16 lg:py-24">
                 <div className="grid lg:grid-cols-2 gap-12 items-center">
                     {/* Content Section */}
                     <div className="space-y-8">

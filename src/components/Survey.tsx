@@ -34,7 +34,7 @@ const Survey = () => {
     }, []);
 
     return (
-        <div className="p-6 max-w-4xl mx-auto">
+        <div className="p-6 max-w-3xl mx-auto">
             <ul className="space-y-6">
                 {assessmentData.map((assessment) => {
                     // Total questions in this assessment

@@ -77,9 +77,9 @@ const Questions = ({ assessment, data, options }: Props) => {
     };
 
     return (
-        <div className="max-w-6xl mx-auto p-6 bg-gray-50 min-h-screen">
+        <div className="max-w-4xl mx-auto p-4 bg-gray-50">
             {/* Categories */}
-            <div className="space-y-6">
+            <div className="space-y-4">
                 {Object.entries(data).map(([categoryName, categoryData]) => {
                     const answers = response[assessment]?.[categoryName] ?? {};
                     const answeredCount = Object.keys(answers).filter(
@@ -95,14 +95,12 @@ const Questions = ({ assessment, data, options }: Props) => {
                         >
                             {/* Category Header */}
                             <button
-                                onClick={() =>
-                                    toggleSection(assessment, categoryName)
-                                }
-                                className="w-full flex items-center justify-between p-6 text-left rounded-xl"
+                                onClick={() => toggleSection(assessment, categoryName)}
+                                className="w-full flex items-center justify-between p-4 text-left rounded-xl"
                             >
                                 <div className="flex items-center">
                                     <div
-                                        className="w-12 h-12 flex items-center justify-center rounded-lg border-2 mr-4 text-2xl shadow transition-all duration-300"
+                                        className="w-9 h-9 flex items-center justify-center rounded-lg border-2 mr-3 text-xl shadow transition-all duration-300"
                                         style={{
                                             borderColor: categoryData.color,
                                             backgroundColor: `${categoryData.color}20`,
@@ -112,118 +110,91 @@ const Questions = ({ assessment, data, options }: Props) => {
                                     </div>
                                     <div>
                                         <h3
-                                            className="text-xl font-bold"
-                                            style={{
-                                                color: categoryData.color,
-                                            }}
+                                            className="text-lg font-bold"
+                                            style={{ color: categoryData.color }}
                                         >
                                             {categoryName}
                                         </h3>
-                                        <p className="text-sm text-gray-500">
-                                            {categoryData.questions.length}{" "}
-                                            controls
+                                        <p className="text-xs text-gray-500">
+                                            {categoryData.questions.length} controls
                                         </p>
                                     </div>
                                 </div>
 
                                 {/* Progress + Chevron */}
-                                <div className="flex items-center space-x-4">
-                                    <span className="text-sm text-gray-500">
-                                        {answeredCount}/
-                                        {categoryData.questions.length}
+                                <div className="flex items-center space-x-3">
+                                    <span className="text-xs text-gray-500">
+                                        {answeredCount}/{categoryData.questions.length}
                                     </span>
                                     <div
-                                        className={`transition-transform duration-300 ${isExpanded
-                                            ? "rotate-180"
-                                            : "rotate-0"
+                                        className={`transition-transform duration-300 ${isExpanded ? "rotate-180" : "rotate-0"
                                             }`}
                                     >
-                                        <ChevronDown className="text-gray-400" />
+                                        <ChevronDown className="w-4 h-4 text-gray-400" />
                                     </div>
                                 </div>
                             </button>
 
                             {/* Questions Section */}
                             <div
-                                className={`overflow-hidden transition-all duration-300 ease-in-out ${isExpanded
-                                    ? "max-h-[2000px] opacity-100"
-                                    : "max-h-0 opacity-0"
+                                className={`overflow-hidden transition-all duration-300 ease-in-out ${isExpanded ? "max-h-[2000px] opacity-100" : "max-h-0 opacity-0"
                                     }`}
                             >
-                                <div className="px-6 pb-6 space-y-6">
-                                    {categoryData.questions.map(
-                                        (question, questionIndex) => {
-                                            const currentResponse =
-                                                response[assessment]?.[
-                                                categoryName
-                                                ]?.[questionIndex];
+                                <div className="px-4 pb-4 space-y-4">
+                                    {categoryData.questions.map((question, questionIndex) => {
+                                        const currentResponse =
+                                            response[assessment]?.[categoryName]?.[questionIndex];
 
-                                            return (
-                                                <div
-                                                    key={questionIndex}
-                                                    className="p-6 rounded-xl border border-gray-200 bg-gray-50 hover:shadow-md transition-all duration-300"
-                                                >
-                                                    {/* Question */}
-                                                    <h4 className="text-lg font-semibold mb-4 flex items-start leading-relaxed">
-                                                        <span
-                                                            className="w-8 h-8 flex items-center justify-center rounded-full text-white font-bold mr-3 mt-1 flex-shrink-0 transition-colors duration-300"
-                                                            style={{
-                                                                backgroundColor:
-                                                                    categoryData.color,
-                                                            }}
+                                        return (
+                                            <div
+                                                key={questionIndex}
+                                                className="p-4 rounded-xl border border-gray-200 bg-gray-50 hover:shadow-md transition-all duration-300"
+                                            >
+                                                {/* Question */}
+                                                <h4 className="text-base font-semibold mb-3 flex items-start leading-relaxed">
+                                                    <span
+                                                        className="w-7 h-7 flex items-center justify-center rounded-full text-white font-bold mr-2 mt-0.5 flex-shrink-0 transition-colors duration-300 text-sm"
+                                                        style={{ backgroundColor: categoryData.color }}
+                                                    >
+                                                        {questionIndex + 1}
+                                                    </span>
+                                                    {question}
+                                                </h4>
+
+                                                {/* Options */}
+                                                <div className="ml-9 space-y-2">
+                                                    {options.map((option) => (
+                                                        <button
+                                                            key={option.value}
+                                                            onClick={() =>
+                                                                handleResults(
+                                                                    assessment,
+                                                                    categoryName,
+                                                                    questionIndex,
+                                                                    option.value,
+                                                                    option.score
+                                                                )
+                                                            }
+                                                            className={`w-full p-3 rounded-lg border-2 transition-all duration-300 text-left ${currentResponse === option.value
+                                                                ? "border-blue-500 bg-blue-500/10 shadow-md"
+                                                                : "border-gray-300 hover:border-gray-400 hover:bg-gray-100"
+                                                                }`}
                                                         >
-                                                            {questionIndex + 1}
-                                                        </span>
-                                                        {question}
-                                                    </h4>
-
-                                                    {/* Options */}
-                                                    <div className="ml-11 space-y-3">
-                                                        {options.map(
-                                                            (option) => (
-                                                                <button
-                                                                    key={
-                                                                        option.value
-                                                                    }
-                                                                    onClick={() =>
-                                                                        handleResults(
-                                                                            assessment,
-                                                                            categoryName,
-                                                                            questionIndex,
-                                                                            option.value,
-                                                                            option.score
-                                                                        )
-                                                                    }
-                                                                    className={`w-full p-4 rounded-xl border-2 transition-all duration-300 text-left transform ${currentResponse ===
-                                                                        option.value
-                                                                        ? "border-blue-500 bg-blue-500/10 shadow-md"
-                                                                        : "border-gray-300 hover:border-gray-400 hover:bg-gray-100"
-                                                                        }`}
-                                                                >
-                                                                    <div className="flex items-center">
-                                                                        <div
-                                                                            className="w-4 h-4 rounded-full mr-4 transition-colors duration-300"
-                                                                            style={{
-                                                                                backgroundColor:
-                                                                                    option.color,
-                                                                            }}
-                                                                        />
-                                                                        <div>
-                                                                            <span className="font-semibold">
-                                                                                {
-                                                                                    option.label
-                                                                                }
-                                                                            </span>
-                                                                        </div>
-                                                                    </div>
-                                                                </button>
-                                                            )
-                                                        )}
-                                                    </div>
+                                                            <div className="flex items-center">
+                                                                <div
+                                                                    className="w-3.5 h-3.5 rounded-full mr-3 transition-colors duration-300"
+                                                                    style={{ backgroundColor: option.color }}
+                                                                />
+                                                                <span className="font-medium text-sm">
+                                                                    {option.label}
+                                                                </span>
+                                                            </div>
+                                                        </button>
+                                                    ))}
                                                 </div>
-                                            );
-                                        }
-                                    )}
+                                            </div>
+                                        );
+                                    })}
                                 </div>
                             </div>
                         </div>
