@@ -1,4 +1,5 @@
 import securityMaturity from "./securityMaturity";
+import socAssessment from "./socAssessment";
 import zeroTrustAssessment from "./zeroTrust";
 
 export type titleType = string;
@@ -30,6 +31,7 @@ export type assessmentType = {
 const assessmentData: assessmentType[] = [
     { ...securityMaturity },
     { ...zeroTrustAssessment },
+    { ...socAssessment },
 ];
 
 export default assessmentData;
