@@ -1,15 +1,9 @@
 import React, { useState, createContext } from "react";
 import Survey from "./Survey";
 import Results from "./Results";
-import {
-    Dialog,
-    DialogContent,
-    DialogHeader,
-    DialogTitle,
-} from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Shield, CheckCircle, TrendingUp, Users, ArrowRight } from "lucide-react";
+import { Shield, CheckCircle, TrendingUp, Users } from "lucide-react";
+import EmailDialog from "./EmailDialog";
 
 export type ResponseContextType = {
     response: responseType;
@@ -27,75 +21,17 @@ export type responseType = {
         };
     };
 };
-
 export const ResponseContext = createContext<ResponseContextType | null>(null);
 
-const personalEmailDomains: string[] = [
-    "gmail.com",
-    "yahoo.com",
-    "hotmail.com",
-    "outlook.com",
-    "aol.com",
-    "icloud.com",
-    "me.com",
-    "mac.com",
-    "protonmail.com",
-    "yandex.com",
-    "mail.com",
-    "zoho.com",
-    "rediffmail.com",
-    "live.com",
-    "msn.com",
-    "yahoo.co.uk",
-    "yahoo.ca",
-    "yahoo.in",
-    "googlemail.com",
-    "hotmail.co.uk",
-    "hotmail.fr",
-    "outlook.co.uk",
-];
-
-const isValidOrganizationalEmail = (email: string) => {
-    const basicEmailRegex = /\S+@\S+\.\S+/;
-    if (!basicEmailRegex.test(email)) {
-        return false;
-    }
-    const domain = email.split("@")[1]?.toLowerCase();
-    return domain ? !personalEmailDomains.includes(domain) : false;
-};
-
-const getEmailValidationMessage = (email: string) => {
-    if (!email) return "";
-    if (!/\S+@\S+\.\S+/.test(email)) {
-        return "Please enter a valid email address";
-    }
-    const domain = email.split("@")[1]?.toLowerCase();
-    if (personalEmailDomains.includes(domain)) {
-        return "Please use your work email address";
-    }
-    return "";
-};
+export type ResultContextType = {
+    showResults: boolean;
+    setShowResults: React.Dispatch<React.SetStateAction<boolean>>;
+}
+export const ResultContext = createContext<ResultContextType | null>(null);
 
 const Hero = () => {
     const [response, setResponse] = useState<responseType>({});
-    const [open, setOpen] = useState(false);
     const [showResults, setShowResults] = useState(false);
-    const [emailError, setEmailError] = useState<string>("");
-    const [form, setForm] = useState({ name: "", org: "", email: "" });
-
-    const isValid = form.name && form.org && isValidOrganizationalEmail(form.email);
-
-    const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const email = e.target.value;
-        setForm({ ...form, email });
-        setEmailError(getEmailValidationMessage(email));
-    };
-
-    const handleSubmit = () => {
-        if (!isValid) return;
-        setShowResults(true);
-        setOpen(false);
-    };
 
     return (
         <div
@@ -148,19 +84,17 @@ const Hero = () => {
                         )}
                     </div>
 
-                    {/* Assessment/Results Content */}
-                    <div className="mb-8">{!showResults ? <Survey /> : <Results />}</div>
+                    <ResultContext.Provider value={{ showResults, setShowResults }}>
+                        {/* Assessment/Results Content */}
+                        <div className="mb-8">{!showResults ? <Survey /> : <Results />}</div>
+                    </ResultContext.Provider>
 
                     {/* Action Buttons */}
                     <div className="p-8 flex justify-center">
                         {!showResults ? (
-                            <Button
-                                onClick={() => setOpen(true)}
-                                className="bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold text-lg transition-all duration-300 transform hover:scale-105 hover:shadow-xl hover:shadow-blue-500/25 flex items-center space-x-3"
-                            >
-                                <span>Get My Results</span>
-                                <ArrowRight className="w-5 h-5" />
-                            </Button>
+                            <EmailDialog
+                                onSubmit={() => setShowResults(true)}
+                            />
                         ) : (
                             <Button
                                 variant="outline"
@@ -171,59 +105,6 @@ const Hero = () => {
                             </Button>
                         )}
                     </div>
-
-                    {/* Form Dialog */}
-                    <Dialog open={open} onOpenChange={setOpen}>
-                        <DialogContent className="w-full max-w-sm p-4">
-                            <DialogHeader>
-                                <DialogTitle className="text-xl font-semibold text-gray-900">
-                                    Generate Your Report
-                                </DialogTitle>
-                            </DialogHeader>
-
-                            <div className="space-y-4">
-                                <Input
-                                    placeholder="Full Name"
-                                    value={form.name}
-                                    onChange={(e) => setForm({ ...form, name: e.target.value })}
-                                    className="h-10"
-                                />
-
-                                <Input
-                                    placeholder="Organization"
-                                    value={form.org}
-                                    onChange={(e) => setForm({ ...form, org: e.target.value })}
-                                    className="h-10"
-                                />
-
-                                <div>
-                                    <Input
-                                        placeholder="Work Email"
-                                        type="email"
-                                        value={form.email}
-                                        onChange={handleEmailChange}
-                                        className={`h-10 ${emailError ? "border-red-500" : ""}`}
-                                    />
-                                    {emailError && (
-                                        <p className="text-red-500 text-xs mt-1">{emailError}</p>
-                                    )}
-                                </div>
-
-                                <Button
-                                    className="w-full"
-                                    onClick={handleSubmit}
-                                    disabled={!isValid}
-                                >
-                                    Continue
-                                </Button>
-
-                                <div className="flex items-center justify-center space-x-2 text-xs text-gray-500 pt-2">
-                                    <Shield className="w-3 h-3" />
-                                    <span>Your information is secure with us</span>
-                                </div>
-                            </div>
-                        </DialogContent>
-                    </Dialog>
                 </ResponseContext.Provider>
             </div>
         </div>

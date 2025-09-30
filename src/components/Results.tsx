@@ -65,17 +65,19 @@ const Results = () => {
     if (!context) return null;
     const { response } = context;
 
-    console.log(response);
+    const attendedAssessments = Object.keys(response);
 
     const countPerAssessment: { [title: string]: number } = assessmentData.reduce<
         { [title: string]: number }
     >((acc, assessment: assessmentType) => {
-        const category = Object.values(assessment.questions);
-        const count: number = category.reduce(
-            (accumulator, object) => accumulator + object.questions.length * 100,
-            0
-        );
-        acc[assessment.title] = count;
+        if (attendedAssessments.includes(assessment.title)) {
+            const category = Object.values(assessment.questions);
+            const count: number = category.reduce(
+                (accumulator, object) => accumulator + object.questions.length * 100,
+                0
+            );
+            acc[assessment.title] = count;
+        }
         return acc;
     }, {});
 
@@ -84,17 +86,16 @@ const Results = () => {
         0
     );
 
-    // Current earned score
-    const currentScore = Object.values(response).reduce(
-        (assessmentAcc, assessment) => {
-            const assessmentScore = Object.values(assessment).reduce(
-                (catAcc, category) => catAcc + (category.categoryScore || 0),
-                0
-            );
-            return assessmentAcc + assessmentScore;
-        },
-        0
-    );
+    const earnedPerAssessment: { [title: string]: number } = {};
+    Object.entries(response).forEach(([title, assessment]) => {
+        const assessmentScore = Object.values(assessment).reduce(
+            (catAcc, category) => catAcc + (category.categoryScore || 0),
+            0
+        );
+        earnedPerAssessment[title] = assessmentScore;
+    });
+
+    const currentScore: number = Object.values(earnedPerAssessment).reduce((acc, object) => { return acc + object; }, 0);
 
     const chartData = [
         {
@@ -137,91 +138,93 @@ const Results = () => {
                 </div>
                 {/* Chart and Stats Section */}
                 <div className="p-8">
-                    <div className="grid lg:grid-cols-2 gap-8 items-center">
-                        {/* Left: Stats */}
-                        <div className="space-y-6">
-                            <div className="bg-gray-50 rounded-xl p-6">
-                                <h3 className="text-lg font-semibold text-gray-900 mb-4">
-                                    Performance Breakdown
-                                </h3>
-                                <div className="space-y-4">
-                                    <div className="flex justify-between items-center">
-                                        <span className="text-gray-600">Points Scored:</span>
-                                        <span className="font-semibold text-emerald-600">
-                                            {((currentScore / totalScore) * 100).toFixed(2)} %
-                                        </span>
-                                    </div>
-                                    <div className="flex justify-between items-center">
-                                        <span className="text-gray-600">Areas for Improvement:</span>
-                                        <span className="font-semibold text-red-500">
-                                            {(((totalScore - currentScore) / totalScore) * 100).toFixed(2)} %
-                                        </span>
-                                    </div>
+                    {/* Right: Chart */}
+                    <div className="relative">
+                        <div className="h-80 w-full relative z-10">
+                            <ResponsiveContainer width="100%" height="100%">
+                                <PieChart>
+                                    <defs>
+                                        <linearGradient id="addressedGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                            <stop offset="0%" stopColor="#10b981" />
+                                            <stop offset="100%" stopColor="#059669" />
+                                        </linearGradient>
+                                        <linearGradient id="ignoredGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                            <stop offset="0%" stopColor="#ef4444" />
+                                            <stop offset="100%" stopColor="#dc2626" />
+                                        </linearGradient>
+                                    </defs>
+                                    <Pie
+                                        data={chartData}
+                                        cx="50%"
+                                        cy="50%"
+                                        outerRadius={120}
+                                        innerRadius={60}
+                                        paddingAngle={3}
+                                        dataKey="value"
+                                        animationBegin={0}
+                                        animationDuration={1200}
+                                        animationEasing="ease-in-out"
+                                    >
+                                        {chartData.map((_entry, index) => (
+                                            <Cell
+                                                key={`cell-${index}`}
+                                                fill={COLORS.gradient[index === 0 ? 'addressed' : 'ignored']}
+                                                stroke="#ffffff"
+                                                strokeWidth={3}
+                                            />
+                                        ))}
+                                    </Pie>
+                                    <Tooltip
+                                        content={<CustomTooltip />}
+                                        wrapperStyle={{ zIndex: 9999 }}
+                                        allowEscapeViewBox={{ x: false, y: false }}
+                                    />
+                                </PieChart>
+                            </ResponsiveContainer>
+                        </div>
+                        {/* Center Label */}
+                        <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
+                            <div className="text-center">
+                                <div className="text-3xl font-bold text-gray-900">
+                                    {Math.round(percentage)}%
+                                </div>
+                                <div className="text-sm text-gray-500 font-medium">
+                                    Complete
                                 </div>
                             </div>
-                            {/* Description */}
-                            <div className="bg-blue-50 rounded-xl p-6">
-                                <h4 className="font-semibold text-blue-900 mb-2">
-                                    {rankDescriptions[rank]}
-                                </h4>
-                            </div>
                         </div>
-                        {/* Right: Chart */}
-                        <div className="relative">
-                            <div className="h-80 w-full relative z-10">
-                                <ResponsiveContainer width="100%" height="100%">
-                                    <PieChart>
-                                        <defs>
-                                            <linearGradient id="addressedGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                                                <stop offset="0%" stopColor="#10b981" />
-                                                <stop offset="100%" stopColor="#059669" />
-                                            </linearGradient>
-                                            <linearGradient id="ignoredGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                                                <stop offset="0%" stopColor="#ef4444" />
-                                                <stop offset="100%" stopColor="#dc2626" />
-                                            </linearGradient>
-                                        </defs>
-                                        <Pie
-                                            data={chartData}
-                                            cx="50%"
-                                            cy="50%"
-                                            outerRadius={120}
-                                            innerRadius={60}
-                                            paddingAngle={3}
-                                            dataKey="value"
-                                            animationBegin={0}
-                                            animationDuration={1200}
-                                            animationEasing="ease-in-out"
+                    </div>
+                    {/* Assessments Attended */}
+                    <div className="bg-gray-50 rounded-xl p-6">
+                        <h3 className="text-lg font-semibold text-gray-900 mb-4">
+                            Assessments Attended
+                        </h3>
+                        <div className="space-y-3">
+                            {attendedAssessments.length > 0 ? (
+                                attendedAssessments.map((title) => {
+                                    const earned = earnedPerAssessment[title] || 0;
+                                    const max = countPerAssessment[title] || 0;
+                                    const percent = max > 0 ? ((earned / max) * 100).toFixed(1) : "0";
+                                    return (
+                                        <div
+                                            key={title}
+                                            className="flex justify-between items-center border-b pb-2 last:border-none"
                                         >
-                                            {chartData.map((_entry, index) => (
-                                                <Cell
-                                                    key={`cell-${index}`}
-                                                    fill={COLORS.gradient[index === 0 ? 'addressed' : 'ignored']}
-                                                    stroke="#ffffff"
-                                                    strokeWidth={3}
-                                                />
-                                            ))}
-                                        </Pie>
-                                        <Tooltip
-                                            content={<CustomTooltip />}
-                                            wrapperStyle={{ zIndex: 9999 }}
-                                            allowEscapeViewBox={{ x: false, y: false }}
-                                        />
-                                    </PieChart>
-                                </ResponsiveContainer>
-                            </div>
-                            {/* Center Label */}
-                            <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
-                                <div className="text-center">
-                                    <div className="text-3xl font-bold text-gray-900">
-                                        {Math.round(percentage)}%
-                                    </div>
-                                    <div className="text-sm text-gray-500 font-medium">
-                                        Complete
-                                    </div>
-                                </div>
-                            </div>
+                                            <span className="text-gray-700">{title}</span>
+                                            <span className="font-medium text-blue-600">{percent}%</span>
+                                        </div>
+                                    );
+                                })
+                            ) : (
+                                <p className="text-sm text-gray-500">No assessments attended yet.</p>
+                            )}
                         </div>
+                    </div>
+                    {/* Rank Description */}
+                    <div className="bg-blue-50 rounded-xl p-6 mt-6">
+                        <h4 className="font-semibold text-blue-900 mb-2">
+                            {rankDescriptions[rank]}
+                        </h4>
                     </div>
                 </div>
             </div>

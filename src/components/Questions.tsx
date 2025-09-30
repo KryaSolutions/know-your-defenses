@@ -1,6 +1,9 @@
 import { useState, useContext } from "react";
 import { ChevronDown } from "lucide-react";
 import { ResponseContext } from "./Hero";
+import EmailDialog from "./EmailDialog";
+import { ResultContext } from "./Hero";
+import type { ResponseContextType, ResultContextType } from "./Hero";
 import type { responseType } from "./Hero";
 import type { dataType, optionType } from "../utilities/assessmentMeta";
 
@@ -13,9 +16,13 @@ type Props = {
 const Questions = ({ assessment, data, options }: Props) => {
     const [expand, setExpand] = useState<Record<string, boolean>>({});
 
-    const context = useContext(ResponseContext);
-    if (!context) return null;
-    const { response, setResponse } = context;
+    const responseContext = useContext<ResponseContextType | null>(ResponseContext);
+    if (!responseContext) return null;
+    const { response, setResponse } = responseContext;
+
+    const resultContext = useContext<ResultContextType | null>(ResultContext);
+    if (!resultContext) return null;
+    const { setShowResults } = resultContext;
 
     const handleResults = (
         assessmentTitle: string,
@@ -207,6 +214,13 @@ const Questions = ({ assessment, data, options }: Props) => {
                         </div>
                     );
                 })}
+            </div>
+
+            {/* EmailDialog per assessment (after all categories) */}
+            <div className="px-4 pb-3 mt-6 flex justify-center">
+                <EmailDialog
+                    onSubmit={() => setShowResults(true)}
+                />
             </div>
         </div>
     );
