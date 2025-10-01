@@ -26,7 +26,7 @@ export const ResponseContext = createContext<ResponseContextType | null>(null);
 export type ResultContextType = {
     showResults: boolean;
     setShowResults: React.Dispatch<React.SetStateAction<boolean>>;
-}
+};
 export const ResultContext = createContext<ResultContextType | null>(null);
 
 const Hero = () => {
@@ -62,7 +62,9 @@ const Hero = () => {
                                 <Shield className="w-8 h-8 text-white" />
                             </div>
                             <h2 className="text-3xl font-bold bg-gradient-to-r from-blue-700 to-cyan-700 bg-clip-text text-transparent">
-                                {!showResults ? "Security Assessment" : "Your Security Report"}
+                                {!showResults
+                                    ? "Security Assessment"
+                                    : "Your Security Report"}
                             </h2>
                         </div>
 
@@ -84,9 +86,13 @@ const Hero = () => {
                         )}
                     </div>
 
-                    <ResultContext.Provider value={{ showResults, setShowResults }}>
+                    <ResultContext.Provider
+                        value={{ showResults, setShowResults }}
+                    >
                         {/* Assessment/Results Content */}
-                        <div className="mb-8">{!showResults ? <Survey /> : <Results />}</div>
+                        <div className="mb-8">
+                            {!showResults ? <Survey /> : <Results />}
+                        </div>
                     </ResultContext.Provider>
 
                     {/* Action Buttons */}

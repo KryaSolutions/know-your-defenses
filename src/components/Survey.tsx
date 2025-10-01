@@ -38,7 +38,9 @@ const Survey = () => {
             <ul className="space-y-6">
                 {assessmentData.map((assessment) => {
                     // Total questions in this assessment
-                    const totalQuestions = Object.values(assessment.questions).reduce(
+                    const totalQuestions = Object.values(
+                        assessment.questions
+                    ).reduce(
                         (sum, category) => sum + category.questions.length,
                         0
                     );
@@ -80,7 +82,8 @@ const Survey = () => {
                                     {/* Text above the progress bar */}
                                     <div className="flex justify-between items-center mb-2">
                                         <span className="text-sm text-gray-600">
-                                            {answeredCount}/{totalQuestions} answered
+                                            {answeredCount}/{totalQuestions}{" "}
+                                            answered
                                         </span>
                                         <span className="text-sm font-medium text-blue-600">
                                             {progressPercent}%
@@ -91,14 +94,18 @@ const Survey = () => {
                                     <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
                                         <div
                                             className="h-full bg-blue-600 transition-all duration-500"
-                                            style={{ width: `${progressPercent}%` }}
+                                            style={{
+                                                width: `${progressPercent}%`,
+                                            }}
                                         />
                                     </div>
                                 </div>
 
                                 {/* Button */}
                                 <button
-                                    onClick={() => handleStartAssessment(assessment)}
+                                    onClick={() =>
+                                        handleStartAssessment(assessment)
+                                    }
                                     className="px-5 py-2.5 rounded-lg bg-blue-600 text-white font-medium shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 transition whitespace-nowrap"
                                     tabIndex={-1}
                                 >
@@ -112,14 +119,16 @@ const Survey = () => {
 
             {selectedAssessment && (
                 <div
-                    className={`fixed inset-0 z-50 flex items-end justify-center bg-black/50 transition-opacity duration-300 ${isVisible ? "opacity-100" : "opacity-0"
-                        }`}
+                    className={`fixed inset-0 z-50 flex items-end justify-center bg-black/50 transition-opacity duration-300 ${
+                        isVisible ? "opacity-100" : "opacity-0"
+                    }`}
                 >
                     <div
-                        className={`bg-white rounded-t-2xl shadow-2xl w-full max-w-4xl h-[90vh] relative transform transition-all duration-300 ${isVisible
-                            ? "translate-y-0 opacity-100"
-                            : "translate-y-10 opacity-0"
-                            }`}
+                        className={`bg-white rounded-t-2xl shadow-2xl w-full max-w-4xl h-[90vh] relative transform transition-all duration-300 ${
+                            isVisible
+                                ? "translate-y-0 opacity-100"
+                                : "translate-y-10 opacity-0"
+                        }`}
                     >
                         {/* Close button */}
                         <button

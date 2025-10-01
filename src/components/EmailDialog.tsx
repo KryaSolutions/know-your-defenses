@@ -1,15 +1,42 @@
 import React, { useState } from "react";
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import axios from "axios";
+import {
+    Dialog,
+    DialogContent,
+    DialogHeader,
+    DialogTitle,
+} from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Shield, ArrowRight } from "lucide-react";
+import { useContext } from "react";
+import { ResponseContext } from "@/components/Hero";
+import type { ResponseContextType } from "@/components/Hero";
+import run from "@/utilities/mistral";
 
 const personalEmailDomains: string[] = [
-    "gmail.com", "yahoo.com", "hotmail.com", "outlook.com", "aol.com",
-    "icloud.com", "me.com", "mac.com", "protonmail.com", "yandex.com",
-    "mail.com", "zoho.com", "rediffmail.com", "live.com", "msn.com",
-    "yahoo.co.uk", "yahoo.ca", "yahoo.in", "googlemail.com", "hotmail.co.uk",
-    "hotmail.fr", "outlook.co.uk",
+    "gmail.com",
+    "yahoo.com",
+    "hotmail.com",
+    "outlook.com",
+    "aol.com",
+    "icloud.com",
+    "me.com",
+    "mac.com",
+    "protonmail.com",
+    "yandex.com",
+    "mail.com",
+    "zoho.com",
+    "rediffmail.com",
+    "live.com",
+    "msn.com",
+    "yahoo.co.uk",
+    "yahoo.ca",
+    "yahoo.in",
+    "googlemail.com",
+    "hotmail.co.uk",
+    "hotmail.fr",
+    "outlook.co.uk",
 ];
 
 const isValidOrganizationalEmail = (email: string) => {
@@ -21,9 +48,11 @@ const isValidOrganizationalEmail = (email: string) => {
 
 const getEmailValidationMessage = (email: string) => {
     if (!email) return "";
-    if (!/\S+@\S+\.\S+/.test(email)) return "Please enter a valid email address";
+    if (!/\S+@\S+\.\S+/.test(email))
+        return "Please enter a valid email address";
     const domain = email.split("@")[1]?.toLowerCase();
-    if (personalEmailDomains.includes(domain)) return "Please use your work email address";
+    if (personalEmailDomains.includes(domain))
+        return "Please use your work email address";
     return "";
 };
 
@@ -40,11 +69,16 @@ const EmailDialog: React.FC<ReportDialogProps> = ({
     title = "Generate Your Report",
     variant = "default",
 }) => {
+    const context = useContext<ResponseContextType | null>(ResponseContext);
+    if (!context) return null;
+    const { response } = context;
+
     const [open, setOpen] = useState(false);
     const [form, setForm] = useState({ name: "", org: "", email: "" });
     const [emailError, setEmailError] = useState("");
 
-    const isValid = form.name && form.org && isValidOrganizationalEmail(form.email);
+    const isValid =
+        form.name && form.org && isValidOrganizationalEmail(form.email);
 
     const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const email = e.target.value;
@@ -53,14 +87,24 @@ const EmailDialog: React.FC<ReportDialogProps> = ({
     };
 
     async function appendCustomer() {
-        const url = "https://script.google.com/macros/s/AKfycbx5zfZYciMsEucsWCbpUYoKYphHosC96ucpsRsww4RQfk_vsADHNPzhvm1JNQjgExf6/exec";
-        fetch(url, {
-            method: "POST",
-            headers: { "Content-Type": "application/x-www-form-urlencoded" },
-            body: (`Name=${form.name}&Organization=${form.org}&Email=${form.email}`)
-        })
-    }
 
+        const summary = (await run(response)) ?? "No summary available";
+
+        axios({
+            method: "POST",
+            url: "https://api.baserow.io/api/database/rows/table/690134/?user_field_names=true",
+            headers: {
+                Authorization: "Token sLB1RDWLQ6ABUP005wEGArDnVEq21p9K",
+                "Content-Type": "application/json",
+            },
+            data: {
+                Name: form.name,
+                Organization: form.org,
+                Email: form.email,
+                "Stat Summary": summary,
+            },
+        });
+    }
 
     const handleSubmit = async () => {
         if (!isValid) return;
@@ -72,7 +116,11 @@ const EmailDialog: React.FC<ReportDialogProps> = ({
     return (
         <>
             <Button
-                className={variant === "default" ? "bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold flex items-center space-x-3" : "border-2 border-blue-200 hover:border-blue-300 text-blue-700 hover:text-blue-800 hover:bg-blue-50 px-8 py-3 rounded-lg font-semibold flex items-center space-x-3"}
+                className={
+                    variant === "default"
+                        ? "bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold flex items-center space-x-3"
+                        : "border-2 border-blue-200 hover:border-blue-300 text-blue-700 hover:text-blue-800 hover:bg-blue-50 px-8 py-3 rounded-lg font-semibold flex items-center space-x-3"
+                }
                 onClick={() => setOpen(true)}
             >
                 <span>{triggerButtonText}</span>
@@ -82,21 +130,27 @@ const EmailDialog: React.FC<ReportDialogProps> = ({
             <Dialog open={open} onOpenChange={setOpen}>
                 <DialogContent className="w-full max-w-sm p-4">
                     <DialogHeader>
-                        <DialogTitle className="text-xl font-semibold text-gray-900">{title}</DialogTitle>
+                        <DialogTitle className="text-xl font-semibold text-gray-900">
+                            {title}
+                        </DialogTitle>
                     </DialogHeader>
 
                     <div className="space-y-4">
                         <Input
                             placeholder="Full Name"
                             value={form.name}
-                            onChange={(e) => setForm({ ...form, name: e.target.value })}
+                            onChange={(e) =>
+                                setForm({ ...form, name: e.target.value })
+                            }
                             className="h-10"
                         />
 
                         <Input
                             placeholder="Organization"
                             value={form.org}
-                            onChange={(e) => setForm({ ...form, org: e.target.value })}
+                            onChange={(e) =>
+                                setForm({ ...form, org: e.target.value })
+                            }
                             className="h-10"
                         />
 
@@ -108,10 +162,18 @@ const EmailDialog: React.FC<ReportDialogProps> = ({
                                 onChange={handleEmailChange}
                                 className={`h-10 ${emailError ? "border-red-500" : ""}`}
                             />
-                            {emailError && <p className="text-red-500 text-xs mt-1">{emailError}</p>}
+                            {emailError && (
+                                <p className="text-red-500 text-xs mt-1">
+                                    {emailError}
+                                </p>
+                            )}
                         </div>
 
-                        <Button className="w-full" onClick={handleSubmit} disabled={!isValid}>
+                        <Button
+                            className="w-full"
+                            onClick={handleSubmit}
+                            disabled={!isValid}
+                        >
                             Continue
                         </Button>
 

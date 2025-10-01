@@ -1,13 +1,20 @@
-import { Shield, AlertTriangle, Eye, TrendingUp, ChevronRight, Zap } from 'lucide-react';
+import {
+    Shield,
+    AlertTriangle,
+    Eye,
+    TrendingUp,
+    ChevronRight,
+    Zap,
+} from "lucide-react";
 
 export default function SecurityAssessmentHeader() {
     const handleStartAssessment = () => {
         // Smooth scroll to the Hero section
-        const heroSection = document.querySelector('#hero-section');
+        const heroSection = document.querySelector("#hero-section");
         if (heroSection) {
             heroSection.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
+                behavior: "smooth",
+                block: "start",
             });
         }
     };
@@ -37,16 +44,18 @@ export default function SecurityAssessmentHeader() {
                             </div>
 
                             <h1 className="text-4xl lg:text-5xl font-bold leading-tight">
-                                Discover Your{' '}
+                                Discover Your{" "}
                                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">
                                     Security Posture
                                 </span>
                             </h1>
 
                             <p className="text-xl text-gray-300 leading-relaxed">
-                                Take this quick assessment to understand your organization's current security posture.
-                                It will highlight where you stand today, reveal potential gaps, and provide insights
-                                to strengthen your defenses and resilience.
+                                Take this quick assessment to understand your
+                                organization's current security posture. It will
+                                highlight where you stand today, reveal
+                                potential gaps, and provide insights to
+                                strengthen your defenses and resilience.
                             </p>
                         </div>
 
@@ -54,15 +63,21 @@ export default function SecurityAssessmentHeader() {
                         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                             <div className="flex items-center space-x-3 p-4 bg-white/5 rounded-lg backdrop-blur-sm border border-white/10">
                                 <Eye className="w-6 h-6 text-green-400" />
-                                <span className="text-sm font-medium">Reveal Gaps</span>
+                                <span className="text-sm font-medium">
+                                    Reveal Gaps
+                                </span>
                             </div>
                             <div className="flex items-center space-x-3 p-4 bg-white/5 rounded-lg backdrop-blur-sm border border-white/10">
                                 <TrendingUp className="w-6 h-6 text-blue-400" />
-                                <span className="text-sm font-medium">Get Insights</span>
+                                <span className="text-sm font-medium">
+                                    Get Insights
+                                </span>
                             </div>
                             <div className="flex items-center space-x-3 p-4 bg-white/5 rounded-lg backdrop-blur-sm border border-white/10">
                                 <Zap className="w-6 h-6 text-purple-400" />
-                                <span className="text-sm font-medium">Strengthen Defense</span>
+                                <span className="text-sm font-medium">
+                                    Strengthen Defense
+                                </span>
                             </div>
                         </div>
 
@@ -86,10 +101,19 @@ export default function SecurityAssessmentHeader() {
                         {/* Central Shield */}
                         <div className="relative mx-auto w-80 h-80 flex items-center justify-center">
                             {/* Animated Rings */}
-                            <div className="absolute inset-0 animate-spin" style={{ animationDuration: '20s' }}>
+                            <div
+                                className="absolute inset-0 animate-spin"
+                                style={{ animationDuration: "20s" }}
+                            >
                                 <div className="w-full h-full border-2 border-dashed border-blue-400/30 rounded-full"></div>
                             </div>
-                            <div className="absolute inset-4 animate-spin" style={{ animationDuration: '15s', animationDirection: 'reverse' }}>
+                            <div
+                                className="absolute inset-4 animate-spin"
+                                style={{
+                                    animationDuration: "15s",
+                                    animationDirection: "reverse",
+                                }}
+                            >
                                 <div className="w-full h-full border border-cyan-400/20 rounded-full"></div>
                             </div>
 
@@ -99,25 +123,37 @@ export default function SecurityAssessmentHeader() {
                             </div>
 
                             {/* Floating Icons */}
-                            <div className="absolute top-8 left-1/2 transform -translate-x-1/2 animate-bounce" style={{ animationDelay: '0s' }}>
+                            <div
+                                className="absolute top-8 left-1/2 transform -translate-x-1/2 animate-bounce"
+                                style={{ animationDelay: "0s" }}
+                            >
                                 <div className="p-3 bg-green-500/20 rounded-lg backdrop-blur-sm border border-green-400/30">
                                     <Eye className="w-6 h-6 text-green-400" />
                                 </div>
                             </div>
 
-                            <div className="absolute top-1/2 right-8 transform -translate-y-1/2 animate-bounce" style={{ animationDelay: '1s' }}>
+                            <div
+                                className="absolute top-1/2 right-8 transform -translate-y-1/2 animate-bounce"
+                                style={{ animationDelay: "1s" }}
+                            >
                                 <div className="p-3 bg-purple-500/20 rounded-lg backdrop-blur-sm border border-purple-400/30">
                                     <TrendingUp className="w-6 h-6 text-purple-400" />
                                 </div>
                             </div>
 
-                            <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce" style={{ animationDelay: '2s' }}>
+                            <div
+                                className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce"
+                                style={{ animationDelay: "2s" }}
+                            >
                                 <div className="p-3 bg-yellow-500/20 rounded-lg backdrop-blur-sm border border-yellow-400/30">
                                     <AlertTriangle className="w-6 h-6 text-yellow-400" />
                                 </div>
                             </div>
 
-                            <div className="absolute top-1/2 left-8 transform -translate-y-1/2 animate-bounce" style={{ animationDelay: '1.5s' }}>
+                            <div
+                                className="absolute top-1/2 left-8 transform -translate-y-1/2 animate-bounce"
+                                style={{ animationDelay: "1.5s" }}
+                            >
                                 <div className="p-3 bg-cyan-500/20 rounded-lg backdrop-blur-sm border border-cyan-400/30">
                                     <Zap className="w-6 h-6 text-cyan-400" />
                                 </div>
@@ -126,13 +162,21 @@ export default function SecurityAssessmentHeader() {
 
                         {/* Stats Cards */}
                         <div className="absolute -bottom-4 left-4 p-4 bg-white/10 rounded-lg backdrop-blur-sm border border-white/20 transform rotate-3">
-                            <div className="text-2xl font-bold text-green-400">95%</div>
-                            <div className="text-xs text-gray-300">Organizations Improved</div>
+                            <div className="text-2xl font-bold text-green-400">
+                                95%
+                            </div>
+                            <div className="text-xs text-gray-300">
+                                Organizations Improved
+                            </div>
                         </div>
 
                         <div className="absolute -top-4 right-4 p-4 bg-white/10 rounded-lg backdrop-blur-sm border border-white/20 transform -rotate-3">
-                            <div className="text-2xl font-bold text-blue-400">5min</div>
-                            <div className="text-xs text-gray-300">Quick Assessment</div>
+                            <div className="text-2xl font-bold text-blue-400">
+                                5min
+                            </div>
+                            <div className="text-xs text-gray-300">
+                                Quick Assessment
+                            </div>
                         </div>
                     </div>
                 </div>

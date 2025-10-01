@@ -1,22 +1,18 @@
 import { useContext } from "react";
 import { ResponseContext } from "./Hero";
 import type { ResponseContextType } from "./Hero";
-import assessmentData, { type assessmentType } from "../utilities/assessmentMeta";
-import {
-    PieChart,
-    Pie,
-    Cell,
-    Tooltip,
-    ResponsiveContainer,
-} from "recharts";
+import assessmentData, {
+    type assessmentType,
+} from "../utilities/assessmentMeta";
+import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from "recharts";
 
 const COLORS = {
     addressed: "#10b981",
     ignored: "#ef4444",
     gradient: {
         addressed: "url(#addressedGradient)",
-        ignored: "url(#ignoredGradient)"
-    }
+        ignored: "url(#ignoredGradient)",
+    },
 };
 
 const rankDescriptions: { [key: string]: string } = {
@@ -26,7 +22,7 @@ const rankDescriptions: { [key: string]: string } = {
     C: "Fair. There's room for improvement in addressing issues.",
     D: "Needs work. Many issues remain unaddressed.",
     E: "Significant improvement needed. Most issues are unaddressed.",
-    F: "Critical. Urgent attention required to address issues."
+    F: "Critical. Urgent attention required to address issues.",
 };
 
 const rankColors: { [key: string]: string } = {
@@ -36,7 +32,7 @@ const rankColors: { [key: string]: string } = {
     C: "text-yellow-600 bg-yellow-50 border-yellow-200",
     D: "text-orange-600 bg-orange-50 border-orange-200",
     E: "text-red-600 bg-red-50 border-red-200",
-    F: "text-red-700 bg-red-100 border-red-300"
+    F: "text-red-700 bg-red-100 border-red-300",
 };
 
 // Custom tooltip component with higher z-index and proper positioning
@@ -44,14 +40,23 @@ const CustomTooltip = ({ active, payload }: any) => {
     if (active && payload && payload.length) {
         const data = payload[0];
         return (
-            <div className="bg-white px-4 py-3 rounded-lg shadow-2xl border border-gray-200 relative z-50"
-                style={{ zIndex: 9999, position: 'relative' }}>
+            <div
+                className="bg-white px-4 py-3 rounded-lg shadow-2xl border border-gray-200 relative z-50"
+                style={{ zIndex: 9999, position: "relative" }}
+            >
                 <p className="font-semibold text-gray-800">{data.name}</p>
                 <p className="text-sm text-gray-600">
                     Score: <span className="font-medium">{data.value}</span>
                 </p>
                 <p className="text-sm text-gray-600">
-                    Percentage: <span className="font-medium">{((data.value / (payload[0].payload.total || 1)) * 100).toFixed(1)}%</span>
+                    Percentage:{" "}
+                    <span className="font-medium">
+                        {(
+                            (data.value / (payload[0].payload.total || 1)) *
+                            100
+                        ).toFixed(1)}
+                        %
+                    </span>
                 </p>
             </div>
         );
@@ -60,26 +65,28 @@ const CustomTooltip = ({ active, payload }: any) => {
 };
 
 const Results = () => {
-
     const context = useContext<ResponseContextType | null>(ResponseContext);
     if (!context) return null;
     const { response } = context;
 
     const attendedAssessments = Object.keys(response);
 
-    const countPerAssessment: { [title: string]: number } = assessmentData.reduce<
-        { [title: string]: number }
-    >((acc, assessment: assessmentType) => {
-        if (attendedAssessments.includes(assessment.title)) {
-            const category = Object.values(assessment.questions);
-            const count: number = category.reduce(
-                (accumulator, object) => accumulator + object.questions.length * 100,
-                0
-            );
-            acc[assessment.title] = count;
-        }
-        return acc;
-    }, {});
+    const countPerAssessment: { [title: string]: number } =
+        assessmentData.reduce<{ [title: string]: number }>(
+            (acc, assessment: assessmentType) => {
+                if (attendedAssessments.includes(assessment.title)) {
+                    const category = Object.values(assessment.questions);
+                    const count: number = category.reduce(
+                        (accumulator, object) =>
+                            accumulator + object.questions.length * 100,
+                        0
+                    );
+                    acc[assessment.title] = count;
+                }
+                return acc;
+            },
+            {}
+        );
 
     const totalScore: number = Object.values(countPerAssessment).reduce(
         (accumulator, count) => accumulator + count,
@@ -95,18 +102,23 @@ const Results = () => {
         earnedPerAssessment[title] = assessmentScore;
     });
 
-    const currentScore: number = Object.values(earnedPerAssessment).reduce((acc, object) => { return acc + object; }, 0);
+    const currentScore: number = Object.values(earnedPerAssessment).reduce(
+        (acc, object) => {
+            return acc + object;
+        },
+        0
+    );
 
     const chartData = [
         {
             name: "Points Scored",
             value: currentScore,
-            total: totalScore
+            total: totalScore,
         },
         {
             name: "Areas for Improvement",
             value: totalScore - currentScore,
-            total: totalScore
+            total: totalScore,
         },
     ];
 
@@ -131,7 +143,9 @@ const Results = () => {
                         <p className="text-white/80 text-sm font-medium tracking-wide mb-2">
                             Your Security Strength is at
                         </p>
-                        <div className={`inline-flex items-center justify-center w-24 h-24 rounded-2xl text-4xl font-black border-4 ${rankColors[rank]} shadow-lg transition-transform transform hover:scale-105`}>
+                        <div
+                            className={`inline-flex items-center justify-center w-24 h-24 rounded-2xl text-4xl font-black border-4 ${rankColors[rank]} shadow-lg transition-transform transform hover:scale-105`}
+                        >
                             {Math.round(percentage)}%
                         </div>
                     </div>
@@ -144,13 +158,37 @@ const Results = () => {
                             <ResponsiveContainer width="100%" height="100%">
                                 <PieChart>
                                     <defs>
-                                        <linearGradient id="addressedGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                                            <stop offset="0%" stopColor="#10b981" />
-                                            <stop offset="100%" stopColor="#059669" />
+                                        <linearGradient
+                                            id="addressedGradient"
+                                            x1="0%"
+                                            y1="0%"
+                                            x2="100%"
+                                            y2="100%"
+                                        >
+                                            <stop
+                                                offset="0%"
+                                                stopColor="#10b981"
+                                            />
+                                            <stop
+                                                offset="100%"
+                                                stopColor="#059669"
+                                            />
                                         </linearGradient>
-                                        <linearGradient id="ignoredGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                                            <stop offset="0%" stopColor="#ef4444" />
-                                            <stop offset="100%" stopColor="#dc2626" />
+                                        <linearGradient
+                                            id="ignoredGradient"
+                                            x1="0%"
+                                            y1="0%"
+                                            x2="100%"
+                                            y2="100%"
+                                        >
+                                            <stop
+                                                offset="0%"
+                                                stopColor="#ef4444"
+                                            />
+                                            <stop
+                                                offset="100%"
+                                                stopColor="#dc2626"
+                                            />
                                         </linearGradient>
                                     </defs>
                                     <Pie
@@ -168,7 +206,13 @@ const Results = () => {
                                         {chartData.map((_entry, index) => (
                                             <Cell
                                                 key={`cell-${index}`}
-                                                fill={COLORS.gradient[index === 0 ? 'addressed' : 'ignored']}
+                                                fill={
+                                                    COLORS.gradient[
+                                                        index === 0
+                                                            ? "addressed"
+                                                            : "ignored"
+                                                    ]
+                                                }
                                                 stroke="#ffffff"
                                                 strokeWidth={3}
                                             />
@@ -177,7 +221,10 @@ const Results = () => {
                                     <Tooltip
                                         content={<CustomTooltip />}
                                         wrapperStyle={{ zIndex: 9999 }}
-                                        allowEscapeViewBox={{ x: false, y: false }}
+                                        allowEscapeViewBox={{
+                                            x: false,
+                                            y: false,
+                                        }}
                                     />
                                 </PieChart>
                             </ResponsiveContainer>
@@ -202,21 +249,31 @@ const Results = () => {
                         <div className="space-y-3">
                             {attendedAssessments.length > 0 ? (
                                 attendedAssessments.map((title) => {
-                                    const earned = earnedPerAssessment[title] || 0;
+                                    const earned =
+                                        earnedPerAssessment[title] || 0;
                                     const max = countPerAssessment[title] || 0;
-                                    const percent = max > 0 ? ((earned / max) * 100).toFixed(1) : "0";
+                                    const percent =
+                                        max > 0
+                                            ? ((earned / max) * 100).toFixed(1)
+                                            : "0";
                                     return (
                                         <div
                                             key={title}
                                             className="flex justify-between items-center border-b pb-2 last:border-none"
                                         >
-                                            <span className="text-gray-700">{title}</span>
-                                            <span className="font-medium text-blue-600">{percent}%</span>
+                                            <span className="text-gray-700">
+                                                {title}
+                                            </span>
+                                            <span className="font-medium text-blue-600">
+                                                {percent}%
+                                            </span>
                                         </div>
                                     );
                                 })
                             ) : (
-                                <p className="text-sm text-gray-500">No assessments attended yet.</p>
+                                <p className="text-sm text-gray-500">
+                                    No assessments attended yet.
+                                </p>
                             )}
                         </div>
                     </div>
