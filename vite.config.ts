@@ -26,4 +26,9 @@ export default defineConfig({
         },
     },
     base: "/security-assessments/",
+    server: {
+        proxy: {
+            "/api": "http://localhost:10101",
+        },
+    },
 });

@@ -1,11 +1,17 @@
+import express from "express";
+import dotenv from "dotenv";
+import axios from "axios";
 import { Mistral } from "@mistralai/mistralai";
-import type { responseType } from "@/components/Hero";
 
+dotenv.config();
+const app = express();
+app.use(express.json());
+const PORT = process.env.PORT || 10101;
 const mistral = new Mistral({
-    apiKey: "Asdfasdfasdf",
+    apiKey: process.env.API_KEY,
 });
 
-async function run(response: responseType | null) {
+async function getReports(response) {
     const result = await mistral.chat.complete({
         model: "codestral-latest",
         messages: [
@@ -49,4 +55,40 @@ async function run(response: responseType | null) {
     return result.choices[0].message["content"];
 }
 
-export default run;
+app.post("/api/appendCustomer", async (req, res) => {
+    try {
+        const { name, org, email, response } = req.body;
+        const summary = (await getReports(response)) || "Undefined";
+
+        const result = await axios.post(
+            "https://api.baserow.io/api/database/rows/table/690134/?user_field_names=true",
+            {
+                Name: name,
+                Organization: org,
+                Email: email,
+                "Stat Summary": summary,
+            },
+            {
+                headers: {
+                    Authorization: `Token ${process.env.DATABASE_TOKEN}`,
+                    "Content-Type": "application/json",
+                },
+            }
+        );
+
+        res.json({ success: true, summary, baserow: result.data });
+    } catch (err) {
+        console.error(
+            "Error in /appendCustomer:",
+            err.response?.data || err.message
+        );
+        res.status(500).json({
+            success: false,
+            error: err.response?.data || err.message,
+        });
+    }
+});
+
+app.listen(PORT, () => {
+    console.log("Server is running");
+});

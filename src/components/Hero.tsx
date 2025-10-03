@@ -58,10 +58,10 @@ const Hero = () => {
                     {/* Header Section */}
                     <div className="bg-gradient-to-r from-blue-600/5 to-cyan-600/5 p-8 mb-6 rounded-xl">
                         <div className="flex items-center justify-center space-x-4 mb-6">
-                            <div className="p-3 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full">
+                            <div className="p-3 bg-[var(--brand-light-blue)] rounded-full">
                                 <Shield className="w-8 h-8 text-white" />
                             </div>
-                            <h2 className="text-3xl font-bold bg-gradient-to-r from-blue-700 to-cyan-700 bg-clip-text text-transparent">
+                            <h2 className="text-3xl font-bold text-[var(--brand-blue)]">
                                 {!showResults
                                     ? "Security Assessment"
                                     : "Your Security Report"}

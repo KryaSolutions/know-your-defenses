@@ -93,7 +93,7 @@ const Survey = () => {
                                     {/* Colored progress bar */}
                                     <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
                                         <div
-                                            className="h-full bg-blue-600 transition-all duration-500"
+                                            className="h-full bg-[var(--brand-light-blue)] transition-all duration-500"
                                             style={{
                                                 width: `${progressPercent}%`,
                                             }}
@@ -106,7 +106,7 @@ const Survey = () => {
                                     onClick={() =>
                                         handleStartAssessment(assessment)
                                     }
-                                    className="px-5 py-2.5 rounded-lg bg-blue-600 text-white font-medium shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 transition whitespace-nowrap"
+                                    className="px-5 py-2.5 rounded-lg bg-[var(--brand-blue)] text-white font-medium transition whitespace-nowrap"
                                     tabIndex={-1}
                                 >
                                     Start Assessment
@@ -119,16 +119,14 @@ const Survey = () => {
 
             {selectedAssessment && (
                 <div
-                    className={`fixed inset-0 z-50 flex items-end justify-center bg-black/50 transition-opacity duration-300 ${
-                        isVisible ? "opacity-100" : "opacity-0"
-                    }`}
+                    className={`fixed inset-0 z-50 flex items-end justify-center bg-black/50 transition-opacity duration-300 ${isVisible ? "opacity-100" : "opacity-0"
+                        }`}
                 >
                     <div
-                        className={`bg-white rounded-t-2xl shadow-2xl w-full max-w-4xl h-[90vh] relative transform transition-all duration-300 ${
-                            isVisible
-                                ? "translate-y-0 opacity-100"
-                                : "translate-y-10 opacity-0"
-                        }`}
+                        className={`bg-white rounded-t-2xl shadow-2xl w-full max-w-4xl h-[90vh] relative transform transition-all duration-300 ${isVisible
+                            ? "translate-y-0 opacity-100"
+                            : "translate-y-10 opacity-0"
+                            }`}
                     >
                         {/* Close button */}
                         <button

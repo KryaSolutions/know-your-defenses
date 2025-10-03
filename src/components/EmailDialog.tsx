@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import axios from "axios";
 import {
     Dialog,
@@ -9,10 +9,8 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Shield, ArrowRight } from "lucide-react";
-import { useContext } from "react";
 import { ResponseContext } from "@/components/Hero";
 import type { ResponseContextType } from "@/components/Hero";
-import run from "@/utilities/mistral";
 
 const personalEmailDomains: string[] = [
     "gmail.com",
@@ -76,6 +74,7 @@ const EmailDialog: React.FC<ReportDialogProps> = ({
     const [open, setOpen] = useState(false);
     const [form, setForm] = useState({ name: "", org: "", email: "" });
     const [emailError, setEmailError] = useState("");
+    const [loading, setLoading] = useState(false);
 
     const isValid =
         form.name && form.org && isValidOrganizationalEmail(form.email);
@@ -87,30 +86,25 @@ const EmailDialog: React.FC<ReportDialogProps> = ({
     };
 
     async function appendCustomer() {
-
-        const summary = (await run(response)) ?? "No summary available";
-
-        axios({
-            method: "POST",
-            url: "https://api.baserow.io/api/database/rows/table/690134/?user_field_names=true",
-            headers: {
-                Authorization: "Token sLB1RDWLQ6ABUP005wEGArDnVEq21p9K",
-                "Content-Type": "application/json",
-            },
-            data: {
-                Name: form.name,
-                Organization: form.org,
-                Email: form.email,
-                "Stat Summary": summary,
-            },
-        });
+        await axios.post("/api/appendCustomer", {
+            name: form.name,
+            org: form.org,
+            email: form.email,
+            response: response
+        })
     }
 
     const handleSubmit = async () => {
         if (!isValid) return;
-        await appendCustomer();
-        onSubmit(form);
-        setOpen(false);
+        setLoading(true);
+        try {
+
+            await appendCustomer();
+            onSubmit(form);
+            setOpen(false);
+        } finally {
+            setLoading(false);
+        }
     };
 
     return (
@@ -118,8 +112,8 @@ const EmailDialog: React.FC<ReportDialogProps> = ({
             <Button
                 className={
                     variant === "default"
-                        ? "bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold flex items-center space-x-3"
-                        : "border-2 border-blue-200 hover:border-blue-300 text-blue-700 hover:text-blue-800 hover:bg-blue-50 px-8 py-3 rounded-lg font-semibold flex items-center space-x-3"
+                        ? "bg-[var(--brand-blue)] text-white px-8 py-3 rounded-lg font-semibold flex items-center space-x-3"
+                        : "border-2 border-blue-200 px-8 py-3 rounded-lg font-semibold flex items-center space-x-3"
                 }
                 onClick={() => setOpen(true)}
             >
@@ -170,11 +164,34 @@ const EmailDialog: React.FC<ReportDialogProps> = ({
                         </div>
 
                         <Button
-                            className="w-full"
+                            className="w-full bg-[var(--brand-blue)] flex items-center justify-center"
                             onClick={handleSubmit}
-                            disabled={!isValid}
+                            disabled={!isValid || loading}
                         >
-                            Continue
+                            {loading ? (
+                                <svg
+                                    className="animate-spin h-5 w-5 text-white"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <circle
+                                        className="opacity-25"
+                                        cx="12"
+                                        cy="12"
+                                        r="10"
+                                        stroke="currentColor"
+                                        strokeWidth="4"
+                                    ></circle>
+                                    <path
+                                        className="opacity-75"
+                                        fill="currentColor"
+                                        d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
+                                    ></path>
+                                </svg>
+                            ) : (
+                                "Continue"
+                            )}
                         </Button>
 
                         <div className="flex items-center justify-center space-x-2 text-xs text-gray-500 pt-2">

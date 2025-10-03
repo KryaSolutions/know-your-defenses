@@ -3,7 +3,7 @@ import type { assessmentType } from "./assessmentMeta";
 const zeroTrustAssessment: assessmentType = {
     title: "Zero Trust Assessment",
 
-    desc: "Assess your organization's security using the Zero Trust approach across six key domains. This assessment helps identify gaps in identity management, network security, application controls, data protection, device compliance, and incident response, providing actionable insights to strengthen your cybersecurity posture.",
+    desc: "Assess and identify gaps in identity management, network security, application controls, data protection, device compliance, and incident response, helps to evaluate the Zero Trust approach in your organization.",
 
     questions: {
         "Identity Management": {
