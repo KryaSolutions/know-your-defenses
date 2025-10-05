@@ -1,0 +1,22 @@
+services:
+    backend:
+        build:
+            context: ./backend
+            dockerfile: Dockerfile
+        working_dir: /app
+        ports:
+            - "10101:10101"
+        expose:
+            - "10101"
+
+    frontend:
+        build:
+            context: ./frontend
+            dockerfile: Dockerfile
+        working_dir: /usr/share/nginx/html
+        ports:
+            - "80:80"
+        expose:
+            - "80"
+        depends_on:
+            - backend

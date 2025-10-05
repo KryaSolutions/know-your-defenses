@@ -25,7 +25,7 @@ export default defineConfig({
             "@": path.resolve(__dirname, "./src"),
         },
     },
-    base: "/security-assessments/",
+    base: "/",
     server: {
         proxy: {
             "/api": "http://localhost:10101",

@@ -89,6 +89,4 @@ app.post("/api/appendCustomer", async (req, res) => {
     }
 });
 
-app.listen(PORT, () => {
-    console.log("Server is running");
-});
+app.listen(PORT, () => {});
