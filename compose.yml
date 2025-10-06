@@ -8,6 +8,8 @@ services:
             - "10101:10101"
         expose:
             - "10101"
+        env_file:
+            - .env
 
     frontend:
         build:
@@ -15,8 +17,8 @@ services:
             dockerfile: Dockerfile
         working_dir: /usr/share/nginx/html
         ports:
-            - "80:80"
+            - "10100:80"
         expose:
-            - "80"
+            - "10100"
         depends_on:
             - backend

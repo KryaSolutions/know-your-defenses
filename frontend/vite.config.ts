@@ -26,9 +26,5 @@ export default defineConfig({
         },
     },
     base: "/",
-    server: {
-        proxy: {
-            "/api": "http://localhost:10101",
-        },
-    },
+    server: {},
 });

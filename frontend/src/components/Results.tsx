@@ -138,13 +138,13 @@ const Results = () => {
             {/* Main Results Card */}
             <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
                 {/* Rank Section */}
-                <div className="bg-blue-500 p-8 text-center">
+                <div className="bg-[var(--brand-blue)] p-8 text-center">
                     <div className="inline-flex flex-col items-center">
                         <p className="text-white/80 text-sm font-medium tracking-wide mb-2">
                             Your Security Strength is at
                         </p>
                         <div
-                            className={`inline-flex items-center justify-center w-24 h-24 rounded-2xl text-4xl font-black border-4 ${rankColors[rank]} shadow-lg transition-transform transform hover:scale-105`}
+                            className={`inline-flex items-center justify-center w-24 h-24 rounded-2xl text-4xl font-medium border-4 ${rankColors[rank]} shadow-lg transition-transform transform hover:scale-105`}
                         >
                             {Math.round(percentage)}%
                         </div>
@@ -167,11 +167,11 @@ const Results = () => {
                                         >
                                             <stop
                                                 offset="0%"
-                                                stopColor="#10b981"
+                                                stopColor="var(--brand-blue)"
                                             />
                                             <stop
                                                 offset="100%"
-                                                stopColor="#059669"
+                                                stopColor="var(--brand-blue)"
                                             />
                                         </linearGradient>
                                         <linearGradient
@@ -183,11 +183,11 @@ const Results = () => {
                                         >
                                             <stop
                                                 offset="0%"
-                                                stopColor="#ef4444"
+                                                stopColor="var(--brand-orange)"
                                             />
                                             <stop
                                                 offset="100%"
-                                                stopColor="#dc2626"
+                                                stopColor="var(--brand-orange)"
                                             />
                                         </linearGradient>
                                     </defs>
@@ -232,7 +232,7 @@ const Results = () => {
                         {/* Center Label */}
                         <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
                             <div className="text-center">
-                                <div className="text-3xl font-bold text-gray-900">
+                                <div className="text-3xl font-medium text-gray-900">
                                     {Math.round(percentage)}%
                                 </div>
                                 <div className="text-sm text-gray-500 font-medium">

@@ -7,4 +7,7 @@ RUN npm ci
 
 COPY ./index.js /app
 
-ENTRYPOINT ["node", "index.js"]
+EXPOSE 10101
+
+ENTRYPOINT ["npm", "run"]
+CMD ["server"]

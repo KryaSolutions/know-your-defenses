@@ -86,7 +86,7 @@ const EmailDialog: React.FC<ReportDialogProps> = ({
     };
 
     async function appendCustomer() {
-        await axios.post("/api/appendCustomer", {
+        await axios.post("http://localhost:10101/api/appendCustomer", {
             name: form.name,
             org: form.org,
             email: form.email,
@@ -98,7 +98,6 @@ const EmailDialog: React.FC<ReportDialogProps> = ({
         if (!isValid) return;
         setLoading(true);
         try {
-
             await appendCustomer();
             onSubmit(form);
             setOpen(false);

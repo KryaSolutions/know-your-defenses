@@ -3,10 +3,13 @@
     "version": "0.0.0",
     "type": "module",
     "main": "server.js",
-    "scripts": {},
+    "scripts": {
+        "server": "node index.js"
+    },
     "dependencies": {
         "@mistralai/mistralai": "^1.10.0",
         "axios": "^1.12.2",
+        "cors": "^2.8.5",
         "dotenv": "^17.2.3",
         "express": "^5.1.0"
     }

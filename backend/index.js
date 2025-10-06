@@ -1,15 +1,25 @@
-import express from "express";
-import dotenv from "dotenv";
+import cors from "cors";
 import axios from "axios";
+import dotenv from "dotenv";
+import express from "express";
 import { Mistral } from "@mistralai/mistralai";
 
 dotenv.config();
 const app = express();
-app.use(express.json());
+
+const corsOptions = {
+    origin: ["http://localhost:10100", "http://localhost:10101"],
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true,
+};
+
 const PORT = process.env.PORT || 10101;
 const mistral = new Mistral({
     apiKey: process.env.API_KEY,
 });
+
+app.use(cors(corsOptions));
+app.use(express.json());
 
 async function getReports(response) {
     const result = await mistral.chat.complete({
@@ -70,7 +80,7 @@ app.post("/api/appendCustomer", async (req, res) => {
             },
             {
                 headers: {
-                    Authorization: `Token ${process.env.DATABASE_TOKEN}`,
+                    Authorization: `Token ${process.env.DB_TOKEN}`,
                     "Content-Type": "application/json",
                 },
             }
@@ -89,4 +99,10 @@ app.post("/api/appendCustomer", async (req, res) => {
     }
 });
 
-app.listen(PORT, () => {});
+app.get("/health", (req, res) => {
+    res.json({ status: "healthy", port: PORT });
+});
+
+app.listen(PORT, () => {
+    console.log("API is up and running");
+});

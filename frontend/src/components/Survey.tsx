@@ -119,14 +119,16 @@ const Survey = () => {
 
             {selectedAssessment && (
                 <div
-                    className={`fixed inset-0 z-50 flex items-end justify-center bg-black/50 transition-opacity duration-300 ${isVisible ? "opacity-100" : "opacity-0"
-                        }`}
+                    className={`fixed inset-0 z-50 flex items-end justify-center bg-black/50 transition-opacity duration-300 ${
+                        isVisible ? "opacity-100" : "opacity-0"
+                    }`}
                 >
                     <div
-                        className={`bg-white rounded-t-2xl shadow-2xl w-full max-w-4xl h-[90vh] relative transform transition-all duration-300 ${isVisible
-                            ? "translate-y-0 opacity-100"
-                            : "translate-y-10 opacity-0"
-                            }`}
+                        className={`bg-white rounded-t-2xl shadow-2xl w-full max-w-4xl h-[90vh] relative transform transition-all duration-300 ${
+                            isVisible
+                                ? "translate-y-0 opacity-100"
+                                : "translate-y-10 opacity-0"
+                        }`}
                     >
                         {/* Close button */}
                         <button

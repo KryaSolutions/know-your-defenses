@@ -142,7 +142,9 @@ const Questions = ({ assessment, data, options }: Props) => {
                                         </h3>
                                         <p className="text-xs text-gray-500">
                                             {categoryData.questions.length}{" "}
-                                            controls
+                                            {categoryData.questions.length === 1
+                                                ? "question"
+                                                : "questions"}
                                         </p>
                                     </div>
                                 </div>

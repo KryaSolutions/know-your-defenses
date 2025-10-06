@@ -1,5 +1,7 @@
 import {
     Eye,
+    Shield,
+    AlertTriangle,
     TrendingUp,
     ChevronRight,
     Zap,
@@ -18,17 +20,31 @@ export default function SecurityAssessmentHeader() {
 
     return (
         <div className="relative overflow-hidden bg-[var(--brand-blue)] text-white">
+            {/* Logo aligned with content */}
+            <div className="absolute top-2 left-18 z-50 flex flex-col items-start space-y-2">
+                <a
+                    href="https://kryasolutions.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    <img
+                        src="/krya.svg"
+                        alt="Organization Logo"
+                        className="w-20 h-20 object-contain"
+                    />
+                </a>
+            </div>
+
             <div className="relative max-w-5xl mx-auto px-6 py-16 lg:py-24">
                 <div className="grid lg:grid-cols-2 gap-12 items-center">
                     {/* Content Section */}
                     <div className="space-y-8">
                         <div className="space-y-6">
-                            <h2 className="text-3xl text-white lg:text-5xl font-bold leading-tight">
-                                Discover Your{" "}
-                                Security Posture
+                            <h2 className="text-2xl text-white lg:text-4xl font-medium leading-tight">
+                                Discover Your Security Posture
                             </h2>
 
-                            <p className="text-xl text-[var(--brand-grey)] leading-relaxed">
+                            <p className="text-xl text-justify text-[var(--brand-grey)] leading-relaxed">
                                 Take this quick assessment to understand your
                                 organization's current security posture. It will
                                 highlight where you stand today, reveal
@@ -69,19 +85,22 @@ export default function SecurityAssessmentHeader() {
                                 <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
                             </button>
                             <p className="text-gray-400 text-sm mt-3">
-                                ⚡ Takes only 5 minutes • Get instant results
+                                ⚡ Take any assessment you like • Get instant
+                                results
                             </p>
                         </div>
                     </div>
 
                     {/* Visual Section */}
                     <div className="relative">
+                        {/* Central Shield */}
                         <div className="relative mx-auto w-80 h-80 flex items-center justify-center">
+                            {/* Animated Rings */}
                             <div
                                 className="absolute inset-0 animate-spin"
                                 style={{ animationDuration: "20s" }}
                             >
-                                <div className="w-full h-full border-2 border-dashed border-[var(--brand-orange)] rounded-full"></div>
+                                <div className="w-full h-full border-2 border-dashed border-blue-400/30 rounded-full"></div>
                             </div>
                             <div
                                 className="absolute inset-4 animate-spin"
@@ -90,38 +109,72 @@ export default function SecurityAssessmentHeader() {
                                     animationDirection: "reverse",
                                 }}
                             >
-                                <div className="w-full h-full border border-[var(--brand-orange)] rounded-full"></div>
+                                <div className="w-full h-full border border-cyan-400/20 rounded-full"></div>
                             </div>
 
                             {/* Central Shield */}
-                            <div className="relative mx-auto w-80 h-80 flex items-center justify-center">
-                                {/* Pulsing glowing background */}
-                                <div className="absolute w-72 h-72 rounded-full bg-[var(--brand-orange)] opacity-20 blur-3xl animate-pulse-glow"></div>
+                            <div className="relative z-10 p-8 bg-[var(--brand-blue)] rounded-full backdrop-blur-sm border border-white/20">
+                                <Shield className="w-24 h-24 text-blue-300" />
+                            </div>
 
-                                {/* Shield */}
-                                <div className="relative z-10 p-8 rounded-full border border-white/20 bg-[var(--brand-blue)] shadow-lg">
-                                    <img
-                                        src="https://kryasolutions.com/img/logo/krya-solutions-logo-reverse.svg"
-                                        className="h-32 w-32"
-                                    />
+                            {/* Floating Icons */}
+                            <div
+                                className="absolute top-8 left-1/2 transform -translate-x-1/2 animate-bounce z-20"
+                                style={{ animationDelay: "0s" }}
+                            >
+                                <div className="p-3 bg-green-500/20 rounded-lg backdrop-blur-sm border border-green-400/30">
+                                    <Eye className="w-6 h-6 text-green-400" />
                                 </div>
+                            </div>
 
-                                {/* Orbiting Stats */}
-
-                                {/* Bottom-left card (SW) */}
-                                <div className="absolute -bottom-6 -left-6 p-4 transform rotate-3">
-                                    <div className="text-2xl font-bold text-white">95%</div>
-                                    <div className="text-xs text-gray-300">Organizations Improved</div>
+                            <div
+                                className="absolute top-1/2 right-8 transform -translate-y-1/2 animate-bounce z-20"
+                                style={{ animationDelay: "1s" }}
+                            >
+                                <div className="p-3 bg-purple-500/20 rounded-lg backdrop-blur-sm border border-purple-400/30">
+                                    <TrendingUp className="w-6 h-6 text-purple-400" />
                                 </div>
+                            </div>
 
-                                {/* Top-right card (NE) */}
-                                <div className="absolute -top-11 -right-11 p-4 transform -rotate-3">
-                                    <div className="text-2xl font-bold text-white">5min</div>
-                                    <div className="text-xs text-gray-300">Quick Assessment</div>
+                            <div
+                                className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce z-20"
+                                style={{ animationDelay: "2s" }}
+                            >
+                                <div className="p-3 bg-yellow-500/20 rounded-lg backdrop-blur-sm border border-yellow-400/30">
+                                    <AlertTriangle className="w-6 h-6 text-yellow-400" />
+                                </div>
+                            </div>
+
+                            <div
+                                className="absolute top-1/2 left-8 transform -translate-y-1/2 animate-bounce z-20"
+                                style={{ animationDelay: "1.5s" }}
+                            >
+                                <div className="p-3 bg-cyan-500/20 rounded-lg backdrop-blur-sm border border-cyan-400/30">
+                                    <Zap className="w-6 h-6 text-cyan-400" />
                                 </div>
                             </div>
                         </div>
+
+                        {/* Stats Cards */}
+                        <div className="absolute -bottom-4 left-4 p-4 bg-white/10 rounded-lg backdrop-blur-sm border border-white/20 transform rotate-3">
+                            <div className="text-2xl font-bold text-green-400">
+                                95%
+                            </div>
+                            <div className="text-xs text-gray-300">
+                                Organizations Improved
+                            </div>
+                        </div>
+
+                        <div className="absolute -top-4 right-4 p-4 bg-white/10 rounded-lg backdrop-blur-sm border border-white/20 transform -rotate-3">
+                            <div className="text-2xl font-bold text-blue-400">
+                                5min
+                            </div>
+                            <div className="text-xs text-gray-300">
+                                Quick Assessment
+                            </div>
+                        </div>
                     </div>
+                    {/* End of Visual Section */}
                 </div>
             </div>
         </div>
