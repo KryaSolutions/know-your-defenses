@@ -7,8 +7,17 @@ import { Mistral } from "@mistralai/mistralai";
 dotenv.config();
 const app = express();
 
+const allowedOrigins = process.env.ALLOWED_ORIGINS
+    ? process.env.ALLOWED_ORIGINS.split(",")
+    : [];
 const corsOptions = {
-    origin: ["http://localhost:10100", "http://localhost:10101"],
+    origin: function (origin, callback) {
+        if (!origin || allowedOrigins.includes(origin)) {
+            callback(null, true);
+        } else {
+            callback(new Error("Not allowed by CORS"));
+        }
+    },
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
 };
