@@ -86,7 +86,7 @@ const EmailDialog: React.FC<ReportDialogProps> = ({
     };
 
     async function appendCustomer() {
-        await axios.post("http://localhost:10101/api/appendCustomer", {
+        await axios.post(`${import.meta.env.VITE_API_URL}/api/appendCustomer`, {
             name: form.name,
             org: form.org,
             email: form.email,

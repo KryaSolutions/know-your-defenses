@@ -1,3 +1,18 @@
+/* Google Sheets deployment
+ *
+ * function doPost(e) {
+ *   const sheetUrl = SpreadsheetApp.openByUrl({{sheetURL}});
+ *
+ *   const sheet = sheetUrl.getSheetByName({{sheetName}});
+ *
+ *   const data = e.parameter;
+ *   sheet.appendRow([data.Name, data.Organization, data.Email]);
+ *
+ *   return ContentService.createTextOutput("Yay !")
+ * }
+ */
+
+import qs from "qs";
 import cors from "cors";
 import axios from "axios";
 import dotenv from "dotenv";
@@ -7,17 +22,8 @@ import { Mistral } from "@mistralai/mistralai";
 dotenv.config();
 const app = express();
 
-const allowedOrigins = process.env.ALLOWED_ORIGINS
-    ? process.env.ALLOWED_ORIGINS.split(",")
-    : [];
 const corsOptions = {
-    origin: function (origin, callback) {
-        if (!origin || allowedOrigins.includes(origin)) {
-            callback(null, true);
-        } else {
-            callback(new Error("Not allowed by CORS"));
-        }
-    },
+    origin: "*",
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
 };
@@ -38,27 +44,25 @@ async function getReports(response) {
                 role: "system",
                 content: `
                     You are an experienced SOC Analyst, Cybersecurity Engineer, and Solutions Architect.  
-                    You have received assessment responses from multiple clients who participated in cybersecurity-related assessments such as **Security Maturity Assessments, Zero Trust Readiness, Cloud Security Posture, Identity & Access Management evaluations, and Compliance/Governance reviews**.  
+                    You have received assessment response from a client who participated in cybersecurity-related assessments such as **Security Maturity Assessments, Zero Trust Readiness, Cloud Security Posture, Identity & Access Management evaluations, and Compliance/Governance reviews**.  
+                    Keep it relevant, and keep the summary very concise, precise and as short as possible.
+                    Use the content only from the response object.
 
-                    Your task is to:  
-                    1. **Analyze Findings:**  
-                       - Summarize the most common security strengths and best practices observed across clients.  
-                       - Identify critical vulnerabilities, gaps, or weak areas in their cybersecurity posture.  
+                    # Response Object
+                    export type responseType = {
+                        [title: string]: {
+                            [category: string]: {
+                                [questionIndex: number]: {
+                                    question: string;
+                                    answer: string;
+                                    score: number;
+                                };
+                                categoryScore: number;
+                            };
+                        };
+                    };
 
-                    2. **Highlight Shortcomings:**  
-                       - Point out recurring deficiencies in strategy, tools, processes, or people.  
-                       - Distinguish between technical gaps (e.g., misconfigurations, lack of monitoring, outdated controls) and organizational gaps (e.g., lack of governance, policies, or user awareness).  
-
-                    3. **Provide Insights:**  
-                       - Draw patterns and correlations across the different assessments (e.g., maturity vs. zero trust readiness, cloud adoption vs. identity security gaps).  
-                       - Offer key lessons learned from the assessments that can help guide clients toward stronger cyber resilience.  
-                       - Suggest areas where organizations can prioritize investments or improvements.  
-
-                    4. **Deliver Structured Output:**  
-                       - Present findings in a professional report style with clear sections: **Findings, Shortcomings, Insights, and Recommendations.**  
-                       - Where possible, align insights with security frameworks (e.g., NIST CSF, CIS Controls, Zero Trust principles).  
-
-                    Make your response concise yet detailed enough to be actionable for executives and technical teams alike.
+                    Make your response concise yet detailed enough so that the sales, marketing teams get a grasp of what the situation is like.
                 `,
             },
             {
@@ -79,21 +83,28 @@ app.post("/api/appendCustomer", async (req, res) => {
         const { name, org, email, response } = req.body;
         const summary = (await getReports(response)) || "Undefined";
 
-        const result = await axios.post(
-            "https://api.baserow.io/api/database/rows/table/690134/?user_field_names=true",
-            {
-                Name: name,
-                Organization: org,
-                Email: email,
-                "Stat Summary": summary,
+        const now = new Date();
+        const timestamp = now.toLocaleString("en-US", {
+            hour: "2-digit",
+            minute: "2-digit",
+            day: "2-digit",
+            month: "long",
+            year: "numeric",
+        });
+
+        const postData = qs.stringify({
+            Name: name,
+            Organization: org,
+            Email: email,
+            Summary: summary,
+            Timestamp: timestamp,
+        });
+
+        const result = await axios.post(process.env.SHEET_URL, postData, {
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded",
             },
-            {
-                headers: {
-                    Authorization: `Token ${process.env.DB_TOKEN}`,
-                    "Content-Type": "application/json",
-                },
-            }
-        );
+        });
 
         res.json({ success: true, summary, baserow: result.data });
     } catch (err) {
