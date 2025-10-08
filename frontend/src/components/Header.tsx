@@ -46,11 +46,14 @@ export default function SecurityAssessmentHeader() {
 
                             <p className="text-xl text-justify text-[var(--brand-grey)] leading-relaxed">
                                 Take this quick assessment to understand your
-                                organization's current security posture. It will
-                                highlight where you stand today, reveal
-                                potential gaps, and provide insights to
-                                strengthen your defenses and resilience.
+                                organization's current security posture.
                             </p>
+                            <p className="text-xl font-medium text-justify text-[var(--brand-grey)] leading-relaxed">
+                                Take any number of assessments you like !
+                            </p>
+                            <p className="text-xl font-medium text-justify text-[var(--brand-grey)] leading-relaxed">
+                                Get instant Results !!                            </p>
+
                         </div>
 
                         {/* Key Benefits */}
@@ -84,10 +87,6 @@ export default function SecurityAssessmentHeader() {
                                 <span>Start Assessment</span>
                                 <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
                             </button>
-                            <p className="text-gray-400 text-sm mt-3">
-                                ⚡ Take any assessment you like • Get instant
-                                results
-                            </p>
                         </div>
                     </div>
 
