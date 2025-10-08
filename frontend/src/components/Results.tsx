@@ -40,22 +40,11 @@ const CustomTooltip = ({ active, payload }: any) => {
     if (active && payload && payload.length) {
         const data = payload[0];
         return (
-            <div
-                className="bg-white px-4 py-3 rounded-lg shadow-2xl border border-gray-200 relative z-50"
-                style={{ zIndex: 9999, position: "relative" }}
-            >
-                <p className="font-semibold text-gray-800">{data.name}</p>
-                <p className="text-sm text-gray-600">
-                    Score: <span className="font-medium">{data.value}</span>
-                </p>
-                <p className="text-sm text-gray-600">
-                    Percentage:{" "}
+            <div className="bg-white px-4 py-3 rounded-lg shadow-2xl border border-gray-200">
+                <p className="font-semibold text-gray-800">
+                    {data.name}:{" "}
                     <span className="font-medium">
-                        {(
-                            (data.value / (payload[0].payload.total || 1)) *
-                            100
-                        ).toFixed(1)}
-                        %
+                        {data.value.toFixed(2)}%
                     </span>
                 </p>
             </div>
@@ -109,20 +98,6 @@ const Results = () => {
         0
     );
 
-    const chartData = [
-        {
-            name: "Points Scored",
-            value: currentScore,
-            total: totalScore,
-        },
-        {
-            name: "Areas for Improvement",
-            value: totalScore - currentScore,
-            total: totalScore,
-        },
-    ];
-
-    // Rank logic
     const percentage = totalScore > 0 ? (currentScore / totalScore) * 100 : 0;
     let rank = "F";
     if (percentage >= 90) rank = "S";
@@ -132,6 +107,17 @@ const Results = () => {
     else if (percentage >= 50) rank = "D";
     else if (percentage >= 40) rank = "E";
     else rank = "F";
+
+    const chartData = [
+        {
+            name: "Defenses addressed",
+            value: percentage,
+        },
+        {
+            name: "Unaddressed areas",
+            value: 100 - percentage,
+        },
+    ];
 
     return (
         <div className="max-w-4xl mx-auto my-8 p-8">

@@ -63,8 +63,8 @@ const Hero = () => {
                             </div>
                             <h2 className="text-3xl font-bold text-[var(--brand-blue)]">
                                 {!showResults
-                                    ? "Security Assessment"
-                                    : "Your Security Report"}
+                                    ? "Know Your Defense"
+                                    : "Your Defense stats"}
                             </h2>
                         </div>
 

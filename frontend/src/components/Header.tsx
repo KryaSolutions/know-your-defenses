@@ -49,11 +49,13 @@ export default function SecurityAssessmentHeader() {
                                 organization's current security posture.
                             </p>
                             <p className="text-xl font-medium text-justify text-[var(--brand-grey)] leading-relaxed">
-                                Take any number of assessments you like !
+                                Complete{" "}
+                                <span className="font-semibold">
+                                    just one quick evaluation
+                                </span>{" "}
+                                and get an immediate grasp of your
+                                organization's security posture.
                             </p>
-                            <p className="text-xl font-medium text-justify text-[var(--brand-grey)] leading-relaxed">
-                                Get instant Results !!                            </p>
-
                         </div>
 
                         {/* Key Benefits */}
@@ -84,7 +86,7 @@ export default function SecurityAssessmentHeader() {
                                 onClick={handleStartAssessment}
                                 className="bg-white/5 border border-white/10 px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/25 flex items-center space-x-3"
                             >
-                                <span>Start Assessment</span>
+                                <span>Gauge your Posture</span>
                                 <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
                             </button>
                         </div>
