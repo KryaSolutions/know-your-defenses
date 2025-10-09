@@ -31,8 +31,13 @@ router.post(
 
         try {
             const domain = email.split("@")[1];
-            const mxRecords = await resolveMx(domain);
+	    if (domain === "kryasolutions.com") {
+                return res
+                    .status(200)
+                    .json({ valid: true, message: "Email domain is Valid" });
+	    }
 
+            const mxRecords = await resolveMx(domain);
             if (mxRecords.length === 0) {
                 return res
                     .status(400)
