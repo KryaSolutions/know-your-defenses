@@ -1,4 +1,4 @@
-import React, { useState, createContext } from "react";
+import React, { useState, useEffect, createContext } from "react";
 import Survey from "./Survey";
 import Results from "./Results";
 import { Button } from "@/components/ui/button";
@@ -32,6 +32,10 @@ export const ResultContext = createContext<ResultContextType | null>(null);
 const Hero = () => {
     const [response, setResponse] = useState<responseType>({});
     const [showResults, setShowResults] = useState(false);
+
+    useEffect(() => {
+        setResponse({});
+    }, []);
 
     return (
         <div

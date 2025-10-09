@@ -86,8 +86,13 @@ router.post(
     "/appendCustomer",
     async (req: pkg.Request<{}, appendCustomerBody>, res: pkg.Response) => {
         try {
+            let summary;
             const { name, org, email, response } = req.body;
-            const summary = (await getReports(response)) || "Undefined";
+            if (!response || Object.keys(response).length === 0) {
+                summary = "Client did not attend the tests";
+            } else {
+                summary = (await getReports(response)) || "Undefined";
+            }
 
             base(config.DB_NAME!).create([
                 {
