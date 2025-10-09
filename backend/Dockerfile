@@ -5,7 +5,9 @@ COPY ./package*.json /app/
 
 RUN npm ci
 
-COPY ./index.js /app
+COPY . .
+
+RUN npm run build
 
 EXPOSE 10101
 

@@ -11,6 +11,7 @@ import { Input } from "@/components/ui/input";
 import { Shield, ArrowRight } from "lucide-react";
 import { ResponseContext } from "@/components/Hero";
 import type { ResponseContextType } from "@/components/Hero";
+import { DialogDescription } from "@radix-ui/react-dialog";
 
 const personalEmailDomains: string[] = [
     "gmail.com",
@@ -85,22 +86,59 @@ const EmailDialog: React.FC<ReportDialogProps> = ({
         setEmailError(getEmailValidationMessage(email));
     };
 
+    async function verifyEmail(email: string): Promise<boolean> {
+        try {
+            const res = await axios.post(
+                `${import.meta.env.VITE_API_URL}/api/verifyEmail`,
+                { email: email },
+                {
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                }
+            );
+
+            if (!res.data.valid) {
+                setEmailError(res.data.message);
+                return false;
+            } else {
+                return true;
+            }
+        } catch (err: any) {
+            setEmailError(
+                err.response?.data?.message ??
+                    "Invalid email, please enter a valid email"
+            );
+            return false;
+        }
+    }
+
     async function appendCustomer() {
-        // await axios.post(`${import.meta.env.VITE_API_URL}/api/appendCustomer`, {
-        //     name: form.name,
-        //     org: form.org,
-        //     email: form.email,
-        //     response: response,
-        // });
+        try {
+            await axios.post(
+                `${import.meta.env.VITE_API_URL}/api/appendCustomer`,
+                {
+                    name: form.name,
+                    org: form.org,
+                    email: form.email,
+                    response: response,
+                }
+            );
+        } finally {
+            return true;
+        }
     }
 
     const handleSubmit = async () => {
         if (!isValid) return;
         setLoading(true);
         try {
-            await appendCustomer();
-            onSubmit(form);
-            setOpen(false);
+            const status = await verifyEmail(form.email);
+            if (status) {
+                await appendCustomer();
+                onSubmit(form);
+                setOpen(false);
+            }
         } finally {
             setLoading(false);
         }
@@ -126,6 +164,9 @@ const EmailDialog: React.FC<ReportDialogProps> = ({
                         <DialogTitle className="text-xl font-semibold text-gray-900">
                             {title}
                         </DialogTitle>
+                        <DialogDescription>
+                            Please fill out the form.
+                        </DialogDescription>
                     </DialogHeader>
 
                     <div className="space-y-4">

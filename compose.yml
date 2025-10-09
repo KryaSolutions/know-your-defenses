@@ -9,7 +9,7 @@ services:
         expose:
             - "10101"
         env_file:
-            - .env
+            - ".env"
 
     frontend:
         build:
