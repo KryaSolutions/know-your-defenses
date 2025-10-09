@@ -19,7 +19,6 @@ app.listen(config.PORT, () => {
 app.get("/api/health", (req, res) => {
     res.json({
         status: `API running healthy at port ${config.PORT}`,
-        req: req,
     });
 });
 
