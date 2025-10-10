@@ -67,7 +67,7 @@ const Hero = () => {
                             </div>
                             <h2 className="text-3xl font-bold text-[var(--brand-blue)]">
                                 {!showResults
-                                    ? "Know Your Defense"
+                                    ? "Know Your Defenses"
                                     : "Your Defense stats"}
                             </h2>
                         </div>
@@ -93,7 +93,7 @@ const Hero = () => {
                     <ResultContext.Provider
                         value={{ showResults, setShowResults }}
                     >
-                        {/* Assessment/Results Content */}
+                        {/* Assessment Content */}
                         <div className="mb-8">
                             {!showResults ? <Survey /> : <Results />}
                         </div>

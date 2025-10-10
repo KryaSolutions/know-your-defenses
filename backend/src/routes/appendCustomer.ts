@@ -21,7 +21,10 @@ type responseType = {
     };
 };
 
-async function getReports(response: responseType): Promise<string> {
+async function getReports(
+    response: responseType,
+    org: string
+): Promise<string> {
     const mistral = new Mistral({
         apiKey: process.env.API_KEY,
     });
@@ -31,29 +34,53 @@ async function getReports(response: responseType): Promise<string> {
             {
                 role: "system",
                 content: `
-                    You are an experienced SOC Analyst, Cybersecurity Engineer, and Solutions Architect.
-                    You have received assessment response from a client who participated in cybersecurity-related assessments such as **Security Maturity Assessments, Zero Trust Readiness, Cloud Security Posture, Identity & Access Management evaluations, and Compliance/Governance reviews**.
-                    Keep it relevant, and keep the summary very concise, precise and as short as possible.
-                    Use the content only from the response object.
+You are an experienced SOC Analyst, Cybersecurity Engineer, and Solutions Architect for the **Part 1**, and you are a experienced sales/marketing executive who manages customer relations for the **Part 2**.
+You have received assessment responses from a client who might have participated cybersecurity-related assessments including **Security Maturity Assessments, Zero Trust Readiness, Cloud Security Posture, Identity & Access Management (IAM) evaluations, and Compliance/Governance reviews**.
 
-                    # Response Object
-                    export type responseType = {
-                        [title: string]: {
-                            [category: string]: {
-                                [questionIndex: number]: {
-                                    question: string;
-                                    answer: string;
-                                    score: number;
-                                };
-                                categoryScore: number;
-                            };
-                        };
-                    };
+Your goal is to create a **two-part professional summary** based only on the provided response object.  
+Below is the type of the response object.
 
-                    Make your response concise yet detailed enough so that the sales, marketing teams get a grasp of what the situation is like.
-                    It should explain the things with the score they got keep it small and concise yet crisp.
+type responseType = {
+    [title: string]: {
+        [category: string]: {
+            [questionIndex: number]: {
+                question: string;
+                answer: string;
+                score: number;
+            };
+            categoryScore: number;
+        };
+    };
+};
 
-                    After providing that give me a summary of insights from the explaination that you gave for the client. Keep this professional and concise.
+---
+
+### **Part 1 — ${org}'s Posture Overview**
+Remember you are a experienced SOC Analyst/solutions architect for this part.
+Provide a concise, professional summary outlining the client’s cybersecurity posture **based strictly on the response object**.  
+Include:
+- Key scores across each assessment domain, category, and question.  
+- A brief reflection of what the client answered (only key highlights, no unnecessary details).  
+- Present a factual snapshot of the client’s current security standing and performance in each domain.  
+Keep it compact, crisp, and readable for **sales and marketing teams** to understand at a glance.  
+
+---
+
+### **Part 2 — Insights & Summary**
+You are an experienced Sales and Marketing Executive specializing in cybersecurity solutions.  
+Your task is to craft a **professional and persuasive insight summary email** tailored to the organization ${org}.  
+Your response should take the form of an **email body** (not a report) and should achieve the following:
+
+1. **Personalized Executive Insight Summary**
+2. **Highlight Strengths**
+3. **Identify Weaknesses and Gaps**
+4. **Strategic Inisghts**
+   - Keep it concise (no more than 3–4 short paragraphs).
+   - Sound confident, insightful, and value-driven — like an executive briefing designed to open doors for further discussion.
+   - End with a professional closing that invites continued dialogue (e.g., suggesting a meeting or briefing session).
+
+Generate the full **email body** that achieves all of the above goals for ${org}.
+---
                 `,
             },
             {
@@ -91,7 +118,7 @@ router.post(
             if (!response || Object.keys(response).length === 0) {
                 summary = "Client did not attend the tests";
             } else {
-                summary = (await getReports(response)) || "Undefined";
+                summary = (await getReports(response, org)) || "Undefined";
             }
 
             base(config.DB_NAME!).create([

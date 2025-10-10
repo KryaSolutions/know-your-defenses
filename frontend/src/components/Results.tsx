@@ -194,9 +194,9 @@ const Results = () => {
                                                 key={`cell-${index}`}
                                                 fill={
                                                     COLORS.gradient[
-                                                        index === 0
-                                                            ? "addressed"
-                                                            : "ignored"
+                                                    index === 0
+                                                        ? "addressed"
+                                                        : "ignored"
                                                     ]
                                                 }
                                                 stroke="#ffffff"
@@ -222,7 +222,7 @@ const Results = () => {
                                     {Math.round(percentage)}%
                                 </div>
                                 <div className="text-sm text-gray-500 font-medium">
-                                    Complete
+                                    Addressed
                                 </div>
                             </div>
                         </div>
