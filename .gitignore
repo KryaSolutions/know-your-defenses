@@ -19,4 +19,6 @@ frontend/dist-ssr
 backend/*.local
 frontend/*.local
 
+backend/server.crt
+backend/server.key
 .env

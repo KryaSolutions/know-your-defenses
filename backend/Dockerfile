@@ -9,7 +9,5 @@ COPY . .
 
 RUN npm run build
 
-EXPOSE 10101
-
 ENTRYPOINT ["npm", "run"]
 CMD ["server"]
