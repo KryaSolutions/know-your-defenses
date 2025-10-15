@@ -43,6 +43,7 @@
 
 :root {
     font-family: Poppins, Arial, system-ui, sans-serif;
+    background-color: #173962;
     --brand-blue: #173962;
     --brand-orange: #f38144;
     --brand-light-blue: #489cbf;

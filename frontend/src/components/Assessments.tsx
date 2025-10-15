@@ -1,8 +1,8 @@
 import React, { useState, useEffect, createContext } from "react";
-import Survey from "./Survey";
-import Results from "./Results";
+import Survey from "./assessments/Survey";
+import Results from "./assessments/Results";
 import { Button } from "@/components/ui/button";
-import { Shield, CheckCircle, TrendingUp, Users } from "lucide-react";
+import { Shield } from "lucide-react";
 import EmailDialog from "./EmailDialog";
 
 export type ResponseContextType = {
@@ -29,7 +29,7 @@ export type ResultContextType = {
 };
 export const ResultContext = createContext<ResultContextType | null>(null);
 
-const Hero = () => {
+const Assessments = () => {
     const [response, setResponse] = useState<responseType>({});
     const [showResults, setShowResults] = useState(false);
 
@@ -40,22 +40,8 @@ const Hero = () => {
     return (
         <div
             id="hero-section"
-            className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 relative overflow-hidden"
+            className="min-h-screen bg-[var(--brand-blue)]/10 to-indigo-100 relative overflow-hidden"
         >
-            {/* Background Elements */}
-            <div className="absolute inset-0 opacity-5">
-                <div className="absolute top-20 left-10 w-64 h-64 border border-blue-300 rounded-full"></div>
-                <div className="absolute top-40 right-20 w-48 h-48 border border-cyan-300 rounded-full"></div>
-                <div className="absolute bottom-40 left-1/4 w-80 h-80 border border-purple-300 rounded-full"></div>
-                <div className="absolute bottom-20 right-1/3 w-32 h-32 border border-green-300 rounded-full"></div>
-            </div>
-
-            {/* Floating Gradient Orbs */}
-            <div className="absolute top-1/4 left-1/4 w-32 h-32 bg-gradient-to-r from-blue-400/10 to-cyan-400/10 rounded-full blur-xl animate-pulse"></div>
-            <div
-                className="absolute bottom-1/3 right-1/4 w-48 h-48 bg-gradient-to-r from-purple-400/10 to-pink-400/10 rounded-full blur-xl animate-pulse"
-                style={{ animationDelay: "2s" }}
-            ></div>
 
             <div className="relative max-w-5xl mx-auto px-6 py-12">
                 <ResponseContext.Provider value={{ response, setResponse }}>
@@ -71,23 +57,6 @@ const Hero = () => {
                                     : "Your Defense stats"}
                             </h2>
                         </div>
-
-                        {!showResults && (
-                            <div className="flex justify-center space-x-8 text-sm">
-                                <div className="flex items-center space-x-2 text-gray-600">
-                                    <CheckCircle className="w-4 h-4 text-green-500" />
-                                    <span>Comprehensive Analysis</span>
-                                </div>
-                                <div className="flex items-center space-x-2 text-gray-600">
-                                    <TrendingUp className="w-4 h-4 text-blue-500" />
-                                    <span>Actionable Insights</span>
-                                </div>
-                                <div className="flex items-center space-x-2 text-gray-600">
-                                    <Users className="w-4 h-4 text-purple-500" />
-                                    <span>Expert Recommendations</span>
-                                </div>
-                            </div>
-                        )}
                     </div>
 
                     <ResultContext.Provider
@@ -103,6 +72,7 @@ const Hero = () => {
                     <div className="p-8 flex justify-center">
                         {!showResults ? (
                             <EmailDialog
+                                triggerButtonText="Evaluate Assessments"
                                 onSubmit={() => setShowResults(true)}
                             />
                         ) : (
@@ -121,4 +91,4 @@ const Hero = () => {
     );
 };
 
-export default Hero;
+export default Assessments;

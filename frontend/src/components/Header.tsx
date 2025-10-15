@@ -7,7 +7,7 @@ import {
     Zap,
 } from "lucide-react";
 
-export default function SecurityAssessmentHeader() {
+const Header = () => {
     const handleStartAssessment = () => {
         const heroSection = document.querySelector("#hero-section");
         if (heroSection) {
@@ -60,19 +60,19 @@ export default function SecurityAssessmentHeader() {
 
                         {/* Key Benefits */}
                         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                            <div className="flex items-center space-x-3 p-4 bg-white/5 rounded-lg border border-white/10">
+                            <div className="flex items-center space-x-3 p-4 bg-white/5 rounded-lg border border-white/10 transition-all duration-300 hover:scale-105">
                                 <Eye className="w-6 h-6 text-[var(--brand-orange)]" />
                                 <span className="text-sm font-medium">
                                     Reveal Gaps
                                 </span>
                             </div>
-                            <div className="flex items-center space-x-3 p-4 bg-white/5 rounded-lg border border-white/10">
+                            <div className="flex items-center space-x-3 p-4 bg-white/5 rounded-lg border border-white/10 transition-all duration-300 hover:scale-105">
                                 <TrendingUp className="w-6 h-6 text-[var(--brand-orange)]" />
                                 <span className="text-sm font-medium">
                                     Get Insights
                                 </span>
                             </div>
-                            <div className="flex items-center space-x-3 p-4 bg-white/5 rounded-lg border border-white/10">
+                            <div className="flex items-center space-x-3 p-4 bg-white/5 rounded-lg border border-white/10 transition-all duration-300 hover:scale-105">
                                 <Zap className="w-6 h-6 text-[var(--brand-orange)]" />
                                 <span className="text-sm font-medium">
                                     Strengthen Defense
@@ -84,7 +84,7 @@ export default function SecurityAssessmentHeader() {
                         <div className="pt-4">
                             <button
                                 onClick={handleStartAssessment}
-                                className="bg-white/5 border border-white/10 px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300 transform hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/25 flex items-center space-x-3"
+                                className="bg-white/5 border border-white/10 px-8 py-4 rounded-lg font-semibold text-lg transition-all duration-300 transform hover:scale-105 hover:shadow-5xl hover:shadow-blue-500/25 flex items-center space-x-3"
                             >
                                 <span>Gauge your Posture</span>
                                 <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
@@ -157,7 +157,7 @@ export default function SecurityAssessmentHeader() {
                         </div>
 
                         {/* Stats Cards */}
-                        <div className="absolute -bottom-4 left-4 p-4 bg-white/10 rounded-lg backdrop-blur-sm border border-white/20 transform rotate-3">
+                        <div className="absolute -bottom-4 left-4 p-4 bg-white/10 rounded-lg backdrop-blur-sm border border-white/20 transform rotate-3 transition-all duration-300 hover:scale-105">
                             <div className="text-2xl font-bold text-green-400">
                                 95%
                             </div>
@@ -166,7 +166,7 @@ export default function SecurityAssessmentHeader() {
                             </div>
                         </div>
 
-                        <div className="absolute -top-4 right-4 p-4 bg-white/10 rounded-lg backdrop-blur-sm border border-white/20 transform -rotate-3">
+                        <div className="absolute -top-4 right-4 p-4 bg-white/10 rounded-lg backdrop-blur-sm border border-white/20 transform -rotate-3 transition-all duration-300 hover:scale-105">
                             <div className="text-2xl font-bold text-blue-400">
                                 5min
                             </div>
@@ -181,3 +181,5 @@ export default function SecurityAssessmentHeader() {
         </div>
     );
 }
+
+export default Header;

@@ -9,8 +9,8 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Shield, ArrowRight } from "lucide-react";
-import { ResponseContext } from "@/components/Hero";
-import type { ResponseContextType } from "@/components/Hero";
+import { ResponseContext } from "@/components/Assessments";
+import type { ResponseContextType } from "@/components/Assessments";
 import { DialogDescription } from "@radix-ui/react-dialog";
 
 const personalEmailDomains: string[] = [
@@ -149,7 +149,7 @@ const EmailDialog: React.FC<ReportDialogProps> = ({
             <Button
                 className={
                     variant === "default"
-                        ? "bg-[var(--brand-blue)] text-white px-8 py-3 rounded-lg font-semibold flex items-center space-x-3"
+                        ? "bg-[var(--brand-blue)] text-white px-8 py-3 rounded-lg font-semibold flex items-center space-x-3 transition-all duration-500 hover:scale-110"
                         : "border-2 border-blue-200 px-8 py-3 rounded-lg font-semibold flex items-center space-x-3"
                 }
                 onClick={() => setOpen(true)}

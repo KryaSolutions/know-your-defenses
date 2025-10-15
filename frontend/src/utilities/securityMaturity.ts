@@ -3,59 +3,59 @@ import type { assessmentType } from "./assessmentMeta";
 const securityMaturity: assessmentType = {
     title: "Organization Security Assessment",
 
-    desc: "Evaluate your organization's cybersecurity posture across six critical domains: Identity Management, Protection Controls, Detection Capabilities, Incident Response, Recovery Planning, and Compliance Framework",
+    desc: "Evaluate your organization's cybersecurity posture across six critical domains: Identity Management, Protection Controls, Detection Capabilities, Incident Response, Recovery Planning, and Compliance Framework.",
 
     questions: {
         "Identity Management": {
             icon: "🛡️",
             color: "#3b82f6",
             questions: [
-                "Have you classified your organization's critical IT assets based on confidentiality, integrity, availability, and operational requirements?",
-                "Does your organization have a defined cybersecurity program and a functioning Security Operations Center (SOC)?",
-                "Has your organization using a SIEM to continuously detect, monitor, and investigate?",
+                "Has your organization classified its critical IT assets based on confidentiality, integrity, availability, and operational needs?",
+                "Is there a defined cybersecurity program in place, along with an operational Security Operations Center (SOC)?",
+                "Is a SIEM solution being used to continuously detect, monitor, and investigate potential threats?",
             ],
         },
         "Protection Controls": {
             icon: "🔒",
             color: "#10b981",
             questions: [
-                "To what extent has your organization implemented Role-Based Access Control (RBAC)?",
-                "Is Multi-Factor Authentication (MFA) in place for critical business applications within your organization?",
-                "Does your organization currently have controls in place to ensure sensitive data is properly classified and protected?",
-                "Does your organization currently use perimeter defenses like Firewalls, VPNs, and IPS to safeguard its network?",
+                "To what extent has Role-Based Access Control (RBAC) been implemented across critical systems and applications?",
+                "Is Multi-Factor Authentication (MFA) enforced for key business applications and systems?",
+                "Are proper controls in place to classify and protect sensitive data across the organization?",
+                "Are perimeter defenses such as Firewalls, VPNs, and Intrusion Prevention Systems (IPS) actively deployed and maintained?",
             ],
         },
         "Detection Capabilities": {
             icon: "🔍",
             color: "#f59e0b",
             questions: [
-                "Can you confirm that proactive monitoring is implemented to detect capacity constraints in compute, storage, and network resources before they impact services?",
-                "Has your organization implemented controls to detect anomalous activity across systems and networks?",
+                "Is proactive monitoring in place to identify capacity constraints in compute, storage, or network resources before they affect services?",
+                "Are controls established to detect anomalous or suspicious activity across systems and networks?",
             ],
         },
         "Incident Response": {
             icon: "⚡",
             color: "#ef4444",
             questions: [
-                "Do you have security controls set up to help prevent breaches and stop incidents if they occur?",
-                "Do you have a documented plan exists to detect, respond to, and recover from security incidents?",
+                "Have preventive and containment controls been implemented to reduce the likelihood and impact of security breaches?",
+                "Is there a documented and tested plan to detect, respond to, and recover from security incidents?",
             ],
         },
         "Recovery Planning": {
             icon: "🔄",
             color: "#8b5cf6",
             questions: [
-                "Do your critical systems have defined RTO, RPO, MTPD, MAO, and WRT?",
-                "Do you have a BCP/DR plan in place to restore systems if there's a disruption?",
-                "Does your organization have a formally defined Emergency Response Team (ERT)?",
-                "Has your organization defined a formal mechanism for the periodic review of policies and procedures?",
+                "Do critical systems have defined recovery objectives such as RTO, RPO, MTPD, MAO, and WRT?",
+                "Is a Business Continuity and Disaster Recovery (BCP/DR) plan established and tested periodically?",
+                "Has your organization defined a formal Emergency Response Team (ERT) to handle crisis situations?",
+                "Are policies and procedures reviewed regularly through a structured and formal process?",
             ],
         },
         "Compliance Framework": {
             icon: "📋",
             color: "#06b6d4",
             questions: [
-                "Any compliance frameworks have been implemented within your organization, such as ISO/IEC 27001, SOC 2, GDPR, HIPAA, PCI-DSS, NIST, or CSA STAR?",
+                "Has your organization adopted compliance frameworks such as ISO/IEC 27001, SOC 2, GDPR, HIPAA, PCI-DSS, NIST, or CSA STAR?",
             ],
         },
     },

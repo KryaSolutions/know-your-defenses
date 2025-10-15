@@ -1,9 +1,9 @@
 import { useState, useEffect, useContext } from "react";
-import { ResponseContext } from "./Hero";
-import type { ResponseContextType } from "./Hero";
-import assessmentData from "../utilities/assessmentMeta";
-import Questions from "./Questions";
-import type { assessmentType } from "../utilities/assessmentMeta";
+import { ResponseContext } from "../Assessments";
+import type { ResponseContextType } from "../Assessments";
+import assessmentData from "../../utilities/assessmentMeta";
+import SurveyQuestions from "./SurveyQuestions";
+import type { assessmentType } from "../../utilities/assessmentMeta";
 
 const Survey = () => {
     const context = useContext<ResponseContextType | null>(ResponseContext);
@@ -83,7 +83,6 @@ const Survey = () => {
                                     <div className="flex justify-between items-center mb-2">
                                         <span className="text-sm text-gray-600">
                                             {answeredCount}/{totalQuestions}{" "}
-                                            answered
                                         </span>
                                         <span className="text-sm font-medium text-blue-600">
                                             {progressPercent}%
@@ -93,7 +92,7 @@ const Survey = () => {
                                     {/* Colored progress bar */}
                                     <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
                                         <div
-                                            className="h-full bg-[var(--brand-light-blue)] transition-all duration-500"
+                                            className="h-full bg-[var(--brand-light-blue)] transition-all duration-1000"
                                             style={{
                                                 width: `${progressPercent}%`,
                                             }}
@@ -106,7 +105,7 @@ const Survey = () => {
                                     onClick={() =>
                                         handleStartAssessment(assessment)
                                     }
-                                    className="px-5 py-2.5 rounded-lg bg-[var(--brand-blue)] text-white font-medium transition whitespace-nowrap"
+                                    className="px-5 py-2.5 rounded-lg bg-[var(--brand-blue)] text-white font-medium transition-all duration-300 hover:scale-105 whitespace-nowrap"
                                     tabIndex={-1}
                                 >
                                     Start Assessment
@@ -119,16 +118,14 @@ const Survey = () => {
 
             {selectedAssessment && (
                 <div
-                    className={`fixed inset-0 z-50 flex items-end justify-center bg-black/50 transition-opacity duration-300 ${
-                        isVisible ? "opacity-100" : "opacity-0"
-                    }`}
+                    className={`fixed inset-0 z-50 flex items-end justify-center bg-black/50 transition-opacity duration-300 ${isVisible ? "opacity-100" : "opacity-0"
+                        }`}
                 >
                     <div
-                        className={`bg-white rounded-t-2xl shadow-2xl w-full max-w-4xl h-[90vh] relative transform transition-all duration-300 ${
-                            isVisible
-                                ? "translate-y-0 opacity-100"
-                                : "translate-y-10 opacity-0"
-                        }`}
+                        className={`bg-white rounded-t-2xl shadow-2xl w-full max-w-4xl h-[90vh] relative transform transition-all duration-300 ${isVisible
+                            ? "translate-y-0 opacity-100"
+                            : "translate-y-10 opacity-0"
+                            }`}
                     >
                         {/* Close button */}
                         <button
@@ -140,7 +137,7 @@ const Survey = () => {
 
                         {/* Scrollable content */}
                         <div className="p-8 h-full overflow-y-auto scrollbar-hide">
-                            <Questions
+                            <SurveyQuestions
                                 assessment={selectedAssessment.title}
                                 data={selectedAssessment.questions}
                                 options={selectedAssessment.options}

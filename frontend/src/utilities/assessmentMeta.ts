@@ -1,3 +1,4 @@
+import cloudSecurity from "./cloudSecurity";
 import securityMaturity from "./securityMaturity";
 import socAssessment from "./socAssessment";
 import zeroTrustAssessment from "./zeroTrust";
@@ -29,6 +30,7 @@ export type assessmentType = {
 };
 
 const assessmentData: assessmentType[] = [
+    { ...cloudSecurity },
     { ...securityMaturity },
     { ...zeroTrustAssessment },
     { ...socAssessment },

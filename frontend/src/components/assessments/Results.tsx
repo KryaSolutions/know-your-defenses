@@ -1,9 +1,9 @@
 import { useContext } from "react";
-import { ResponseContext } from "./Hero";
-import type { ResponseContextType } from "./Hero";
+import { ResponseContext } from "../Assessments";
+import type { ResponseContextType } from "../Assessments";
 import assessmentData, {
     type assessmentType,
-} from "../utilities/assessmentMeta";
+} from "../../utilities/assessmentMeta";
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer } from "recharts";
 
 const COLORS = {

@@ -3,69 +3,84 @@ import type { assessmentType } from "./assessmentMeta";
 const zeroTrustAssessment: assessmentType = {
     title: "Zero Trust Assessment",
 
-    desc: "Assess and identify gaps in identity management, network security, application controls, data protection, device compliance, and incident response, helps to evaluate the Zero Trust approach in your organization.",
+    desc: "Assess and identify gaps across identity management, network security, application controls, data protection, device compliance, and incident response to evaluate your organization’s Zero Trust maturity.",
 
     questions: {
         "Identity Management": {
             icon: "👤",
             color: "#3b82f6",
             questions: [
-                "Is MFA enforced for all users?",
-                "Is privileged access managed using a PAM solution?",
-                "Is adaptive authentication (risk-based) enabled?",
+                "Is multi-factor authentication (MFA) enforced for all user accounts, including privileged and remote access?",
+                "Is privileged access managed and monitored through a Privileged Access Management (PAM) solution?",
+                "Is adaptive, risk-based authentication implemented to evaluate user and device trust levels dynamically?",
             ],
         },
         "Network Security": {
             icon: "🌐",
             color: "#10b981",
             questions: [
-                "Is network micro-segmentation implemented?",
-                "Is east-west traffic monitored for anomalies?",
-                "Is TLS 1.2+ enforced for all communications?",
+                "Has network micro-segmentation been implemented to isolate workloads and limit lateral movement?",
+                "Is internal (east-west) network traffic continuously monitored and analyzed for anomalies or suspicious behavior?",
+                "Is encryption enforced for all communications using TLS 1.2 or higher?",
             ],
         },
         "Application Security": {
             icon: "💻",
             color: "#f59e0b",
             questions: [
-                "Are applications using least privilege access?",
-                "Are applications tested using SAST/DAST tools?",
-                "Are unauthorized SaaS applications discovered and monitored?",
+                "Do applications enforce least-privilege access based on user roles and context?",
+                "Are applications regularly tested using automated tools such as Static and Dynamic Application Security Testing (SAST/DAST)?",
+                "Are unauthorized or shadow SaaS applications discovered, monitored, and governed appropriately?",
             ],
         },
         "Data Protection": {
             icon: "📊",
             color: "#ef4444",
             questions: [
-                "Is data classified (Public, Internal, Confidential, Restricted)?",
-                "Are data access logs monitored and retained?",
-                "Is sensitive data encrypted at rest and in transit?",
+                "Is organizational data classified according to sensitivity levels such as Public, Internal, Confidential, or Restricted?",
+                "Are data access logs continuously monitored, retained, and reviewed for abnormal activity?",
+                "Is sensitive or regulated data encrypted both at rest and in transit?",
             ],
         },
         "Device Compliance": {
             icon: "📱",
             color: "#8b5cf6",
             questions: [
-                "Are devices verified for compliance before access?",
-                "Are mobile devices enrolled in MDM/EMM solutions?",
-                "Is device health checked before granting access?",
+                "Are devices verified for compliance and security posture before being granted access to organizational resources?",
+                "Are mobile devices enrolled and managed through MDM or EMM solutions to enforce security policies?",
+                "Is device health or integrity assessed in real-time before granting access to applications or data?",
             ],
         },
         "Incident Response": {
             icon: "⚡",
             color: "#ef4444",
             questions: [
-                "Do you have a documented incident response plan?",
-                "Are incidents detected and responded to within defined SLA times?",
-                "Are post-incident reviews conducted to prevent recurrence?",
+                "Is there a documented and tested incident response plan specific to Zero Trust environments?",
+                "Are cloud or on-premise security incidents detected and responded to within predefined SLA timelines?",
+                "Are post-incident reviews and lessons learned sessions conducted to prevent recurrence and improve future response?",
             ],
         },
     },
 
     options: [
-        { value: "no", label: "No", score: 0, color: "#ef4444" },
-        { value: "partial", label: "Partial", score: 50, color: "#f59e0b" },
-        { value: "yes", label: "Yes", score: 100, color: "#10b981" },
+        {
+            value: "no",
+            label: "No / Not Implemented",
+            score: 0,
+            color: "#ef4444",
+        },
+        {
+            value: "partial",
+            label: "Partially Implemented",
+            score: 50,
+            color: "#f59e0b",
+        },
+        {
+            value: "yes",
+            label: "Fully Implemented",
+            score: 100,
+            color: "#10b981",
+        },
     ],
 };
 
