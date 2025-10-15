@@ -5,9 +5,10 @@ services:
             dockerfile: Dockerfile
         working_dir: /app
         ports:
-            - "10101:10101"
+          - "10300:10300"
         env_file:
             - ".env"
+        restart: on-failure
 
     frontend:
         build:
@@ -15,6 +16,7 @@ services:
             dockerfile: Dockerfile
         working_dir: /usr/share/nginx/html
         ports:
-            - "10100:80"
+            - "10200:80"
         depends_on:
             - backend
+        restart: on-failure
