@@ -177,7 +177,7 @@ const SocProductivity = () => {
                     animation: slideIn 0.3s ease-out;
                 }
             `}</style>
-            <div className="max-w-3xl mx-auto p-6 border rounded-2xl shadow-sm bg-white relative">
+            <div className="max-w-3xl mx-auto p-6 border rounded-2xl bg-white relative">
                 <h2 className="text-xl font-semibold text-gray-800 mb-4">
                     Resource & Coverage Metrics
                 </h2>

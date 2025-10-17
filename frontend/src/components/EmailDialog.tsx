@@ -9,8 +9,8 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Shield, ArrowRight } from "lucide-react";
-import { ResponseContext } from "@/components/Assessments";
-import type { ResponseContextType } from "@/components/Assessments";
+import { ResponseContext } from "@/components/SurveyWrapper";
+import type { ResponseContextType } from "@/components/SurveyWrapper";
 import { DialogDescription } from "@radix-ui/react-dialog";
 
 const personalEmailDomains: string[] = [

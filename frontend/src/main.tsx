@@ -1,12 +1,14 @@
 import "./index.css";
 import { createRoot } from "react-dom/client";
 import { StrictMode } from "react";
-import Assessments from "./components/Assessments";
-import Survey from "./components/assessments/Survey";
+import Header from "./components/Header";
+import CalcWrapper from "./components/CalcWrapper";
+import SurveyWrapper from "./components/SurveyWrapper";
 
 createRoot(document.getElementById("root")!).render(
     <StrictMode>
-        <Assessments />
-        <Survey />
+        <Header />
+        <CalcWrapper />
+        <SurveyWrapper />
     </StrictMode>
 );

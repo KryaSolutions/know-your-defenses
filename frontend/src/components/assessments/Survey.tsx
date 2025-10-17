@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from "react";
-import { ResponseContext } from "../Assessments";
-import type { ResponseContextType } from "../Assessments";
+import { ResponseContext } from "../SurveyWrapper";
+import type { ResponseContextType } from "../SurveyWrapper";
 import assessmentData from "../../utilities/assessmentMeta";
 import SurveyQuestions from "./SurveyQuestions";
 import type { assessmentType } from "../../utilities/assessmentMeta";

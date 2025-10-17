@@ -1,10 +1,10 @@
 import { useState, useContext } from "react";
 import { ChevronDown } from "lucide-react";
-import { ResponseContext } from "../Assessments";
+import { ResponseContext } from "../SurveyWrapper";
 import EmailDialog from "../EmailDialog";
-import { ResultContext } from "../Assessments";
-import type { ResponseContextType, ResultContextType } from "../Assessments";
-import type { responseType } from "../Assessments";
+import { ResultContext } from "../SurveyWrapper";
+import type { ResponseContextType, ResultContextType } from "../SurveyWrapper";
+import type { responseType } from "../SurveyWrapper";
 import type { dataType, optionType } from "../../utilities/assessmentMeta";
 
 type Props = {

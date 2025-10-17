@@ -29,7 +29,7 @@ export type ResultContextType = {
 };
 export const ResultContext = createContext<ResultContextType | null>(null);
 
-const Assessments = () => {
+const SurveyWrapper = () => {
     const [response, setResponse] = useState<responseType>({});
     const [showResults, setShowResults] = useState(false);
 
@@ -91,4 +91,4 @@ const Assessments = () => {
     );
 };
 
-export default Assessments;
+export default SurveyWrapper;
