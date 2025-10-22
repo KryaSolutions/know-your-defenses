@@ -27,6 +27,7 @@ export type assessmentType = {
     desc: descType;
     questions: dataType;
     options: optionType[];
+    color: string;
 };
 
 const assessmentData: assessmentType[] = [

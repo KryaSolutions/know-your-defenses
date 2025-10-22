@@ -163,7 +163,7 @@
 }
 
 .animate-fadeOut {
-    animation: fadeOut 0.3s ease-out;
+    animation: fadeOut 0.3s ease-out forwards;
 }
 
 @layer base {
