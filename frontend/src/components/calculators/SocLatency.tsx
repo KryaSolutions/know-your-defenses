@@ -118,7 +118,7 @@ const SocLatency = () => {
             `}</style>
             <div className="max-w-3xl mx-auto p-6 border rounded-2xl bg-white relative">
                 <h2 className="text-xl font-semibold text-gray-800 mb-4">
-                    LAtency Metrics (in minutes)
+                    Latency Metrics (in minutes)
                 </h2>
 
                 {!results ? (
@@ -237,16 +237,19 @@ const SocLatency = () => {
                         >
                             Reset
                         </button>
-                        <button
-                            onClick={calculate}
-                            disabled={validation.hasError}
-                            className={`px-4 py-2 rounded-lg text-sm font-medium text-white transition-all duration-200 ${validation.hasError
-                                ? "bg-gray-400 cursor-not-allowed"
-                                : "bg-[var(--brand-blue)]"
-                                }`}
-                        >
-                            Calculate
-                        </button>
+
+                        {!results && (
+                            <button
+                                onClick={calculate}
+                                disabled={validation.hasError}
+                                className={`px-4 py-2 rounded-lg text-sm font-medium text-white transition-all duration-200 ${validation.hasError
+                                    ? "bg-gray-400 cursor-not-allowed"
+                                    : "bg-[var(--brand-blue)]"
+                                    }`}
+                            >
+                                Calculate
+                            </button>
+                        )}
                     </div>
                 </div>
             </div>

@@ -9,7 +9,7 @@ import {
 
 const Header = () => {
     const handleStartAssessment = () => {
-        const heroSection = document.querySelector("#hero-section");
+        const heroSection = document.querySelector("#survey-section");
         if (heroSection) {
             heroSection.scrollIntoView({
                 behavior: "smooth",

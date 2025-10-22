@@ -45,7 +45,7 @@ const SurveyWrapper = () => {
             <div className="max-w-6xl mx-auto bg-white rounded-2xl shadow-xl overflow-hidden flex flex-col">
                 <ResponseContext.Provider value={{ response, setResponse }}>
                     {/* Header Section */}
-                    <div className="bg-gradient-to-r from-blue-600/10 to-cyan-600/10 p-6 sm:p-8 border-b border-blue-100">
+                    <div id="survey-section" className="bg-gradient-to-r from-blue-600/10 to-cyan-600/10 p-6 sm:p-8 border-b border-blue-100">
                         <div className="flex items-center justify-center space-x-3 sm:space-x-4">
                             <div className="p-2 sm:p-3 bg-[var(--brand-light-blue)] rounded-full flex-shrink-0">
                                 <Shield className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
