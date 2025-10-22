@@ -82,6 +82,8 @@ const zeroTrustAssessment: assessmentType = {
             color: "#10b981",
         },
     ],
+
+    color: "green",
 };
 
 export default zeroTrustAssessment;

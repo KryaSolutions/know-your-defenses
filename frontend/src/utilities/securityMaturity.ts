@@ -86,6 +86,8 @@ const securityMaturity: assessmentType = {
             color: "#3b82f6",
         },
     ],
+
+    color: "purple",
 };
 
 export default securityMaturity;

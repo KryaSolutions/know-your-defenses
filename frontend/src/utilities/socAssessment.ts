@@ -74,6 +74,8 @@ const socAssessment: assessmentType = {
             color: "#10b981",
         },
     ],
+
+    color: "red",
 };
 
 export default socAssessment;

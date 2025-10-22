@@ -110,7 +110,7 @@ router.post(
                 summary = (await getReports(response, org)) || "Undefined";
             }
 
-            base(config.DB_NAME!).create([
+            await base(config.DB_NAME!).create([
                 {
                     fields: {
                         Name: name,

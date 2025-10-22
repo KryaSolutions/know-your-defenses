@@ -74,6 +74,8 @@ const cloudSecurity: assessmentType = {
             color: "#9ca3af",
         },
     ],
+
+    color: "blue",
 };
 
 export default cloudSecurity;

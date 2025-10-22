@@ -9,6 +9,7 @@ export type ResponseContextType = {
     response: responseType;
     setResponse: React.Dispatch<React.SetStateAction<responseType>>;
 };
+
 export type responseType = {
     [title: string]: {
         [category: string]: {
@@ -21,12 +22,14 @@ export type responseType = {
         };
     };
 };
+
 export const ResponseContext = createContext<ResponseContextType | null>(null);
 
 export type ResultContextType = {
     showResults: boolean;
     setShowResults: React.Dispatch<React.SetStateAction<boolean>>;
 };
+
 export const ResultContext = createContext<ResultContextType | null>(null);
 
 const SurveyWrapper = () => {
@@ -38,38 +41,43 @@ const SurveyWrapper = () => {
     }, []);
 
     return (
-        <div
-            id="hero-section"
-            className="min-h-screen bg-[var(--brand-blue)]/10 to-indigo-100 relative overflow-hidden"
-        >
-
-            <div className="relative max-w-5xl mx-auto px-6 py-12">
+        <div className="flex-grow flex-shrink p-4 sm:p-6 md:p-8 lg:p-10 bg-[var(--brand-blue)]">
+            <div className="max-w-6xl mx-auto bg-white rounded-2xl shadow-xl overflow-hidden flex flex-col">
                 <ResponseContext.Provider value={{ response, setResponse }}>
                     {/* Header Section */}
-                    <div className="bg-gradient-to-r from-blue-600/5 to-cyan-600/5 p-8 mb-6 rounded-xl">
-                        <div className="flex items-center justify-center space-x-4 mb-6">
-                            <div className="p-3 bg-[var(--brand-light-blue)] rounded-full">
-                                <Shield className="w-8 h-8 text-white" />
+                    <div className="bg-gradient-to-r from-blue-600/10 to-cyan-600/10 p-6 sm:p-8 border-b border-blue-100">
+                        <div className="flex items-center justify-center space-x-3 sm:space-x-4">
+                            <div className="p-2 sm:p-3 bg-[var(--brand-light-blue)] rounded-full flex-shrink-0">
+                                <Shield className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
                             </div>
-                            <h2 className="text-3xl font-bold text-[var(--brand-blue)]">
-                                {!showResults
-                                    ? "Know Your Defenses"
-                                    : "Your Defense stats"}
+                            <h2 className="text-2xl sm:text-3xl font-bold text-[var(--brand-blue)] text-center">
+                                {!showResults ? "Know Your Defenses" : "Your Defense Stats"}
                             </h2>
                         </div>
                     </div>
 
-                    <ResultContext.Provider
-                        value={{ showResults, setShowResults }}
-                    >
-                        {/* Assessment Content */}
-                        <div className="mb-8">
-                            {!showResults ? <Survey /> : <Results />}
+                    <ResultContext.Provider value={{ showResults, setShowResults }}>
+                        {/* Content Section */}
+                        <div className="flex-1 p-6 sm:p-8 overflow-y-auto">
+                            <div className="space-y-6">
+                                {!showResults && (
+                                    <div className="text-center">
+                                        <p className="text-slate-700 text-base sm:text-lg">
+                                            Complete these assessments to evaluate your security posture
+                                        </p>
+                                    </div>
+                                )}
+
+                                {/* Assessment Content */}
+                                <div className="mb-8">
+                                    {!showResults ? <Survey /> : <Results />}
+                                </div>
+                            </div>
                         </div>
                     </ResultContext.Provider>
 
                     {/* Action Buttons */}
-                    <div className="p-8 flex justify-center">
+                    <div className="p-6 sm:p-8 border-t border-gray-200 flex justify-center bg-gradient-to-r from-blue-50/50 to-indigo-50/50">
                         {!showResults ? (
                             <EmailDialog
                                 triggerButtonText="Evaluate Assessments"
@@ -79,7 +87,7 @@ const SurveyWrapper = () => {
                             <Button
                                 variant="outline"
                                 onClick={() => setShowResults(false)}
-                                className="border-2 border-blue-200 hover:border-blue-300 text-blue-700 hover:text-blue-800 hover:bg-blue-50 px-8 py-3 rounded-lg font-semibold text-lg transition-all duration-300 transform hover:scale-105"
+                                className="border-2 border-blue-200 hover:border-blue-300 text-blue-700 hover:text-blue-800 hover:bg-blue-50 px-6 sm:px-8 py-2 sm:py-3 rounded-lg font-semibold text-base sm:text-lg transition-all duration-300 transform hover:scale-105"
                             >
                                 Return to Assessment
                             </Button>
