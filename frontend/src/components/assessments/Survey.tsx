@@ -9,12 +9,12 @@ import type { assessmentType } from "../../utilities/assessmentMeta";
 type ColorMap = Record<string, string>;
 
 const colorMap: ColorMap = {
-    blue: 'bg-blue-50 text-blue-700 border-blue-200 hover:bg-blue-100 hover:border-blue-300',
-    purple: 'bg-purple-50 text-purple-700 border-purple-200 hover:bg-purple-100 hover:border-purple-300',
-    green: 'bg-green-50 text-green-700 border-green-200 hover:bg-green-100 hover:border-green-300',
-    indigo: 'bg-indigo-50 text-indigo-700 border-indigo-200 hover:bg-indigo-100 hover:border-indigo-300',
-    red: 'bg-red-50 text-red-700 border-red-200 hover:bg-red-100 hover:border-red-300',
-    cyan: 'bg-cyan-50 text-cyan-700 border-cyan-200 hover:bg-cyan-100 hover:border-cyan-300'
+    blue: "bg-blue-50 text-blue-700 border-blue-200 hover:bg-blue-100 hover:border-blue-300",
+    purple: "bg-purple-50 text-purple-700 border-purple-200 hover:bg-purple-100 hover:border-purple-300",
+    green: "bg-green-50 text-green-700 border-green-200 hover:bg-green-100 hover:border-green-300",
+    indigo: "bg-indigo-50 text-indigo-700 border-indigo-200 hover:bg-indigo-100 hover:border-indigo-300",
+    red: "bg-red-50 text-red-700 border-red-200 hover:bg-red-100 hover:border-red-300",
+    cyan: "bg-cyan-50 text-cyan-700 border-cyan-200 hover:bg-cyan-100 hover:border-cyan-300",
 };
 
 const Survey = () => {
@@ -65,33 +65,41 @@ const Survey = () => {
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4 lg:gap-6">
                     {assessmentData.map((assessment) => {
                         // Total questions in this assessment
-                        const totalQuestions = Object.values(assessment.questions).reduce(
-                            (sum, category: any) => sum + category.questions.length,
+                        const totalQuestions = Object.values(
+                            assessment.questions
+                        ).reduce(
+                            (sum, category: any) =>
+                                sum + category.questions.length,
                             0
                         );
 
                         // Questions answered from response
-                        const answeredCount = Object.values(response[assessment.title] || {}).reduce(
-                            (sum, category: any) => {
-                                return (
-                                    sum +
-                                    Object.keys(category).filter((key) => !isNaN(Number(key))).length
-                                );
-                            },
-                            0
-                        );
+                        const answeredCount = Object.values(
+                            response[assessment.title] || {}
+                        ).reduce((sum, category: any) => {
+                            return (
+                                sum +
+                                Object.keys(category).filter(
+                                    (key) => !isNaN(Number(key))
+                                ).length
+                            );
+                        }, 0);
 
                         const progressPercent =
                             totalQuestions > 0
-                                ? Math.round((answeredCount / totalQuestions) * 100)
+                                ? Math.round(
+                                      (answeredCount / totalQuestions) * 100
+                                  )
                                 : 0;
 
-                        const cardColor: string = assessment.color || 'blue';
+                        const cardColor: string = assessment.color || "blue";
 
                         return (
                             <button
                                 key={assessment.title}
-                                onClick={() => handleStartAssessment(assessment)}
+                                onClick={() =>
+                                    handleStartAssessment(assessment)
+                                }
                                 className={`group relative p-5 sm:p-6 rounded-xl border-2 transition-all duration-300 ease-out ${colorMap[cardColor]} hover:shadow-lg hover:scale-105 active:scale-100 text-left`}
                             >
                                 <div className="flex flex-col space-y-3">
@@ -108,17 +116,24 @@ const Survey = () => {
                                     {/* Progress Section */}
                                     <div className="space-y-1.5 pt-2">
                                         <div className="flex justify-between items-center text-xs sm:text-sm">
-                                            <span className="font-medium">Progress</span>
-                                            <span className="font-bold">{progressPercent}%</span>
+                                            <span className="font-medium">
+                                                Progress
+                                            </span>
+                                            <span className="font-bold">
+                                                {progressPercent}%
+                                            </span>
                                         </div>
                                         <div className="w-full bg-white/60 rounded-full h-2">
                                             <div
                                                 className="h-2 rounded-full transition-all duration-500 bg-current"
-                                                style={{ width: `${progressPercent}%` }}
+                                                style={{
+                                                    width: `${progressPercent}%`,
+                                                }}
                                             />
                                         </div>
                                         <div className="text-xs opacity-70">
-                                            {answeredCount}/{totalQuestions} questions answered
+                                            {answeredCount}/{totalQuestions}{" "}
+                                            questions answered
                                         </div>
                                     </div>
                                 </div>
@@ -137,9 +152,9 @@ const Survey = () => {
             {isVisible && selectedAssessment && (
                 <div
                     className={`fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4 
-            ${isClosing ? 'animate-fadeOut' : 'animate-fadeIn'}`}
+            ${isClosing ? "animate-fadeOut" : "animate-fadeIn"}`}
                     onAnimationEnd={(e) => {
-                        if (isClosing && e.animationName === 'fadeOut') {
+                        if (isClosing && e.animationName === "fadeOut") {
                             setIsVisible(false);
                             setSelectedAssessment(null);
                             setIsClosing(false);
@@ -148,7 +163,7 @@ const Survey = () => {
                 >
                     <div
                         className={`bg-white rounded-2xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-hidden flex flex-col 
-              ${isClosing ? 'animate-scaleDown' : 'animate-scaleUp'}`}
+              ${isClosing ? "animate-scaleDown" : "animate-scaleUp"}`}
                     >
                         {/* Dialog Header */}
                         <div className="flex items-center justify-between p-4 sm:p-6 border-b border-gray-200 bg-gradient-to-r from-blue-50 to-indigo-50">

@@ -48,7 +48,9 @@ const SocLatency = () => {
             errors.push("MTTR should typically be less than or equal to MTTC.");
         }
         if (mttc > 0 && mttr2 > 0 && mttc > mttr2) {
-            errors.push("MTTC should typically be less than or equal to MTTR2.");
+            errors.push(
+                "MTTC should typically be less than or equal to MTTR2."
+            );
         }
 
         const hasValues = Object.values(metrics).some((v) => v !== "");
@@ -69,10 +71,13 @@ const SocLatency = () => {
 
         const totalResponseTime = mttd + mttr + mttc + mttr2;
 
-        const values = [mttd, mttr, mttc, mttr2, mtta, mtbf].filter(v => v > 0);
-        const averageMetric = values.length > 0
-            ? values.reduce((a, b) => a + b, 0) / values.length
-            : 0;
+        const values = [mttd, mttr, mttc, mttr2, mtta, mtbf].filter(
+            (v) => v > 0
+        );
+        const averageMetric =
+            values.length > 0
+                ? values.reduce((a, b) => a + b, 0) / values.length
+                : 0;
 
         setResults({
             mttd,
@@ -132,14 +137,19 @@ const SocLatency = () => {
                                 mtta: "Mean Time to Acknowledge (MTTA)",
                                 mtbf: "Mean Time Between Failures (MTBF)",
                             }).map(([key, label]) => (
-                                <div key={key} className="flex flex-col transition-all duration-300">
+                                <div
+                                    key={key}
+                                    className="flex flex-col transition-all duration-300"
+                                >
                                     <label className="text-sm text-gray-600 mb-1">
                                         {label}
                                     </label>
                                     <input
                                         type="text"
                                         name={key}
-                                        value={metrics[key as keyof typeof metrics]}
+                                        value={
+                                            metrics[key as keyof typeof metrics]
+                                        }
                                         onChange={handleChange}
                                         className="border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[var(--brand-blue)] transition-all duration-200"
                                         placeholder="Enter minutes"
@@ -224,7 +234,9 @@ const SocLatency = () => {
                         <div className="text-red-600 text-sm max-w-md transition-all duration-300">
                             <ul className="space-y-1">
                                 {validation.errors.map((err, i) => (
-                                    <li key={i} className="animate-slideIn">• {err}</li>
+                                    <li key={i} className="animate-slideIn">
+                                        • {err}
+                                    </li>
                                 ))}
                             </ul>
                         </div>
@@ -242,10 +254,11 @@ const SocLatency = () => {
                             <button
                                 onClick={calculate}
                                 disabled={validation.hasError}
-                                className={`px-4 py-2 rounded-lg text-sm font-medium text-white transition-all duration-200 ${validation.hasError
-                                    ? "bg-gray-400 cursor-not-allowed"
-                                    : "bg-[var(--brand-blue)]"
-                                    }`}
+                                className={`px-4 py-2 rounded-lg text-sm font-medium text-white transition-all duration-200 ${
+                                    validation.hasError
+                                        ? "bg-gray-400 cursor-not-allowed"
+                                        : "bg-[var(--brand-blue)]"
+                                }`}
                             >
                                 Calculate
                             </button>
@@ -257,7 +270,15 @@ const SocLatency = () => {
     );
 };
 
-function MetricCard({ label, value, unit }: { label: string; value: number; unit: string }) {
+function MetricCard({
+    label,
+    value,
+    unit,
+}: {
+    label: string;
+    value: number;
+    unit: string;
+}) {
     return (
         <div className="p-3 border rounded-lg bg-gray-50 flex flex-col transition-all duration-300 hover:shadow-md">
             <span className="text-gray-700 font-medium">{label}</span>
@@ -272,7 +293,7 @@ function InsightCard({
     label,
     value,
     unit,
-    description
+    description,
 }: {
     label: string;
     value: number;

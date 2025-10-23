@@ -2,6 +2,7 @@ import dns from "node:dns";
 import * as pkg from "express";
 
 export const router = pkg.Router();
+
 function resolveMx(domain: string): Promise<dns.MxRecord[]> {
     return new Promise((resolve, reject) => {
         dns.resolveMx(domain, (err, addresses) => {
@@ -31,11 +32,11 @@ router.post(
 
         try {
             const domain = email.split("@")[1];
-	    if (domain === "kryasolutions.com") {
+            if (domain === "kryasolutions.com") {
                 return res
                     .status(200)
                     .json({ valid: true, message: "Email domain is Valid" });
-	    }
+            }
 
             const mxRecords = await resolveMx(domain);
             if (mxRecords.length === 0) {

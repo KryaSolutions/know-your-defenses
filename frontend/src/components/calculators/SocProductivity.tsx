@@ -115,14 +115,26 @@ const SocProductivity = () => {
         const trainingHours = Number(metrics.trainingHours) || 0;
         const incidentsResolved = Number(metrics.incidentsResolved) || 0;
 
-        const alertsPerAnalyst = socAnalysts > 0 ? automatedAlerts / socAnalysts : 0;
-        const assetsPerAnalyst = socAnalysts > 0 ? assetsMonitored / socAnalysts : 0;
-        const toolsPerAnalyst = socAnalysts > 0 ? securityTools / socAnalysts : 0;
-        const trainingHoursPerAnalyst = socAnalysts > 0 ? trainingHours / socAnalysts : 0;
-        const incidentsPerAnalyst = socAnalysts > 0 ? incidentsResolved / socAnalysts : 0;
+        const alertsPerAnalyst =
+            socAnalysts > 0 ? automatedAlerts / socAnalysts : 0;
+        const assetsPerAnalyst =
+            socAnalysts > 0 ? assetsMonitored / socAnalysts : 0;
+        const toolsPerAnalyst =
+            socAnalysts > 0 ? securityTools / socAnalysts : 0;
+        const trainingHoursPerAnalyst =
+            socAnalysts > 0 ? trainingHours / socAnalysts : 0;
+        const incidentsPerAnalyst =
+            socAnalysts > 0 ? incidentsResolved / socAnalysts : 0;
 
-        const efficiencyScore = socAnalysts > 0 ?
-            Math.min(100, (incidentsResolved / (automatedAlerts + incidentsResolved + 1)) * 200) : 0;
+        const efficiencyScore =
+            socAnalysts > 0
+                ? Math.min(
+                      100,
+                      (incidentsResolved /
+                          (automatedAlerts + incidentsResolved + 1)) *
+                          200
+                  )
+                : 0;
 
         const alertWorkloadStatus = getWorkloadStatus(alertsPerAnalyst);
         const coverageStatus = getCoverageStatus(assetsPerAnalyst);
@@ -193,14 +205,19 @@ const SocProductivity = () => {
                                 trainingHours: "Training Hours (total)",
                                 incidentsResolved: "Incidents Resolved",
                             }).map(([key, label]) => (
-                                <div key={key} className="flex flex-col transition-all duration-300">
+                                <div
+                                    key={key}
+                                    className="flex flex-col transition-all duration-300"
+                                >
                                     <label className="text-sm text-gray-600 mb-1">
                                         {label}
                                     </label>
                                     <input
                                         type="text"
                                         name={key}
-                                        value={metrics[key as keyof typeof metrics]}
+                                        value={
+                                            metrics[key as keyof typeof metrics]
+                                        }
                                         onChange={handleChange}
                                         className="border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[var(--brand-blue)] transition-all duration-200"
                                         placeholder="Enter value"
@@ -274,7 +291,9 @@ const SocProductivity = () => {
                         <div className="text-red-600 text-sm max-w-md transition-all duration-300">
                             <ul className="space-y-1">
                                 {validation.errors.map((err, i) => (
-                                    <li key={i} className="animate-slideIn">• {err}</li>
+                                    <li key={i} className="animate-slideIn">
+                                        • {err}
+                                    </li>
                                 ))}
                             </ul>
                         </div>
@@ -292,10 +311,11 @@ const SocProductivity = () => {
                             <button
                                 onClick={calculate}
                                 disabled={validation.hasError}
-                                className={`px-4 py-2 rounded-lg text-sm font-medium text-white transition-all duration-200 ${validation.hasError
-                                    ? "bg-gray-400 cursor-not-allowed"
-                                    : "bg-[var(--brand-blue)]"
-                                    }`}
+                                className={`px-4 py-2 rounded-lg text-sm font-medium text-white transition-all duration-200 ${
+                                    validation.hasError
+                                        ? "bg-gray-400 cursor-not-allowed"
+                                        : "bg-[var(--brand-blue)]"
+                                }`}
                             >
                                 Calculate
                             </button>
@@ -322,13 +342,26 @@ function ProductivityCard({
 }) {
     const getStatusColor = (status: string): string => {
         const lowerStatus = status.toLowerCase();
-        if (lowerStatus === "excellent" || lowerStatus === "very good" || lowerStatus === "optimal") {
+        if (
+            lowerStatus === "excellent" ||
+            lowerStatus === "very good" ||
+            lowerStatus === "optimal"
+        ) {
             return "bg-green-100 border-green-300 text-green-800";
         }
-        if (lowerStatus === "good" || lowerStatus === "fair" || lowerStatus === "light") {
+        if (
+            lowerStatus === "good" ||
+            lowerStatus === "fair" ||
+            lowerStatus === "light"
+        ) {
             return "bg-blue-100 border-blue-300 text-blue-800";
         }
-        if (lowerStatus === "high" || lowerStatus === "stretched" || lowerStatus === "needs improvement" || lowerStatus === "heavy") {
+        if (
+            lowerStatus === "high" ||
+            lowerStatus === "stretched" ||
+            lowerStatus === "needs improvement" ||
+            lowerStatus === "heavy"
+        ) {
             return "bg-orange-100 border-orange-300 text-orange-800";
         }
         if (lowerStatus === "critical" || lowerStatus === "overwhelming") {
@@ -342,11 +375,14 @@ function ProductivityCard({
             <div className="flex flex-col">
                 <span className="text-gray-700 font-medium">{label}</span>
                 <span className="text-blue-600 text-2xl font-bold mt-1">
-                    {value.toFixed(1)}{unit}
+                    {value.toFixed(1)}
+                    {unit}
                 </span>
             </div>
             <div className="flex flex-col items-end">
-                <span className="text-xs text-gray-500 mb-1">{statusLabel}</span>
+                <span className="text-xs text-gray-500 mb-1">
+                    {statusLabel}
+                </span>
                 <span
                     className={`px-3 py-1 rounded-full text-sm font-medium border ${getStatusColor(
                         status

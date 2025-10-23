@@ -22,10 +22,12 @@ app.get("/api/health", (req, res) => {
     });
 });
 
-import { router as routeAppendCustomers } from "./routes/appendCustomer.js";
 import { router as routeVerifyEmail } from "./routes/verifyEmail.js";
+import { router as routerAppendThoughts } from "./routes/appendThoughts.js";
+import { router as routeAppendCustomers } from "./routes/appendCustomer.js";
 
 app.use("/api", routeVerifyEmail);
+app.use("/api", routerAppendThoughts);
 app.use("/api", routeAppendCustomers);
 
 let isHttps = false;

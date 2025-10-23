@@ -45,25 +45,33 @@ const SurveyWrapper = () => {
             <div className="max-w-6xl mx-auto bg-white rounded-2xl shadow-xl overflow-hidden flex flex-col">
                 <ResponseContext.Provider value={{ response, setResponse }}>
                     {/* Header Section */}
-                    <div id="survey-section" className="bg-gradient-to-r from-blue-600/10 to-cyan-600/10 p-6 sm:p-8 border-b border-blue-100">
+                    <div
+                        id="survey-section"
+                        className="bg-gradient-to-r from-blue-600/10 to-cyan-600/10 p-6 sm:p-8 border-b border-blue-100"
+                    >
                         <div className="flex items-center justify-center space-x-3 sm:space-x-4">
                             <div className="p-2 sm:p-3 bg-[var(--brand-light-blue)] rounded-full flex-shrink-0">
                                 <Shield className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
                             </div>
                             <h2 className="text-2xl sm:text-3xl font-bold text-[var(--brand-blue)] text-center">
-                                {!showResults ? "Know Your Defenses" : "Your Defense Stats"}
+                                {!showResults
+                                    ? "Know Your Defenses"
+                                    : "Your Defense Stats"}
                             </h2>
                         </div>
                     </div>
 
-                    <ResultContext.Provider value={{ showResults, setShowResults }}>
+                    <ResultContext.Provider
+                        value={{ showResults, setShowResults }}
+                    >
                         {/* Content Section */}
                         <div className="flex-1 p-6 sm:p-8 overflow-y-auto">
                             <div className="space-y-6">
                                 {!showResults && (
                                     <div className="text-center">
                                         <p className="text-slate-700 text-base sm:text-lg">
-                                            Complete these assessments to evaluate your security posture
+                                            Complete these assessments to
+                                            evaluate your security posture
                                         </p>
                                     </div>
                                 )}

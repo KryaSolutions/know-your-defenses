@@ -47,7 +47,9 @@ const SocAlerts = () => {
         if (iR > iC)
             errors.push("Resolved Incidents cannot exceed Incidents Created.");
         if (c + h + m + l > iC)
-            errors.push("Sum of severity incidents cannot exceed Incidents Created.");
+            errors.push(
+                "Sum of severity incidents cannot exceed Incidents Created."
+            );
 
         return { errors, hasError: errors.length > 0 };
     }, [metrics]);
@@ -132,12 +134,19 @@ const SocAlerts = () => {
                                 medium: "Medium Severity Incidents",
                                 low: "Low Severity Incidents",
                             }).map(([key, label]) => (
-                                <div key={key} className="flex flex-col transition-all duration-300">
-                                    <label className="text-sm text-gray-600 mb-1">{label}</label>
+                                <div
+                                    key={key}
+                                    className="flex flex-col transition-all duration-300"
+                                >
+                                    <label className="text-sm text-gray-600 mb-1">
+                                        {label}
+                                    </label>
                                     <input
                                         type="text"
                                         name={key}
-                                        value={metrics[key as keyof typeof metrics]}
+                                        value={
+                                            metrics[key as keyof typeof metrics]
+                                        }
                                         onChange={handleChange}
                                         className="border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[var(--brand-blue)] transition-all duration-200"
                                         placeholder="Enter value"
@@ -177,7 +186,9 @@ const SocAlerts = () => {
                         <div className="text-red-600 text-sm max-w-md transition-all duration-300">
                             <ul className="space-y-1">
                                 {validation.errors.map((err, i) => (
-                                    <li key={i} className="animate-slideIn">• {err}</li>
+                                    <li key={i} className="animate-slideIn">
+                                        • {err}
+                                    </li>
                                 ))}
                             </ul>
                         </div>
@@ -195,10 +206,11 @@ const SocAlerts = () => {
                             <button
                                 onClick={calculate}
                                 disabled={validation.hasError}
-                                className={`px-4 py-2 rounded-lg text-sm font-medium text-white transition-all duration-200 ${validation.hasError
-                                    ? "bg-gray-400 cursor-not-allowed"
-                                    : "bg-[var(--brand-blue)]"
-                                    }`}
+                                className={`px-4 py-2 rounded-lg text-sm font-medium text-white transition-all duration-200 ${
+                                    validation.hasError
+                                        ? "bg-gray-400 cursor-not-allowed"
+                                        : "bg-[var(--brand-blue)]"
+                                }`}
                             >
                                 Calculate
                             </button>
@@ -208,7 +220,7 @@ const SocAlerts = () => {
             </div>
         </>
     );
-}
+};
 
 function ResultCard({ label, value }: { label: string; value: number }) {
     return (

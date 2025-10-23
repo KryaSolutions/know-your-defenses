@@ -42,18 +42,22 @@ const SocSlaCompliance = () => {
         }
 
         if (totalSLAIncidents > 0 && slaBreaches > totalSLAIncidents) {
-            errors.push("SLA Breaches cannot exceed Total SLA-Tracked Incidents.");
+            errors.push(
+                "SLA Breaches cannot exceed Total SLA-Tracked Incidents."
+            );
         }
 
         if (totalAudits > 0 && auditsPassed > totalAudits) {
-            errors.push("Compliance Audits Passed cannot exceed Total Compliance Audits.");
+            errors.push(
+                "Compliance Audits Passed cannot exceed Total Compliance Audits."
+            );
         }
 
         if (coverageScore > 0 && coverageScore > 100) {
             errors.push("Coverage Assessment Score cannot exceed 100%.");
         }
 
-        const hasValues = Object.values(metrics).some(value => value !== "");
+        const hasValues = Object.values(metrics).some((value) => value !== "");
         if (!hasValues) {
             errors.push("Please enter at least one metric.");
         }
@@ -95,13 +99,13 @@ const SocSlaCompliance = () => {
         const totalAudits = Number(metrics.totalAudits) || 0;
         const coverageScore = Number(metrics.coverageScore) || 0;
 
-        const slaComplianceRate = totalSLAIncidents > 0
-            ? ((totalSLAIncidents - slaBreaches) / totalSLAIncidents) * 100
-            : 0;
+        const slaComplianceRate =
+            totalSLAIncidents > 0
+                ? ((totalSLAIncidents - slaBreaches) / totalSLAIncidents) * 100
+                : 0;
 
-        const auditPassRate = totalAudits > 0
-            ? (auditsPassed / totalAudits) * 100
-            : 0;
+        const auditPassRate =
+            totalAudits > 0 ? (auditsPassed / totalAudits) * 100 : 0;
 
         const slaStatus = getSLAStatus(slaComplianceRate);
         const auditStatus = getAuditStatus(auditPassRate);
@@ -158,19 +162,25 @@ const SocSlaCompliance = () => {
                             {Object.entries({
                                 slaTarget: "SLA Compliance Target (%)",
                                 slaBreaches: "SLA Breaches",
-                                totalSLAIncidents: "Total SLA-Tracked Incidents",
+                                totalSLAIncidents:
+                                    "Total SLA-Tracked Incidents",
                                 auditsPassed: "Compliance Audits Passed",
                                 totalAudits: "Total Compliance Audits",
                                 coverageScore: "Coverage Assessment Score (%)",
                             }).map(([key, label]) => (
-                                <div key={key} className="flex flex-col transition-all duration-300">
+                                <div
+                                    key={key}
+                                    className="flex flex-col transition-all duration-300"
+                                >
                                     <label className="text-sm text-gray-600 mb-1">
                                         {label}
                                     </label>
                                     <input
                                         type="text"
                                         name={key}
-                                        value={metrics[key as keyof typeof metrics]}
+                                        value={
+                                            metrics[key as keyof typeof metrics]
+                                        }
                                         onChange={handleChange}
                                         className="border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[var(--brand-blue)] transition-all duration-200"
                                         placeholder="Enter value"
@@ -221,7 +231,9 @@ const SocSlaCompliance = () => {
                         <div className="text-red-600 text-sm max-w-md transition-all duration-300">
                             <ul className="space-y-1">
                                 {validation.errors.map((err, i) => (
-                                    <li key={i} className="animate-slideIn">• {err}</li>
+                                    <li key={i} className="animate-slideIn">
+                                        • {err}
+                                    </li>
                                 ))}
                             </ul>
                         </div>
@@ -239,10 +251,11 @@ const SocSlaCompliance = () => {
                             <button
                                 onClick={calculate}
                                 disabled={validation.hasError}
-                                className={`px-4 py-2 rounded-lg text-sm font-medium text-white transition-all duration-200 ${validation.hasError
-                                    ? "bg-gray-400 cursor-not-allowed"
-                                    : "bg-[var(--brand-blue)]"
-                                    }`}
+                                className={`px-4 py-2 rounded-lg text-sm font-medium text-white transition-all duration-200 ${
+                                    validation.hasError
+                                        ? "bg-gray-400 cursor-not-allowed"
+                                        : "bg-[var(--brand-blue)]"
+                                }`}
                             >
                                 Calculate
                             </button>
@@ -289,11 +302,14 @@ function ComplianceCard({
             <div className="flex flex-col">
                 <span className="text-gray-700 font-medium">{label}</span>
                 <span className="text-blue-600 text-2xl font-bold mt-1">
-                    {value.toFixed(2)}{unit}
+                    {value.toFixed(2)}
+                    {unit}
                 </span>
             </div>
             <div className="flex flex-col items-end">
-                <span className="text-xs text-gray-500 mb-1">{statusLabel}</span>
+                <span className="text-xs text-gray-500 mb-1">
+                    {statusLabel}
+                </span>
                 <span
                     className={`px-3 py-1 rounded-full text-sm font-medium border ${getStatusColor(
                         status

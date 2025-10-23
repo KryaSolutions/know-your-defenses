@@ -1,6 +1,15 @@
-import { useState, useEffect } from 'react';
-import type { ComponentType } from 'react';
-import { Calculator, Shield, Clock, TrendingUp, CheckCircle, Database, Users, X } from 'lucide-react';
+import { useState, useEffect } from "react";
+import type { ComponentType } from "react";
+import {
+    Calculator,
+    Shield,
+    Clock,
+    TrendingUp,
+    CheckCircle,
+    Database,
+    Users,
+    X,
+} from "lucide-react";
 import SocAlerts from "./calculators/SocAlerts";
 import SocLatency from "./calculators/SocLatency";
 import SocProductivity from "./calculators/SocProductivity";
@@ -17,25 +26,63 @@ interface CalculatorItem {
 }
 
 const calculators: CalculatorItem[] = [
-    { id: 'alerts', name: 'Alert Analysis', component: SocAlerts, icon: Shield, color: 'blue' },
-    { id: 'latency', name: 'Latency Metrics', component: SocLatency, icon: Clock, color: 'purple' },
-    { id: 'productivity', name: 'Productivity', component: SocProductivity, icon: TrendingUp, color: 'green' },
-    { id: 'sla', name: 'SLA Compliance', component: SocSlaCompliance, icon: CheckCircle, color: 'indigo' },
-    { id: 'threat', name: 'Threat Intelligence', component: SocThreatIntelligence, icon: Database, color: 'red' },
-    { id: 'idam', name: 'IDAM Efficiency', component: IdamEffCalc, icon: Users, color: 'cyan' }
+    {
+        id: "alerts",
+        name: "Alert Analysis",
+        component: SocAlerts,
+        icon: Shield,
+        color: "blue",
+    },
+    {
+        id: "latency",
+        name: "Latency Metrics",
+        component: SocLatency,
+        icon: Clock,
+        color: "purple",
+    },
+    {
+        id: "productivity",
+        name: "Productivity",
+        component: SocProductivity,
+        icon: TrendingUp,
+        color: "green",
+    },
+    {
+        id: "sla",
+        name: "SLA Compliance",
+        component: SocSlaCompliance,
+        icon: CheckCircle,
+        color: "indigo",
+    },
+    {
+        id: "threat",
+        name: "Threat Intelligence",
+        component: SocThreatIntelligence,
+        icon: Database,
+        color: "red",
+    },
+    {
+        id: "idam",
+        name: "IDAM Efficiency",
+        component: IdamEffCalc,
+        icon: Users,
+        color: "cyan",
+    },
 ];
 
 const colorMap = {
-    blue: 'bg-blue-50 text-blue-700 border-blue-200 hover:bg-blue-100 hover:border-blue-300',
-    purple: 'bg-purple-50 text-purple-700 border-purple-200 hover:bg-purple-100 hover:border-purple-300',
-    green: 'bg-green-50 text-green-700 border-green-200 hover:bg-green-100 hover:border-green-300',
-    indigo: 'bg-indigo-50 text-indigo-700 border-indigo-200 hover:bg-indigo-100 hover:border-indigo-300',
-    red: 'bg-red-50 text-red-700 border-red-200 hover:bg-red-100 hover:border-red-300',
-    cyan: 'bg-cyan-50 text-cyan-700 border-cyan-200 hover:bg-cyan-100 hover:border-cyan-300'
+    blue: "bg-blue-50 text-blue-700 border-blue-200 hover:bg-blue-100 hover:border-blue-300",
+    purple: "bg-purple-50 text-purple-700 border-purple-200 hover:bg-purple-100 hover:border-purple-300",
+    green: "bg-green-50 text-green-700 border-green-200 hover:bg-green-100 hover:border-green-300",
+    indigo: "bg-indigo-50 text-indigo-700 border-indigo-200 hover:bg-indigo-100 hover:border-indigo-300",
+    red: "bg-red-50 text-red-700 border-red-200 hover:bg-red-100 hover:border-red-300",
+    cyan: "bg-cyan-50 text-cyan-700 border-cyan-200 hover:bg-cyan-100 hover:border-cyan-300",
 };
 
 const CalcWrapper = () => {
-    const [selectedCalc, setSelectedCalc] = useState<CalculatorItem | null>(null);
+    const [selectedCalc, setSelectedCalc] = useState<CalculatorItem | null>(
+        null
+    );
     const [isDialogOpen, setIsDialogOpen] = useState(false);
     const [isClosing, setIsClosing] = useState(false);
 
@@ -58,13 +105,13 @@ const CalcWrapper = () => {
 
     useEffect(() => {
         const handleEscape = (e: KeyboardEvent) => {
-            if (e.key === 'Escape' && isDialogOpen) {
+            if (e.key === "Escape" && isDialogOpen) {
                 closeDialog();
             }
         };
 
-        window.addEventListener('keydown', handleEscape);
-        return () => window.removeEventListener('keydown', handleEscape);
+        window.addEventListener("keydown", handleEscape);
+        return () => window.removeEventListener("keydown", handleEscape);
     }, [isDialogOpen]);
 
     return (
@@ -87,7 +134,8 @@ const CalcWrapper = () => {
                     <div className="space-y-6">
                         <div className="text-center">
                             <p className="text-slate-700 text-base sm:text-lg">
-                                Choose from our suite of security operation calculators
+                                Choose from our suite of security operation
+                                calculators
                             </p>
                         </div>
 
@@ -106,10 +154,17 @@ const CalcWrapper = () => {
                                             <div className="p-2 rounded-lg bg-white/80 shadow-sm group-hover:shadow-md transition-shadow duration-300">
                                                 <Icon className="w-5 h-5 sm:w-6 sm:h-6" />
                                             </div>
-                                            <h3 className="text-base sm:text-lg font-semibold text-left">{calc.name}</h3>
+                                            <h3 className="text-base sm:text-lg font-semibold text-left">
+                                                {calc.name}
+                                            </h3>
                                         </div>
                                         <div className="absolute bottom-4 right-4 transition-opacity duration-300">
-                                            <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <svg
+                                                className="w-4 h-4 sm:w-5 sm:h-5"
+                                                fill="none"
+                                                viewBox="0 0 24 24"
+                                                stroke="currentColor"
+                                            >
                                                 <path
                                                     strokeLinecap="round"
                                                     strokeLinejoin="round"
@@ -128,10 +183,10 @@ const CalcWrapper = () => {
             {isDialogOpen && selectedCalc && (
                 <div
                     className={`fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4 
-      ${isClosing ? 'animate-fadeOut' : 'animate-fadeIn'}`}
+      ${isClosing ? "animate-fadeOut" : "animate-fadeIn"}`}
                     onAnimationEnd={(e) => {
                         // ensures fadeOut animation fully finishes before unmount
-                        if (isClosing && e.animationName === 'fadeOut') {
+                        if (isClosing && e.animationName === "fadeOut") {
                             setIsDialogOpen(false);
                             setSelectedCalc(null);
                             setIsClosing(false);
@@ -140,7 +195,7 @@ const CalcWrapper = () => {
                 >
                     <div
                         className={`bg-white rounded-2xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-hidden flex flex-col 
-        ${isClosing ? 'animate-fadeOut' : 'animate-fadeIn'}`}
+        ${isClosing ? "animate-fadeOut" : "animate-fadeIn"}`}
                     >
                         {/* Dialog Header */}
                         <div className="flex items-center justify-between p-4 sm:p-6 border-b border-gray-200 bg-gradient-to-r from-blue-50 to-indigo-50">
@@ -170,9 +225,8 @@ const CalcWrapper = () => {
                     </div>
                 </div>
             )}
-
         </div>
     );
-}
+};
 
 export default CalcWrapper;

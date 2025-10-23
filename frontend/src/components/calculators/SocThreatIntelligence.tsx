@@ -42,7 +42,7 @@ const SocThreatIntelligence = () => {
             errors.push("Zero-Day Threats cannot exceed Threats Detected.");
         }
 
-        const hasValues = Object.values(metrics).some(value => value !== "");
+        const hasValues = Object.values(metrics).some((value) => value !== "");
         if (!hasValues) {
             errors.push("Please enter at least one metric.");
         }
@@ -86,13 +86,13 @@ const SocThreatIntelligence = () => {
 
         const iocsPerFeed = threatFeeds > 0 ? iocsProcessed / threatFeeds : 0;
 
-        const huntingEffectiveness = huntingSessions > 0 && threatsDetected > 0
-            ? (huntingSessions / threatsDetected) * 100
-            : 0;
+        const huntingEffectiveness =
+            huntingSessions > 0 && threatsDetected > 0
+                ? (huntingSessions / threatsDetected) * 100
+                : 0;
 
-        const zeroDayDetection = threatsDetected > 0
-            ? (zeroDayThreats / threatsDetected) * 100
-            : 0;
+        const zeroDayDetection =
+            threatsDetected > 0 ? (zeroDayThreats / threatsDetected) * 100 : 0;
 
         const iocsStatus = getIOCsStatus(iocsPerFeed);
         const huntingStatus = getHuntingStatus(huntingEffectiveness);
@@ -154,14 +154,19 @@ const SocThreatIntelligence = () => {
                                 iocsProcessed: "IOCs Processed",
                                 huntingSessions: "Threat Hunting Sessions",
                             }).map(([key, label]) => (
-                                <div key={key} className="flex flex-col transition-all duration-300">
+                                <div
+                                    key={key}
+                                    className="flex flex-col transition-all duration-300"
+                                >
                                     <label className="text-sm text-gray-600 mb-1">
                                         {label}
                                     </label>
                                     <input
                                         type="text"
                                         name={key}
-                                        value={metrics[key as keyof typeof metrics]}
+                                        value={
+                                            metrics[key as keyof typeof metrics]
+                                        }
                                         onChange={handleChange}
                                         className="border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[var(--brand-blue)] transition-all duration-200"
                                         placeholder="Enter value"
@@ -211,7 +216,9 @@ const SocThreatIntelligence = () => {
                         <div className="text-red-600 text-sm max-w-md transition-all duration-300">
                             <ul className="space-y-1">
                                 {validation.errors.map((err, i) => (
-                                    <li key={i} className="animate-slideIn">• {err}</li>
+                                    <li key={i} className="animate-slideIn">
+                                        • {err}
+                                    </li>
                                 ))}
                             </ul>
                         </div>
@@ -229,10 +236,11 @@ const SocThreatIntelligence = () => {
                             <button
                                 onClick={calculate}
                                 disabled={validation.hasError}
-                                className={`px-4 py-2 rounded-lg text-sm font-medium text-white transition-all duration-200 ${validation.hasError
-                                    ? "bg-gray-400 cursor-not-allowed"
-                                    : "bg-[var(--brand-blue)]"
-                                    }`}
+                                className={`px-4 py-2 rounded-lg text-sm font-medium text-white transition-all duration-200 ${
+                                    validation.hasError
+                                        ? "bg-gray-400 cursor-not-allowed"
+                                        : "bg-[var(--brand-blue)]"
+                                }`}
                             >
                                 Calculate
                             </button>
@@ -279,11 +287,14 @@ function ThreatCard({
             <div className="flex flex-col">
                 <span className="text-gray-700 font-medium">{label}</span>
                 <span className="text-blue-600 text-2xl font-bold mt-1">
-                    {value.toFixed(2)}{unit}
+                    {value.toFixed(2)}
+                    {unit}
                 </span>
             </div>
             <div className="flex flex-col items-end">
-                <span className="text-xs text-gray-500 mb-1">{statusLabel}</span>
+                <span className="text-xs text-gray-500 mb-1">
+                    {statusLabel}
+                </span>
                 <span
                     className={`px-3 py-1 rounded-full text-sm font-medium border ${getStatusColor(
                         status
