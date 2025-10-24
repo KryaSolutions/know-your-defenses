@@ -73,8 +73,8 @@ Core services:
 We use AI/ML-driven security tools, SIEM, EDR/XDR, and Zero Trust Architecture.`;
         }
 
-    if (lower.includes("assessment") || lower.includes("kyd")) {
-        return `Our Know Your Defense (KYD) assessment is a comprehensive security evaluation:
+        if (lower.includes("assessment") || lower.includes("kyd")) {
+            return `Our Know Your Defense (KYD) assessment is a comprehensive security evaluation:
 
 What you get:
 • Complete security posture analysis
@@ -84,10 +84,10 @@ What you get:
 • Actionable remediation roadmap
 
 Takes 20-30 minutes | Free initial assessment`;
-    }
+        }
 
-    if (lower.includes("threat") || lower.includes("detect")) {
-        return `Krya's AI-powered threat detection provides:
+        if (lower.includes("threat") || lower.includes("detect")) {
+            return `Krya's AI-powered threat detection provides:
 
 Advanced capabilities:
 • Real-time threat intelligence
@@ -97,20 +97,20 @@ Advanced capabilities:
 • SIEM integration
 
 We identify threats before they cause damage.`;
-    }
+        }
 
-    if (lower.includes("contact") || lower.includes("email")) {
-        return `Get in touch with Krya Solutions:
+        if (lower.includes("contact") || lower.includes("email")) {
+            return `Get in touch with Krya Solutions:
 
 Email: contact@kryasolutions.com
 Website: https://kryasolutions.com
 Headquarters: Chennai, India
 
 We serve clients across Asia Pacific, USA, Middle East, and Africa.`;
-    }
+        }
 
-    if (lower.includes("hello") || lower.includes("hi")) {
-        return `Hello. Welcome to Krya Solutions.
+        if (lower.includes("hello") || lower.includes("hi")) {
+            return `Hello. Welcome to Krya Solutions.
 
 I'm your AI assistant for cybersecurity questions. With 12+ years of experience and 750+ global customers, we specialize in:
 
@@ -120,7 +120,7 @@ Cloud security (AWS, Azure, GCP)
 24/7 threat monitoring
 
 How can I help secure your organization today?`;
-    }
+        }
 
         return `Thanks for your question! I can help with:
 
@@ -142,7 +142,7 @@ What would you like to know more about?`;
     ];
 
     return (
-    <div className="fixed bottom-4 right-4 sm:bottom-5 sm:right-5 z-50 font-sans">
+        <div className="fixed bottom-4 right-4 sm:bottom-5 sm:right-5 z-50 font-sans">
             {/* Floating Chat Button */}
             {!isOpen && (
                 <button
@@ -199,7 +199,9 @@ What would you like to know more about?`;
                                     </svg>
                                 </div>
                                 <div className="bg-white p-3 sm:p-4 rounded-2xl rounded-tl-none shadow-sm max-w-[85%] sm:max-w-[75%]">
-                                    <p className="font-semibold mb-1">Welcome to Krya Solutions!</p>
+                                    <p className="font-semibold mb-1">
+                                        Welcome to Krya Solutions!
+                                    </p>
                                     <p className="text-gray-700 mb-2">
                                         I'm your AI assistant for cybersecurity.
                                         Ask me anything!
@@ -215,10 +217,15 @@ What would you like to know more about?`;
                                         {quickReplies.map((reply, i) => (
                                             <button
                                                 key={i}
-                                                onClick={() => sendMessageWithText(reply)}
+                                                onClick={() =>
+                                                    sendMessageWithText(reply)
+                                                }
                                                 className="px-3 py-1.5 bg-gray-100 hover:bg-blue-600 hover:text-white border border-gray-200 rounded-full text-xs sm:text-sm transition-all"
                                             >
-                                                {reply.split(" ").slice(0, 3).join(" ")}
+                                                {reply
+                                                    .split(" ")
+                                                    .slice(0, 3)
+                                                    .join(" ")}
                                                 ...
                                             </button>
                                         ))}

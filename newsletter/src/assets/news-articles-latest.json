@@ -1,0 +1,107 @@
+[
+    {
+        "title": "North Korean Hackers Lure Defense Engineers With Fake Jobs to Steal Drone Secrets",
+        "content": "Threat actors with ties to North Korea have been attributed to a new wave of attacks targeting European companies active in the defense industry as part of a long-running campaign known as Operation Dream Job.\n\"Some of these [companies' are heavily involved in the unmanned aerial vehicle (UAV) sector, suggesting that the operation may be linked to North Korea's current efforts to scale up its",
+        "link": "https://thehackernews.com/2025/10/north-korean-hackers-lure-defense.html",
+        "date": "2025-10-23T15:29:00.000Z",
+        "category": "General Security News"
+    },
+    {
+        "title": "Russian Government Now Actively Managing Cybercrime Groups: Security Firm",
+        "content": "The relationship between the Russian government and cybercriminal groups has evolved from passive tolerance.\nThe post Russian Government Now Actively Managing Cybercrime Groups: Security Firm appeared first on SecurityWeek.",
+        "link": "https://www.securityweek.com/russian-government-now-actively-managing-cybercrime-groups-security-firm/",
+        "date": "2025-10-23T14:46:30.000Z",
+        "category": "General Security News"
+    },
+    {
+        "title": "AI Sidebar Spoofing Puts ChatGPT Atlas, Perplexity Comet and Other Browsers at Risk",
+        "content": "SquareX has shown how malicious browser extensions can impersonate AI sidebar interfaces.\nThe post AI Sidebar Spoofing Puts ChatGPT Atlas, Perplexity Comet and Other Browsers at Risk appeared first on SecurityWeek.",
+        "link": "https://www.securityweek.com/ai-sidebar-spoofing-puts-chatgpt-atlas-perplexity-comet-and-other-browsers-at-risk/",
+        "date": "2025-10-23T13:05:18.000Z",
+        "category": "General Security News"
+    },
+    {
+        "title": "2025 Cisco Segmentation Report Sheds Light on Evolving Technology",
+        "content": "A new report from Cisco shows that segmentation is a foundational security technology, but few are fully implementing both macro- and micro-segmentation today.",
+        "link": "https://blogs.cisco.com/security/2025-cisco-segmentation-report-sheds-light-on-evolving-technology/",
+        "date": "2025-10-23T12:00:51.000Z",
+        "category": "General Security News"
+    },
+    {
+        "title": "Secure AI at Scale and Speed — Learn the Framework in this Free Webinar",
+        "content": "AI is everywhere—and your company wants in. Faster products, smarter systems, fewer bottlenecks. But if you're in security, that excitement often comes with a sinking feeling.\nBecause while everyone else is racing ahead, you're left trying to manage a growing web of AI agents you didn’t create, can’t fully see, and weren’t designed to control.\nJoin our upcoming webinar and learn how to make AI",
+        "link": "https://thehackernews.com/2025/10/secure-ai-at-scale-and-speed-learn.html",
+        "date": "2025-10-23T11:55:00.000Z",
+        "category": "General Security News"
+    },
+    {
+        "title": "Why Organizations Are Abandoning Static Secrets for Managed Identities",
+        "content": "As machine identities explode across cloud environments, enterprises report dramatic productivity gains from eliminating static credentials. And only legacy systems remain the weak link.\nFor decades, organizations have relied on static secrets, such as API keys, passwords, and tokens, as unique identifiers for workloads. While this approach provides clear traceability, it creates what security",
+        "link": "https://thehackernews.com/2025/10/why-organizations-are-abandoning-static.html",
+        "date": "2025-10-23T11:00:00.000Z",
+        "category": "General Security News"
+    },
+    {
+        "title": "Mobile Security: Verizon Says Attacks Soar, AI-Powered Threats Raise Alarm",
+        "content": "Verizon’s 2025 Mobile Security Index shows that 85% of organizations believe mobile device attacks are on the rise.\nThe post Mobile Security: Verizon Says Attacks Soar, AI-Powered Threats Raise Alarm appeared first on SecurityWeek.",
+        "link": "https://www.securityweek.com/mobile-security-verizon-says-attacks-soar-ai-powered-threats-raise-alarm/",
+        "date": "2025-10-23T09:21:48.000Z",
+        "category": "General Security News"
+    },
+    {
+        "title": "How to choose the right AWS service for managing secrets and configurations",
+        "content": "When building applications on AWS, you often need to manage various types of configuration data, including sensitive values such as API tokens or database credentials. From environment variables and API keys to passwords and endpoints, this configuration data helps determine application behavior. AWS offers managed services that you can use for different aspects of managing […]",
+        "link": "https://aws.amazon.com/blogs/security/how-to-choose-the-right-aws-service-for-managing-secrets-and-configurations/",
+        "date": "2025-10-22T19:37:17.000Z",
+        "category": "General Security News"
+    },
+    {
+        "title": "Keycard Emerges From Stealth Mode With $38 Million in Funding",
+        "content": "The company’s IAM platform identifies AI agents, supports assigning permission to them, and tracks all activity.\nThe post Keycard Emerges From Stealth Mode With $38 Million in Funding appeared first on SecurityWeek.",
+        "link": "https://www.securityweek.com/keycard-emerges-from-stealth-mode-with-38-million-in-funding/",
+        "date": "2025-10-22T12:39:16.000Z",
+        "category": "General Security News"
+    },
+    {
+        "title": "Fake Nethereum NuGet Package Used Homoglyph Trick to Steal Crypto Wallet Keys",
+        "content": "Cybersecurity researchers have uncovered a new supply chain attack targeting the NuGet package manager with malicious typosquats of Nethereum, a popular Ethereum .NET integration platform, to steal victims' cryptocurrency wallet keys.\nThe package, Netherеum.All, has been found to harbor functionality to decode a command-and-control (C2) endpoint and exfiltrate mnemonic phrases, private keys, and",
+        "link": "https://thehackernews.com/2025/10/fake-nethereum-nuget-package-used.html",
+        "date": "2025-10-22T11:43:00.000Z",
+        "category": "General Security News"
+    },
+    {
+        "title": "Why You Should Swap Passwords for Passphrases",
+        "content": "The advice didn't change for decades: use complex passwords with uppercase, lowercase, numbers, and symbols. The idea is to make passwords harder for hackers to crack via brute force methods. But more recent guidance shows our focus should be on password length, rather than complexity. Length is the more important security factor, and passphrases are the simplest way to get your users to create",
+        "link": "https://thehackernews.com/2025/10/why-you-should-swap-passwords-for.html",
+        "date": "2025-10-22T09:26:00.000Z",
+        "category": "General Security News"
+    },
+    {
+        "title": "Using AWS Secrets Manager Agent with Amazon EKS",
+        "content": "AWS Secrets Manager is a service that you can use to manage, retrieve, and rotate database credentials, application credentials, API keys, and other secrets throughout their lifecycles. You can also use Secrets Manager to replace hard-coded credentials in application source code with runtime calls to retrieve credentials dynamically when needed. Managing secrets in Amazon Elastic […]",
+        "link": "https://aws.amazon.com/blogs/security/using-aws-secrets-manager-agent-with-amazon-eks/",
+        "date": "2025-10-21T20:53:53.000Z",
+        "category": "General Security News"
+    },
+    {
+        "title": "The attendee guide to digital sovereignty sessions at AWS re:Invent 2025",
+        "content": "AWS re:Invent 2025, the premier cloud computing conference hosted by Amazon Web Services (AWS), returns to Las Vegas, Nevada, from December 1–5, 2025. This flagship event brings together the global cloud community for an immersive week of learning, collaboration, and innovation across multiple venues. Whether you’re a cloud expert, business leader, or technology enthusiast, re:Invent […]",
+        "link": "https://aws.amazon.com/blogs/security/the-attendee-guide-to-digital-sovereignty-sessions-at-aws-reinvent-2025/",
+        "date": "2025-10-21T19:11:59.000Z",
+        "category": "General Security News"
+    },
+    {
+        "title": "Meta Rolls Out New Tools to Protect WhatsApp and Messenger Users from Scams",
+        "content": "Meta on Tuesday said it's launching new tools to protect Messenger and WhatsApp users from potential scams.\nTo that end, the company said it's introducing new warnings on WhatsApp when users attempt to share their screen with an unknown contact during a video call so as to prevent them from giving away sensitive information like bank details or verification codes.\nOn Messenger, users can opt to",
+        "link": "https://thehackernews.com/2025/10/meta-rolls-out-new-tools-to-protect.html",
+        "date": "2025-10-21T15:03:00.000Z",
+        "category": "General Security News"
+    },
+    {
+        "title": "Securing AI to Benefit from AI",
+        "content": "Artificial intelligence (AI) holds tremendous promise for improving cyber defense and making the lives of security practitioners easier. It can help teams cut through alert fatigue, spot patterns faster, and bring a level of scale that human analysts alone can’t match. But realizing that potential depends on securing the systems that make it possible.\nEvery organization experimenting with AI in",
+        "link": "https://thehackernews.com/2025/10/securing-ai-to-benefit-from-ai.html",
+        "date": "2025-10-21T11:00:00.000Z",
+        "category": "General Security News"
+    }
+]

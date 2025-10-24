@@ -1,0 +1,8 @@
+[
+    {
+        "intro": "This week’s cybersecurity news highlights a mix of evolving threats, AI-driven risks, and emerging defense strategies. North Korean-linked attacks continue to target European defense firms, while Russia’s role in cybercrime has shifted from passive to active management. Meanwhile, AI integration is accelerating, but it also introduces new vulnerabilities, particularly through malicious browser extensions and unsecured AI agents. Enterprises are increasingly adopting micro- and macro-segmentation, but legacy systems remain a critical weak point. Mobile security threats are rising, and supply chain attacks, such as those targeting NuGet packages, underscore the need for stronger credential management. AWS remains a key focus, with new tools for secrets management and a major conference on the horizon. Finally, messaging platforms are introducing scam protection tools, while AI’s potential to enhance cybersecurity is balanced by the risks of unsecured AI systems."
+    },
+    {
+        "outro": "As cyber threats evolve, North Korea and Russia are stepping up their digital aggression, while AI’s rapid adoption introduces both opportunities and risks. Enterprises must prioritize micro- and macro-segmentation, but legacy systems remain a critical blind spot. Meanwhile, mobile threats and supply chain attacks highlight the urgent need for stronger credential management. AWS’s tools and upcoming conference signal a focus on securing cloud infrastructure, while messaging platforms are stepping up scam protections. AI’s potential to enhance cybersecurity is promising, but unsecured AI systems pose a growing threat. The week underscores the urgent need for proactive defense strategies and continuous vigilance."
+    }
+]

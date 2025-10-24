@@ -52,7 +52,10 @@ const Footer = () => {
     };
 
     return (
-        <footer className="w-full bg-[var(--brand-blue)] py-12 px-6 text-white">
+        <footer
+            id="contact-section"
+            className="w-full bg-[var(--brand-blue)] py-12 px-6 text-white"
+        >
             <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10">
                 {/* Left Section */}
                 <div className="flex flex-col justify-center text-center md:text-left space-y-6">
@@ -83,13 +86,6 @@ const Footer = () => {
                             <span>ks-info@kryasolutions.com</span>
                         </a>
                     </div>
-
-                    <a
-                        href="#"
-                        className="inline-block bg-white/5 border border-white/10 transition-all duration-300 transform hover:scale-105 hover:shadow-5xl hover:shadow-blue-500/25 px-6 py-2 rounded-full font-medium w-fit mx-auto md:mx-0"
-                    >
-                        Download Brochure
-                    </a>
                 </div>
 
                 {/* Right Section - Contact Form */}

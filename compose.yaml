@@ -18,13 +18,32 @@ services:
                     cpus: "0.5"
                     memory: 512M
 
-    frontend:
+    kyd:
         build:
-            context: ./frontend
+            context: ./kyd
             dockerfile: Dockerfile
         working_dir: /usr/share/nginx/html
         ports:
             - "10200:80"
+        depends_on:
+            - backend
+        restart: on-failure
+        deploy:
+            resources:
+                limits:
+                    cpus: "0.5"
+                    memory: 512M
+                reservations:
+                    cpus: "0.25"
+                    memory: 256M
+
+    newsletter:
+        build:
+            context: ./newsletter
+            dockerfile: Dockerfile
+        working_dir: /usr/share/nginx/html
+        ports:
+            - "10201:80"
         depends_on:
             - backend
         restart: on-failure

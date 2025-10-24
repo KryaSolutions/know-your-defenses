@@ -55,8 +55,8 @@ const SurveyWrapper = () => {
                             </div>
                             <h2 className="text-2xl sm:text-3xl font-bold text-[var(--brand-blue)] text-center">
                                 {!showResults
-                                    ? "Know Your Defenses"
-                                    : "Your Defense Stats"}
+                                    ? "Discover your Security Posture"
+                                    : "Your Defense stats"}
                             </h2>
                         </div>
                     </div>
@@ -70,8 +70,9 @@ const SurveyWrapper = () => {
                                 {!showResults && (
                                     <div className="text-center">
                                         <p className="text-slate-700 text-base sm:text-lg">
-                                            Complete these assessments to
-                                            evaluate your security posture
+                                            Take the quick assessments to
+                                            understand your organization's
+                                            current security posture.
                                         </p>
                                     </div>
                                 )}

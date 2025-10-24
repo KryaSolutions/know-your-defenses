@@ -1,0 +1,625 @@
+[
+    {
+        "title": "131 Chrome Extensions Caught Hijacking WhatsApp Web for Massive Spam Campaign",
+        "content": "Cybersecurity researchers have uncovered a coordinated campaign that leveraged 131 rebranded clones of a WhatsApp Web automation extension for Google Chrome to spam Brazilian users at scale.\nThe 131 spamware extensions share the same codebase, design patterns, and infrastructure, according to supply chain security company Socket. The browser add-ons collectively have about 20,905 active users.\n\"",
+        "link": "https://thehackernews.com/2025/10/131-chrome-extensions-caught-hijacking.html",
+        "date": "2025-10-20T10:47:00.000Z",
+        "category": "General Security News"
+    },
+    {
+        "title": "MSS Claims NSA Used 42 Cyber Tools in Multi-Stage Attack on Beijing Time Systems",
+        "content": "China on Sunday accused the U.S. National Security Agency (NSA) of carrying out a \"premeditated\" cyber attack targeting the National Time Service Center (NTSC), as it described the U.S. as a \"hacker empire\" and the \"greatest source of chaos in cyberspace.\"\nThe Ministry of State Security (MSS), in a WeChat post, said it uncovered \"irrefutable evidence\" of the agency's involvement in the intrusion",
+        "link": "https://thehackernews.com/2025/10/mss-claims-nsa-used-42-cyber-tools-in.html",
+        "date": "2025-10-20T05:32:00.000Z",
+        "category": "General Security News"
+    },
+    {
+        "title": "Securing Amazon Bedrock API keys: Best practices for implementation and management",
+        "content": "Recently, AWS released Amazon Bedrock API keys to make calls to the Amazon Bedrock API. In this post, we provide practical security guidance on effectively implementing, monitoring, and managing this new option for accessing Amazon Bedrock to help you build a comprehensive strategy for securing these keys. We also provide guidance on the larger family […]",
+        "link": "https://aws.amazon.com/blogs/security/securing-amazon-bedrock-api-keys-best-practices-for-implementation-and-management/",
+        "date": "2025-10-17T17:47:47.000Z",
+        "category": "General Security News"
+    },
+    {
+        "title": "Architectures, Risks, and Adoption: How to Assess and Choose the Right AI-SOC Platform",
+        "content": "Scaling the SOC with AI - Why now? \nSecurity Operations Centers (SOCs) are under unprecedented pressure. According to SACR’s AI-SOC Market Landscape 2025, the average organization now faces around 960 alerts per day, while large enterprises manage more than 3,000 alerts daily from an average of 28 different tools. Nearly 40% of those alerts go uninvestigated, and 61% of security teams admit",
+        "link": "https://thehackernews.com/2025/10/architectures-risks-and-adoption-how-to.html",
+        "date": "2025-10-16T11:55:00.000Z",
+        "category": "General Security News"
+    },
+    {
+        "title": "ThreatsDay Bulletin: $15B Crypto Bust, Satellite Spying, Billion-Dollar Smishing, Android RATs & More",
+        "content": "The online world is changing fast. Every week, new scams, hacks, and tricks show how easy it’s become to turn everyday technology into a weapon. Tools made to help us work, connect, and stay safe are now being used to steal, spy, and deceive.\nHackers don’t always break systems anymore — they use them. They hide inside trusted apps, copy real websites, and trick people into giving up control",
+        "link": "https://thehackernews.com/2025/10/threatsday-bulletin-15b-crypto-bust.html",
+        "date": "2025-10-16T09:14:00.000Z",
+        "category": "General Security News"
+    },
+    {
+        "title": "Protect your generative AI applications against encoding-based attacks with Amazon Bedrock Guardrails",
+        "content": "Amazon Bedrock Guardrails provides configurable safeguards to help you safely build generative AI applications at scale. It offers integrated safety and privacy protections that work across multiple foundation models (FMs), including models available in Amazon Bedrock and models hosted outside Amazon Bedrock from other providers. Bedrock Guardrails currently offers six key safeguards to help prevent […]",
+        "link": "https://aws.amazon.com/blogs/security/protect-your-generative-ai-applications-against-encoding-based-attacks-with-amazon-bedrock-guardrails/",
+        "date": "2025-10-16T00:13:25.000Z",
+        "category": "General Security News"
+    },
+    {
+        "title": "Simplified model access in Amazon Bedrock",
+        "content": "October 22, 2025: This post was updated to reflect additional IAM permissions necessary for Amazon Bedrock serverless models offered through AWS Marketplace. Amazon Bedrock has simplified how you access foundation models, streamlining the integration of AI capabilities into your applications. Here’s what’s changed and how to maintain control over model access in your organization. What’s […]",
+        "link": "https://aws.amazon.com/blogs/security/simplified-amazon-bedrock-model-access/",
+        "date": "2025-10-15T19:29:16.000Z",
+        "category": "General Security News"
+    },
+    {
+        "title": "Chinese Threat Group 'Jewelbug' Quietly Infiltrated Russian IT Network for Months",
+        "content": "A threat actor with ties to China has been attributed to a five-month-long intrusion targeting a Russian IT service provider, marking the hacking group's expansion to the country beyond Southeast Asia and South America.\nThe activity, which took place from January to May 2025, has been attributed by Broadcom-owned Symantec to a threat actor it tracks as Jewelbug, which it said overlaps with",
+        "link": "https://thehackernews.com/2025/10/chinese-threat-group-jewelbug-quietly.html",
+        "date": "2025-10-15T17:28:00.000Z",
+        "category": "General Security News"
+    },
+    {
+        "title": "How Attackers Bypass Synced Passkeys",
+        "content": "TLDR\nEven if you take nothing else away from this piece, if your organization is evaluating passkey deployments, it is insecure to deploy synced passkeys.\n\nSynced passkeys inherit the risk of the cloud accounts and recovery processes that protect them, which creates material enterprise exposure.\nAdversary-in-the-middle (AiTM) kits can force authentication fallbacks that circumvent strong",
+        "link": "https://thehackernews.com/2025/10/how-attackers-bypass-synced-passkeys.html",
+        "date": "2025-10-15T11:30:00.000Z",
+        "category": "General Security News"
+    },
+    {
+        "title": "Securing AI agents with Amazon Bedrock AgentCore Identity",
+        "content": "By using Amazon Bedrock AgentCore, developers can build agentic workloads using a comprehensive set of enterprise-grade services that help quickly and securely deploy and operate AI agents at scale using any framework and model, hosted on Amazon Bedrock or elsewhere. AgentCore services are modular and composable, allowing them to be used together or independently. To […]",
+        "link": "https://aws.amazon.com/blogs/security/securing-ai-agents-with-amazon-bedrock-agentcore-identity/",
+        "date": "2025-10-14T19:13:09.000Z",
+        "category": "General Security News"
+    },
+    {
+        "title": "How to configure and verify ACM certificates with trust stores",
+        "content": "In this post, we show how to configure customer trust stores to work with public certificates issued through AWS Certificate Manager (ACM). Organizations can encounter challenges when configuring trust stores for ACM certificates and incorrect trust store configuration can lead to SSL/TLS errors and application downtime. While most modern web browsers and operating systems trust […]",
+        "link": "https://aws.amazon.com/blogs/security/how-to-configure-and-verify-acm-certificates-with-trust-stores/",
+        "date": "2025-10-08T21:29:14.000Z",
+        "category": "General Security News"
+    },
+    {
+        "title": "Should I use managed login or create a custom UI in Amazon Cognito?",
+        "content": "October 8, 2025: This blog post has been updated to include the Amazon Cognito managed login experience. The managed login experience has an updated look, additional features, and enhanced customization options. September 8, 2023: It’s important to know that if you activate user sign-up in your user pool, anyone on the internet can sign up […]",
+        "link": "https://aws.amazon.com/blogs/security/use-the-hosted-ui-or-create-a-custom-ui-in-amazon-cognito/",
+        "date": "2025-10-08T17:56:20.000Z",
+        "category": "General Security News"
+    },
+    {
+        "title": "New AWS whitepaper: Security Overview of Amazon EKS Auto Mode",
+        "content": "Amazon Web Services (AWS) has released a new whitepaper: Security Overview of Amazon EKS Auto Mode, providing customers with an in-depth look at the architecture, built-in security features, and capabilities of Amazon Elastic Kubernetes Service (Amazon EKS) Auto Mode. The whitepaper covers the core security principles of Amazon EKS Auto Mode, highlighting its unique approach […]",
+        "link": "https://aws.amazon.com/blogs/security/new-aws-whitepaper-security-overview-of-amazon-eks-auto-mode/",
+        "date": "2025-10-07T16:57:15.000Z",
+        "category": "General Security News"
+    },
+    {
+        "title": "Defining a Standard Taxonomy for Segmentation",
+        "content": "We need a standardized taxonomy so organizations can evaluate, implement and manage segmentation projects most effectively.",
+        "link": "https://blogs.cisco.com/security/defining-a-standard-taxonomy-for-segmentation/",
+        "date": "2025-10-07T12:00:00.000Z",
+        "category": "General Security News"
+    },
+    {
+        "title": "Racing Against Threats: How Cisco Security Powers McLaren’s F1 Prowess",
+        "content": "Discover how Cisco helps McLaren protect data and stay fast with world-class cybersecurity across every track and continent.",
+        "link": "https://blogs.cisco.com/security/racing-against-threats-how-cisco-security-powers-mclarens-f1-prowess/",
+        "date": "2025-10-06T12:00:00.000Z",
+        "category": "General Security News"
+    },
+    {
+        "title": "Defending LLM applications against Unicode character smuggling",
+        "content": "When interacting with AI applications, even seemingly innocent elements—such as Unicode characters—can have significant implications for security and data integrity. At Amazon Web Services (AWS), we continuously evaluate and address emerging threats across aspects of AI systems. In this blog post, we explore Unicode tag blocks, a specific range of characters spanning from U+E0000 to […]",
+        "link": "https://aws.amazon.com/blogs/security/defending-llm-applications-against-unicode-character-smuggling/",
+        "date": "2025-09-30T16:22:14.000Z",
+        "category": "General Security News"
+    },
+    {
+        "title": "How to develop an AWS Security Hub POC",
+        "content": "The enhanced AWS Security Hub (currently in public preview) prioritizes your critical security issues and helps you respond at scale to protect your environment. It detects critical issues by correlating and enriching signals into actionable insights, enabling streamlined response. You can use these capabilities to gain visibility across your cloud environment through centralized management in […]",
+        "link": "https://aws.amazon.com/blogs/security/how-to-develop-an-aws-security-hub-poc/",
+        "date": "2025-09-26T16:22:13.000Z",
+        "category": "General Security News"
+    },
+    {
+        "title": "Enabling AI adoption at scale through enterprise risk management framework – Part 2",
+        "content": "In Part 1 of this series, we explored the fundamental risks and governance considerations. In this part, we examine practical strategies for adapting your enterprise risk management framework (ERMF) to harness generative AI’s power while maintaining robust controls. This part covers: Adapting your ERMF for the cloud Adapting your ERMF for generative AI Sustainable Risk […]",
+        "link": "https://aws.amazon.com/blogs/security/enabling-ai-adoption-at-scale-through-enterprise-risk-management-framework-part-2/",
+        "date": "2025-09-25T18:21:46.000Z",
+        "category": "General Security News"
+    },
+    {
+        "title": "Enabling AI adoption at scale through enterprise risk management framework – Part 1",
+        "content": "According to BCG research, 84% of executives view responsible AI as a top management responsibility, yet only 25% of them have programs that fully address it. Responsible AI can be achieved through effective governance, and with the rapid adoption of generative AI, this governance has become a business imperative, not just an IT concern. By […]",
+        "link": "https://aws.amazon.com/blogs/security/enabling-ai-adoption-at-scale-through-enterprise-risk-management-framework-part-1/",
+        "date": "2025-09-25T18:20:37.000Z",
+        "category": "General Security News"
+    },
+    {
+        "title": "Bridging the Gap: Cisco’s Blueprint for Developer-Centric Cloud Security",
+        "content": "Discover how Cisco empowers developers with integrated, developer-centric cloud security, fostering collaboration and proactive risk prevention.",
+        "link": "https://blogs.cisco.com/security/bridging-the-gap-ciscos-blueprint-for-developer-centric-cloud-security/",
+        "date": "2025-09-24T12:00:12.000Z",
+        "category": "General Security News"
+    },
+    {
+        "title": "Feds Tie ‘Scattered Spider’ Duo to $115M in Ransoms",
+        "content": "U.S. prosecutors last week levied criminal hacking charges against 19-year-old U.K. national Thalha Jubair for allegedly being a core member of Scattered Spider, a prolific cybercrime group blamed for extorting at least $115 million in ransom payments from victims. The charges came as Jubair and an alleged co-conspirator appeared in a London court to face accusations of hacking into and extorting several large U.K. retailers, the London transit system, and healthcare providers in the United States.",
+        "link": "https://krebsonsecurity.com/2025/09/feds-tie-scattered-spider-duo-to-115m-in-ransoms/",
+        "date": "2025-09-24T11:48:31.000Z",
+        "category": "General Security News"
+    },
+    {
+        "title": "Optimize security operations with AWS Security Incident Response",
+        "content": "Security threats demand swift action, which is why AWS Security Incident Response delivers AWS-native protection that can immediately strengthen your security posture. This comprehensive solution combines automated triage and evaluation logic with your security perimeter metadata to identify critical issues, seamlessly bringing in human expertise when needed. When Security Incident Response is integrated with Amazon […]",
+        "link": "https://aws.amazon.com/blogs/security/optimize-security-operations-with-aws-security-incident-response/",
+        "date": "2025-09-23T22:09:43.000Z",
+        "category": "General Security News"
+    },
+    {
+        "title": "Minimize risk through defense in depth: Building a comprehensive AWS control framework",
+        "content": "Security and governance teams across all environments face a common challenge: translating abstract security and governance requirements into a concrete, integrated control framework. AWS services provide capabilities that organizations can use to implement controls across multiple layers of their architecture—from infrastructure provisioning to runtime monitoring. Many organizations deploy multi-account environments with AWS Control Tower, or […]",
+        "link": "https://aws.amazon.com/blogs/security/minimize-risk-through-defense-in-depth-building-a-comprehensive-aws-control-framework/",
+        "date": "2025-09-23T16:13:38.000Z",
+        "category": "General Security News"
+    },
+    {
+        "title": "How to accelerate security finding reviews using automated business context validation in AWS Security Hub CSPM",
+        "content": "October 1, 2025: This post was updated to reflect the new name of Security Hub, which is AWS Security Hub CSPM (Cloud Security Posture Management). Security teams must efficiently validate and document exceptions to AWS Security Hub (Cloud Security Posture Management, previously known as Security Hub) findings, while maintaining proper governance. Enterprise security teams need […]",
+        "link": "https://aws.amazon.com/blogs/security/how-to-accelerate-security-finding-reviews-using-automated-business-context-validation-in-aws-security-hub/",
+        "date": "2025-09-22T22:59:33.000Z",
+        "category": "General Security News"
+    },
+    {
+        "title": "The 80/20 Rule Doesn’t Apply to Security: How Cisco SASE Bridges the Gap",
+        "content": "Today's dynamic environments demand a security strategy that covers 100% of your digital footprint, 100% of the time. SASE architectures have emerged as a strategic response.",
+        "link": "https://blogs.cisco.com/security/the-80-20-rule-doesnt-apply-to-security-how-cisco-sase-bridges-the-gap/",
+        "date": "2025-09-22T12:00:12.000Z",
+        "category": "General Security News"
+    },
+    {
+        "title": "From AIOps to AgenticOps: The Autonomous Evolution of Firewall Operations",
+        "content": "Discover how Cisco is redefining firewall operations through autonomous AI-driven management, predictive analytics, and self-healing security.",
+        "link": "https://blogs.cisco.com/security/from-aiops-to-agenticops-the-autonomous-evolution-of-firewall-operations/",
+        "date": "2025-09-18T12:00:36.000Z",
+        "category": "General Security News"
+    },
+    {
+        "title": "Bulletproof Host Stark Industries Evades EU Sanctions",
+        "content": "In May 2025, the European Union levied financial sanctions on the owners of Stark Industries Solutions Ltd., a bulletproof hosting provider that materialized two weeks before Russia invaded Ukraine and quickly became a top source of Kremlin-linked cyberattacks and disinformation campaigns. But new data shows those sanctions have done little to stop Stark from simply rebranding and transferring their assets to other corporate entities controlled by its original hosting providers.",
+        "link": "https://krebsonsecurity.com/2025/09/bulletproof-host-stark-industries-evades-eu-sanctions/",
+        "date": "2025-09-11T17:40:22.000Z",
+        "category": "General Security News"
+    },
+    {
+        "title": "Quest Accepted: Setting Up a Pentesting Environment for the Meta Quest 2",
+        "content": "With the advent of commercially available virtual reality headsets, such as the Meta Quest, the integration of virtual and augmented reality into our daily lives feels closer than ever before. As these devices become more common, so too will the need to secure and protect the data collected and stored by them.\n \r\nThe intention of this blog post is to establish a baseline security testing environment for Meta Quest 2 applications and is split into three sections: Enabling Developer Mode, Establishing an Intercepting Proxy, and Injecting Frida Gadget. The Quest 2 runs on a modified version of the Android Open Source Project (AOSP) in addition to proprietary software developed by Meta, allowing the adoption of many established Android testing methods.",
+        "link": "https://blog.securityinnovation.com/setting-up-a-pentesting-environment-for-the-meta-quest-2",
+        "date": "2025-04-28T13:27:16.000Z",
+        "category": "General Security News"
+    },
+    {
+        "title": "Vibe Coding’s Real Problem Isn’t Bugs—It’s Judgment",
+        "content": "As AI coding tools flood enterprises with functional but flawed software, researchers urge embedding security checks directly into the AI workflow.\nThe post Vibe Coding’s Real Problem Isn’t Bugs—It’s Judgment appeared first on SecurityWeek.",
+        "link": "https://www.securityweek.com/vibe-codings-real-problem-isnt-bugs-its-judgment/",
+        "date": "2025-10-23T11:15:00.000Z",
+        "category": "Policy & Legal"
+    },
+    {
+        "title": "BIND Updates Address High-Severity Cache Poisoning Flaws",
+        "content": "The vulnerabilities allow attackers to predict source ports and query IDs BIND will use, and to inject forged records into the cache.\nThe post BIND Updates Address High-Severity Cache Poisoning Flaws appeared first on SecurityWeek.",
+        "link": "https://www.securityweek.com/bind-updates-address-high-severity-cache-poisoning-flaws/",
+        "date": "2025-10-23T10:10:47.000Z",
+        "category": "Policy & Legal"
+    },
+    {
+        "title": "Canada Fines Cybercrime Friendly Cryptomus $176M",
+        "content": "Financial regulators in Canada this week levied $176 million in fines against Cryptomus, a digital payments platform that supports dozens of Russian cryptocurrency exchanges and websites hawking cybercrime services. The penalties for violating Canada's anti money-laundering laws come ten months after KrebsOnSecurity noted that Cryptomus's Vancouver street address was home to dozens of foreign currency dealers, money transfer businesses, and cryptocurrency exchanges — none of which were physically located there.",
+        "link": "https://krebsonsecurity.com/2025/10/canada-fines-cybercrime-friendly-cryptomus-176m/",
+        "date": "2025-10-22T17:21:36.000Z",
+        "category": "Policy & Legal"
+    },
+    {
+        "title": "Europol Dismantles SIM Farm Network Powering 49 Million Fake Accounts Worldwide",
+        "content": "Europol on Friday announced the disruption of a sophisticated cybercrime-as-a-service (CaaS) platform that operated a SIM farm and enabled its customers to carry out a broad spectrum of crimes ranging from phishing to investment fraud.\nThe coordinated law enforcement effort, dubbed Operation SIMCARTEL, saw 26 searches carried out, resulting in the arrest of seven suspects and the seizure of",
+        "link": "https://thehackernews.com/2025/10/europol-dismantles-sim-farm-network.html",
+        "date": "2025-10-19T06:13:00.000Z",
+        "category": "Policy & Legal"
+    },
+    {
+        "title": "Identity Security: Your First and Last Line of Defense",
+        "content": "The danger isn’t that AI agents have bad days — it’s that they never do. They execute faithfully, even when what they’re executing is a mistake. A single misstep in logic or access can turn flawless automation into a flawless catastrophe.\nThis isn't some dystopian fantasy—it's Tuesday at the office now. We've entered a new phase where autonomous AI agents act with serious system privileges. They",
+        "link": "https://thehackernews.com/2025/10/identity-security-your-first-and-last.html",
+        "date": "2025-10-17T11:00:00.000Z",
+        "category": "Policy & Legal"
+    },
+    {
+        "title": "Unlock new possibilities: AWS Organizations service control policy now supports full IAM language",
+        "content": "Amazon Web Service (AWS) recently announced that AWS Organizations now offers full AWS Identity and Access Management (IAM) policy language support for service control policies (SCPs). With this feature, you can use conditions, individual resource Amazon Resource Names (ARNs), and the NotAction element with Allow statements. Additionally, you can now use wildcards at the beginning or middle of […]",
+        "link": "https://aws.amazon.com/blogs/security/unlock-new-possibilities-aws-organizations-service-control-policy-now-supports-full-iam-language/",
+        "date": "2025-09-19T17:50:10.000Z",
+        "category": "Policy & Legal"
+    },
+    {
+        "title": "Cisco Secure Firewall 1220: Snort3 – Uncompromised Performance in Rigorous Testing",
+        "content": "This evaluation validates our commitment to delivering lightning-fast speed and impeccable protection, engineered to keep the most sophisticated threats away.",
+        "link": "https://blogs.cisco.com/security/cisco-secure-firewall-1220-snort3-uncompromised-performance-in-rigorous-testing/",
+        "date": "2025-10-21T12:00:00.000Z",
+        "category": "Data Breaches"
+    },
+    {
+        "title": "Analysing ClickFix: 3 Reasons Why Copy/Paste Attacks Are Driving Security Breaches",
+        "content": "ClickFix, FileFix, fake CAPTCHA — whatever you call it, attacks where users interact with malicious scripts in their web browser are a fast-growing source of security breaches. \nClickFix attacks prompt the user to solve some kind of problem or challenge in the browser — most commonly a CAPTCHA, but also things like fixing an error on a webpage. \nThe name is a little misleading, though",
+        "link": "https://thehackernews.com/2025/10/analysing-clickfix-3-reasons-why.html",
+        "date": "2025-10-20T11:55:00.000Z",
+        "category": "Data Breaches"
+    },
+    {
+        "title": "Beware the Hidden Costs of Pen Testing",
+        "content": "Penetration testing helps organizations ensure IT systems are secure, but it should never be treated in a one-size-fits-all approach. Traditional approaches can be rigid and cost your organization time and money – while producing inferior results. \nThe benefits of pen testing are clear. By empowering “white hat” hackers to attempt to breach your system using similar tools and techniques to",
+        "link": "https://thehackernews.com/2025/10/beware-hidden-costs-of-pen-testing.html",
+        "date": "2025-10-16T10:50:00.000Z",
+        "category": "Data Breaches"
+    },
+    {
+        "title": "F5 Breach Exposes BIG-IP Source Code — Nation-State Hackers Behind Massive Intrusion",
+        "content": "U.S. cybersecurity company F5 on Wednesday disclosed that unidentified threat actors broke into its systems and stole files containing some of BIG-IP's source code and information related to undisclosed vulnerabilities in the product.\nIt attributed the activity to a \"highly sophisticated nation-state threat actor,\" adding the adversary maintained long-term, persistent access to its network. The",
+        "link": "https://thehackernews.com/2025/10/f5-breach-exposes-big-ip-source-code.html",
+        "date": "2025-10-15T16:06:00.000Z",
+        "category": "Data Breaches"
+    },
+    {
+        "title": "Common Threat Themes: Defending Against Lateral Movement (Part 1)",
+        "content": "Discover why lateral movement is a key tactic in cyber breaches and how defenders can strengthen security by focusing on this critical threat vector.",
+        "link": "https://blogs.cisco.com/security/common-threat-themes-defending-against-lateral-movement/",
+        "date": "2025-10-15T12:00:00.000Z",
+        "category": "Data Breaches"
+    },
+    {
+        "title": "DDoS Botnet Aisuru Blankets US ISPs in Record DDoS",
+        "content": "The world's largest and most disruptive botnet is now drawing a majority of its firepower from compromised Internet-of-Things (IoT) devices hosted on U.S. Internet providers like AT&T, Comcast and Verizon, new evidence suggests. Experts say the heavy concentration of infected devices at U.S. providers is complicating efforts to limit collateral damage from the botnet's attacks, which shattered previous records this week with a brief traffic flood that clocked in at nearly 30 trillion bits of data per second.",
+        "link": "https://krebsonsecurity.com/2025/10/ddos-botnet-aisuru-blankets-us-isps-in-record-ddos/",
+        "date": "2025-10-10T16:10:43.000Z",
+        "category": "Data Breaches"
+    },
+    {
+        "title": "ShinyHunters Wage Broad Corporate Extortion Spree",
+        "content": "A cybercriminal group that used voice phishing attacks to siphon more than a billion records from Salesforce customers earlier this year has launched a website that threatens to publish data stolen from dozens of Fortune 500 firms if they refuse to pay a ransom. The group also claimed responsibility for a recent breach involving Discord user data, and for stealing terabytes of sensitive files from thousands of customers of the enterprise software maker Red Hat.",
+        "link": "https://krebsonsecurity.com/2025/10/shinyhunters-wage-broad-corporate-extortion-spree/",
+        "date": "2025-10-07T22:45:35.000Z",
+        "category": "Data Breaches"
+    },
+    {
+        "title": "Defend the Airport",
+        "content": "Every day, millions of passengers depend on a vast, complex airport ecosystem to get from Point A to Point B. From airline check-ins and baggage handling to air traffic control and terminal operations, the aviation sector is an intricate web of interconnected third-party providers, technologies, and stakeholders.\n \r\nIn this high-stakes environment, a cybersecurity breach is not a single point of failure, it’s a ripple effect waiting to happen.",
+        "link": "https://blog.securityinnovation.com/defend-the-airport",
+        "date": "2025-06-04T14:02:13.000Z",
+        "category": "Data Breaches"
+    },
+    {
+        "title": "LLM Prompt Injection - What's the Business Risk, and What to Do About It",
+        "content": "The rise of generative AI offers incredible opportunities for businesses. Large Language Models can automate customer service, generate insightful analytics, and accelerate content creation. But alongside these benefits comes a new category of security risk that business leaders must understand: Prompt Injection Attacks. In simple terms, a prompt injection is when someone feeds an AI model malicious or deceptive input that causes it to behave in an unintended, and often harmful way. This isn’t just a technical glitch, it’s a serious threat that can lead to brand embarrassment, data leaks, or compliance violations if not addressed. As organizations rush to adopt AI capabilities, ensuring the security of those AI systems is now a board-level concern. In this post we’ll provide a high-level overview of prompt injection risks, why they matter to your business, and how Security Innovation’s GenAI Penetration Testing and related services help mitigate these threats so you can innovate safely.",
+        "link": "https://blog.securityinnovation.com/llm-prompt-injection-whats-the-business-risk",
+        "date": "2025-05-09T13:07:20.000Z",
+        "category": "Data Breaches"
+    },
+    {
+        "title": "LLM Security by Design: Involving Security at Every Stage of Development",
+        "content": "As large language models (LLMs) become increasingly prevalent in businesses and applications, the need for robust security measures has never been greater. An LLM, if not properly secured, can pose significant risks in terms of data breaches, model manipulation, and even regulatory compliance issues. This is where engaging an external security company becomes crucial.\n \r\nIn this blog, we will explore the key considerations for companies looking to hire a security team to assess and secure their LLM-powered systems, as well as the specific tasks that should be undertaken at different stages of the LLM development lifecycle.",
+        "link": "https://blog.securityinnovation.com/llm-security-by-design",
+        "date": "2025-04-04T12:46:51.000Z",
+        "category": "Data Breaches"
+    },
+    {
+        "title": "Iran-Linked MuddyWater Targets 100+ Organisations in Global Espionage Campaign",
+        "content": "The Iranian nation-state group known as MuddyWater has been attributed to a new campaign that has leveraged a compromised email account to distribute a backdoor called Phoenix to various organizations across the Middle East and North Africa (MENA) region, including over 100 government entities.\nThe end goal of the campaign is to infiltrate high-value targets and facilitate intelligence gathering",
+        "link": "https://thehackernews.com/2025/10/iran-linked-muddywater-targets-100.html",
+        "date": "2025-10-22T17:21:00.000Z",
+        "category": "Malware"
+    },
+    {
+        "title": "Ukraine Aid Groups Targeted Through Fake Zoom Meetings and Weaponized PDF Files",
+        "content": "Cybersecurity researchers have disclosed details of a coordinated spear-phishing campaign dubbed PhantomCaptcha targeting organizations associated with Ukraine's war relief efforts to deliver a remote access trojan that uses a WebSocket for command-and-control (C2).\nThe activity, which took place on October 8, 2025, targeted individual members of the International Red Cross, Norwegian Refugee",
+        "link": "https://thehackernews.com/2025/10/ukraine-aid-groups-targeted-through.html",
+        "date": "2025-10-22T16:55:00.000Z",
+        "category": "Malware"
+    },
+    {
+        "title": "Researchers Identify PassiveNeuron APT Using Neursite and NeuralExecutor Malware",
+        "content": "Government, financial, and industrial organizations located in Asia, Africa, and Latin America are the target of a new campaign dubbed PassiveNeuron, according to findings from Kaspersky.\nThe cyber espionage activity was first flagged by the Russian cybersecurity vendor in November 2024, when it disclosed a set of attacks aimed at government entities in Latin America and East Asia in June, using",
+        "link": "https://thehackernews.com/2025/10/researchers-identify-passiveneuron-apt.html",
+        "date": "2025-10-22T08:58:00.000Z",
+        "category": "Malware"
+    },
+    {
+        "title": "PolarEdge Targets Cisco, ASUS, QNAP, Synology Routers in Expanding Botnet Campaign",
+        "content": "Cybersecurity researchers have shed light on the inner workings of a botnet malware called PolarEdge.\nPolarEdge was first documented by Sekoia in February 2025, attributing it to a campaign targeting routers from Cisco, ASUS, QNAP, and Synology with the goal of corralling them into a network for an as-yet-undetermined purpose.\nThe TLS-based ELF implant, at its core, is designed to monitor",
+        "link": "https://thehackernews.com/2025/10/polaredge-targets-cisco-asus-qnap.html",
+        "date": "2025-10-21T13:47:00.000Z",
+        "category": "Malware"
+    },
+    {
+        "title": "Google Identifies Three New Russian Malware Families Created by COLDRIVER Hackers",
+        "content": "A new malware attributed to the Russia-linked hacking group known as COLDRIVER has undergone numerous developmental iterations since May 2025, suggesting an increased \"operations tempo\" from the threat actor.\nThe findings come from Google Threat Intelligence Group (GTIG), which said the state-sponsored hacking crew has rapidly refined and retooled its malware arsenal merely five days following",
+        "link": "https://thehackernews.com/2025/10/google-identifies-three-new-russian.html",
+        "date": "2025-10-21T07:29:00.000Z",
+        "category": "Malware"
+    },
+    {
+        "title": "New .NET CAPI Backdoor Targets Russian Auto and E-Commerce Firms via Phishing ZIPs",
+        "content": "Cybersecurity researchers have shed light on a new campaign that has likely targeted the Russian automobile and e-commerce sectors with a previously undocumented .NET malware dubbed CAPI Backdoor.\nAccording to Seqrite Labs, the attack chain involves distributing phishing emails containing a ZIP archive as a way to trigger the infection. The cybersecurity company's analysis is based on the ZIP",
+        "link": "https://thehackernews.com/2025/10/new-net-capi-backdoor-targets-russian.html",
+        "date": "2025-10-18T11:41:00.000Z",
+        "category": "Malware"
+    },
+    {
+        "title": "Silver Fox Expands Winos 4.0 Attacks to Japan and Malaysia via HoldingHands RAT",
+        "content": "The threat actors behind a malware family known as Winos 4.0 (aka ValleyRAT) have expanded their targeting footprint from China and Taiwan to target Japan and Malaysia with another remote access trojan (RAT) tracked as HoldingHands RAT (aka Gh0stBins).\n\"The campaign relied on phishing emails with PDFs that contained embedded malicious links,\" Pei Han Liao, researcher with Fortinet's FortiGuard",
+        "link": "https://thehackernews.com/2025/10/silver-fox-expands-winos-40-attacks-to.html",
+        "date": "2025-10-18T06:51:00.000Z",
+        "category": "Malware"
+    },
+    {
+        "title": "North Korean Hackers Combine BeaverTail and OtterCookie into Advanced JS Malware",
+        "content": "The North Korean threat actor linked to the Contagious Interview campaign has been observed merging some of the functionality of two of its malware programs, indicating that the hacking group is actively refining its toolset.\nThat's according to new findings from Cisco Talos, which said recent campaigns undertaken by the hacking group have seen the functions of BeaverTail and OtterCookie coming",
+        "link": "https://thehackernews.com/2025/10/north-korean-hackers-combine-beavertail.html",
+        "date": "2025-10-17T13:33:00.000Z",
+        "category": "Malware"
+    },
+    {
+        "title": "Microsoft Revokes 200 Fraudulent Certificates Used in Rhysida Ransomware Campaign",
+        "content": "Microsoft on Thursday disclosed that it revoked more than 200 certificates used by a threat actor it tracks as Vanilla Tempest to fraudulently sign malicious binaries in ransomware attacks.\nThe certificates were \"used in fake Teams setup files to deliver the Oyster backdoor and ultimately deploy Rhysida ransomware,\" the Microsoft Threat Intelligence team said in a post shared on X.\nThe tech",
+        "link": "https://thehackernews.com/2025/10/microsoft-revokes-200-fraudulent.html",
+        "date": "2025-10-17T06:03:00.000Z",
+        "category": "Malware"
+    },
+    {
+        "title": "North Korean Hackers Use EtherHiding to Hide Malware Inside Blockchain Smart Contracts",
+        "content": "A threat actor with ties to the Democratic People's Republic of Korea (aka North Korea) has been observed leveraging the EtherHiding technique to distribute malware and enable cryptocurrency theft, marking the first time a state-sponsored hacking group has embraced the method.\nThe activity has been attributed by Google Threat Intelligence Group (GTIG) to a threat cluster it tracks as UNC5342,",
+        "link": "https://thehackernews.com/2025/10/north-korean-hackers-use-etherhiding-to.html",
+        "date": "2025-10-16T14:56:00.000Z",
+        "category": "Malware"
+    },
+    {
+        "title": "Hackers Abuse Blockchain Smart Contracts to Spread Malware via Infected WordPress Sites",
+        "content": "A financially motivated threat actor codenamed UNC5142 has been observed abusing blockchain smart contracts as a way to facilitate the distribution of information stealers, such as Atomic (AMOS), Lumma, Rhadamanthys (aka RADTHIEF), and Vidar, targeting both Windows and Apple macOS systems.\n\"UNC5142 is characterized by its use of compromised WordPress websites and 'EtherHiding,' a technique used",
+        "link": "https://thehackernews.com/2025/10/hackers-abuse-blockchain-smart.html",
+        "date": "2025-10-16T14:52:00.000Z",
+        "category": "Malware"
+    },
+    {
+        "title": "LinkPro Linux Rootkit Uses eBPF to Hide and Activates via Magic TCP Packets",
+        "content": "An investigation into the compromise of an Amazon Web Services (AWS)-hosted infrastructure has led to the discovery of a new GNU/Linux rootkit dubbed LinkPro, according to findings from Synacktiv.\n\"This backdoor features functionalities relying on the installation of two eBPF [extended Berkeley Packet Filter] modules, on the one hand to conceal itself, and on the other hand to be remotely",
+        "link": "https://thehackernews.com/2025/10/linkpro-linux-rootkit-uses-ebpf-to-hide.html",
+        "date": "2025-10-16T14:28:00.000Z",
+        "category": "Malware"
+    },
+    {
+        "title": "Defending against supply chain attacks like Chalk/Debug and the Shai-Hulud worm",
+        "content": "Building on top of open source packages can help accelerate development. By using common libraries and modules from npm, PyPI, Maven Central, NuGet, and others, teams can focus on writing code that is unique to their situation. These open source package registries host millions of packages that are integrated into thousands of programs daily. Unfortunately, […]",
+        "link": "https://aws.amazon.com/blogs/security/defending-against-supply-chain-attacks-like-chalk-debug-and-the-shai-hulud-worm/",
+        "date": "2025-10-02T16:43:02.000Z",
+        "category": "Malware"
+    },
+    {
+        "title": "Self-Replicating Worm Hits 180+ Software Packages",
+        "content": "At least 187 code packages made available through the JavaScript repository NPM have been infected with a self-replicating worm that steals credentials from developers and publishes those secrets on GitHub, experts warn. The malware, which briefly infected multiple code packages from the security vendor CrowdStrike, steals and publishes even more credentials every time an infected package is installed.",
+        "link": "https://krebsonsecurity.com/2025/09/self-replicating-worm-hits-180-software-packages/",
+        "date": "2025-09-16T14:08:02.000Z",
+        "category": "Malware"
+    },
+    {
+        "title": "18 Popular Code Packages Hacked, Rigged to Steal Crypto",
+        "content": "At least 18 popular JavaScript code packages that are collectively downloaded more than two billion times each week were briefly compromised with malicious software today, after a developer involved in maintaining the projects was phished. The attack appears to have been quickly contained and was narrowly focused on stealing cryptocurrency. But experts warn that a similar attack with a slightly more nefarious payload could quickly lead to a disruptive malware outbreak that is far more difficult to detect and restrain.",
+        "link": "https://krebsonsecurity.com/2025/09/18-popular-code-packages-hacked-rigged-to-steal-crypto/",
+        "date": "2025-09-08T22:53:41.000Z",
+        "category": "Malware"
+    },
+    {
+        "title": "ThreatsDay Bulletin: $176M Crypto Fine, Hacking Formula 1, Chromium Vulns, AI Hijack & More",
+        "content": "Criminals don’t need to be clever all the time; they just follow the easiest path in: trick users, exploit stale components, or abuse trusted systems like OAuth and package registries. If your stack or habits make any of those easy, you’re already a target.\nThis week’s ThreatsDay highlights show exactly how those weak points are being exploited — from overlooked",
+        "link": "https://thehackernews.com/2025/10/threatsday-bulletin-176m-crypto-fine.html",
+        "date": "2025-10-23T11:30:00.000Z",
+        "category": "Vulnerabilities"
+    },
+    {
+        "title": "Exploitation of Critical Adobe Commerce Flaw Puts Many eCommerce Sites at Risk",
+        "content": "Patched in September, the SessionReaper bug could be exploited without authentication to bypass a security feature.\nThe post Exploitation of Critical Adobe Commerce Flaw Puts Many eCommerce Sites at Risk appeared first on SecurityWeek.",
+        "link": "https://www.securityweek.com/exploitation-of-critical-adobe-commerce-flaw-puts-many-ecommerce-sites-at-risk/",
+        "date": "2025-10-23T11:03:44.000Z",
+        "category": "Vulnerabilities"
+    },
+    {
+        "title": "Lanscope Endpoint Manager Zero-Day Exploited in the Wild",
+        "content": "The bug has been exploited in the wild as a zero-day and the US cybersecurity agency CISA has added it to its KEV catalog.\nThe post Lanscope Endpoint Manager Zero-Day Exploited in the Wild appeared first on SecurityWeek.",
+        "link": "https://www.securityweek.com/lanscope-endpoint-manager-zero-day-exploited-in-the-wild/",
+        "date": "2025-10-23T09:56:54.000Z",
+        "category": "Vulnerabilities"
+    },
+    {
+        "title": "“Jingle Thief” Hackers Exploit Cloud Infrastructure to Steal Millions in Gift Cards",
+        "content": "Cybersecurity researchers have shed light on a cybercriminal group called Jingle Thief that has been observed targeting cloud environments associated with organizations in the retail and consumer services sectors for gift card fraud.\n\"Jingle Thief attackers use phishing and smishing to steal credentials, to compromise organizations that issue gift cards,\" Palo Alto Networks Unit 42 researchers",
+        "link": "https://thehackernews.com/2025/10/jingle-thief-hackers-exploit-cloud.html",
+        "date": "2025-10-23T07:52:00.000Z",
+        "category": "Vulnerabilities"
+    },
+    {
+        "title": "Over 250 Magento Stores Hit Overnight as Hackers Exploit New Adobe Commerce Flaw",
+        "content": "E-commerce security company Sansec has warned that threat actors have begun to exploit a recently disclosed security vulnerability in Adobe Commerce and Magento Open Source platforms, with more than 250 attack attempts recorded against multiple stores over the past 24 hours.\nThe vulnerability in question is CVE-2025-54236 (CVSS score: 9.1), a critical improper input validation flaw that could be",
+        "link": "https://thehackernews.com/2025/10/over-250-magento-stores-hit-overnight.html",
+        "date": "2025-10-23T05:47:00.000Z",
+        "category": "Vulnerabilities"
+    },
+    {
+        "title": "Critical Lanscope Endpoint Manager Bug Exploited in Ongoing Cyberattacks, CISA Confirms",
+        "content": "The U.S. Cybersecurity and Infrastructure Security Agency (CISA) on Wednesday added a critical security flaw impacting Motex Lanscope Endpoint Manager to its Known Exploited Vulnerabilities (KEV) catalog, stating it has been actively exploited in the wild.\nThe vulnerability, CVE-2025-61932 (CVSS v4 score: 9.3), impacts on-premises versions of Lanscope Endpoint Manager, specifically Client",
+        "link": "https://thehackernews.com/2025/10/critical-lanscope-endpoint-manager-bug.html",
+        "date": "2025-10-23T05:37:00.000Z",
+        "category": "Vulnerabilities"
+    },
+    {
+        "title": "TARmageddon Flaw in Popular Rust Library Leads to RCE",
+        "content": "The vulnerability impacts multiple Rust tar parsers, allowing attackers to smuggle additional archive entries.\nThe post TARmageddon Flaw in Popular Rust Library Leads to RCE appeared first on SecurityWeek.",
+        "link": "https://www.securityweek.com/tarmageddon-flaw-in-popular-rust-library-leads-to-rce/",
+        "date": "2025-10-22T15:00:15.000Z",
+        "category": "Vulnerabilities"
+    },
+    {
+        "title": "Critical Vulnerabilities Patched in TP-Link’s Omada Gateways",
+        "content": "One of the flaws can be exploited by remote unauthenticated attackers for arbitrary command execution.\nThe post Critical Vulnerabilities Patched in TP-Link’s Omada Gateways appeared first on SecurityWeek.",
+        "link": "https://www.securityweek.com/critical-vulnerabilities-patched-in-tp-links-omada-gateways/",
+        "date": "2025-10-22T13:41:21.000Z",
+        "category": "Vulnerabilities"
+    },
+    {
+        "title": "Chinese Threat Actors Exploit ToolShell SharePoint Flaw Weeks After Microsoft's July Patch",
+        "content": "Threat actors with ties to China exploited the ToolShell security vulnerability in Microsoft SharePoint to breach a telecommunications company in the Middle East after it was publicly disclosed and patched in July 2025.\nAlso targeted were government departments in an African country, as well as government agencies in South America, a university in the U.S., as well as likely a state technology",
+        "link": "https://thehackernews.com/2025/10/chinese-threat-actors-exploit-toolshell.html",
+        "date": "2025-10-22T12:56:00.000Z",
+        "category": "Vulnerabilities"
+    },
+    {
+        "title": "Bridging the Remediation Gap: Introducing Pentera Resolve",
+        "content": "From Detection to Resolution: Why the Gap Persists\nA critical vulnerability is identified in an exposed cloud asset. Within hours, five different tools alert you about it: your vulnerability scanner, XDR, CSPM, SIEM, and CMDB each surface the issue in their own way, with different severity levels, metadata, and context.\nWhat’s missing is a system of action. How do you transition from the",
+        "link": "https://thehackernews.com/2025/10/bridging-remediation-gap-introducing.html",
+        "date": "2025-10-22T11:55:00.000Z",
+        "category": "Vulnerabilities"
+    },
+    {
+        "title": "TARmageddon Flaw in Async-Tar Rust Library Could Enable Remote Code Execution",
+        "content": "Cybersecurity researchers have disclosed details of a high-severity flaw impacting the popular async-tar Rust library and its forks, including tokio-tar, that could result in remote code execution under certain conditions.\nThe vulnerability, tracked as CVE-2025-62518 (CVSS score: 8.1), has been codenamed TARmageddon by Edera, which discovered the issue in late August 2025. It impacts several",
+        "link": "https://thehackernews.com/2025/10/tarmageddon-flaw-in-async-tar-rust.html",
+        "date": "2025-10-22T07:05:00.000Z",
+        "category": "Vulnerabilities"
+    },
+    {
+        "title": "TP-Link Patches Four Omada Gateway Flaws, Two Allow Remote Code Execution",
+        "content": "TP-Link has released security updates to address four security flaws impacting Omada gateway devices, including two critical bugs that could result in arbitrary code execution.\nThe vulnerabilities in question are listed below -\n\nCVE-2025-6541 (CVSS score: 8.6) - An operating system command injection vulnerability that could be exploited by an attacker who can log in to the web management",
+        "link": "https://thehackernews.com/2025/10/tp-link-patches-four-omada-gateway.html",
+        "date": "2025-10-22T04:38:00.000Z",
+        "category": "Vulnerabilities"
+    },
+    {
+        "title": "Hackers Used Snappybee Malware and Citrix Flaw to Breach European Telecom Network",
+        "content": "A European telecommunications organization is said to have been targeted by a threat actor that aligns with a China-nexus cyber espionage group known as Salt Typhoon.\nThe organization, per Darktrace, was targeted in the first week of July 2025, with the attackers exploiting a Citrix NetScaler Gateway appliance to obtain initial access.\nSalt Typhoon, also known as Earth Estries, FamousSparrow,",
+        "link": "https://thehackernews.com/2025/10/hackers-used-snappybee-malware-and.html",
+        "date": "2025-10-21T07:23:00.000Z",
+        "category": "Vulnerabilities"
+    },
+    {
+        "title": "Five New Exploited Bugs Land in CISA's Catalog — Oracle and Microsoft Among Targets",
+        "content": "The U.S. Cybersecurity and Infrastructure Security Agency (CISA) on Monday added five security flaws to its Known Exploited Vulnerabilities (KEV) Catalog, officially confirming a recently disclosed vulnerability impacting Oracle E-Business Suite (EBS) has been weaponized in real-world attacks.\nThe security defect in question is CVE-2025-61884 (CVSS score: 7.5), which has been described as a",
+        "link": "https://thehackernews.com/2025/10/five-new-exploited-bugs-land-in-cisas.html",
+        "date": "2025-10-20T19:00:00.000Z",
+        "category": "Vulnerabilities"
+    },
+    {
+        "title": "⚡ Weekly Recap: F5 Breached, Linux Rootkits, Pixnapping Attack, EtherHiding & More",
+        "content": "It’s easy to think your defenses are solid — until you realize attackers have been inside them the whole time. The latest incidents show that long-term, silent breaches are becoming the norm. The best defense now isn’t just patching fast, but watching smarter and staying alert for what you don’t expect.\nHere’s a quick look at this week’s top threats, new tactics, and security stories shaping",
+        "link": "https://thehackernews.com/2025/10/weekly-recap-f5-breached-linux-rootkits.html",
+        "date": "2025-10-20T12:27:00.000Z",
+        "category": "Vulnerabilities"
+    },
+    {
+        "title": "Email Bombs Exploit Lax Authentication in Zendesk",
+        "content": "Cybercriminals are abusing a widespread lack of authentication in the customer service platform Zendesk to flood targeted email inboxes with menacing messages that come from hundreds of Zendesk corporate customers simultaneously.",
+        "link": "https://krebsonsecurity.com/2025/10/email-bombs-exploit-lax-authentication-in-zendesk/",
+        "date": "2025-10-17T11:26:27.000Z",
+        "category": "Vulnerabilities"
+    },
+    {
+        "title": "Researchers Uncover WatchGuard VPN Bug That Could Let Attackers Take Over Devices",
+        "content": "Cybersecurity researchers have disclosed details of a recently patched critical security flaw in WatchGuard Fireware that could allow unauthenticated attackers to execute arbitrary code.\nThe vulnerability, tracked as CVE-2025-9242 (CVSS score: 9.3), is described as an out-of-bounds write vulnerability affecting Fireware OS 11.10.2 up to and including 11.12.4_Update1, 12.0 up to and including",
+        "link": "https://thehackernews.com/2025/10/researchers-uncover-watchguard-vpn-bug.html",
+        "date": "2025-10-17T09:25:00.000Z",
+        "category": "Vulnerabilities"
+    },
+    {
+        "title": "Hackers Deploy Linux Rootkits via Cisco SNMP Flaw in 'Zero Disco' Attacks",
+        "content": "Cybersecurity researchers have disclosed details of a new campaign that exploited a recently disclosed security flaw impacting Cisco IOS Software and IOS XE Software to deploy Linux rootkits on older, unprotected systems.\nThe activity, codenamed Operation Zero Disco by Trend Micro, involves the weaponization of CVE-2025-20352 (CVSS score: 7.7), a stack overflow vulnerability in the Simple",
+        "link": "https://thehackernews.com/2025/10/hackers-deploy-linux-rootkits-via-cisco.html",
+        "date": "2025-10-16T11:38:00.000Z",
+        "category": "Vulnerabilities"
+    },
+    {
+        "title": "CISA Flags Adobe AEM Flaw with Perfect 10.0 Score — Already Under Active Attack",
+        "content": "The U.S. Cybersecurity and Infrastructure Security Agency (CISA) on Wednesday added a critical security flaw impacting Adobe Experience Manager to its Known Exploited Vulnerabilities (KEV) catalog, based on evidence of active exploitation.\nThe vulnerability in question is CVE-2025-54253 (CVSS score: 10.0), a maximum-severity misconfiguration bug that could result in arbitrary code execution.",
+        "link": "https://thehackernews.com/2025/10/cisa-flags-adobe-aem-flaw-with-perfect.html",
+        "date": "2025-10-16T04:26:00.000Z",
+        "category": "Vulnerabilities"
+    },
+    {
+        "title": "Over 100 VS Code Extensions Exposed Developers to Hidden Supply Chain Risks",
+        "content": "New research has uncovered that publishers of over 100 Visual Studio Code (VS Code) extensions leaked access tokens that could be exploited by bad actors to update the extensions, posing a critical software supply chain risk.\n\"A leaked VSCode Marketplace or Open VSX PAT [personal access token] allows an attacker to directly distribute a malicious extension update across the entire install base,\"",
+        "link": "https://thehackernews.com/2025/10/over-100-vs-code-extensions-exposed.html",
+        "date": "2025-10-15T14:16:00.000Z",
+        "category": "Vulnerabilities"
+    },
+    {
+        "title": "Two New Windows Zero-Days Exploited in the Wild — One Affects Every Version Ever Shipped",
+        "content": "Microsoft on Tuesday released fixes for a whopping 183 security flaws spanning its products, including three vulnerabilities that have come under active exploitation in the wild, as the tech giant officially ended support for its Windows 10 operating system unless the PCs are enrolled in the Extended Security Updates (ESU) program.\nOf the 183 vulnerabilities, eight of them are non-Microsoft",
+        "link": "https://thehackernews.com/2025/10/two-new-windows-zero-days-exploited-in.html",
+        "date": "2025-10-15T09:23:00.000Z",
+        "category": "Vulnerabilities"
+    },
+    {
+        "title": "Two CVSS 10.0 Bugs in Red Lion RTUs Could Hand Hackers Full Industrial Control",
+        "content": "Cybersecurity researchers have disclosed two critical security flaws impacting Red Lion Sixnet remote terminal unit (RTU) products that, if successfully exploited, could result in code execution with the highest privileges.\nThe shortcomings, tracked as CVE-2023-40151 and CVE-2023-42770, are both rated 10.0 on the CVSS scoring system.\n\"The vulnerabilities affect Red Lion SixTRAK and VersaTRAK",
+        "link": "https://thehackernews.com/2025/10/two-cvss-100-bugs-in-red-lion-rtus.html",
+        "date": "2025-10-15T06:50:00.000Z",
+        "category": "Vulnerabilities"
+    },
+    {
+        "title": "Hackers Target ICTBroadcast Servers via Cookie Exploit to Gain Remote Shell Access",
+        "content": "Cybersecurity researchers have disclosed that a critical security flaw impacting ICTBroadcast, an autodialer software from ICT Innovations, has come under active exploitation in the wild.\nThe vulnerability, assigned the CVE identifier CVE-2025-2611 (CVSS score: 9.3), relates to improper input validation that can result in unauthenticated remote code execution due to the fact that the call center",
+        "link": "https://thehackernews.com/2025/10/hackers-target-ictbroadcast-servers-via.html",
+        "date": "2025-10-15T06:16:00.000Z",
+        "category": "Vulnerabilities"
+    },
+    {
+        "title": "New SAP NetWeaver Bug Lets Attackers Take Over Servers Without Login",
+        "content": "SAP has rolled out security fixes for 13 new security issues, including additional hardening for a maximum-severity bug in SAP NetWeaver AS Java that could result in arbitrary command execution.\nThe vulnerability, tracked as CVE-2025-42944, carries a CVSS score of 10.0. It has been described as a case of insecure deserialization.\n\"Due to a deserialization vulnerability in SAP NetWeaver, an",
+        "link": "https://thehackernews.com/2025/10/new-sap-netweaver-bug-lets-attackers.html",
+        "date": "2025-10-15T05:36:00.000Z",
+        "category": "Vulnerabilities"
+    },
+    {
+        "title": "Patch Tuesday, October 2025 ‘End of 10’ Edition",
+        "content": "Microsoft today released software updates to plug a whopping 172 security holes in its Windows operating systems, including at least three vulnerabilities that are already being actively exploited. October's Patch Tuesday also marks the final month that Microsoft will ship security updates for Windows 10 systems. If you're running a Windows 10 PC and you're unable or unwilling to migrate to Windows 11, read on for other options.",
+        "link": "https://krebsonsecurity.com/2025/10/patch-tuesday-october-2025-end-of-10-edition/",
+        "date": "2025-10-14T22:57:38.000Z",
+        "category": "Vulnerabilities"
+    },
+    {
+        "title": "Chinese Hackers Exploit ArcGIS Server as Backdoor for Over a Year",
+        "content": "Threat actors with ties to China have been attributed to a novel campaign that compromised an ArcGIS system and turned it into a backdoor for more than a year.\nThe activity, per ReliaQuest, is the handiwork of a Chinese state-sponsored hacking group called Flax Typhoon, which is also tracked as Ethereal Panda and RedJuliett. According to the U.S. government, it's assessed to be a publicly-traded",
+        "link": "https://thehackernews.com/2025/10/chinese-hackers-exploit-arcgis-server.html",
+        "date": "2025-10-14T16:55:00.000Z",
+        "category": "Vulnerabilities"
+    },
+    {
+        "title": "Canadian Bacon Cybersecurity: SharePoint Vulnerabilities and Vulnerabilities in General",
+        "content": "Learn about the Microsoft SharePoint vulnerability and which steps you can take to mitigate the effects of this — and other — vulnerabilities.",
+        "link": "https://blogs.cisco.com/security/sharepoint-vulnerabilities-and-vulnerabilities-in-general/",
+        "date": "2025-10-01T12:00:38.000Z",
+        "category": "Vulnerabilities"
+    },
+    {
+        "title": "Build secure network architectures for generative AI applications using AWS services",
+        "content": "As generative AI becomes foundational across industries—powering everything from conversational agents to real-time media synthesis—it simultaneously creates new opportunities for bad actors to exploit. The complex architectures behind generative AI applications expose a large surface area including public-facing APIs, inference services, custom web applications, and integrations with cloud infrastructure. These systems are not immune to […]",
+        "link": "https://aws.amazon.com/blogs/security/build-secure-network-architectures-for-generative-ai-applications-using-aws-services/",
+        "date": "2025-09-29T19:11:48.000Z",
+        "category": "Vulnerabilities"
+    },
+    {
+        "title": "Microsoft Patch Tuesday, September 2025 Edition",
+        "content": "Microsoft Corp. today issued security updates to fix more than 80 vulnerabilities in its Windows operating systems and software. There are no known \"zero-day\" or actively exploited vulnerabilities in this month's bundle from Redmond, which nevertheless includes patches for 13 flaws that earned Microsoft's most-dire \"critical\" label. Meanwhile, both Apple and Google recently released updates to fix zero-day bugs in their devices.",
+        "link": "https://krebsonsecurity.com/2025/09/microsoft-patch-tuesday-september-2025-edition/",
+        "date": "2025-09-09T21:21:14.000Z",
+        "category": "Vulnerabilities"
+    },
+    {
+        "title": "Securing LLMs Against Prompt Injection Attacks - A Technical Primer for AI Security Teams",
+        "content": "Introduction\n \r\nLarge Language Models (LLMs) have rapidly become integral to applications, but they come with some very interesting security pitfalls. Chief among these is prompt injection, where cleverly crafted inputs make an LLM bypass its instructions or leak secrets. Prompt injection in fact is so wildly popular that, OWASP now ranks prompt injection as the #1 AI security risk for modern LLM applications as shown in their OWASP GenAI top 10.\n \r\nWe’ve provided a higher-level overview about Prompt Injection in our other blog, so in this one we’ll focus on the concept with the technical audience in mind. Here we’ll explore how LLMs can be vulnerable at the architectural level and the sophisticated ways attackers exploit them. We’ll also examine effective defenses, from system prompt design to “sandwich” prompting techniques. We’ll also discuss a few tools that can help test and secure LLMs.",
+        "link": "https://blog.securityinnovation.com/securing-llms-against-prompt-injection-attacks",
+        "date": "2025-05-14T17:54:47.000Z",
+        "category": "Vulnerabilities"
+    }
+]

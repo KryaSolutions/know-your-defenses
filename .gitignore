@@ -1,23 +1,30 @@
 backend/logs
-frontend/logs
+kyd/logs
+newsletter/logs
 
 backend/*.log
-frontend/*.log
+kyd/*.log
+newsletter/*.log
 
 backend/npm-debug.log*
-frontend/npm-debug.log*
+kyd/npm-debug.log*
+newsletter/npm-debug.log*
 
 backend/node_modules
-frontend/node_modules
+kyd/node_modules
+newsletter/node_modules
 
 backend/dist
-frontend/dist
+kyd/dist
+newsletter/dist
 
 backend/dist-ssr
-frontend/dist-ssr
+kyd/dist-ssr
+newsletter/dist-ssr
 
 backend/*.local
-frontend/*.local
+kyd/*.local
+newsletter/*.local
 
 backend/server.crt
 backend/server.key

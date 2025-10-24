@@ -115,7 +115,10 @@ const CalcWrapper = () => {
     }, [isDialogOpen]);
 
     return (
-        <div className="flex-grow flex-shrink p-4 sm:p-6 md:p-8 lg:p-10 bg-[var(--brand-blue)]">
+        <div
+            id="calcs-section"
+            className="flex-grow flex-shrink p-4 sm:p-6 md:p-8 lg:p-10 bg-[var(--brand-blue)]"
+        >
             <div className="max-w-6xl mx-auto bg-white rounded-2xl shadow-xl overflow-hidden flex flex-col">
                 {/* Header Section */}
                 <div className="bg-gradient-to-r from-blue-600/10 to-indigo-600/10 p-6 sm:p-8 border-b border-blue-100">
@@ -124,7 +127,7 @@ const CalcWrapper = () => {
                             <Calculator className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
                         </div>
                         <h2 className="text-2xl sm:text-3xl font-bold text-blue-700 text-center">
-                            Security Operations Dashboard
+                            Sec-Ops Efficiency{" "}
                         </h2>
                     </div>
                 </div>
@@ -134,7 +137,7 @@ const CalcWrapper = () => {
                     <div className="space-y-6">
                         <div className="text-center">
                             <p className="text-slate-700 text-base sm:text-lg">
-                                Choose from our suite of security operation
+                                Fiddle with our suite of security operation
                                 calculators
                             </p>
                         </div>
