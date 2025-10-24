@@ -6,13 +6,13 @@ const Footer = () => {
     type FormData = {
         name: string;
         email: string;
-        comment: string;
+        thought: string;
     };
 
     const [formData, setFormData] = useState<FormData>({
         name: "",
         email: "",
-        comment: "",
+        thought: "",
     });
 
     const [status, setStatus] = useState<
@@ -38,7 +38,7 @@ const Footer = () => {
 
             console.log("Email sent:", response.data);
             setStatus("success");
-            setFormData({ name: "", email: "", comment: "" });
+            setFormData({ name: "", email: "", thought: "" });
         } catch (error: any) {
             if (error.response) {
                 console.error("Backend error:", error.response.data);
@@ -129,9 +129,9 @@ const Footer = () => {
                                 Share your thoughts
                             </label>
                             <textarea
-                                name="comment"
+                                name="thought"
                                 rows={4}
-                                value={formData.comment}
+                                value={formData.thought}
                                 onChange={handleChange}
                                 required
                                 className="w-full px-4 py-2 rounded-md border border-slate-300 focus:outline-none focus:border-[var(--brand-blue)] text-slate-700 resize-none"
