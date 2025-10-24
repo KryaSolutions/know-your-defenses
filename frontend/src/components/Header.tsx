@@ -20,20 +20,6 @@ const Header = () => {
 
     return (
         <div className="relative overflow-hidden bg-[var(--brand-blue)] text-white">
-            {/* Logo aligned with content */}
-            <div className="absolute top-2 left-18 z-50 flex flex-col items-start space-y-2">
-                <a
-                    href="https://kryasolutions.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    <img
-                        src="/krya.svg"
-                        alt="Organization Logo"
-                        className="w-20 h-20 object-contain"
-                    />
-                </a>
-            </div>
 
             <div className="relative max-w-5xl mx-auto px-6 py-16 lg:py-24">
                 <div className="grid lg:grid-cols-2 gap-12 items-center">
