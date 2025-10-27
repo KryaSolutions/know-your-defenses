@@ -1,6 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-
-// ===== COMPANY KNOWLEDGE BASE =====
+import { fetchKnowledgeBase, quickReplies } from "../utilities/quickResponses.ts";
 
 const Bot = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -8,40 +7,81 @@ const Bot = () => {
         { text: string; isUser: boolean; hasLink?: boolean }[]
     >([]);
     const [input, setInput] = useState("");
+    const [isLoading, setIsLoading] = useState(false);
     const messagesEndRef = useRef<HTMLDivElement | null>(null);
 
     useEffect(() => {
         messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
     }, [messages]);
 
-    // ===== SEND MESSAGE (LOCAL KNOWLEDGE-BASE ONLY) =====
-    // The emergency bot responds only using the local knowledge base (`getIntelligentResponse`).
-    const sendMessageWithText = (text: string) => {
+    const sendMessageWithText = async (text: string) => {
         const trimmed = text.trim();
         if (!trimmed) return;
 
         const userMsg = { text: trimmed, isUser: true };
         setMessages((prev) => [...prev, userMsg]);
 
-        // Get response from local KB
-        const aiText = getIntelligentResponse(trimmed);
-        const shouldShowLink =
-            aiText.toLowerCase().includes("assessment") ||
-            aiText.toLowerCase().includes("kyd") ||
-            trimmed.toLowerCase().includes("assessment");
+        const predefinedResponse = fetchKnowledgeBase(trimmed);
 
-        setMessages((prev) => [
-            ...prev,
-            { text: aiText, isUser: false, hasLink: shouldShowLink },
-        ]);
+        if (predefinedResponse) {
+            setMessages((prev) => [
+                ...prev,
+                {
+                    text: predefinedResponse.answer,
+                    isUser: false,
+                    hasLink: predefinedResponse.hasLink || false,
+                },
+            ]);
+        } else {
+            setIsLoading(true);
+            try {
+                const response = await fetch(`${import.meta.env.VITE_API_URL}/api/chatCompletion`, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({ message: trimmed }),
+                });
+
+                if (!response.ok) {
+                    throw new Error("Failed to get response from server");
+                }
+
+                const data = await response.json();
+                const aiResponse = data.response || data.completion || "I'm sorry, I couldn't process that request.";
+
+                setMessages((prev) => [
+                    ...prev,
+                    {
+                        text: aiResponse,
+                        isUser: false,
+                        hasLink: false,
+                    },
+                ]);
+            } catch (error) {
+                console.error("Error calling chat API:", error);
+                setMessages((prev) => [
+                    ...prev,
+                    {
+                        text: "I apologize, but I'm having trouble connecting to my knowledge base right now. Please try again later or contact us directly at contact@kryasolutions.com",
+                        isUser: false,
+                        hasLink: false,
+                    },
+                ]);
+            } finally {
+                setIsLoading(false);
+            }
+        }
     };
 
     const sendMessage = () => {
-        sendMessageWithText(input);
-        setInput("");
+        if (!isLoading) {
+            sendMessageWithText(input);
+            setInput("");
+        }
     };
 
-    // Scroll to the survey section instead of redirecting to the assessment page
+    // Scroll to the survey section
     const handleStartAssessment = () => {
         const heroSection = document.querySelector("#survey-section");
         if (heroSection) {
@@ -51,95 +91,6 @@ const Bot = () => {
             });
         }
     };
-
-    // ===== FALLBACK INTELLIGENT RESPONSES =====
-    const getIntelligentResponse = (msg: string): string => {
-        const lower = msg.toLowerCase();
-
-        if (
-            lower.includes("cyber") &&
-            (lower.includes("service") || lower.includes("provide"))
-        ) {
-            return `Krya Solutions provides comprehensive cybersecurity services including:
-
-Core services:
-• Security Risk Assessment & Penetration Testing
-• AI-Powered Threat Detection & Response
-• 24/7 Security Operations Center (SOC)
-• Vulnerability & Patch Management
-• Cloud Security (AWS, Azure, GCP)
-• Incident Response & Forensics
-
-We use AI/ML-driven security tools, SIEM, EDR/XDR, and Zero Trust Architecture.`;
-        }
-
-        if (lower.includes("assessment") || lower.includes("kyd")) {
-            return `Our Know Your Defense (KYD) assessment is a comprehensive security evaluation:
-
-What you get:
-• Complete security posture analysis
-• Critical vulnerability identification
-• Risk prioritization with scoring
-• Compliance gap analysis (ISO, GDPR)
-• Actionable remediation roadmap
-
-Takes 20-30 minutes | Free initial assessment`;
-        }
-
-        if (lower.includes("threat") || lower.includes("detect")) {
-            return `Krya's AI-powered threat detection provides:
-
-Advanced capabilities:
-• Real-time threat intelligence
-• Machine learning anomaly detection
-• Automated incident response
-• 24/7 SOC monitoring
-• SIEM integration
-
-We identify threats before they cause damage.`;
-        }
-
-        if (lower.includes("contact") || lower.includes("email")) {
-            return `Get in touch with Krya Solutions:
-
-Email: contact@kryasolutions.com
-Website: https://kryasolutions.com
-Headquarters: Chennai, India
-
-We serve clients across Asia Pacific, USA, Middle East, and Africa.`;
-        }
-
-        if (lower.includes("hello") || lower.includes("hi")) {
-            return `Hello. Welcome to Krya Solutions.
-
-I'm your AI assistant for cybersecurity questions. With 12+ years of experience and 750+ global customers, we specialize in:
-
-AI-driven cybersecurity
-Security assessments
-Cloud security (AWS, Azure, GCP)
-24/7 threat monitoring
-
-How can I help secure your organization today?`;
-        }
-
-        return `Thanks for your question! I can help with:
-
-• Cybersecurity services and capabilities
-• Security assessment (Know Your Defense)
-• Threat detection and monitoring
-• Cloud security solutions
-• Compliance and certifications
-
-What would you like to know more about?`;
-    };
-
-    // Quick reply shortcuts
-    const quickReplies = [
-        "What cybersecurity services does Krya provide?",
-        "Tell me about the KYD assessment",
-        "How does AI threat detection work?",
-        "How can I contact Krya?",
-    ];
 
     return (
         <div className="fixed bottom-4 right-4 sm:bottom-5 sm:right-5 z-50 font-sans">
@@ -163,17 +114,12 @@ What would you like to know more about?`;
                     <div className="bg-[var(--brand-blue)] text-white p-3 sm:p-4 rounded-t-2xl flex justify-between items-center">
                         <div className="flex items-center gap-3">
                             <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center">
-                                <svg
-                                    className="w-6 h-6 fill-white"
-                                    viewBox="0 0 24 24"
-                                >
+                                <svg className="w-6 h-6 fill-white" viewBox="0 0 24 24">
                                     <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" />
                                 </svg>
                             </div>
                             <div>
-                                <h3 className="font-semibold text-base">
-                                    Krya AI Assistant
-                                </h3>
+                                <h3 className="font-semibold text-base">Krya AI Assistant</h3>
                                 <p className="text-xs opacity-90">🟢 Online</p>
                             </div>
                         </div>
@@ -191,20 +137,14 @@ What would you like to know more about?`;
                         {messages.length === 0 && (
                             <div className="flex gap-2">
                                 <div className="w-8 h-8 sm:w-10 sm:h-10 bg-[var(--brand-blue)] rounded-full flex items-center justify-center flex-shrink-0">
-                                    <svg
-                                        className="w-4 h-4 fill-white"
-                                        viewBox="0 0 24 24"
-                                    >
+                                    <svg className="w-4 h-4 fill-white" viewBox="0 0 24 24">
                                         <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" />
                                     </svg>
                                 </div>
                                 <div className="bg-white p-3 sm:p-4 rounded-2xl rounded-tl-none shadow-sm max-w-[85%] sm:max-w-[75%]">
-                                    <p className="font-semibold mb-1">
-                                        Welcome to Krya Solutions!
-                                    </p>
+                                    <p className="font-semibold mb-1">Welcome to Krya Solutions!</p>
                                     <p className="text-gray-700 mb-2">
-                                        I'm your AI assistant for cybersecurity.
-                                        Ask me anything!
+                                        I'm your AI assistant for cybersecurity. Ask me anything!
                                     </p>
                                     <button
                                         type="button"
@@ -217,16 +157,10 @@ What would you like to know more about?`;
                                         {quickReplies.map((reply, i) => (
                                             <button
                                                 key={i}
-                                                onClick={() =>
-                                                    sendMessageWithText(reply)
-                                                }
+                                                onClick={() => sendMessageWithText(reply)}
                                                 className="px-3 py-1.5 bg-gray-100 hover:bg-blue-600 hover:text-white border border-gray-200 rounded-full text-xs sm:text-sm transition-all"
                                             >
-                                                {reply
-                                                    .split(" ")
-                                                    .slice(0, 3)
-                                                    .join(" ")}
-                                                ...
+                                                {reply.split(" ").slice(0, 3).join(" ")}...
                                             </button>
                                         ))}
                                     </div>
@@ -241,20 +175,16 @@ What would you like to know more about?`;
                             >
                                 {!msg.isUser && (
                                     <div className="w-8 h-8 sm:w-10 sm:h-10 bg-[var(--brand-blue)] rounded-full flex items-center justify-center flex-shrink-0">
-                                        <svg
-                                            className="w-4 h-4 fill-white"
-                                            viewBox="0 0 24 24"
-                                        >
+                                        <svg className="w-4 h-4 fill-white" viewBox="0 0 24 24">
                                             <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" />
                                         </svg>
                                     </div>
                                 )}
                                 <div
-                                    className={`px-3 py-2 sm:px-4 sm:py-2.5 rounded-2xl max-w-[85%] sm:max-w-[75%] whitespace-pre-line shadow-sm ${
-                                        msg.isUser
-                                            ? "bg-[var(--brand-blue)] text-white rounded-br-none"
-                                            : "bg-white text-gray-800 rounded-tl-none"
-                                    }`}
+                                    className={`px-3 py-2 sm:px-4 sm:py-2.5 rounded-2xl max-w-[85%] sm:max-w-[75%] whitespace-pre-line shadow-sm ${msg.isUser
+                                        ? "bg-[var(--brand-blue)] text-white rounded-br-none"
+                                        : "bg-white text-gray-800 rounded-tl-none"
+                                        }`}
                                 >
                                     {msg.text}
                                     {msg.hasLink && !msg.isUser && (
@@ -270,7 +200,30 @@ What would you like to know more about?`;
                             </div>
                         ))}
 
-                        {/* typing indicator removed - responses are instant */}
+                        {/* Loading Indicator */}
+                        {isLoading && (
+                            <div className="flex gap-2">
+                                <div className="w-8 h-8 sm:w-10 sm:h-10 bg-[var(--brand-blue)] rounded-full flex items-center justify-center flex-shrink-0">
+                                    <svg className="w-4 h-4 fill-white" viewBox="0 0 24 24">
+                                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" />
+                                    </svg>
+                                </div>
+                                <div className="bg-white px-4 py-3 rounded-2xl rounded-tl-none shadow-sm">
+                                    <div className="flex gap-1">
+                                        <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"></div>
+                                        <div
+                                            className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"
+                                            style={{ animationDelay: "0.1s" }}
+                                        ></div>
+                                        <div
+                                            className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"
+                                            style={{ animationDelay: "0.2s" }}
+                                        ></div>
+                                    </div>
+                                </div>
+                            </div>
+                        )}
+
                         <div ref={messagesEndRef} />
                     </div>
 
@@ -280,23 +233,18 @@ What would you like to know more about?`;
                             type="text"
                             value={input}
                             onChange={(e) => setInput(e.target.value)}
-                            onKeyDown={(e) =>
-                                e.key === "Enter" && sendMessage()
-                            }
+                            onKeyDown={(e) => e.key === "Enter" && sendMessage()}
                             placeholder="Ask me anything..."
                             className="flex-1 px-3 py-2 sm:px-4 border border-gray-200 rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-                            disabled={false}
+                            disabled={isLoading}
                         />
                         <button
                             onClick={sendMessage}
-                            disabled={!input.trim()}
+                            disabled={!input.trim() || isLoading}
                             aria-label="Send message"
                             className="bg-[var(--brand-blue)] hover:from-blue-700 hover:to-purple-700 disabled:opacity-50 text-white p-2 sm:p-3 rounded-full transition-all"
                         >
-                            <svg
-                                className="w-5 h-5 fill-white"
-                                viewBox="0 0 24 24"
-                            >
+                            <svg className="w-5 h-5 fill-white" viewBox="0 0 24 24">
                                 <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" />
                             </svg>
                         </button>

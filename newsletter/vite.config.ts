@@ -25,6 +25,7 @@ export default defineConfig({
             "@": path.resolve(__dirname, "./src"),
         },
     },
-    base: "https://kyd.kryasolutions.com/newsletters",
+    // base: "https://kyd.kryasolutions.com",
+    base: "/",
     server: {},
 });

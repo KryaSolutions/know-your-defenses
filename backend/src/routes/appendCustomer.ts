@@ -1,9 +1,10 @@
 import config from "../config.js";
-import * as pkg from "express";
+import { Router } from "express";
+import type { Request, Response } from "express";
 import Airtable from "airtable";
 import { Mistral } from "@mistralai/mistralai";
 
-export const router = pkg.Router();
+export const router = Router();
 const base = new Airtable({
     apiKey: config.DB_PAT!,
 }).base(config.DB_BASE!);
@@ -26,7 +27,7 @@ async function getReports(
     org: string
 ): Promise<string> {
     const mistral = new Mistral({
-        apiKey: process.env.API_KEY,
+        apiKey: config.API_KEY,
     });
     const result = await mistral.chat.complete({
         model: "codestral-latest",
@@ -100,7 +101,7 @@ type appendCustomerBody = {
 
 router.post(
     "/appendCustomer",
-    async (req: pkg.Request<{}, appendCustomerBody>, res: pkg.Response) => {
+    async (req: Request<{}, appendCustomerBody>, res: Response) => {
         try {
             let summary;
             const { name, org, email, response } = req.body;

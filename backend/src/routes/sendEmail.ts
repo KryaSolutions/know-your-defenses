@@ -1,8 +1,9 @@
 import config from "../config.js";
-import * as pkg from "express";
+import { Router } from "express";
+import type { Request, Response } from "express";
 import nodemailer from "nodemailer";
 
-export const router = pkg.Router();
+export const router = Router();
 
 type FormData = {
     name: string;
@@ -20,30 +21,27 @@ const transporter = nodemailer.createTransport({
     },
 });
 
-router.post(
-    "/sendEmail",
-    async (req: pkg.Request<{}, FormData>, res: pkg.Response) => {
-        const { name, email, thought } = req.body;
-        const to = config.RECEPIENT;
-        const subject = `Thoughts for KYD by ${name}`;
-        const text = thought;
-        const html = `<p>${thought}</p>`;
+router.post("/sendEmail", async (req: Request<{}, FormData>, res: Response) => {
+    const { name, email, thought } = req.body;
+    const to = config.RECEPIENT;
+    const subject = `Thoughts for KYD by ${name}`;
+    const text = thought;
+    const html = `<p>${thought}</p>`;
 
-        try {
-            const info = await transporter.sendMail({
-                from: `"${name} <${email}>`,
-                to,
-                subject,
-                text,
-                html,
-            });
+    try {
+        const info = await transporter.sendMail({
+            from: `"${name} <${email}>`,
+            to,
+            subject,
+            text,
+            html,
+        });
 
-            console.log("Email sent:", info.messageId);
-            res.json({ success: true, messageId: info.messageId });
-        } catch (error) {
-            console.error("Error sending email:", error);
-        }
+        console.log("Email sent:", info.messageId);
+        res.json({ success: true, messageId: info.messageId });
+    } catch (error) {
+        console.error("Error sending email:", error);
     }
-);
+});
 
 export default router;

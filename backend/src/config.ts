@@ -3,6 +3,7 @@ dotenv.config();
 
 const config = {
     PORT: process.env.PORT,
+    API_KEY: process.env.API_KEY,
     DB_NAME: process.env.DB_NAME,
     DB_BASE: process.env.DB_BASE,
     DB_PAT: process.env.DB_PAT,

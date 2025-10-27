@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import type { ComponentType } from "react";
 import {
+    Target,
     Calculator,
     Shield,
     Clock,
@@ -9,6 +10,7 @@ import {
     Database,
     Users,
     X,
+    Zap
 } from "lucide-react";
 import SocAlerts from "./calculators/SocAlerts";
 import SocLatency from "./calculators/SocLatency";
@@ -16,6 +18,8 @@ import SocProductivity from "./calculators/SocProductivity";
 import SocSlaCompliance from "./calculators/SocSLACompliance";
 import SocThreatIntelligence from "./calculators/SocThreatIntelligence";
 import IdamEffCalc from "./calculators/IdamEfficiency";
+import PerformanceKPIS from "./calculators/PerformanceKPIS";
+import ResponseAndResolution from "./calculators/ResponseAndResolution";
 
 interface CalculatorItem {
     id: string;
@@ -67,6 +71,20 @@ const calculators: CalculatorItem[] = [
         component: IdamEffCalc,
         icon: Users,
         color: "cyan",
+    },
+    {
+        id: "kpi",
+        name: "Performance KPIs",
+        component: PerformanceKPIS,
+        icon: Target,
+        color: "blue",
+    },
+    {
+        id: "rnr",
+        name: "Response & Resolution",
+        component: ResponseAndResolution,
+        icon: Zap,
+        color: "purple",
     },
 ];
 
@@ -142,7 +160,7 @@ const CalcWrapper = () => {
                             </p>
                         </div>
 
-                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4 lg:gap-6">
                             {calculators.map((calc, _idx) => {
                                 const Icon = calc.icon;
                                 return (
