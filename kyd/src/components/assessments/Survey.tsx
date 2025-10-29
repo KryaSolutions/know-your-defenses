@@ -6,15 +6,13 @@ import type { ResponseContextType } from "../SurveyWrapper";
 import assessmentData from "../../utilities/assessmentMeta";
 import type { assessmentType } from "../../utilities/assessmentMeta";
 
-type ColorMap = Record<string, string>;
-
-const colorMap: ColorMap = {
-    blue: "bg-blue-50 text-blue-700 border-blue-200 hover:bg-blue-100 hover:border-blue-300",
-    purple: "bg-purple-50 text-purple-700 border-purple-200 hover:bg-purple-100 hover:border-purple-300",
-    green: "bg-green-50 text-green-700 border-green-200 hover:bg-green-100 hover:border-green-300",
-    indigo: "bg-indigo-50 text-indigo-700 border-indigo-200 hover:bg-indigo-100 hover:border-indigo-300",
-    red: "bg-red-50 text-red-700 border-red-200 hover:bg-red-100 hover:border-red-300",
-    cyan: "bg-cyan-50 text-cyan-700 border-cyan-200 hover:bg-cyan-100 hover:border-cyan-300",
+const colorMap: Record<string, string> = {
+    blue: "bg-blue-200/50 text-slate-800 border-blue-200 hover:bg-blue-200 hover:border-blue-300",
+    purple: "bg-purple-200/50 text-slate-800 border-purple-200 hover:bg-purple-200 hover:border-purple-300",
+    green: "bg-green-200/50 text-slate-800 border-green-200 hover:bg-green-200 hover:border-green-300",
+    indigo: "bg-indigo-200/50 text-slate-800 border-indigo-200 hover:bg-indigo-200 hover:border-indigo-300",
+    red: "bg-red-200/50 text-slate-800 border-red-200 hover:bg-red-200 hover:border-red-300",
+    cyan: "bg-cyan-200/50 text-slate-800 border-cyan-200 hover:bg-cyan-200 hover:border-cyan-300",
 };
 
 const Survey = () => {
@@ -109,7 +107,7 @@ const Survey = () => {
                                     </h3>
 
                                     {/* Description */}
-                                    <p className="text-xs sm:text-sm opacity-80 line-clamp-2">
+                                    <p className="text-xs sm:text-sm opacity-80 line-clamp-4">
                                         {assessment.desc}
                                     </p>
 

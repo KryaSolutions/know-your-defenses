@@ -4,7 +4,6 @@ import path from "path";
 import tailwindcss from "@tailwindcss/vite";
 
 export default defineConfig(({ mode }) => {
-    console.log(mode);
     return {
         plugins: [react(), tailwindcss()],
         build: {
@@ -31,6 +30,9 @@ export default defineConfig(({ mode }) => {
             mode === "development"
                 ? "http://localhost:10100"
                 : "https://kyd.kryasolutions.com",
-        server: {},
+        server: {
+            port: 10200,
+            host: true,
+        },
     };
 });

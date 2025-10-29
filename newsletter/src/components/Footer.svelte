@@ -3,7 +3,7 @@
     import { Mail, Phone } from "lucide-svelte";
 
     const apiUrl: string =
-        import.meta.env.MODE === "production"
+        import.meta.env.MODE === "development"
             ? import.meta.env.VITE_DEV_URL
             : import.meta.env.VITE_PROD_URL;
 
@@ -26,9 +26,13 @@
         status = "loading";
 
         try {
-            const response = await axios.post(apiUrl, formData, {
-                headers: { "Content-Type": "application/json" },
-            });
+            const response = await axios.post(
+                `${apiUrl}/api/sendEmail`,
+                formData,
+                {
+                    headers: { "Content-Type": "application/json" },
+                }
+            );
 
             console.log("Email sent:", response.data);
             status = "success";
@@ -127,13 +131,13 @@
                         bind:value={formData.thought}
                         on:input={handleChange}
                         required
-                        class="w-full px-4 py-2 rounded-md border border-slate-200 focus:outline-none focus:border-[var(--brand-blue)] bg-white text-slate-800 placeholder-slate-400 transition-colors duration-200 resize-none"
+                        class="w-full px-4 py-2 rounded-md border border-slate-200 focus:outline-none focus:border-(-brand-blue) bg-white text-slate-800 placeholder-slate-400 transition-colors duration-200 resize-none"
                     ></textarea>
                 </div>
                 <button
                     type="submit"
                     disabled={status === "loading"}
-                    class="w-full bg-(--brand-blue)] text-white py-3 rounded-full font-medium transition-all duration-300 hover:scale-[1.02 hover:shadow-lg hover:shadow-(--brand-orange)/20 disabled:opacity-60 disabled:hover:scale-100 disabled:hover:shadow-none"
+                    class="w-full bg-(--brand-blue) text-white py-3 rounded-full font-medium transition-all duration-300 hover:scale-102 hover:shadow-lg hover:shadow-(--brand-orange)/20 disabled:opacity-60 disabled:hover:scale-100 disabled:hover:shadow-none"
                 >
                     {#if status === "loading"}
                         Sending...

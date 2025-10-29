@@ -38,8 +38,9 @@ const Navbar = () => {
 
     return (
         <nav
-            className={`fixed top-0 left-0 right-0 z-50 bg-[var(--brand-blue)] border-b border-white/10 backdrop-blur-sm transition-transform duration-300 ${isVisible ? "translate-y-0" : "-translate-y-full"
-                }`}
+            className={`fixed top-0 left-0 right-0 z-50 bg-[var(--brand-blue)] border-b border-white/10 backdrop-blur-sm transition-transform duration-300 ${
+                isVisible ? "translate-y-0" : "-translate-y-full"
+            }`}
         >
             <div className="max-w-7xl mx-auto px-6">
                 <div className="flex items-center justify-between h-20">
@@ -55,7 +56,7 @@ const Navbar = () => {
                     {/* Navigation Links */}
                     <div className="flex items-center space-x-8">
                         <a
-                            href="http://localhost:10100/newsletter"
+                            href="https://kyd.kryasolutions.com/newsletters"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="text-white hover:text-[var(--brand-orange)] transition-colors duration-200 font-medium"

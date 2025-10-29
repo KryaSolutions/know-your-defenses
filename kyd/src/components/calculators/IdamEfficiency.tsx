@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from "react";
 
-const IdamEffCalc = () => {
+const IdamEfficiency = () => {
     const [currentStep, setCurrentStep] = useState(0);
     const [metrics, setMetrics] = useState({
         privilegedAccounts: "",
@@ -473,7 +473,7 @@ const IdamEffCalc = () => {
                                         </div>
                                         <div className="w-full bg-gray-200 rounded-full h-1.5">
                                             <div
-                                                className="bg-blue-600 h-1.5 rounded-full transition-all duration-500"
+                                                className="bg-(--brand-blue) h-1.5 rounded-full transition-all duration-500"
                                                 style={{
                                                     width: `${component.score}%`,
                                                 }}
@@ -555,7 +555,7 @@ const IdamEffCalc = () => {
 
                         <button
                             onClick={reset}
-                            className="w-full px-4 py-2 bg-blue-600 text-white rounded-lg text-sm font-medium hover:bg-blue-700 transition-all duration-200"
+                            className="w-full px-4 py-2 bg-(--brand-blue) text-white rounded-lg text-sm font-medium hover:scale-105 transition-all duration-300"
                         >
                             Recalculate
                         </button>
@@ -585,7 +585,7 @@ const IdamEffCalc = () => {
                         </div>
                         <div className="w-full bg-gray-200 rounded-full h-1.5 mb-3">
                             <div
-                                className="bg-blue-600 h-1.5 rounded-full transition-all duration-300"
+                                className="bg-(--brand-blue) h-1.5 rounded-full transition-all duration-300"
                                 style={{ width: `${progress}%` }}
                             />
                         </div>
@@ -612,7 +612,7 @@ const IdamEffCalc = () => {
                                         ]
                                     }
                                     onChange={handleChange}
-                                    className="border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-200"
+                                    className="border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-(--brand-blue) transition-all duration-300"
                                     placeholder="Enter value"
                                 />
                             </div>
@@ -626,7 +626,7 @@ const IdamEffCalc = () => {
                             className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
                                 currentStep === 0
                                     ? "bg-gray-200 text-gray-400 cursor-not-allowed"
-                                    : "border border-gray-300 text-gray-700 hover:bg-gray-50"
+                                    : "border border-gray-300 text-gray-700 hover:scale-105"
                             }`}
                         >
                             Previous
@@ -642,7 +642,7 @@ const IdamEffCalc = () => {
                             className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
                                 !validation.isValid
                                     ? "bg-gray-200 text-gray-400 cursor-not-allowed"
-                                    : "bg-blue-600 text-white hover:bg-blue-700"
+                                    : "bg-(--brand-blue) text-white hover:scale-105"
                             }`}
                         >
                             {currentStep === steps.length - 1
@@ -656,4 +656,4 @@ const IdamEffCalc = () => {
     );
 };
 
-export default IdamEffCalc;
+export default IdamEfficiency;

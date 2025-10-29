@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Mail, Phone } from "lucide-react";
 
 const apiUrl: string =
-    import.meta.env.MODE === "production"
+    import.meta.env.MODE === "development"
         ? import.meta.env.VITE_DEV_URL
         : import.meta.env.VITE_PROD_URL;
 
@@ -35,13 +35,10 @@ const Footer = () => {
         setStatus("loading");
 
         try {
-            const response = await axios.post(
-                apiUrl,
-                formData,
-                { headers: { "Content-Type": "application/json" } }
-            );
+            await axios.post(`${apiUrl}/api/sendEmail`, formData, {
+                headers: { "Content-Type": "application/json" },
+            });
 
-            console.log("Email sent:", response.data);
             setStatus("success");
             setFormData({ name: "", email: "", thought: "" });
         } catch (error: any) {
@@ -146,8 +143,8 @@ const Footer = () => {
                             {status === "loading"
                                 ? "Sending..."
                                 : status === "success"
-                                    ? "Sent!"
-                                    : "Submit"}
+                                  ? "Sent!"
+                                  : "Submit"}
                         </button>
 
                         {status === "success" && (

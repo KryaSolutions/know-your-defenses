@@ -1,5 +1,14 @@
+import axios from "axios";
 import { useState, useEffect, useRef } from "react";
-import { fetchKnowledgeBase, quickReplies } from "../utilities/quickResponses.ts";
+import {
+    fetchKnowledgeBase,
+    quickReplies,
+} from "../utilities/quickResponses.ts";
+
+const apiUrl: string =
+    import.meta.env.MODE === "development"
+        ? import.meta.env.VITE_DEV_URL
+        : import.meta.env.VITE_PROD_URL;
 
 const Bot = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -35,20 +44,28 @@ const Bot = () => {
         } else {
             setIsLoading(true);
             try {
-                const response = await fetch(`${import.meta.env.VITE_API_URL}/api/chatCompletion`, {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify({ message: trimmed }),
-                });
+                type CompletionType = {
+                    completion: string;
+                    success: boolean;
+                };
 
-                if (!response.ok) {
+                const completion = await axios.post<CompletionType>(
+                    `${apiUrl}/api/chatCompletion`,
+                    { message: trimmed },
+                    {
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                    }
+                );
+
+                if (!completion.data.success) {
                     throw new Error("Failed to get response from server");
                 }
 
-                const data = await response.json();
-                const aiResponse = data.response || data.completion || "I'm sorry, I couldn't process that request.";
+                const aiResponse =
+                    completion.data.completion ||
+                    "I'm sorry, I couldn't process that request.";
 
                 setMessages((prev) => [
                     ...prev,
@@ -114,12 +131,17 @@ const Bot = () => {
                     <div className="bg-[var(--brand-blue)] text-white p-3 sm:p-4 rounded-t-2xl flex justify-between items-center">
                         <div className="flex items-center gap-3">
                             <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center">
-                                <svg className="w-6 h-6 fill-white" viewBox="0 0 24 24">
+                                <svg
+                                    className="w-6 h-6 fill-white"
+                                    viewBox="0 0 24 24"
+                                >
                                     <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" />
                                 </svg>
                             </div>
                             <div>
-                                <h3 className="font-semibold text-base">Krya AI Assistant</h3>
+                                <h3 className="font-semibold text-base">
+                                    Krya AI Assistant
+                                </h3>
                                 <p className="text-xs opacity-90">🟢 Online</p>
                             </div>
                         </div>
@@ -137,14 +159,20 @@ const Bot = () => {
                         {messages.length === 0 && (
                             <div className="flex gap-2">
                                 <div className="w-8 h-8 sm:w-10 sm:h-10 bg-[var(--brand-blue)] rounded-full flex items-center justify-center flex-shrink-0">
-                                    <svg className="w-4 h-4 fill-white" viewBox="0 0 24 24">
+                                    <svg
+                                        className="w-4 h-4 fill-white"
+                                        viewBox="0 0 24 24"
+                                    >
                                         <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" />
                                     </svg>
                                 </div>
                                 <div className="bg-white p-3 sm:p-4 rounded-2xl rounded-tl-none shadow-sm max-w-[85%] sm:max-w-[75%]">
-                                    <p className="font-semibold mb-1">Welcome to Krya Solutions!</p>
+                                    <p className="font-semibold mb-1">
+                                        Welcome to Krya Solutions!
+                                    </p>
                                     <p className="text-gray-700 mb-2">
-                                        I'm your AI assistant for cybersecurity. Ask me anything!
+                                        I'm your AI assistant for cybersecurity.
+                                        Ask me anything!
                                     </p>
                                     <button
                                         type="button"
@@ -157,10 +185,16 @@ const Bot = () => {
                                         {quickReplies.map((reply, i) => (
                                             <button
                                                 key={i}
-                                                onClick={() => sendMessageWithText(reply)}
+                                                onClick={() =>
+                                                    sendMessageWithText(reply)
+                                                }
                                                 className="px-3 py-1.5 bg-gray-100 hover:bg-blue-600 hover:text-white border border-gray-200 rounded-full text-xs sm:text-sm transition-all"
                                             >
-                                                {reply.split(" ").slice(0, 3).join(" ")}...
+                                                {reply
+                                                    .split(" ")
+                                                    .slice(0, 3)
+                                                    .join(" ")}
+                                                ...
                                             </button>
                                         ))}
                                     </div>
@@ -175,16 +209,20 @@ const Bot = () => {
                             >
                                 {!msg.isUser && (
                                     <div className="w-8 h-8 sm:w-10 sm:h-10 bg-[var(--brand-blue)] rounded-full flex items-center justify-center flex-shrink-0">
-                                        <svg className="w-4 h-4 fill-white" viewBox="0 0 24 24">
+                                        <svg
+                                            className="w-4 h-4 fill-white"
+                                            viewBox="0 0 24 24"
+                                        >
                                             <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" />
                                         </svg>
                                     </div>
                                 )}
                                 <div
-                                    className={`px-3 py-2 sm:px-4 sm:py-2.5 rounded-2xl max-w-[85%] sm:max-w-[75%] whitespace-pre-line shadow-sm ${msg.isUser
-                                        ? "bg-[var(--brand-blue)] text-white rounded-br-none"
-                                        : "bg-white text-gray-800 rounded-tl-none"
-                                        }`}
+                                    className={`px-3 py-2 sm:px-4 sm:py-2.5 rounded-2xl max-w-[85%] sm:max-w-[75%] whitespace-pre-line shadow-sm ${
+                                        msg.isUser
+                                            ? "bg-[var(--brand-blue)] text-white rounded-br-none"
+                                            : "bg-white text-gray-800 rounded-tl-none"
+                                    }`}
                                 >
                                     {msg.text}
                                     {msg.hasLink && !msg.isUser && (
@@ -204,7 +242,10 @@ const Bot = () => {
                         {isLoading && (
                             <div className="flex gap-2">
                                 <div className="w-8 h-8 sm:w-10 sm:h-10 bg-[var(--brand-blue)] rounded-full flex items-center justify-center flex-shrink-0">
-                                    <svg className="w-4 h-4 fill-white" viewBox="0 0 24 24">
+                                    <svg
+                                        className="w-4 h-4 fill-white"
+                                        viewBox="0 0 24 24"
+                                    >
                                         <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" />
                                     </svg>
                                 </div>
@@ -233,7 +274,9 @@ const Bot = () => {
                             type="text"
                             value={input}
                             onChange={(e) => setInput(e.target.value)}
-                            onKeyDown={(e) => e.key === "Enter" && sendMessage()}
+                            onKeyDown={(e) =>
+                                e.key === "Enter" && sendMessage()
+                            }
                             placeholder="Ask me anything..."
                             className="flex-1 px-3 py-2 sm:px-4 border border-gray-200 rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                             disabled={isLoading}
@@ -244,7 +287,10 @@ const Bot = () => {
                             aria-label="Send message"
                             className="bg-[var(--brand-blue)] hover:from-blue-700 hover:to-purple-700 disabled:opacity-50 text-white p-2 sm:p-3 rounded-full transition-all"
                         >
-                            <svg className="w-5 h-5 fill-white" viewBox="0 0 24 24">
+                            <svg
+                                className="w-5 h-5 fill-white"
+                                viewBox="0 0 24 24"
+                            >
                                 <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" />
                             </svg>
                         </button>

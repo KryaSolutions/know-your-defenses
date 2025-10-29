@@ -1,25 +1,19 @@
 import { useState, useEffect } from "react";
 import type { ComponentType } from "react";
 import {
-    Target,
     Calculator,
     Shield,
-    Clock,
     TrendingUp,
-    CheckCircle,
     Database,
     Users,
+    Zap,
     X,
-    Zap
 } from "lucide-react";
-import SocAlerts from "./calculators/SocAlerts";
-import SocLatency from "./calculators/SocLatency";
-import SocProductivity from "./calculators/SocProductivity";
-import SocSlaCompliance from "./calculators/SocSLACompliance";
-import SocThreatIntelligence from "./calculators/SocThreatIntelligence";
-import IdamEffCalc from "./calculators/IdamEfficiency";
-import PerformanceKPIS from "./calculators/PerformanceKPIS";
-import ResponseAndResolution from "./calculators/ResponseAndResolution";
+import SocProductivity from "./calculators/Productivity";
+import SocThreatIntelligence from "./calculators/ThreatIntelligence";
+import IdamEfficiency from "./calculators/IdamEfficiency";
+import SocEfficiency from "./calculators/SocEfficiency";
+import SlaPerformance from "./calculators/SlaPerformance";
 
 interface CalculatorItem {
     id: string;
@@ -31,17 +25,17 @@ interface CalculatorItem {
 
 const calculators: CalculatorItem[] = [
     {
-        id: "alerts",
-        name: "Alert Analysis",
-        component: SocAlerts,
+        id: "soc",
+        name: "SOC Efficiency",
+        component: SocEfficiency,
         icon: Shield,
         color: "blue",
     },
     {
-        id: "latency",
-        name: "Latency Metrics",
-        component: SocLatency,
-        icon: Clock,
+        id: "idam",
+        name: "IDAM Efficiency",
+        component: IdamEfficiency,
+        icon: Users,
         color: "purple",
     },
     {
@@ -52,49 +46,28 @@ const calculators: CalculatorItem[] = [
         color: "green",
     },
     {
-        id: "sla",
-        name: "SLA Compliance",
-        component: SocSlaCompliance,
-        icon: CheckCircle,
-        color: "indigo",
-    },
-    {
         id: "threat",
         name: "Threat Intelligence",
         component: SocThreatIntelligence,
         icon: Database,
-        color: "red",
+        color: "indigo",
     },
     {
-        id: "idam",
-        name: "IDAM Efficiency",
-        component: IdamEffCalc,
-        icon: Users,
-        color: "cyan",
-    },
-    {
-        id: "kpi",
-        name: "Performance KPIs",
-        component: PerformanceKPIS,
-        icon: Target,
-        color: "blue",
-    },
-    {
-        id: "rnr",
-        name: "Response & Resolution",
-        component: ResponseAndResolution,
+        id: "slaPerformance",
+        name: "SLA / Performance KPIs",
+        component: SlaPerformance,
         icon: Zap,
-        color: "purple",
+        color: "red",
     },
 ];
 
-const colorMap = {
-    blue: "bg-blue-50 text-blue-700 border-blue-200 hover:bg-blue-100 hover:border-blue-300",
-    purple: "bg-purple-50 text-purple-700 border-purple-200 hover:bg-purple-100 hover:border-purple-300",
-    green: "bg-green-50 text-green-700 border-green-200 hover:bg-green-100 hover:border-green-300",
-    indigo: "bg-indigo-50 text-indigo-700 border-indigo-200 hover:bg-indigo-100 hover:border-indigo-300",
-    red: "bg-red-50 text-red-700 border-red-200 hover:bg-red-100 hover:border-red-300",
-    cyan: "bg-cyan-50 text-cyan-700 border-cyan-200 hover:bg-cyan-100 hover:border-cyan-300",
+const colorMap: Record<string, string> = {
+    blue: "bg-blue-200/50 text-blue-700 border-blue-200 hover:bg-blue-200 hover:border-blue-300",
+    purple: "bg-purple-200/50 text-purple-700 border-purple-200 hover:bg-purple-200 hover:border-purple-300",
+    green: "bg-green-200/50 text-green-700 border-green-200 hover:bg-green-200 hover:border-green-300",
+    indigo: "bg-indigo-200/50 text-indigo-700 border-indigo-200 hover:bg-indigo-200 hover:border-indigo-300",
+    red: "bg-red-200/50 text-red-700 border-red-200 hover:bg-red-200 hover:border-red-300",
+    cyan: "bg-cyan-200/50 text-cyan-700 border-cyan-200 hover:bg-cyan-200 hover:border-cyan-300",
 };
 
 const CalcWrapper = () => {
@@ -144,7 +117,7 @@ const CalcWrapper = () => {
                         <div className="p-2 sm:p-3 bg-blue-500 rounded-full flex-shrink-0">
                             <Calculator className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
                         </div>
-                        <h2 className="text-2xl sm:text-3xl font-bold text-blue-700 text-center">
+                        <h2 className="text-2xl sm:text-3xl font-bold text-(--brand-blue) text-center">
                             Sec-Ops Efficiency{" "}
                         </h2>
                     </div>
@@ -160,7 +133,7 @@ const CalcWrapper = () => {
                             </p>
                         </div>
 
-                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4 lg:gap-6">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-6">
                             {calculators.map((calc, _idx) => {
                                 const Icon = calc.icon;
                                 return (
@@ -175,7 +148,7 @@ const CalcWrapper = () => {
                                             <div className="p-2 rounded-lg bg-white/80 shadow-sm group-hover:shadow-md transition-shadow duration-300">
                                                 <Icon className="w-5 h-5 sm:w-6 sm:h-6" />
                                             </div>
-                                            <h3 className="text-base sm:text-lg font-semibold text-left">
+                                            <h3 className="text-base text-slate-800 sm:text-lg font-semibold text-left">
                                                 {calc.name}
                                             </h3>
                                         </div>
