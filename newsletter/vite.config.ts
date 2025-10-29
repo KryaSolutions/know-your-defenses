@@ -3,29 +3,33 @@ import path from "path";
 import { svelte } from "@sveltejs/vite-plugin-svelte";
 import tailwindcss from "@tailwindcss/vite";
 
-export default defineConfig({
-    plugins: [svelte(), tailwindcss()],
-    build: {
-        rollupOptions: {
-            output: {
-                manualChunks(id) {
-                    if (id.includes("node_modules")) {
-                        return id
-                            .toString()
-                            .split("node_modules/")[1]
-                            .split("/")[0]
-                            .toString();
-                    }
+export default defineConfig(({ mode }) => {
+    return {
+        plugins: [svelte(), tailwindcss()],
+        build: {
+            rollupOptions: {
+                output: {
+                    manualChunks(id) {
+                        if (id.includes("node_modules")) {
+                            return id
+                                .toString()
+                                .split("node_modules/")[1]
+                                .split("/")[0]
+                                .toString();
+                        }
+                    },
                 },
             },
         },
-    },
-    resolve: {
-        alias: {
-            "@": path.resolve(__dirname, "./src"),
+        resolve: {
+            alias: {
+                "@": path.resolve(__dirname, "./src"),
+            },
         },
-    },
-    // base: "https://kyd.kryasolutions.com",
-    base: "/",
-    server: {},
+        base:
+            mode === "development"
+                ? "http://localhost:10100/newsletter"
+                : "https://kyd.kryasolutions.com/newsletter",
+        server: {},
+    };
 });

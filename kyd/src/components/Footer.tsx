@@ -2,6 +2,11 @@ import axios from "axios";
 import { useState } from "react";
 import { Mail, Phone } from "lucide-react";
 
+const apiUrl: string =
+    import.meta.env.MODE === "production"
+        ? import.meta.env.VITE_DEV_URL
+        : import.meta.env.VITE_PROD_URL;
+
 const Footer = () => {
     type FormData = {
         name: string;
@@ -31,7 +36,7 @@ const Footer = () => {
 
         try {
             const response = await axios.post(
-                `${import.meta.env.VITE_API_URL}/api/sendEmail`,
+                apiUrl,
                 formData,
                 { headers: { "Content-Type": "application/json" } }
             );
@@ -141,8 +146,8 @@ const Footer = () => {
                             {status === "loading"
                                 ? "Sending..."
                                 : status === "success"
-                                  ? "Sent!"
-                                  : "Submit"}
+                                    ? "Sent!"
+                                    : "Submit"}
                         </button>
 
                         {status === "success" && (

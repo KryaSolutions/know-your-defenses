@@ -1,11 +1,7 @@
 import cloudSecurity from "./cloudSecurity";
 import securityMaturity from "./securityMaturity";
 import socAssessment from "./socAssessment";
-import zeroTrustAssessment from "./zeroTrust";
-
-export type titleType = string;
-
-export type descType = string;
+import zeroTrust from "./zeroTrust";
 
 export type dataType = {
     [category: string]: {
@@ -23,8 +19,8 @@ export type optionType = {
 };
 
 export type assessmentType = {
-    title: titleType;
-    desc: descType;
+    title: string;
+    desc: string;
     questions: dataType;
     options: optionType[];
     color: string;
@@ -33,7 +29,7 @@ export type assessmentType = {
 const assessmentData: assessmentType[] = [
     { ...cloudSecurity },
     { ...securityMaturity },
-    { ...zeroTrustAssessment },
+    { ...zeroTrust },
     { ...socAssessment },
 ];
 

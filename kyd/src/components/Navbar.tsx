@@ -55,7 +55,7 @@ const Navbar = () => {
                     {/* Navigation Links */}
                     <div className="flex items-center space-x-8">
                         <a
-                            href="https://kyd.kryasolutions.com/newsletters"
+                            href="http://localhost:10100/newsletter"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="text-white hover:text-[var(--brand-orange)] transition-colors duration-200 font-medium"

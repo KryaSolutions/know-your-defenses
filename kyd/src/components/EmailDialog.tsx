@@ -13,6 +13,12 @@ import { ResponseContext } from "@/components/SurveyWrapper";
 import type { ResponseContextType } from "@/components/SurveyWrapper";
 import { DialogDescription } from "@radix-ui/react-dialog";
 
+
+const apiUrl: string =
+    import.meta.env.MODE === "production"
+        ? import.meta.env.VITE_DEV_URL
+        : import.meta.env.VITE_PROD_URL;
+
 const personalEmailDomains: string[] = [
     "gmail.com",
     "yahoo.com",
@@ -89,7 +95,7 @@ const EmailDialog: React.FC<ReportDialogProps> = ({
     async function verifyEmail(email: string): Promise<boolean> {
         try {
             const res = await axios.post(
-                `${import.meta.env.VITE_API_URL}/api/verifyEmail`,
+                apiUrl,
                 { email: email },
                 {
                     headers: {
@@ -107,7 +113,7 @@ const EmailDialog: React.FC<ReportDialogProps> = ({
         } catch (err: any) {
             setEmailError(
                 err.response?.data?.message ??
-                    "Invalid email, please enter a valid email"
+                "Invalid email, please enter a valid email"
             );
             return false;
         }
@@ -116,7 +122,7 @@ const EmailDialog: React.FC<ReportDialogProps> = ({
     async function appendCustomer() {
         try {
             await axios.post(
-                `${import.meta.env.VITE_API_URL}/api/appendCustomer`,
+                apiUrl,
                 {
                     name: form.name,
                     org: form.org,
