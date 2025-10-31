@@ -26,19 +26,13 @@
         status = "loading";
 
         try {
-            const response = await axios.post(
-                `${apiUrl}/api/sendEmail`,
-                formData,
-                {
-                    headers: { "Content-Type": "application/json" },
-                }
-            );
+            await axios.post(`${apiUrl}/api/sendEmail`, formData, {
+                headers: { "Content-Type": "application/json" },
+            });
 
-            console.log("Email sent:", response.data);
             status = "success";
             formData = { name: "", email: "", thought: "" };
         } catch (error: any) {
-            console.error("Error sending email:", error);
             status = "error";
         } finally {
             setTimeout(() => (status = "idle"), 4000);

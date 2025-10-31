@@ -16,10 +16,6 @@ const colorMap: Record<string, string> = {
 };
 
 const Survey = () => {
-    const context = useContext<ResponseContextType | null>(ResponseContext);
-    if (!context) return null;
-    const { response } = context;
-
     const [selectedAssessment, setSelectedAssessment] =
         useState<assessmentType | null>(null);
     const [isVisible, setIsVisible] = useState<boolean>(false);
@@ -32,6 +28,18 @@ const Survey = () => {
         window.addEventListener("keydown", handleEsc);
         return () => window.removeEventListener("keydown", handleEsc);
     }, []);
+
+    useEffect(() => {
+        const handleEsc = (e: KeyboardEvent) => {
+            if (e.key === "Escape" && isVisible) handleClosePopup();
+        };
+        window.addEventListener("keydown", handleEsc);
+        return () => window.removeEventListener("keydown", handleEsc);
+    }, [isVisible]);
+
+    const context = useContext<ResponseContextType | null>(ResponseContext);
+    if (!context) return null;
+    const { response } = context;
 
     const handleStartAssessment = (assessment: assessmentType) => {
         setSelectedAssessment(assessment);
@@ -47,14 +55,6 @@ const Survey = () => {
             setIsClosing(false);
         }, 300);
     };
-
-    useEffect(() => {
-        const handleEsc = (e: KeyboardEvent) => {
-            if (e.key === "Escape" && isVisible) handleClosePopup();
-        };
-        window.addEventListener("keydown", handleEsc);
-        return () => window.removeEventListener("keydown", handleEsc);
-    }, [isVisible]);
 
     return (
         <>

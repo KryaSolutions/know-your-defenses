@@ -1,4 +1,6 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useContext } from "react";
+import { MetricsContext, updateCalcMetrics } from "../CalcWrapper";
+import type { MetricsContextType } from "../CalcWrapper";
 
 const SocProductivity = () => {
     const [metrics, setMetrics] = useState({
@@ -24,6 +26,10 @@ const SocProductivity = () => {
         incidentStatus: string;
         efficiencyStatus: string;
     }>(null);
+
+    const context = useContext<MetricsContextType | null>(MetricsContext);
+    if (!context) return null;
+    const { setCalcMetrics } = context;
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
@@ -129,11 +135,11 @@ const SocProductivity = () => {
         const efficiencyScore =
             socAnalysts > 0
                 ? Math.min(
-                      100,
-                      (incidentsResolved /
-                          (automatedAlerts + incidentsResolved + 1)) *
-                          200
-                  )
+                    100,
+                    (incidentsResolved /
+                        (automatedAlerts + incidentsResolved + 1)) *
+                    200
+                )
                 : 0;
 
         const alertWorkloadStatus = getWorkloadStatus(alertsPerAnalyst);
@@ -143,7 +149,7 @@ const SocProductivity = () => {
         const incidentStatus = getIncidentStatus(incidentsPerAnalyst);
         const efficiencyStatus = getEfficiencyStatus(efficiencyScore);
 
-        setResults({
+        const buffer = {
             alertsPerAnalyst,
             assetsPerAnalyst,
             toolsPerAnalyst,
@@ -156,7 +162,10 @@ const SocProductivity = () => {
             trainingStatus,
             incidentStatus,
             efficiencyStatus,
-        });
+        };
+
+        setResults(buffer);
+        updateCalcMetrics("productivity", buffer, setCalcMetrics);
     };
 
     const reset = () => {
@@ -311,11 +320,10 @@ const SocProductivity = () => {
                             <button
                                 onClick={calculate}
                                 disabled={validation.hasError}
-                                className={`px-4 py-2 rounded-lg text-sm font-medium text-white transition-all duration-200 ${
-                                    validation.hasError
-                                        ? "bg-gray-400 cursor-not-allowed"
-                                        : "bg-[var(--brand-blue)]"
-                                }`}
+                                className={`px-4 py-2 rounded-lg text-sm font-medium text-white transition-all duration-200 ${validation.hasError
+                                    ? "bg-gray-400 cursor-not-allowed"
+                                    : "bg-[var(--brand-blue)]"
+                                    }`}
                             >
                                 Calculate
                             </button>

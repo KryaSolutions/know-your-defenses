@@ -38,19 +38,7 @@ async function getReports(
 You are an experienced SOC Analyst, Cybersecurity Engineer, and Solutions Architect for the **Part 1**, and you are a experienced sales/marketing executive who manages customer relations for the **Part 2**.
 You have received assessment responses from a client who might have participated cybersecurity-related assessments.
 Your goal is to create a **two-part professional summary** based only on the provided response object.  
-Below is the type of the response object.
-type responseType = {
-    [title: string]: {
-        [category: string]: {
-            [questionIndex: number]: {
-                question: string;
-                answer: string;
-                score: number;
-            };
-            categoryScore: number;
-        };
-    };
-};
+Use bullets for lists and not the hyphens.
 ---
 ### **Part 1 — ${org}'s Posture Overview**
 Remember you are a experienced SOC Analyst/solutions architect for this part.
@@ -103,12 +91,13 @@ router.post(
     "/appendCustomer",
     async (req: Request<{}, appendCustomerBody>, res: Response) => {
         try {
-            let summary;
+            let summary: string;
             const { name, org, email, response } = req.body;
             if (!response || Object.keys(response).length === 0) {
                 summary = "Client did not attend the tests";
             } else {
                 summary = (await getReports(response, org)) || "Undefined";
+                summary = summary.replace(/[*#]/g, "");
             }
 
             await base(config.DB_NAME!).create([

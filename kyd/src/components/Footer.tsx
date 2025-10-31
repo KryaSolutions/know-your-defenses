@@ -11,12 +11,14 @@ const Footer = () => {
     type FormData = {
         name: string;
         email: string;
+        mobile: string;
         thought: string;
     };
 
     const [formData, setFormData] = useState<FormData>({
         name: "",
         email: "",
+        mobile: "",
         thought: "",
     });
 
@@ -40,13 +42,8 @@ const Footer = () => {
             });
 
             setStatus("success");
-            setFormData({ name: "", email: "", thought: "" });
+            setFormData({ name: "", email: "", mobile: "", thought: "" });
         } catch (error: any) {
-            if (error.response) {
-                console.error("Backend error:", error.response.data);
-            } else {
-                console.error("Network error:", error.message);
-            }
             setStatus("error");
         } finally {
             setTimeout(() => setStatus("idle"), 4000);
@@ -124,6 +121,19 @@ const Footer = () => {
                         </div>
                         <div>
                             <label className="block text-sm mb-1 text-slate-700">
+                                Mobile No.
+                            </label>
+                            <input
+                                type="text"
+                                name="mobile"
+                                value={formData.mobile}
+                                onChange={handleChange}
+                                required
+                                className="w-full px-4 py-2 rounded-md border border-slate-300 focus:outline-none focus:border-[var(--brand-blue)] text-slate-700"
+                            />
+                        </div>
+                        <div>
+                            <label className="block text-sm mb-1 text-slate-700">
                                 Share your thoughts
                             </label>
                             <textarea
@@ -143,8 +153,8 @@ const Footer = () => {
                             {status === "loading"
                                 ? "Sending..."
                                 : status === "success"
-                                  ? "Sent!"
-                                  : "Submit"}
+                                    ? "Sent!"
+                                    : "Submit"}
                         </button>
 
                         {status === "success" && (

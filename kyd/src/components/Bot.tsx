@@ -76,7 +76,6 @@ const Bot = () => {
                     },
                 ]);
             } catch (error) {
-                console.error("Error calling chat API:", error);
                 setMessages((prev) => [
                     ...prev,
                     {
@@ -218,11 +217,10 @@ const Bot = () => {
                                     </div>
                                 )}
                                 <div
-                                    className={`px-3 py-2 sm:px-4 sm:py-2.5 rounded-2xl max-w-[85%] sm:max-w-[75%] whitespace-pre-line shadow-sm ${
-                                        msg.isUser
-                                            ? "bg-[var(--brand-blue)] text-white rounded-br-none"
-                                            : "bg-white text-gray-800 rounded-tl-none"
-                                    }`}
+                                    className={`px-3 py-2 sm:px-4 sm:py-2.5 rounded-2xl max-w-[85%] sm:max-w-[75%] whitespace-pre-line shadow-sm ${msg.isUser
+                                        ? "bg-[var(--brand-blue)] text-white rounded-br-none"
+                                        : "bg-white text-gray-800 rounded-tl-none"
+                                        }`}
                                 >
                                     {msg.text}
                                     {msg.hasLink && !msg.isUser && (

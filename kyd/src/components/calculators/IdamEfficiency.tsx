@@ -1,4 +1,6 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useContext } from "react";
+import { MetricsContext, updateCalcMetrics } from "../CalcWrapper";
+import type { MetricsContextType } from "../CalcWrapper";
 
 const IdamEfficiency = () => {
     const [currentStep, setCurrentStep] = useState(0);
@@ -27,6 +29,11 @@ const IdamEfficiency = () => {
 
     const [results, setResults] = useState<any>(null);
     const [isTransitioning, setIsTransitioning] = useState(false);
+
+
+    const context = useContext<MetricsContextType | null>(MetricsContext);
+    if (!context) return null;
+    const { setCalcMetrics } = context;
 
     const steps = [
         {
@@ -281,6 +288,24 @@ const IdamEfficiency = () => {
 
         setIsTransitioning(true);
         setTimeout(() => {
+            const buffer = {
+                overallEfficiency,
+                roi,
+                timeToValue,
+                pimPamScore,
+                igaScore,
+                authScore,
+                govScore,
+                irScore,
+                provisioningEff,
+                deprovisioningEff,
+                riskReduction,
+                potentialLossPrevented,
+                automationSavings,
+                totalValue,
+            };
+            updateCalcMetrics("idamEfficiency", buffer, setCalcMetrics);
+
             setResults({
                 overallEfficiency,
                 roi,
@@ -608,7 +633,7 @@ const IdamEfficiency = () => {
                                     name={field.key}
                                     value={
                                         metrics[
-                                            field.key as keyof typeof metrics
+                                        field.key as keyof typeof metrics
                                         ]
                                     }
                                     onChange={handleChange}
@@ -623,11 +648,10 @@ const IdamEfficiency = () => {
                         <button
                             onClick={prevStep}
                             disabled={currentStep === 0}
-                            className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
-                                currentStep === 0
-                                    ? "bg-gray-200 text-gray-400 cursor-not-allowed"
-                                    : "border border-gray-300 text-gray-700 hover:scale-105"
-                            }`}
+                            className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${currentStep === 0
+                                ? "bg-gray-200 text-gray-400 cursor-not-allowed"
+                                : "border border-gray-300 text-gray-700 hover:scale-105"
+                                }`}
                         >
                             Previous
                         </button>
@@ -639,11 +663,10 @@ const IdamEfficiency = () => {
                         <button
                             onClick={nextStep}
                             disabled={!validation.isValid}
-                            className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
-                                !validation.isValid
-                                    ? "bg-gray-200 text-gray-400 cursor-not-allowed"
-                                    : "bg-(--brand-blue) text-white hover:scale-105"
-                            }`}
+                            className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${!validation.isValid
+                                ? "bg-gray-200 text-gray-400 cursor-not-allowed"
+                                : "bg-(--brand-blue) text-white hover:scale-105"
+                                }`}
                         >
                             {currentStep === steps.length - 1
                                 ? "Calculate Results"

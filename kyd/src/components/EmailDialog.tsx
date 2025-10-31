@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import {
     Dialog,
@@ -9,9 +9,9 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Shield, ArrowRight } from "lucide-react";
-import { ResponseContext } from "@/components/SurveyWrapper";
-import type { ResponseContextType } from "@/components/SurveyWrapper";
 import { DialogDescription } from "@radix-ui/react-dialog";
+import type { CalcMetricsType } from "./CalcWrapper";
+import type { ResponseType } from "./SurveyWrapper";
 
 const apiUrl: string =
     import.meta.env.MODE === "development"
@@ -65,6 +65,8 @@ type ReportDialogProps = {
     triggerButtonText?: string;
     title?: string;
     variant?: "default" | "outline";
+    apiRoute: string;
+    blob: CalcMetricsType | ResponseType | {};
 };
 
 const EmailDialog: React.FC<ReportDialogProps> = ({
@@ -72,11 +74,9 @@ const EmailDialog: React.FC<ReportDialogProps> = ({
     triggerButtonText = "Get My Results",
     title = "Generate Your Report",
     variant = "default",
+    apiRoute,
+    blob
 }) => {
-    const context = useContext<ResponseContextType | null>(ResponseContext);
-    if (!context) return null;
-    const { response } = context;
-
     const [open, setOpen] = useState(false);
     const [form, setForm] = useState({ name: "", org: "", email: "" });
     const [emailError, setEmailError] = useState("");
@@ -112,19 +112,19 @@ const EmailDialog: React.FC<ReportDialogProps> = ({
         } catch (err: any) {
             setEmailError(
                 err.response?.data?.message ??
-                    "Invalid email, please enter a valid email"
+                "Invalid email, please enter a valid email"
             );
             return false;
         }
     }
 
-    async function appendCustomer() {
+    async function job() {
         try {
-            await axios.post(`${apiUrl}/api/appendCustomer`, {
+            await axios.post(apiRoute, {
                 name: form.name,
                 org: form.org,
                 email: form.email,
-                response: response,
+                response: blob,
             });
         } finally {
             return true;
@@ -137,7 +137,7 @@ const EmailDialog: React.FC<ReportDialogProps> = ({
         try {
             const status = await verifyEmail(form.email);
             if (status) {
-                await appendCustomer();
+                await job();
                 onSubmit(form);
                 setOpen(false);
             }

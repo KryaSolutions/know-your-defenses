@@ -1,4 +1,6 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useContext } from "react";
+import { MetricsContext, updateCalcMetrics } from "../CalcWrapper";
+import type { MetricsContextType } from "../CalcWrapper";
 
 const SocThreatIntelligence = () => {
     const [metrics, setMetrics] = useState({
@@ -18,6 +20,10 @@ const SocThreatIntelligence = () => {
         huntingStatus: string;
         zeroDayStatus: string;
     }>(null);
+
+    const context = useContext<MetricsContextType | null>(MetricsContext);
+    if (!context) return null;
+    const { setCalcMetrics } = context;
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
@@ -98,14 +104,17 @@ const SocThreatIntelligence = () => {
         const huntingStatus = getHuntingStatus(huntingEffectiveness);
         const zeroDayStatus = getZeroDayStatus(zeroDayDetection);
 
-        setResults({
+        const buffer = {
             iocsPerFeed,
             huntingEffectiveness,
             zeroDayDetection,
             iocsStatus,
             huntingStatus,
             zeroDayStatus,
-        });
+        };
+
+        setResults(buffer);
+        updateCalcMetrics("threatIntelligence", buffer, setCalcMetrics);
     };
 
     const reset = () => {
@@ -236,11 +245,10 @@ const SocThreatIntelligence = () => {
                             <button
                                 onClick={calculate}
                                 disabled={validation.hasError}
-                                className={`px-4 py-2 rounded-lg text-sm font-medium text-white transition-all duration-200 ${
-                                    validation.hasError
-                                        ? "bg-gray-400 cursor-not-allowed"
-                                        : "bg-[var(--brand-blue)]"
-                                }`}
+                                className={`px-4 py-2 rounded-lg text-sm font-medium text-white transition-all duration-200 ${validation.hasError
+                                    ? "bg-gray-400 cursor-not-allowed"
+                                    : "bg-[var(--brand-blue)]"
+                                    }`}
                             >
                                 Calculate
                             </button>

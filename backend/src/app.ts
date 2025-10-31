@@ -25,13 +25,15 @@ app.get("/api/health", (_req: Request, res: Response) => {
 
 import { router as routeVerifyEmail } from "./routes/verifyEmail.js";
 import { router as routerSendEmail } from "./routes/sendEmail.js";
-import { router as routeAppendCustomers } from "./routes/appendCustomer.js";
 import { router as routeChatCompletion } from "./routes/chatCompletion.js";
+import { router as routeAppendCustomers } from "./routes/appendCustomer.js";
+import { router as routerEvaluateCalc } from "./routes/evaluateCalc.js";
 
 app.use("/api", routeVerifyEmail);
 app.use("/api", routerSendEmail);
 app.use("/api", routeAppendCustomers);
 app.use("/api", routeChatCompletion);
+app.use("/api", routerEvaluateCalc);
 
 let isHttps = false;
 

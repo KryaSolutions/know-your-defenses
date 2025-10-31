@@ -6,11 +6,11 @@ import { Shield } from "lucide-react";
 import EmailDialog from "./EmailDialog";
 
 export type ResponseContextType = {
-    response: responseType;
-    setResponse: React.Dispatch<React.SetStateAction<responseType>>;
+    response: ResponseType;
+    setResponse: React.Dispatch<React.SetStateAction<ResponseType>>;
 };
 
-export type responseType = {
+export type ResponseType = {
     [title: string]: {
         [category: string]: {
             [questionIndex: number]: {
@@ -32,8 +32,13 @@ export type ResultContextType = {
 
 export const ResultContext = createContext<ResultContextType | null>(null);
 
+const apiUrl: string =
+    import.meta.env.MODE === "development"
+        ? import.meta.env.VITE_DEV_URL
+        : import.meta.env.VITE_PROD_URL;
+
 const SurveyWrapper = () => {
-    const [response, setResponse] = useState<responseType>({});
+    const [response, setResponse] = useState<ResponseType>({});
     const [showResults, setShowResults] = useState(false);
 
     useEffect(() => {
@@ -91,6 +96,8 @@ const SurveyWrapper = () => {
                             <EmailDialog
                                 triggerButtonText="Evaluate Assessments"
                                 onSubmit={() => setShowResults(true)}
+                                apiRoute={`${apiUrl}/api/appendCustomer`}
+                                blob={response}
                             />
                         ) : (
                             <Button

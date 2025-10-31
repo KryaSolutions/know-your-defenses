@@ -22,9 +22,9 @@ const transporter = nodemailer.createTransport({
 });
 
 router.post("/sendEmail", async (req: Request<{}, FormData>, res: Response) => {
-    const { name, email, thought } = req.body;
+    const { name, email, mobile, thought } = req.body;
     const to = config.RECEPIENT;
-    const subject = `Thoughts for KYD by ${name}`;
+    const subject = `Thoughts for KYD by ${name}, Mobile: ${mobile}`;
     const text = thought;
     const html = `<p>${thought}</p>`;
 
@@ -37,7 +37,6 @@ router.post("/sendEmail", async (req: Request<{}, FormData>, res: Response) => {
             html,
         });
 
-        console.log("Email sent:", info.messageId);
         res.json({ success: true, messageId: info.messageId });
     } catch (error) {
         console.error("Error sending email:", error);

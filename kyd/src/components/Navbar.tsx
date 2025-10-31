@@ -9,10 +9,8 @@ const Navbar = () => {
             const currentScrollY = window.scrollY;
 
             if (currentScrollY < lastScrollY || currentScrollY < 10) {
-                // Scrolling up or at the top
                 setIsVisible(true);
             } else {
-                // Scrolling down
                 setIsVisible(false);
             }
 
@@ -46,11 +44,17 @@ const Navbar = () => {
                 <div className="flex items-center justify-between h-20">
                     {/* Logo Section */}
                     <div className="flex items-center">
-                        <img
-                            src="/krya.svg"
-                            alt="Krya Logo"
-                            className="h-12 w-auto object-contain"
-                        />
+                        <a
+                            href="https://kryasolutions.com"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            <img
+                                src="/krya.svg"
+                                alt="Krya Logo"
+                                className="h-12 w-auto object-contain"
+                            />
+                        </a>
                     </div>
 
                     {/* Navigation Links */}

@@ -1,4 +1,6 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useContext } from "react";
+import { MetricsContext, updateCalcMetrics } from "../CalcWrapper";
+import type { MetricsContextType } from "../CalcWrapper";
 
 const SocEfficiency = () => {
     const [currentStep, setCurrentStep] = useState(0);
@@ -32,6 +34,10 @@ const SocEfficiency = () => {
 
     const [results, setResults] = useState<any>(null);
     const [isTransitioning, setIsTransitioning] = useState(false);
+
+    const context = useContext<MetricsContextType | null>(MetricsContext);
+    if (!context) return null;
+    const { setCalcMetrics } = context;
 
     const steps = [
         {
@@ -459,6 +465,29 @@ const SocEfficiency = () => {
 
         setIsTransitioning(true);
         setTimeout(() => {
+            const buffer = {
+                overallEfficiency,
+                detectionAccuracy,
+                falsePositiveRate,
+                alertToIncidentConversion,
+                incidentClosureRate,
+                slaComplianceRate,
+                auditPassRate,
+                slaTargetAchievement,
+                incidentResolutionRate,
+                securityBreachRate,
+                socAvailability,
+                totalResponseTime,
+                averageLatency,
+                detectionToResolutionEfficiency,
+                mtbf: m.mtbf,
+                responseSlaCompliance,
+                resolutionSlaCompliance,
+                mttrActual: m.actualResponseTime,
+                mttrResolve: m.actualResolutionTime,
+            };
+            updateCalcMetrics("slaPerformance", buffer, setCalcMetrics);
+
             setResults({
                 overallEfficiency,
                 detectionAccuracy,
@@ -854,11 +883,10 @@ const SocEfficiency = () => {
                     <button
                         onClick={prevStep}
                         disabled={currentStep === 0}
-                        className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
-                            currentStep === 0
-                                ? "bg-gray-200 text-gray-400 cursor-not-allowed"
-                                : "border border-gray-300 text-gray-700 hover:bg-gray-50"
-                        }`}
+                        className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${currentStep === 0
+                            ? "bg-gray-200 text-gray-400 cursor-not-allowed"
+                            : "border border-gray-300 text-gray-700 hover:bg-gray-50"
+                            }`}
                     >
                         Previous
                     </button>
@@ -870,11 +898,10 @@ const SocEfficiency = () => {
                     <button
                         onClick={nextStep}
                         disabled={!validation.isValid}
-                        className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
-                            !validation.isValid
-                                ? "bg-gray-200 text-gray-400 cursor-not-allowed"
-                                : "bg-(--brand-blue) text-white hover:scale-105"
-                        }`}
+                        className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${!validation.isValid
+                            ? "bg-gray-200 text-gray-400 cursor-not-allowed"
+                            : "bg-(--brand-blue) text-white hover:scale-105"
+                            }`}
                     >
                         {currentStep === steps.length - 1
                             ? "Calculate Results"
