@@ -13,7 +13,7 @@ const Header = () => {
 
     return (
         <div className="relative overflow-hidden bg-[var(--brand-blue)] text-white flex items-center justify-center min-h-screen">
-            <div className="relative max-w-6xl mx-auto px-4 sm:px-6 py-12">
+            <div className="relative max-w-6xl mx-auto px-4 sm:px-6 py-20">
                 <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
                     <div className="space-y-6">
                         <div className="space-y-3">

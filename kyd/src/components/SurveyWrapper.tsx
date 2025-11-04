@@ -47,18 +47,18 @@ const SurveyWrapper = () => {
 
     return (
         <div className="flex-grow flex-shrink p-4 sm:p-6 md:p-8 lg:p-10 bg-[var(--brand-blue)]">
-            <div className="max-w-6xl mx-auto bg-white rounded-2xl shadow-xl overflow-hidden flex flex-col">
+            <div className="max-w-6xl mx-auto bg-white/5 border border-white/10 rounded-2xl shadow-xl overflow-hidden flex flex-col">
                 <ResponseContext.Provider value={{ response, setResponse }}>
                     {/* Header Section */}
                     <div
                         id="survey-section"
-                        className="bg-gradient-to-r from-blue-600/10 to-cyan-600/10 p-6 sm:p-8 border-b border-blue-100"
+                        className="p-6 sm:p-8"
                     >
                         <div className="flex items-center justify-center space-x-3 sm:space-x-4">
-                            <div className="p-2 sm:p-3 bg-[var(--brand-light-blue)] rounded-full flex-shrink-0">
-                                <Shield className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
+                            <div className="p-2 sm:p-3 bg-white rounded-full flex-shrink-0">
+                                <Shield className="w-6 h-6 sm:w-8 sm:h-8 text-(--brand-blue)" />
                             </div>
-                            <h2 className="text-2xl sm:text-3xl font-bold text-[var(--brand-blue)] text-center">
+                            <h2 className="text-2xl sm:text-3xl font-bold text-white text-center">
                                 {!showResults
                                     ? "Discover your Security Posture"
                                     : "Your Defense stats"}
@@ -70,11 +70,11 @@ const SurveyWrapper = () => {
                         value={{ showResults, setShowResults }}
                     >
                         {/* Content Section */}
-                        <div className="flex-1 p-6 sm:p-8 overflow-y-auto">
+                        <div className="flex-1 pt-3 pb-6 sm:pt-3 sm:pb-6 px-6 sm:px-8 overflow-y-auto">
                             <div className="space-y-6">
                                 {!showResults && (
                                     <div className="text-center">
-                                        <p className="text-slate-700 text-base sm:text-lg">
+                                        <p className="text-white text-base sm:text-lg">
                                             Take the quick assessments to
                                             understand your organization's
                                             current security posture.
@@ -91,7 +91,7 @@ const SurveyWrapper = () => {
                     </ResultContext.Provider>
 
                     {/* Action Buttons */}
-                    <div className="p-6 sm:p-8 border-t border-gray-200 flex justify-center bg-gradient-to-r from-blue-50/50 to-indigo-50/50">
+                    <div className="p-6 mb-4 sm:p-8 flex justify-center">
                         {!showResults ? (
                             <EmailDialog
                                 triggerButtonText="Evaluate Assessments"

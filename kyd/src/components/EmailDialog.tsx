@@ -93,22 +93,24 @@ const EmailDialog: React.FC<ReportDialogProps> = ({
 
     async function verifyEmail(email: string): Promise<boolean> {
         try {
-            const res = await axios.post(
-                `${apiUrl}/api/verifyEmail`,
-                { email: email },
-                {
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                }
-            );
-
-            if (!res.data.valid) {
-                setEmailError(res.data.message);
-                return false;
-            } else {
-                return true;
-            }
+            // const res = await axios.post(
+            //     `${apiUrl}/api/verifyEmail`,
+            //     { email: email },
+            //     {
+            //         headers: {
+            //             "Content-Type": "application/json",
+            //         },
+            //     }
+            // );
+            //
+            // if (!res.data.valid) {
+            //     setEmailError(res.data.message);
+            //     return false;
+            // } else {
+            //     return true;
+            // }
+            console.log(email);
+            return true;
         } catch (err: any) {
             setEmailError(
                 err.response?.data?.message ??
@@ -120,12 +122,12 @@ const EmailDialog: React.FC<ReportDialogProps> = ({
 
     async function job() {
         try {
-            await axios.post(apiRoute, {
-                name: form.name,
-                org: form.org,
-                email: form.email,
-                response: blob,
-            });
+            // await axios.post(apiRoute, {
+            //     name: form.name,
+            //     org: form.org,
+            //     email: form.email,
+            //     response: blob,
+            // });
         } finally {
             return true;
         }
@@ -151,7 +153,7 @@ const EmailDialog: React.FC<ReportDialogProps> = ({
             <Button
                 className={
                     variant === "default"
-                        ? "bg-[var(--brand-blue)] text-white px-8 py-3 rounded-lg font-semibold flex items-center space-x-3 transition-all duration-500 hover:scale-110"
+                        ? "bg-(--brand-orange) text-white px-8 py-3 rounded-lg font-semibold flex items-center space-x-3 transition-all duration-500 hover:scale-110"
                         : "border-2 border-blue-200 px-8 py-3 rounded-lg font-semibold flex items-center space-x-3"
                 }
                 onClick={() => setOpen(true)}

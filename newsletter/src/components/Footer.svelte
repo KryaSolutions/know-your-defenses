@@ -40,16 +40,21 @@
     };
 </script>
 
-<footer class="w-full py-12 px-6 bg-transparent text-slate-800">
-    <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10">
+<footer
+    id="contact-section"
+    class="w-full py-8 sm:py-12 px-4 sm:px-6 bg-transparent text-slate-800"
+>
+    <div
+        class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10"
+    >
         <!-- Left Section -->
         <div
-            class="flex flex-col justify-center text-center md:text-left space-y-6"
+            class="flex flex-col justify-center text-center md:text-left space-y-4 sm:space-y-6"
         >
-            <h2 class="text-2xl font-semibold text-(--brand-blue)">
+            <h2 class="text-xl sm:text-2xl font-semibold text-(--brand-blue)">
                 Protect your data, infrastructure, and operations.
             </h2>
-            <p class="text-slate-700 text-lg">
+            <p class="text-slate-700 text-base sm:text-lg">
                 Partner with
                 <span class="font-semibold text-(--brand-blue)"
                     >Krya Solutions</span
@@ -58,37 +63,44 @@
             </p>
 
             <div
-                class="flex flex-col sm:flex-row sm:justify-start justify-center gap-4 mt-2 text-(--brand-blue)"
+                class="flex flex-col items-center md:items-start gap-3 sm:gap-4 mt-2 text-(--brand-blue)"
             >
                 <a
                     href="tel:+914466692727"
-                    class="flex items-center justify-center gap-2 hover:text-(--brand-orange) transition-colors duration-200"
+                    class="flex items-center gap-2 hover:text-(--brand-orange) transition-colors duration-200 whitespace-nowrap"
                 >
-                    <Phone class="w-5 h-5" />
-                    <span>+91 44 6669 2727</span>
+                    <Phone class="w-4 h-4 sm:w-5 sm:h-5 shrink-0" />
+                    <span class="text-sm sm:text-base">+91 44 6669 2727</span>
                 </a>
                 <a
                     href="mailto:ks-info@kryasolutions.com"
-                    class="flex items-center justify-center gap-2 hover:text-(--brand-orange) transition-colors duration-200"
+                    class="flex items-center gap-2 hover:text-(--brand-orange) transition-colors duration-200 whitespace-nowrap break-all sm:break-normal"
                 >
-                    <Mail class="w-5 h-5" />
-                    <span>ks-info@kryasolutions.com</span>
+                    <Mail class="w-4 h-4 sm:w-5 sm:h-5 shrink-0" />
+                    <span class="text-sm sm:text-base"
+                        >ks-info@kryasolutions.com</span
+                    >
                 </a>
             </div>
         </div>
 
         <!-- Right Section - Contact Form -->
         <div
-            class="rounded-2xl border border-slate-200 shadow-xl bg-white p-6 md:p-8"
+            class="rounded-2xl border border-slate-200 shadow-xl bg-white/50 p-4 sm:p-6 md:p-8"
         >
             <h3
-                class="text-xl font-semibold mb-4 text-(--brand-blue) text-center md:text-left"
+                class="text-lg sm:text-xl font-semibold mb-4 text-(--brand-blue) text-center md:text-left"
             >
                 Contact Us
             </h3>
-            <form on:submit|preventDefault={handleSubmit} class="space-y-4">
+            <form
+                on:submit|preventDefault={handleSubmit}
+                class="space-y-3 sm:space-y-4"
+            >
                 <div>
-                    <label for="name" class="block text-sm mb-1 text-slate-700"
+                    <label
+                        for="name"
+                        class="block text-xs sm:text-sm mb-1 text-slate-700"
                         >Name</label
                     >
                     <input
@@ -97,11 +109,13 @@
                         bind:value={formData.name}
                         on:input={handleChange}
                         required
-                        class="w-full px-4 py-2 rounded-md border border-slate-200 focus:outline-none focus:border-(--brand-blue) bg-white text-slate-800 placeholder-slate-400 transition-colors duration-200"
+                        class="w-full px-3 sm:px-4 py-2 text-sm sm:text-base rounded-md border border-slate-200 focus:outline-none focus:border-(--brand-blue) bg-white text-slate-800 placeholder-slate-400 transition-colors duration-200"
                     />
                 </div>
                 <div>
-                    <label for="email" class="block text-sm mb-1 text-slate-700"
+                    <label
+                        for="email"
+                        class="block text-xs sm:text-sm mb-1 text-slate-700"
                         >Email</label
                     >
                     <input
@@ -110,13 +124,13 @@
                         bind:value={formData.email}
                         on:input={handleChange}
                         required
-                        class="w-full px-4 py-2 rounded-md border border-slate-200 focus:outline-none focus:border-(--brand-blue) bg-white text-slate-800 placeholder-slate-400 transition-colors duration-200"
+                        class="w-full px-3 sm:px-4 py-2 text-sm sm:text-base rounded-md border border-slate-200 focus:outline-none focus:border-(--brand-blue) bg-white text-slate-800 placeholder-slate-400 transition-colors duration-200"
                     />
                 </div>
                 <div>
                     <label
                         for="thoughts"
-                        class="block text-sm mb-1 text-slate-700"
+                        class="block text-xs sm:text-sm mb-1 text-slate-700"
                         >Share your thoughts</label
                     >
                     <textarea
@@ -125,13 +139,13 @@
                         bind:value={formData.thought}
                         on:input={handleChange}
                         required
-                        class="w-full px-4 py-2 rounded-md border border-slate-200 focus:outline-none focus:border-(-brand-blue) bg-white text-slate-800 placeholder-slate-400 transition-colors duration-200 resize-none"
+                        class="w-full px-3 sm:px-4 py-2 text-sm sm:text-base rounded-md border border-slate-200 focus:outline-none focus:border-(--brand-blue) bg-white text-slate-800 placeholder-slate-400 transition-colors duration-200 resize-none"
                     ></textarea>
                 </div>
                 <button
                     type="submit"
                     disabled={status === "loading"}
-                    class="w-full bg-(--brand-blue) text-white py-3 rounded-full font-medium transition-all duration-300 hover:scale-102 hover:shadow-lg hover:shadow-(--brand-orange)/20 disabled:opacity-60 disabled:hover:scale-100 disabled:hover:shadow-none"
+                    class="w-full bg-(--brand-blue) text-white py-2.5 sm:py-3 rounded-full font-medium text-sm sm:text-base transition-all duration-300 hover:scale-102 hover:shadow-lg hover:shadow-(--brand-orange)/20 disabled:opacity-60 disabled:hover:scale-100 disabled:hover:shadow-none"
                 >
                     {#if status === "loading"}
                         Sending...
@@ -144,13 +158,13 @@
 
                 {#if status === "success"}
                     <p
-                        class="text-(--brand-orange) text-sm text-center mt-2 font-medium"
+                        class="text-(--brand-orange) text-xs sm:text-sm text-center mt-2 font-medium"
                     >
                         Message sent successfully!
                     </p>
                 {/if}
                 {#if status === "error"}
-                    <p class="text-red-400 text-sm text-center mt-2">
+                    <p class="text-red-400 text-xs sm:text-sm text-center mt-2">
                         Failed to send. Please try again.
                     </p>
                 {/if}
@@ -159,7 +173,7 @@
     </div>
 
     <div
-        class="mt-12 border-t border-slate-200 pt-4 text-center text-sm text-slate-600"
+        class="mt-8 sm:mt-12 border-t border-slate-200 pt-4 text-center text-xs sm:text-sm text-slate-600"
     >
         © {new Date().getFullYear()} Krya Solutions. All rights reserved.
     </div>

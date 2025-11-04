@@ -88,13 +88,13 @@ const Footer = () => {
                 </div>
 
                 {/* Right Section - Contact Form */}
-                <div className="bg-white rounded-2xl shadow-lg p-6 md:p-8">
-                    <h3 className="text-xl font-semibold mb-4 text-[var(--brand-blue)] text-center md:text-left">
+                <div className="bg-white/5 border border-white/10 rounded-2xl shadow-lg p-6 md:p-8">
+                    <h3 className="text-xl font-semibold mb-4 text-white text-center md:text-left">
                         Contact Us
                     </h3>
                     <form onSubmit={handleSubmit} className="space-y-4">
                         <div>
-                            <label className="block text-sm mb-1 text-slate-700">
+                            <label className="block text-sm mb-1 text-white">
                                 Name
                             </label>
                             <input
@@ -103,11 +103,11 @@ const Footer = () => {
                                 value={formData.name}
                                 onChange={handleChange}
                                 required
-                                className="w-full px-4 py-2 rounded-md border border-slate-300 focus:outline-none focus:border-[var(--brand-blue)] text-slate-700"
+                                className="w-full px-4 py-2 rounded-md border border-white/10 focus:outline-none focus:border-white text-white"
                             />
                         </div>
                         <div>
-                            <label className="block text-sm mb-1 text-slate-700">
+                            <label className="block text-sm mb-1 text-white">
                                 Email
                             </label>
                             <input
@@ -116,11 +116,11 @@ const Footer = () => {
                                 value={formData.email}
                                 onChange={handleChange}
                                 required
-                                className="w-full px-4 py-2 rounded-md border border-slate-300 focus:outline-none focus:border-[var(--brand-blue)] text-slate-700"
+                                className="w-full px-4 py-2 rounded-md border border-white/10 focus:outline-none focus:border-white text-white"
                             />
                         </div>
                         <div>
-                            <label className="block text-sm mb-1 text-slate-700">
+                            <label className="block text-sm mb-1 text-white">
                                 Mobile No.
                             </label>
                             <input
@@ -129,11 +129,11 @@ const Footer = () => {
                                 value={formData.mobile}
                                 onChange={handleChange}
                                 required
-                                className="w-full px-4 py-2 rounded-md border border-slate-300 focus:outline-none focus:border-[var(--brand-blue)] text-slate-700"
+                                className="w-full px-4 py-2 rounded-md border border-white/10 focus:outline-none focus:border-white text-white"
                             />
                         </div>
                         <div>
-                            <label className="block text-sm mb-1 text-slate-700">
+                            <label className="block text-sm mb-1 text-white">
                                 Share your thoughts
                             </label>
                             <textarea
@@ -142,13 +142,13 @@ const Footer = () => {
                                 value={formData.thought}
                                 onChange={handleChange}
                                 required
-                                className="w-full px-4 py-2 rounded-md border border-slate-300 focus:outline-none focus:border-[var(--brand-blue)] text-slate-700 resize-none"
+                                className="w-full px-4 py-2 rounded-md border border-white/10 focus:outline-none focus:border-white text-white resize-none"
                             ></textarea>
                         </div>
                         <button
                             type="submit"
                             disabled={status === "loading"}
-                            className="w-full bg-[var(--brand-blue)] text-white py-2 rounded-md font-medium transition-transform duration-300 disabled:opacity-60 hover:scale-105"
+                            className="w-full bg-[var(--brand-orange)] text-white py-2 rounded-md font-medium transition-transform duration-300 disabled:opacity-60 hover:scale-105"
                         >
                             {status === "loading"
                                 ? "Sending..."
@@ -158,12 +158,12 @@ const Footer = () => {
                         </button>
 
                         {status === "success" && (
-                            <p className="text-green-600 text-sm text-center mt-2">
+                            <p className="text-green-400 text-sm text-center mt-2">
                                 Message sent successfully!
                             </p>
                         )}
                         {status === "error" && (
-                            <p className="text-red-500 text-sm text-center mt-2">
+                            <p className="text-red-400 text-sm text-center mt-2">
                                 Failed to send. Please try again.
                             </p>
                         )}

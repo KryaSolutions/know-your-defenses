@@ -5,12 +5,14 @@
     import leftOvers from "./assets/news-articles-leftovers.json";
     import Hero from "./components/Hero.svelte";
     import Footer from "./components/Footer.svelte";
+    import Navbar from "./components/Navbar.svelte";
 </script>
 
 <main class="min-h-screen">
+    <Navbar />
     <Hero />
 
-    <div class="max-w-[1200px] mx-auto px-4 pt-8">
+    <div id="digest-section" class="max-w-[1200px] mx-auto px-4 pt-8">
         <Articles articles={latestNews} />
     </div>
 

@@ -9,164 +9,55 @@
     });
 </script>
 
-<section class="hero-section">
-    <div class="hero-content">
-        <div class="hero-main">
-            <h1>Cybersecurity Weekly</h1>
-            <div class="date-badge">
-                <span class="pulse"></span>
+<section class="min-h-screen flex flex-col p-0 text-(--brand-blue)">
+    <div
+        class="flex-1 flex flex-col justify-center max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 text-center opacity-0 animate-fade-in"
+    >
+        <!-- Hero Main Section -->
+        <div
+            class="mb-8 sm:mb-12 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6"
+        >
+            <h1
+                class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-(--brand-blue) tracking-tight m-0"
+            >
+                Cybersecurity Weekly
+            </h1>
+
+            <div
+                class="inline-flex items-center gap-2 px-4 py-2 bg-(--brand-blue) text-white rounded-full text-sm font-medium shadow-md"
+            >
+                <span class="pulse-dot"></span>
                 {formattedDate}
             </div>
         </div>
 
-        <div class="hero-summary">
-            <p>{intro}</p>
+        <!-- Hero Summary -->
+        <div class="max-w-4xl mx-auto mb-6 sm:mb-8 px-4 sm:px-6">
+            <p
+                class="text-base sm:text-lg lg:text-xl leading-snug text-gray-800 text-justify hyphens-auto"
+            >
+                {intro}
+            </p>
         </div>
 
+        <!-- Scroll Button -->
         <button
-            class="scroll-button"
+            class="inline-block mx-auto px-8 sm:px-10 py-3 sm:py-4 bg-(--brand-blue) text-white rounded-full text-base sm:text-lg font-semibold cursor-pointer transition-all duration-300 shadow-lg hover:-translate-y-1 hover:scale-105 hover:shadow-xl relative overflow-hidden w-full sm:w-auto max-w-md"
             on:click={() =>
                 window.scrollTo({
                     top: window.innerHeight,
                     behavior: "smooth",
                 })}
         >
-            Read This Week's Updates
+            <span class="relative z-10">Read This Week's Updates</span>
+            <span
+                class="absolute inset-0 bg-gradient-to-b from-white/10 to-transparent pointer-events-none"
+            ></span>
         </button>
     </div>
 </section>
 
 <style>
-    .hero-section {
-        min-height: 100vh;
-        display: flex;
-        flex-direction: column;
-        padding: 0;
-        color: var(--brand-blue);
-    }
-
-    .hero-content {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        max-width: 1000px;
-        margin: 0 auto;
-        padding: 2rem;
-        text-align: center;
-        opacity: 0;
-        animation: fadeIn 1s ease-out forwards;
-    }
-
-    .hero-main {
-        margin-bottom: 2rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 1.5rem;
-    }
-
-    .hero-main h1 {
-        font-size: 1.5rem;
-        font-weight: 600;
-        color: var(--brand-blue);
-        margin: 0;
-        letter-spacing: -0.02em;
-    }
-
-    .date-badge {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
-        padding: 0.5rem 1rem;
-        background: var(--brand-blue);
-        color: white;
-        border: none;
-        border-radius: 2rem;
-        font-size: 0.875rem;
-        font-weight: 500;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    }
-
-    .pulse {
-        width: 6px;
-        height: 6px;
-        background-color: var(--brand-orange);
-        border-radius: 50%;
-        position: relative;
-    }
-
-    .pulse::after {
-        content: "";
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        background-color: var(--brand-orange);
-        border-radius: 50%;
-        animation: pulse 2s infinite;
-    }
-
-    .hero-main {
-        margin-bottom: 3rem;
-    }
-
-    .hero-main h1 {
-        font-size: 3rem;
-        font-weight: 800;
-        letter-spacing: -0.02em;
-        margin-bottom: 0.5rem;
-        color: var(--brand-blue);
-        text-shadow: none;
-    }
-
-    .hero-summary {
-        max-width: 800px;
-        margin: 0 auto 2rem;
-        padding: 0 1rem;
-    }
-
-    .hero-summary p {
-        font-size: 1.1rem;
-        line-height: 1.6;
-        color: #191724;
-        text-align: justify;
-        hyphens: auto;
-        text-shadow: none;
-    }
-
-    .scroll-button {
-        display: inline-block;
-        padding: 1rem 2.5rem;
-        background-color: var(--brand-blue);
-        color: white;
-        border: none;
-        border-radius: 9999px;
-        font-size: 1rem;
-        font-weight: 600;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        position: relative;
-        overflow: hidden;
-        margin: 0 auto;
-    }
-
-    .scroll-button:hover {
-        transform: translateY(-2px) scale(1.05);
-        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-    }
-
-    .scroll-button::after {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: linear-gradient(rgba(255, 255, 255, 0.1), transparent);
-        pointer-events: none;
-    }
-
     @keyframes fadeIn {
         from {
             opacity: 0;
@@ -176,6 +67,28 @@
             opacity: 1;
             transform: translateY(0);
         }
+    }
+
+    .animate-fade-in {
+        animation: fadeIn 1s ease-out forwards;
+    }
+
+    .pulse-dot {
+        width: 6px;
+        height: 6px;
+        background-color: var(--brand-orange);
+        border-radius: 50%;
+        position: relative;
+    }
+
+    .pulse-dot::after {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-color: var(--brand-orange);
+        border-radius: 50%;
+        animation: pulse 2s infinite;
     }
 
     @keyframes pulse {
@@ -189,29 +102,9 @@
         }
     }
 
-    @media (max-width: 768px) {
-        .hero-section {
-            padding: 1.5rem;
-            min-height: 100vh;
-        }
-
-        .hero-main {
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        .hero-main h1 {
-            font-size: 1.75rem;
-        }
-
-        .hero-summary p {
-            font-size: 1.1rem;
-            line-height: 1.6;
-        }
-
-        .scroll-button {
-            width: 100%;
-            justify-content: center;
-        }
+    p {
+        hyphens: auto;
+        -webkit-hyphens: auto;
+        -ms-hyphens: auto;
     }
 </style>

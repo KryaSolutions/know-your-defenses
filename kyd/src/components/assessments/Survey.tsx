@@ -6,15 +6,6 @@ import type { ResponseContextType } from "../SurveyWrapper";
 import assessmentData from "../../utilities/assessmentMeta";
 import type { assessmentType } from "../../utilities/assessmentMeta";
 
-const colorMap: Record<string, string> = {
-    blue: "bg-blue-200/50 text-slate-800 border-blue-200 hover:bg-blue-200 hover:border-blue-300",
-    purple: "bg-purple-200/50 text-slate-800 border-purple-200 hover:bg-purple-200 hover:border-purple-300",
-    green: "bg-green-200/50 text-slate-800 border-green-200 hover:bg-green-200 hover:border-green-300",
-    indigo: "bg-indigo-200/50 text-slate-800 border-indigo-200 hover:bg-indigo-200 hover:border-indigo-300",
-    red: "bg-red-200/50 text-slate-800 border-red-200 hover:bg-red-200 hover:border-red-300",
-    cyan: "bg-cyan-200/50 text-slate-800 border-cyan-200 hover:bg-cyan-200 hover:border-cyan-300",
-};
-
 const Survey = () => {
     const [selectedAssessment, setSelectedAssessment] =
         useState<assessmentType | null>(null);
@@ -86,11 +77,9 @@ const Survey = () => {
                         const progressPercent =
                             totalQuestions > 0
                                 ? Math.round(
-                                      (answeredCount / totalQuestions) * 100
-                                  )
+                                    (answeredCount / totalQuestions) * 100
+                                )
                                 : 0;
-
-                        const cardColor: string = assessment.color || "blue";
 
                         return (
                             <button
@@ -98,7 +87,7 @@ const Survey = () => {
                                 onClick={() =>
                                     handleStartAssessment(assessment)
                                 }
-                                className={`group relative p-5 sm:p-6 rounded-xl border-2 transition-all duration-300 ease-out ${colorMap[cardColor]} hover:shadow-lg hover:scale-105 active:scale-100 text-left`}
+                                className={`group relative p-5 sm:p-6 rounded-xl transition-all duration-300 ease-out bg-(--brand-light-blue)/20 text-white backdrop-blur-sm hover:shadow-lg hover:scale-105 active:scale-100 text-left`}
                             >
                                 <div className="flex flex-col space-y-3">
                                     {/* Assessment Title */}

@@ -28,7 +28,7 @@ export default defineConfig(({ mode }) => {
         },
         base:
             mode === "development"
-                ? "http://localhost:10100/newsletter"
+                ? "http://localhost:10100/newsletters"
                 : "https://kyd.kryasolutions.com/newsletters",
         server: {
             port: 10201,

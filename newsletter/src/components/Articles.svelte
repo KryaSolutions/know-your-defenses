@@ -26,37 +26,44 @@
     $: visibleArticles = articles.slice(0, visibleCount);
 </script>
 
-<div class="articles-container">
-    <div class="articles-grid">
+<div class="w-full max-w-[1200px] mx-auto px-4 py-8">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
         {#each visibleArticles as article, i}
-            <article class="article-card" style="animation-delay: {i * 0.05}s">
+            <article
+                class="backdrop-blur-md bg-white/50 border border-white/20 rounded-2xl shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 h-full opacity-0 animate-fade-in-up"
+                style="animation-delay: {i * 0.05}s;"
+            >
                 <a
                     href={article.link}
                     class="block h-full"
                     target="_blank"
                     rel="noopener noreferrer"
                 >
-                    <div class="card-content">
+                    <div class="p-5 sm:p-6 h-full flex flex-col">
                         <div class="flex justify-end mb-3">
                             <span class="text-xs text-gray-600">
                                 {formatDate(article.date)}
                             </span>
                         </div>
 
-                        <h2 class="article-title">
+                        <h2
+                            class="text-lg sm:text-xl font-bold leading-snug mb-3 text-(--brand-blue) group-hover:text-(--brand-orange) transition-colors duration-200"
+                        >
                             {article.title}
                         </h2>
 
-                        <p class="article-excerpt">
+                        <p
+                            class="grow text-gray-600 leading-relaxed mb-4 text-sm sm:text-base line-clamp-4"
+                        >
                             {article.content}
                         </p>
 
-                        <div class="see-post">
+                        <div
+                            class="flex items-center gap-2 text-(--brand-blue) font-semibold text-sm mt-auto group"
+                        >
                             <span>See post</span>
                             <svg
-                                class="arrow-icon"
-                                width="16"
-                                height="16"
+                                class="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-200"
                                 viewBox="0 0 16 16"
                                 fill="none"
                             >
@@ -76,13 +83,14 @@
     </div>
 
     {#if articles.length > visibleCount}
-        <div class="load-more-container">
-            <button class="load-more-button" on:click={loadMore}>
-                Read more
+        <div class="flex justify-center mt-8 sm:mt-12">
+            <button
+                class="flex items-center gap-2 px-8 sm:px-10 py-3 sm:py-4 text-base sm:text-lg font-semibold text-white bg-(--brand-blue) rounded-full hover:bg-(--brand-orange) hover:-translate-y-0.5 transition-all duration-200 w-full sm:w-auto justify-center group shadow-lg"
+                on:click={loadMore}
+            >
+                <span>Read more</span>
                 <svg
-                    class="arrow-icon"
-                    width="16"
-                    height="16"
+                    class="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-200"
                     viewBox="0 0 16 16"
                     fill="none"
                 >
@@ -97,39 +105,10 @@
             </button>
         </div>
     {/if}
-
-    <style>
-        /* keep component-local visual adjustments minimal; layout/styling is Tailwind-first */
-    </style>
 </div>
 
 <style>
-    .articles-container {
-        width: 100%;
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 2rem 1rem;
-    }
-
-    .articles-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-        gap: 2rem;
-        align-items: start;
-    }
-
-    .article-card {
-        border: 1px solid #d1d5db;
-        border-radius: 8px;
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        opacity: 0;
-        animation: fadeInUp 0.6s ease-out forwards;
-        background: white;
-        overflow: hidden;
-        height: 100%;
-    }
-
-    @keyframes fadeInUp {
+    @keyframes fade-in-up {
         from {
             opacity: 0;
             transform: translateY(20px);
@@ -140,136 +119,11 @@
         }
     }
 
-    .article-card:hover {
-        box-shadow: 0 8px 16px -6px rgba(0, 0, 0, 0.12);
-        border-color: var(--brand-blue);
+    .animate-fade-in-up {
+        animation: fade-in-up 0.6s ease-out forwards;
     }
 
-    .card-content {
-        padding: 1.5rem;
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-    }
-
-    a {
-        display: flex;
-        flex-direction: column;
-        height: 100%;
-    }
-
-    .article-title {
-        font-size: 1.25rem;
-        font-weight: 700;
-        line-height: 1.4;
-        margin-bottom: 0.75rem;
-        color: var(--brand-blue);
-        transition: color 0.2s ease;
-    }
-
-    .article-card:hover .article-title {
+    article:hover h2 {
         color: var(--brand-orange);
-    }
-
-    .article-excerpt {
-        flex-grow: 1;
-        color: #4b5563;
-        line-height: 1.6;
-        margin-bottom: 1rem;
-        font-size: 0.9rem;
-    }
-
-    .see-post {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        color: var(--brand-blue);
-        font-weight: 600;
-        font-size: 0.875rem;
-        transition: gap 0.2s ease;
-        margin-top: auto;
-    }
-
-    .article-card:hover .see-post {
-        gap: 0.75rem;
-    }
-
-    .arrow-icon {
-        transition: transform 0.2s ease;
-    }
-
-    .article-card:hover .arrow-icon {
-        transform: translateX(4px);
-    }
-
-    .article-card {
-        background: white;
-        border-radius: 1rem;
-        box-shadow:
-            0 4px 6px -1px rgba(0, 0, 0, 0.1),
-            0 2px 4px -1px rgba(0, 0, 0, 0.06);
-        transform: translateY(0);
-        transition:
-            transform 0.2s ease,
-            box-shadow 0.2s ease;
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-    }
-
-    .article-card:hover {
-        transform: translateY(-4px);
-        box-shadow:
-            0 10px 15px -3px rgba(0, 0, 0, 0.1),
-            0 4px 6px -2px rgba(0, 0, 0, 0.05);
-    }
-
-    .load-more-container {
-        display: flex;
-        justify-content: center;
-        margin-top: 3rem;
-    }
-
-    .load-more-button {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        padding: 1rem 2.5rem;
-        font-size: 1rem;
-        font-weight: 600;
-        color: white;
-        background-color: var(--brand-blue);
-        border: none;
-        border-radius: 9999px;
-        cursor: pointer;
-        transition: all 0.2s ease;
-    }
-
-    .load-more-button:hover {
-        background-color: var(--brand-orange);
-        transform: translateY(-2px);
-    }
-
-    .load-more-button .arrow-icon {
-        transition: transform 0.2s ease;
-    }
-
-    .load-more-button:hover .arrow-icon {
-        transform: translateX(4px);
-    }
-
-    @media (max-width: 768px) {
-        .card-content {
-            padding: 1.25rem;
-        }
-
-        .article-title {
-            font-size: 1.125rem;
-        }
-
-        .load-more-button {
-            width: 100%;
-            justify-content: center;
-        }
     }
 </style>

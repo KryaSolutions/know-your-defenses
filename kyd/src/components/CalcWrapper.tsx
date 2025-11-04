@@ -1,10 +1,11 @@
 import { useState, useEffect, createContext } from "react";
 import type { ComponentType } from "react";
 import {
+    Eye,
+    Radar,
     Calculator,
     Shield,
     TrendingUp,
-    Database,
     Users,
     Zap,
     X,
@@ -52,13 +53,13 @@ const calculators: CalculatorItem[] = [
         name: "IDAM Efficiency",
         component: IdamEfficiency,
         icon: Users,
-        color: "purple",
+        color: "green",
     },
     {
         id: "edr",
         name: "EDR Efficiency",
         component: EdrEfficiency,
-        icon: Users,
+        icon: Radar,
         color: "purple",
     },
     {
@@ -66,31 +67,31 @@ const calculators: CalculatorItem[] = [
         name: "Productivity",
         component: SocProductivity,
         icon: TrendingUp,
-        color: "green",
+        color: "orange",
     },
     {
         id: "threat",
         name: "Threat Intelligence",
         component: SocThreatIntelligence,
-        icon: Database,
-        color: "indigo",
+        icon: Eye,
+        color: "teal",
     },
     {
         id: "slaPerformance",
         name: "SLA / Performance KPIs",
         component: SlaPerformance,
         icon: Zap,
-        color: "red",
+        color: "amber",
     },
 ];
 
 const colorMap: Record<string, string> = {
-    blue: "bg-blue-200/50 text-blue-700 border-blue-200 hover:bg-blue-200 hover:border-blue-300",
-    purple: "bg-purple-200/50 text-purple-700 border-purple-200 hover:bg-purple-200 hover:border-purple-300",
-    green: "bg-green-200/50 text-green-700 border-green-200 hover:bg-green-200 hover:border-green-300",
-    indigo: "bg-indigo-200/50 text-indigo-700 border-indigo-200 hover:bg-indigo-200 hover:border-indigo-300",
-    red: "bg-red-200/50 text-red-700 border-red-200 hover:bg-red-200 hover:border-red-300",
-    cyan: "bg-cyan-200/50 text-cyan-700 border-cyan-200 hover:bg-cyan-200 hover:border-cyan-300",
+    blue: "bg-blue-500/20 text-blue-400",
+    purple: "bg-purple-500/20 text-purple-400",
+    green: "bg-green-500/20 text-green-400",
+    orange: "bg-orange-500/20 text-orange-400",
+    teal: "bg-teal-500/20 text-teal-400",
+    amber: "bg-amber-500/20 text-amber-400",
 };
 
 export type CalcMetricsType = {
@@ -164,24 +165,24 @@ const CalcWrapper = () => {
                 id="calcs-section"
                 className="flex-grow flex-shrink p-4 sm:p-6 md:p-8 lg:p-10 bg-[var(--brand-blue)]"
             >
-                <div className="max-w-6xl mx-auto bg-white rounded-2xl shadow-xl overflow-hidden flex flex-col">
+                <div className="max-w-6xl mx-auto border border-white/10 bg-white/5 rounded-2xl shadow-xl overflow-hidden flex flex-col">
                     {/* Header Section */}
-                    <div className="bg-gradient-to-r from-blue-600/10 to-indigo-600/10 p-6 sm:p-8 border-b border-blue-100">
+                    <div className="p-6 sm:p-8">
                         <div className="flex items-center justify-center space-x-3 sm:space-x-4">
-                            <div className="p-2 sm:p-3 bg-(--brand-blue) rounded-full flex-shrink-0">
-                                <Calculator className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
+                            <div className="p-2 sm:p-3 bg-white rounded-full flex-shrink-0">
+                                <Calculator className="w-6 h-6 sm:w-8 sm:h-8 text-(--brand-blue)" />
                             </div>
-                            <h2 className="text-2xl sm:text-3xl font-bold text-[var(--brand-blue)] text-center">
+                            <h2 className="text-2xl sm:text-3xl font-bold text-white text-center">
                                 Sec-Ops Efficiency
                             </h2>
                         </div>
                     </div>
 
                     {/* Content Section */}
-                    <div className="flex-1 p-6 sm:p-8 overflow-y-auto">
+                    <div className="flex-1 pt-3 pb-6 sm:pt-3 sm:pb-6 px-6 sm:px-8 overflow-y-auto">
                         <div className="space-y-6">
                             <div className="text-center">
-                                <p className="text-slate-700 text-base sm:text-lg">
+                                <p className="text-white text-base sm:text-lg">
                                     Fiddle with our suite of security operation
                                     calculators
                                 </p>
@@ -194,19 +195,19 @@ const CalcWrapper = () => {
                                         <button
                                             key={calc.id}
                                             onClick={() => openDialog(calc)}
-                                            className={`group relative p-5 sm:p-6 rounded-xl border-2 transition-all duration-300 ease-out
-                                                ${colorMap[calc.color]} 
+                                            className={`group relative p-5 sm:p-6 rounded-xl transition-all duration-300 ease-out
+                                                bg-(--brand-light-blue)/20 border-blue-200 backdrop-blur-sm 
                                                 hover:shadow-lg hover:scale-105 active:scale-100`}
                                         >
                                             <div className="flex flex-col items-start space-y-3">
-                                                <div className="p-2 rounded-lg bg-white/80 shadow-sm group-hover:shadow-md transition-shadow duration-300">
-                                                    <Icon className="w-5 h-5 sm:w-6 sm:h-6" />
+                                                <div className={`p-2 rounded-lg shadow-sm ${colorMap[calc.color]} group-hover:shadow-md transition-shadow duration-300`}>
+                                                    <Icon className={`w-5 h-5 sm:w-6 sm:h-6 `} />
                                                 </div>
-                                                <h3 className="text-base text-slate-800 sm:text-lg font-semibold text-left">
+                                                <h3 className="text-base text-white sm:text-lg font-semibold text-left">
                                                     {calc.name}
                                                 </h3>
                                             </div>
-                                            <div className="absolute bottom-4 right-4 transition-opacity duration-300">
+                                            <div className="absolute text-white bottom-4 right-4 transition-opacity duration-300">
                                                 <svg
                                                     className="w-4 h-4 sm:w-5 sm:h-5"
                                                     fill="none"
@@ -229,7 +230,7 @@ const CalcWrapper = () => {
                     </div>
 
                     {/* Footer Section */}
-                    <div className="p-6 sm:p-8 border-t border-gray-200 flex justify-center bg-gradient-to-r from-blue-50/50 to-indigo-50/50">
+                    <div className="p-6 sm:p-8 flex justify-center">
                         <EmailDialog
                             triggerButtonText="Get My Efficiency Report"
                             title="Generate Your Efficiency Report"

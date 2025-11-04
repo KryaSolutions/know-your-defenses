@@ -1,4 +1,5 @@
 import axios from "axios";
+import { Bot as BotIcon } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import {
     fetchKnowledgeBase,
@@ -17,6 +18,7 @@ const Bot = () => {
     >([]);
     const [input, setInput] = useState("");
     const [isLoading, setIsLoading] = useState(false);
+    const [hasInteracted, setHasInteracted] = useState(false);
     const messagesEndRef = useRef<HTMLDivElement | null>(null);
 
     useEffect(() => {
@@ -26,6 +28,17 @@ const Bot = () => {
     const sendMessageWithText = async (text: string) => {
         const trimmed = text.trim();
         if (!trimmed) return;
+
+        // Mark that user has interacted
+        if (!hasInteracted) {
+            setHasInteracted(true);
+        }
+
+        // Check if user typed "1" to show options
+        if (trimmed === "1") {
+            showQuickOptions();
+            return;
+        }
 
         const userMsg = { text: trimmed, isUser: true };
         setMessages((prev) => [...prev, userMsg]);
@@ -97,6 +110,12 @@ const Bot = () => {
         }
     };
 
+    // Reset chat to show welcome message
+    const showQuickOptions = () => {
+        setMessages([]);
+        setHasInteracted(false);
+    };
+
     // Scroll to the survey section
     const handleStartAssessment = () => {
         const heroSection = document.querySelector("#survey-section");
@@ -114,28 +133,20 @@ const Bot = () => {
             {!isOpen && (
                 <button
                     onClick={() => setIsOpen(true)}
-                    className="relative bg-[var(--brand-blue)] hover:opacity-90 text-white rounded-full w-16 h-16 flex items-center justify-center shadow-2xl transition-transform hover:scale-110"
+                    className="relative bg-white/5 hover:opacity-90 text-white rounded-full w-16 h-16 flex items-center justify-center shadow-2xl transition-transform hover:scale-110"
                 >
-                    <svg className="w-8 h-8 fill-white" viewBox="0 0 24 24">
-                        <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z" />
-                    </svg>
-                    <span className="absolute top-2 right-2 w-3 h-3 bg-red-500 rounded-full border-2 border-white animate-pulse"></span>
+                    <BotIcon className="text-white" />
                 </button>
             )}
 
             {/* Chat Window */}
             {isOpen && (
-                <div className="w-full sm:w-[380px] max-w-[calc(100vw-2.5rem)] bg-white shadow-2xl rounded-2xl flex flex-col max-h-[80vh] sm:max-h-[600px] border border-gray-200 animate-slideUp overflow-hidden">
+                <div className="w-full sm:w-[380px] max-w-[calc(100vw-2.5rem)] bg-(--brand-blue) shadow-2xl rounded-2xl flex flex-col max-h-[80vh] sm:max-h-[600px] animate-slideUp overflow-hidden">
                     {/* Header */}
-                    <div className="bg-[var(--brand-blue)] text-white p-3 sm:p-4 rounded-t-2xl flex justify-between items-center">
+                    <div className="bg-(--brand-blue) text-white p-3 sm:p-4 rounded-t-2xl flex justify-between items-center">
                         <div className="flex items-center gap-3">
-                            <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center">
-                                <svg
-                                    className="w-6 h-6 fill-white"
-                                    viewBox="0 0 24 24"
-                                >
-                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" />
-                                </svg>
+                            <div className="w-10 h-10 bg-white/5 rounded-full flex items-center justify-center">
+                                <BotIcon className="text-white" />
                             </div>
                             <div>
                                 <h3 className="font-semibold text-base">
@@ -146,26 +157,18 @@ const Bot = () => {
                         </div>
                         <button
                             onClick={() => setIsOpen(false)}
-                            className="text-white hover:text-gray-200 text-2xl font-light leading-none"
+                            className="text-white hover:scale-110 transition duration-300 text-2xl font-light leading-none"
                         >
                             ×
                         </button>
                     </div>
 
                     {/* Messages */}
-                    <div className="flex-1 overflow-y-auto p-3 sm:p-4 space-y-3 bg-gray-50 text-sm scrollbar-thin scrollbar-thumb-gray-300">
+                    <div className="flex-1 overflow-y-auto p-3 sm:p-4 space-y-3 bg-slate-300 text-sm scrollbar-thin scrollbar-thumb-gray-300">
                         {/* Welcome Message */}
                         {messages.length === 0 && (
-                            <div className="flex gap-2">
-                                <div className="w-8 h-8 sm:w-10 sm:h-10 bg-[var(--brand-blue)] rounded-full flex items-center justify-center flex-shrink-0">
-                                    <svg
-                                        className="w-4 h-4 fill-white"
-                                        viewBox="0 0 24 24"
-                                    >
-                                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" />
-                                    </svg>
-                                </div>
-                                <div className="bg-white p-3 sm:p-4 rounded-2xl rounded-tl-none shadow-sm max-w-[85%] sm:max-w-[75%]">
+                            <div className="flex justify-start">
+                                <div className="bg-white p-3 sm:p-4 rounded-2xl rounded-tl-none shadow-sm w-full">
                                     <p className="font-semibold mb-1">
                                         Welcome to Krya Solutions!
                                     </p>
@@ -176,7 +179,7 @@ const Bot = () => {
                                     <button
                                         type="button"
                                         onClick={handleStartAssessment}
-                                        className="inline-block mt-2 px-3 py-1.5 sm:px-4 sm:py-2 bg-[var(--brand-blue)] text-white rounded-lg text-xs sm:text-sm font-medium hover:opacity-90 transition-all"
+                                        className="inline-block mt-2 px-3 py-1.5 sm:px-4 sm:py-2 bg-(--brand-blue) text-white rounded-lg text-xs sm:text-sm font-medium hover:opacity-90 transition-all"
                                     >
                                         🔒 Take Free Assessment →
                                     </button>
@@ -187,7 +190,7 @@ const Bot = () => {
                                                 onClick={() =>
                                                     sendMessageWithText(reply)
                                                 }
-                                                className="px-3 py-1.5 bg-gray-100 hover:bg-blue-600 hover:text-white border border-gray-200 rounded-full text-xs sm:text-sm transition-all"
+                                                className="px-3 py-1.5 bg-gray-100 hover:bg-(--brand-blue) hover:text-white border border-gray-200 rounded-full text-xs sm:text-sm transition-all"
                                             >
                                                 {reply
                                                     .split(" ")
@@ -204,20 +207,10 @@ const Bot = () => {
                         {messages.map((msg, i) => (
                             <div
                                 key={i}
-                                className={`flex gap-2 ${msg.isUser ? "flex-row-reverse" : ""}`}
+                                className={`flex ${msg.isUser ? "justify-end" : "justify-start"}`}
                             >
-                                {!msg.isUser && (
-                                    <div className="w-8 h-8 sm:w-10 sm:h-10 bg-[var(--brand-blue)] rounded-full flex items-center justify-center flex-shrink-0">
-                                        <svg
-                                            className="w-4 h-4 fill-white"
-                                            viewBox="0 0 24 24"
-                                        >
-                                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" />
-                                        </svg>
-                                    </div>
-                                )}
                                 <div
-                                    className={`px-3 py-2 sm:px-4 sm:py-2.5 rounded-2xl max-w-[85%] sm:max-w-[75%] whitespace-pre-line shadow-sm ${msg.isUser
+                                    className={`px-3 py-2 sm:px-4 sm:py-2.5 rounded-2xl w-full whitespace-pre-line shadow-sm ${msg.isUser
                                         ? "bg-[var(--brand-blue)] text-white rounded-br-none"
                                         : "bg-white text-gray-800 rounded-tl-none"
                                         }`}
@@ -238,15 +231,7 @@ const Bot = () => {
 
                         {/* Loading Indicator */}
                         {isLoading && (
-                            <div className="flex gap-2">
-                                <div className="w-8 h-8 sm:w-10 sm:h-10 bg-[var(--brand-blue)] rounded-full flex items-center justify-center flex-shrink-0">
-                                    <svg
-                                        className="w-4 h-4 fill-white"
-                                        viewBox="0 0 24 24"
-                                    >
-                                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" />
-                                    </svg>
-                                </div>
+                            <div className="flex justify-start">
                                 <div className="bg-white px-4 py-3 rounded-2xl rounded-tl-none shadow-sm">
                                     <div className="flex gap-1">
                                         <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"></div>
@@ -267,7 +252,7 @@ const Bot = () => {
                     </div>
 
                     {/* Input Area */}
-                    <div className="p-2 sm:p-3 border-t flex items-center gap-2 bg-white rounded-b-2xl">
+                    <div className="p-1 sm:p-3 flex items-center gap-2 bg-slate-300 rounded-b-2xl">
                         <input
                             type="text"
                             value={input}
@@ -275,8 +260,8 @@ const Bot = () => {
                             onKeyDown={(e) =>
                                 e.key === "Enter" && sendMessage()
                             }
-                            placeholder="Ask me anything..."
-                            className="flex-1 px-3 py-2 sm:px-4 border border-gray-200 rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            placeholder={hasInteracted ? "Type 1 for options" : "Ask me anything..."}
+                            className="flex-1 px-3 py-2 sm:px-4 border border-(--brand-blue)/20 rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-(--brand-blue)"
                             disabled={isLoading}
                         />
                         <button
