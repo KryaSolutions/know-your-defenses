@@ -153,8 +153,8 @@ const Footer = () => {
                             {status === "loading"
                                 ? "Sending..."
                                 : status === "success"
-                                    ? "Sent!"
-                                    : "Submit"}
+                                  ? "Sent!"
+                                  : "Submit"}
                         </button>
 
                         {status === "success" && (

@@ -210,10 +210,11 @@ const Bot = () => {
                                 className={`flex ${msg.isUser ? "justify-end" : "justify-start"}`}
                             >
                                 <div
-                                    className={`px-3 py-2 sm:px-4 sm:py-2.5 rounded-2xl w-full whitespace-pre-line shadow-sm ${msg.isUser
-                                        ? "bg-[var(--brand-blue)] text-white rounded-br-none"
-                                        : "bg-white text-gray-800 rounded-tl-none"
-                                        }`}
+                                    className={`px-3 py-2 sm:px-4 sm:py-2.5 rounded-2xl w-full whitespace-pre-line shadow-sm ${
+                                        msg.isUser
+                                            ? "bg-[var(--brand-blue)] text-white rounded-br-none"
+                                            : "bg-white text-gray-800 rounded-tl-none"
+                                    }`}
                                 >
                                     {msg.text}
                                     {msg.hasLink && !msg.isUser && (
@@ -260,7 +261,11 @@ const Bot = () => {
                             onKeyDown={(e) =>
                                 e.key === "Enter" && sendMessage()
                             }
-                            placeholder={hasInteracted ? "Type 1 for options" : "Ask me anything..."}
+                            placeholder={
+                                hasInteracted
+                                    ? "Type 1 for options"
+                                    : "Ask me anything..."
+                            }
                             className="flex-1 px-3 py-2 sm:px-4 border border-(--brand-blue)/20 rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-(--brand-blue)"
                             disabled={isLoading}
                         />

@@ -1023,16 +1023,18 @@ const EdrEfficiency = () => {
                                     (rec: any, idx: number) => (
                                         <div
                                             key={idx}
-                                            className={`border rounded-lg p-3 ${rec.type === "warning"
-                                                ? "bg-orange-50 border-orange-200"
-                                                : "bg-blue-50 border-blue-200"
-                                                }`}
+                                            className={`border rounded-lg p-3 ${
+                                                rec.type === "warning"
+                                                    ? "bg-orange-50 border-orange-200"
+                                                    : "bg-blue-50 border-blue-200"
+                                            }`}
                                         >
                                             <div
-                                                className={`font-medium text-sm mb-1 ${rec.type === "warning"
-                                                    ? "text-orange-800"
-                                                    : "text-blue-800"
-                                                    }`}
+                                                className={`font-medium text-sm mb-1 ${
+                                                    rec.type === "warning"
+                                                        ? "text-orange-800"
+                                                        : "text-blue-800"
+                                                }`}
                                             >
                                                 {rec.type === "warning"
                                                     ? "⚠️"
@@ -1040,10 +1042,11 @@ const EdrEfficiency = () => {
                                                 {rec.title}
                                             </div>
                                             <div
-                                                className={`text-xs ${rec.type === "warning"
-                                                    ? "text-orange-700"
-                                                    : "text-blue-700"
-                                                    }`}
+                                                className={`text-xs ${
+                                                    rec.type === "warning"
+                                                        ? "text-orange-700"
+                                                        : "text-blue-700"
+                                                }`}
                                             >
                                                 {rec.message}
                                             </div>
@@ -1120,10 +1123,11 @@ const EdrEfficiency = () => {
                     <button
                         onClick={prevStep}
                         disabled={currentStep === 0}
-                        className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${currentStep === 0
-                            ? "bg-gray-200 text-gray-400 cursor-not-allowed"
-                            : "border border-gray-300 text-gray-700 hover:bg-gray-50"
-                            }`}
+                        className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
+                            currentStep === 0
+                                ? "bg-gray-200 text-gray-400 cursor-not-allowed"
+                                : "border border-gray-300 text-gray-700 hover:bg-gray-50"
+                        }`}
                     >
                         Previous
                     </button>
@@ -1135,10 +1139,11 @@ const EdrEfficiency = () => {
                     <button
                         onClick={nextStep}
                         disabled={!validation.isValid}
-                        className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${!validation.isValid
-                            ? "bg-gray-200 text-gray-400 cursor-not-allowed"
-                            : "bg-(--brand-blue) text-white hover:scale-105"
-                            }`}
+                        className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
+                            !validation.isValid
+                                ? "bg-gray-200 text-gray-400 cursor-not-allowed"
+                                : "bg-(--brand-blue) text-white hover:scale-105"
+                        }`}
                     >
                         {currentStep === steps.length - 1
                             ? "Calculate Results"

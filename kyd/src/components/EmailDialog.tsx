@@ -75,7 +75,7 @@ const EmailDialog: React.FC<ReportDialogProps> = ({
     title = "Generate Your Report",
     variant = "default",
     apiRoute,
-    blob
+    blob,
 }) => {
     const [open, setOpen] = useState(false);
     const [form, setForm] = useState({ name: "", org: "", email: "" });
@@ -93,28 +93,26 @@ const EmailDialog: React.FC<ReportDialogProps> = ({
 
     async function verifyEmail(email: string): Promise<boolean> {
         try {
-            // const res = await axios.post(
-            //     `${apiUrl}/api/verifyEmail`,
-            //     { email: email },
-            //     {
-            //         headers: {
-            //             "Content-Type": "application/json",
-            //         },
-            //     }
-            // );
-            //
-            // if (!res.data.valid) {
-            //     setEmailError(res.data.message);
-            //     return false;
-            // } else {
-            //     return true;
-            // }
-            console.log(email);
-            return true;
+            const res = await axios.post(
+                `${apiUrl}/api/verifyEmail`,
+                { email: email },
+                {
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                }
+            );
+
+            if (!res.data.valid) {
+                setEmailError(res.data.message);
+                return false;
+            } else {
+                return true;
+            }
         } catch (err: any) {
             setEmailError(
                 err.response?.data?.message ??
-                "Invalid email, please enter a valid email"
+                    "Invalid email, please enter a valid email"
             );
             return false;
         }
@@ -122,12 +120,12 @@ const EmailDialog: React.FC<ReportDialogProps> = ({
 
     async function job() {
         try {
-            // await axios.post(apiRoute, {
-            //     name: form.name,
-            //     org: form.org,
-            //     email: form.email,
-            //     response: blob,
-            // });
+            await axios.post(apiRoute, {
+                name: form.name,
+                org: form.org,
+                email: form.email,
+                response: blob,
+            });
         } finally {
             return true;
         }

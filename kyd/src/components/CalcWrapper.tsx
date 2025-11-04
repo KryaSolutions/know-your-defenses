@@ -200,8 +200,12 @@ const CalcWrapper = () => {
                                                 hover:shadow-lg hover:scale-105 active:scale-100`}
                                         >
                                             <div className="flex flex-col items-start space-y-3">
-                                                <div className={`p-2 rounded-lg shadow-sm ${colorMap[calc.color]} group-hover:shadow-md transition-shadow duration-300`}>
-                                                    <Icon className={`w-5 h-5 sm:w-6 sm:h-6 `} />
+                                                <div
+                                                    className={`p-2 rounded-lg shadow-sm ${colorMap[calc.color]} group-hover:shadow-md transition-shadow duration-300`}
+                                                >
+                                                    <Icon
+                                                        className={`w-5 h-5 sm:w-6 sm:h-6 `}
+                                                    />
                                                 </div>
                                                 <h3 className="text-base text-white sm:text-lg font-semibold text-left">
                                                     {calc.name}
@@ -288,7 +292,10 @@ const CalcWrapper = () => {
                 )}
 
                 {/* Success Dialog */}
-                <Dialog open={showSuccessDialog} onOpenChange={setShowSuccessDialog}>
+                <Dialog
+                    open={showSuccessDialog}
+                    onOpenChange={setShowSuccessDialog}
+                >
                     <DialogContent className="sm:max-w-md">
                         <DialogHeader>
                             <div className="flex items-center justify-center mb-4">
@@ -302,7 +309,8 @@ const CalcWrapper = () => {
                             <DialogDescription className="text-center text-gray-600 pt-2">
                                 <div className="flex flex-col items-center space-y-3">
                                     <p className="text-lg">
-                                        We will reach out to you through email shortly.
+                                        We will reach out to you through email
+                                        shortly.
                                     </p>
                                 </div>
                             </DialogDescription>

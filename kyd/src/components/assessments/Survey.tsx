@@ -77,8 +77,8 @@ const Survey = () => {
                         const progressPercent =
                             totalQuestions > 0
                                 ? Math.round(
-                                    (answeredCount / totalQuestions) * 100
-                                )
+                                      (answeredCount / totalQuestions) * 100
+                                  )
                                 : 0;
 
                         return (

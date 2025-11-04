@@ -9,9 +9,11 @@
     });
 </script>
 
-<section class="min-h-screen flex flex-col p-0 text-(--brand-blue)">
+<section
+    class="min-h-screen flex flex-col p-0 text-(--brand-blue) pt-12 sm:pt-20"
+>
     <div
-        class="flex-1 flex flex-col justify-center max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 text-center opacity-0 animate-fade-in"
+        class="flex-1 flex flex-col justify-center max-w-5xl mx-auto px-4 sm:px-8 lg:px-12 py-8 sm:py-12 text-center opacity-0 animate-fade-in"
     >
         <!-- Hero Main Section -->
         <div

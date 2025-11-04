@@ -161,10 +161,11 @@ const SurveyQuestions = ({ assessment, data, options }: Props) => {
                                         {categoryData.questions.length}
                                     </span>
                                     <div
-                                        className={`transition-transform duration-300 ${isExpanded
-                                            ? "rotate-180"
-                                            : "rotate-0"
-                                            }`}
+                                        className={`transition-transform duration-300 ${
+                                            isExpanded
+                                                ? "rotate-180"
+                                                : "rotate-0"
+                                        }`}
                                     >
                                         <ChevronDown className="w-4 h-4 text-gray-400" />
                                     </div>
@@ -173,17 +174,18 @@ const SurveyQuestions = ({ assessment, data, options }: Props) => {
 
                             {/* Questions Section */}
                             <div
-                                className={`overflow-hidden transition-all duration-300 ease-in-out ${isExpanded
-                                    ? "max-h-[2000px] opacity-100"
-                                    : "max-h-0 opacity-0"
-                                    }`}
+                                className={`overflow-hidden transition-all duration-300 ease-in-out ${
+                                    isExpanded
+                                        ? "max-h-[2000px] opacity-100"
+                                        : "max-h-0 opacity-0"
+                                }`}
                             >
                                 <div className="px-4 pb-4 space-y-4">
                                     {categoryData.questions.map(
                                         (question, questionIndex) => {
                                             const currentResponse =
                                                 response[assessment]?.[
-                                                categoryName
+                                                    categoryName
                                                 ]?.[questionIndex];
 
                                             return (
@@ -223,11 +225,12 @@ const SurveyQuestions = ({ assessment, data, options }: Props) => {
                                                                             option.score
                                                                         )
                                                                     }
-                                                                    className={`w-full p-3 rounded-lg border-2 transition-all duration-300 text-left ${currentResponse?.answer ===
+                                                                    className={`w-full p-3 rounded-lg border-2 transition-all duration-300 text-left ${
+                                                                        currentResponse?.answer ===
                                                                         option.value
-                                                                        ? "border-blue-500 bg-blue-500/10 shadow-md"
-                                                                        : "border-gray-300 hover:border-gray-400 hover:bg-gray-100"
-                                                                        }`}
+                                                                            ? "border-blue-500 bg-blue-500/10 shadow-md"
+                                                                            : "border-gray-300 hover:border-gray-400 hover:bg-gray-100"
+                                                                    }`}
                                                                 >
                                                                     <div className="flex items-center">
                                                                         <div
@@ -260,7 +263,11 @@ const SurveyQuestions = ({ assessment, data, options }: Props) => {
 
             {/* EmailDialog per assessment (after all categories) */}
             <div className="px-4 pb-3 mt-6 flex justify-center">
-                <EmailDialog onSubmit={() => setShowResults(true)} apiRoute={`${apiUrl}/api/appendCustomer`} blob={response} />
+                <EmailDialog
+                    onSubmit={() => setShowResults(true)}
+                    apiRoute={`${apiUrl}/api/appendCustomer`}
+                    blob={response}
+                />
             </div>
         </div>
     );
