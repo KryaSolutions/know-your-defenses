@@ -26,12 +26,14 @@ app.get("/api/health", (_req: Request, res: Response) => {
 import { router as routerSendEmail } from "./routes/sendEmail.js";
 import { router as routeVerifyEmail } from "./routes/verifyEmail.js";
 import { router as routerEvaluateCalc } from "./routes/evaluateCalc.js";
+import { router as routerEvaluateControl } from "./routes/evaluateControls.js";
 import { router as routeChatCompletion } from "./routes/chatCompletion.js";
 import { router as routeAppendCustomers } from "./routes/appendCustomer.js";
 
 app.use("/api", routerSendEmail);
 app.use("/api", routeVerifyEmail);
 app.use("/api", routerEvaluateCalc);
+app.use("/api", routerEvaluateControl);
 app.use("/api", routeChatCompletion);
 app.use("/api", routeAppendCustomers);
 

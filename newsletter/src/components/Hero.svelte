@@ -9,9 +9,7 @@
     });
 </script>
 
-<section
-    class="min-h-screen flex flex-col p-0 text-(--brand-blue) pt-12 sm:pt-20"
->
+<section class="min-h-screen flex flex-col p-0 text-white pt-12 sm:pt-20">
     <div
         class="flex-1 flex flex-col justify-center max-w-5xl mx-auto px-4 sm:px-8 lg:px-12 py-8 sm:py-12 text-center opacity-0 animate-fade-in"
     >
@@ -20,13 +18,13 @@
             class="mb-8 sm:mb-12 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6"
         >
             <h1
-                class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-(--brand-blue) tracking-tight m-0"
+                class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight m-0"
             >
                 Cybersecurity Weekly
             </h1>
 
             <div
-                class="inline-flex items-center gap-2 px-4 py-2 bg-(--brand-blue) text-white rounded-full text-sm font-medium shadow-md"
+                class="inline-flex items-center gap-2 px-4 py-2 bg-(--brand-orange) text-white rounded-full text-sm font-medium shadow-md"
             >
                 <span class="pulse-dot"></span>
                 {formattedDate}
@@ -36,7 +34,7 @@
         <!-- Hero Summary -->
         <div class="max-w-4xl mx-auto mb-6 sm:mb-8 px-4 sm:px-6">
             <p
-                class="text-base sm:text-lg lg:text-xl leading-snug text-gray-800 text-justify hyphens-auto"
+                class="text-base sm:text-lg lg:text-xl leading-snug text-slate-100 text-justify hyphens-auto"
             >
                 {intro}
             </p>
@@ -44,7 +42,7 @@
 
         <!-- Scroll Button -->
         <button
-            class="inline-block mx-auto px-8 sm:px-10 py-3 sm:py-4 bg-(--brand-blue) text-white rounded-full text-base sm:text-lg font-semibold cursor-pointer transition-all duration-300 shadow-lg hover:-translate-y-1 hover:scale-105 hover:shadow-xl relative overflow-hidden w-full sm:w-auto max-w-md"
+            class="inline-block mx-auto px-8 sm:px-10 py-3 sm:py-4 bg-(--brand-orange) text-white rounded-full text-base sm:text-lg font-semibold cursor-pointer transition-all duration-300 shadow-lg hover:-translate-y-1 hover:scale-105 hover:shadow-xl relative overflow-hidden w-full sm:w-auto max-w-md"
             on:click={() =>
                 window.scrollTo({
                     top: window.innerHeight,

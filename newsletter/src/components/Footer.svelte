@@ -10,10 +10,11 @@
     type FormData = {
         name: string;
         email: string;
+        mobile: string;
         thought: string;
     };
 
-    let formData: FormData = { name: "", email: "", thought: "" };
+    let formData: FormData = { name: "", email: "", mobile: "", thought: "" };
     let status: "idle" | "loading" | "success" | "error" = "idle";
 
     const handleChange = (e: Event) => {
@@ -31,7 +32,7 @@
             });
 
             status = "success";
-            formData = { name: "", email: "", thought: "" };
+            formData = { name: "", email: "", mobile: "", thought: "" };
         } catch (error: any) {
             status = "error";
         } finally {
@@ -42,7 +43,7 @@
 
 <footer
     id="contact-section"
-    class="w-full py-8 sm:py-12 px-4 sm:px-6 bg-transparent text-slate-800"
+    class="w-full py-8 sm:py-12 px-4 sm:px-6 bg-transparent text-slate-100"
 >
     <div
         class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10"
@@ -51,19 +52,19 @@
         <div
             class="flex flex-col justify-center text-center md:text-left space-y-4 sm:space-y-6"
         >
-            <h2 class="text-xl sm:text-2xl font-semibold text-(--brand-blue)">
+            <h2 class="text-xl sm:text-2xl font-semibold text-white">
                 Protect your data, infrastructure, and operations.
             </h2>
-            <p class="text-slate-700 text-base sm:text-lg">
+            <p class="text-base sm:text-lg">
                 Partner with
-                <span class="font-semibold text-(--brand-blue)"
+                <span class="font-semibold text-(--brand-orange)"
                     >Krya Solutions</span
                 >
                 for end-to-end cyber protection tailored to your needs.
             </p>
 
             <div
-                class="flex flex-col items-center md:items-start gap-3 sm:gap-4 mt-2 text-(--brand-blue)"
+                class="flex flex-col items-center md:items-start gap-3 sm:gap-4 mt-2 text-white"
             >
                 <a
                     href="tel:+914466692727"
@@ -86,10 +87,10 @@
 
         <!-- Right Section - Contact Form -->
         <div
-            class="rounded-2xl border border-slate-200 shadow-xl bg-white/50 p-4 sm:p-6 md:p-8"
+            class="rounded-2xl border border-white/10 shadow-xl bg-white/5 p-4 sm:p-6 md:p-8"
         >
             <h3
-                class="text-lg sm:text-xl font-semibold mb-4 text-(--brand-blue) text-center md:text-left"
+                class="text-lg sm:text-xl font-semibold mb-4 text-center md:text-left"
             >
                 Contact Us
             </h3>
@@ -98,9 +99,7 @@
                 class="space-y-3 sm:space-y-4"
             >
                 <div>
-                    <label
-                        for="name"
-                        class="block text-xs sm:text-sm mb-1 text-slate-700"
+                    <label for="name" class="block text-xs sm:text-sm mb-1"
                         >Name</label
                     >
                     <input
@@ -109,13 +108,11 @@
                         bind:value={formData.name}
                         on:input={handleChange}
                         required
-                        class="w-full px-3 sm:px-4 py-2 text-sm sm:text-base rounded-md border border-slate-200 focus:outline-none focus:border-(--brand-blue) bg-white text-slate-800 placeholder-slate-400 transition-colors duration-200"
+                        class="w-full px-3 sm:px-4 py-2 text-sm sm:text-base rounded-md border border-white/10 focus:outline-none focus:border-white text-white placeholder-slate-400 transition-colors duration-200"
                     />
                 </div>
                 <div>
-                    <label
-                        for="email"
-                        class="block text-xs sm:text-sm mb-1 text-slate-700"
+                    <label for="name" class="block text-xs sm:text-sm mb-1"
                         >Email</label
                     >
                     <input
@@ -124,13 +121,24 @@
                         bind:value={formData.email}
                         on:input={handleChange}
                         required
-                        class="w-full px-3 sm:px-4 py-2 text-sm sm:text-base rounded-md border border-slate-200 focus:outline-none focus:border-(--brand-blue) bg-white text-slate-800 placeholder-slate-400 transition-colors duration-200"
+                        class="w-full px-3 sm:px-4 py-2 text-sm sm:text-base rounded-md border border-white/10 focus:outline-none focus:border-white text-white placeholder-slate-400 transition-colors duration-200"
                     />
                 </div>
                 <div>
-                    <label
-                        for="thoughts"
-                        class="block text-xs sm:text-sm mb-1 text-slate-700"
+                    <label for="mobile" class="block text-xs sm:text-sm mb-1"
+                        >Mobile No.</label
+                    >
+                    <input
+                        type="text"
+                        name="mobile"
+                        bind:value={formData.mobile}
+                        on:input={handleChange}
+                        required
+                        class="w-full px-3 sm:px-4 py-2 text-sm sm:text-base rounded-md border border-white/10 focus:outline-none focus:border-white text-white placeholder-slate-400 transition-colors duration-200"
+                    />
+                </div>
+                <div>
+                    <label for="thoughts" class="block text-xs sm:text-sm mb-1"
                         >Share your thoughts</label
                     >
                     <textarea
@@ -139,13 +147,13 @@
                         bind:value={formData.thought}
                         on:input={handleChange}
                         required
-                        class="w-full px-3 sm:px-4 py-2 text-sm sm:text-base rounded-md border border-slate-200 focus:outline-none focus:border-(--brand-blue) bg-white text-slate-800 placeholder-slate-400 transition-colors duration-200 resize-none"
+                        class="w-full px-3 sm:px-4 py-2 text-sm sm:text-base rounded-md border border-white/10 focus:outline-none focus:border-white text-white placeholder-slate-400 transition-colors duration-200"
                     ></textarea>
                 </div>
                 <button
                     type="submit"
                     disabled={status === "loading"}
-                    class="w-full bg-(--brand-blue) text-white py-2.5 sm:py-3 rounded-full font-medium text-sm sm:text-base transition-all duration-300 hover:scale-102 hover:shadow-lg hover:shadow-(--brand-orange)/20 disabled:opacity-60 disabled:hover:scale-100 disabled:hover:shadow-none"
+                    class="w-full bg-(--brand-orange) text-white py-2.5 sm:py-3 rounded-full font-medium text-sm sm:text-base transition-all duration-300 hover:scale-102 hover:shadow-lg hover:shadow-(--brand-orange)/20 disabled:opacity-60 disabled:hover:scale-100 disabled:hover:shadow-none"
                 >
                     {#if status === "loading"}
                         Sending...
@@ -173,7 +181,7 @@
     </div>
 
     <div
-        class="mt-8 sm:mt-12 border-t border-slate-200 pt-4 text-center text-xs sm:text-sm text-slate-600"
+        class="mt-8 sm:mt-12 border-t border-slate-200 pt-4 text-center text-xs sm:text-sm text-slate-100"
     >
         © {new Date().getFullYear()} Krya Solutions. All rights reserved.
     </div>

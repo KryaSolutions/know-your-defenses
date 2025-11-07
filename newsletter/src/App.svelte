@@ -25,7 +25,7 @@
                 <div
                     transition:fly={{ y: 12, duration: 450 }}
                     class="absolute left-1/2 top-0 -translate-x-1/2 -translate-y-1/2 rounded-full text-base font-semibold text-white"
-                    style="background-color:var(--brand-blue); padding: 1rem 2.5rem;"
+                    style="background-color:var(--brand-orange); padding: 1rem 2.5rem;"
                 >
                     Read other interesting articles
                 </div>

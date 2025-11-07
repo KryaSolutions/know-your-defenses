@@ -112,7 +112,7 @@ const EmailDialog: React.FC<ReportDialogProps> = ({
         } catch (err: any) {
             setEmailError(
                 err.response?.data?.message ??
-                    "Invalid email, please enter a valid email"
+                "Invalid email, please enter a valid email"
             );
             return false;
         }
@@ -151,7 +151,7 @@ const EmailDialog: React.FC<ReportDialogProps> = ({
             <Button
                 className={
                     variant === "default"
-                        ? "bg-(--brand-orange) text-white px-8 py-3 rounded-lg font-semibold flex items-center space-x-3 transition-all duration-500 hover:scale-110"
+                        ? "bg-(--brand-orange) text-white px-8 py-3 rounded-lg font-semibold flex items-center space-x-3 transition-all duration-300 hover:scale-105"
                         : "border-2 border-blue-200 px-8 py-3 rounded-lg font-semibold flex items-center space-x-3"
                 }
                 onClick={() => setOpen(true)}

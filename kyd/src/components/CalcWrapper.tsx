@@ -128,6 +128,10 @@ const CalcWrapper = () => {
     const [showSuccessDialog, setShowSuccessDialog] = useState(false);
 
     useEffect(() => {
+        setCalcMetrics({});
+    }, []);
+
+    useEffect(() => {
         const handleEscape = (e: KeyboardEvent) => {
             if (e.key === "Escape" && isDialogOpen) {
                 closeDialog();

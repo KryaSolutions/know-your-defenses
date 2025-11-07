@@ -53,9 +53,8 @@ const Navbar = () => {
 
     return (
         <nav
-            className={`fixed top-0 left-0 right-0 z-50 border-b border-white/10 backdrop-blur-md bg-white/5 transition-transform duration-300 shadow-lg ${
-                isVisible ? "translate-y-0" : "-translate-y-full"
-            }`}
+            className={`fixed top-0 left-0 right-0 z-50 border-b border-white/10 backdrop-blur-md bg-white/5 transition-transform duration-300 shadow-lg ${isVisible ? "translate-y-0" : "-translate-y-full"
+                }`}
         >
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex items-center justify-between h-16 lg:h-20">
@@ -79,29 +78,18 @@ const Navbar = () => {
                     <div className="hidden md:flex items-center space-x-8">
                         <a
                             href="https://kyd.kryasolutions.com/newsletters"
-                            target="_blank"
                             rel="noopener noreferrer"
                             className="text-white hover:text-[var(--brand-orange)] transition-colors duration-200 font-medium"
                         >
                             CyberSec Insights
                         </a>
                         <a
-                            href="#calcs-section"
-                            onClick={(e) =>
-                                scrollToSection(e, "#calcs-section")
-                            }
+                            href="https://kyd.kryasolutions.com/control-sense"
+                            target="_blank"
+                            rel="noopener noreferrer"
                             className="text-white hover:text-[var(--brand-orange)] transition-colors duration-200 font-medium"
                         >
-                            SecOps
-                        </a>
-                        <a
-                            href="#survey-section"
-                            onClick={(e) =>
-                                scrollToSection(e, "#survey-section")
-                            }
-                            className="text-white hover:text-[var(--brand-orange)] transition-colors duration-200 font-medium"
-                        >
-                            Know Your Defenses
+                            Control Sense
                         </a>
                         <button
                             onClick={(e) =>
@@ -134,7 +122,6 @@ const Navbar = () => {
                     <div className="px-4 py-4 space-y-3">
                         <a
                             href="https://kyd.kryasolutions.com/newsletters"
-                            target="_blank"
                             rel="noopener noreferrer"
                             onClick={() => setMobileMenuOpen(false)}
                             className="block text-white hover:text-[var(--brand-orange)] transition-colors duration-200 font-medium py-2"
@@ -142,22 +129,12 @@ const Navbar = () => {
                             CyberSec Insights
                         </a>
                         <a
-                            href="#calcs-section"
-                            onClick={(e) =>
-                                scrollToSection(e, "#calcs-section")
-                            }
+                            href="https://kyd.kryasolutions.com/control-sense"
+                            rel="noopener noreferrer"
+                            onClick={() => setMobileMenuOpen(false)}
                             className="block text-white hover:text-[var(--brand-orange)] transition-colors duration-200 font-medium py-2"
                         >
-                            SecOps
-                        </a>
-                        <a
-                            href="#survey-section"
-                            onClick={(e) =>
-                                scrollToSection(e, "#survey-section")
-                            }
-                            className="block text-white hover:text-[var(--brand-orange)] transition-colors duration-200 font-medium py-2"
-                        >
-                            Know Your Defenses
+                            Control Sense
                         </a>
                         <button
                             onClick={(e) =>

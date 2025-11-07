@@ -67,22 +67,21 @@
             <div class="hidden md:flex items-center space-x-8">
                 <a
                     href="https://kyd.kryasolutions.com"
-                    class="text-(--brand-blue) hover:text-(--brand-orange) transition-colors duration-200 font-medium"
+                    class="text-white hover:text-(--brand-orange) transition-colors duration-200 font-medium"
                 >
                     Know Your Defenses
                 </a>
 
                 <a
-                    href="#digest-section"
-                    on:click={(e) => scrollToSection(e, "#digest-section")}
-                    class="text-(--brand-blue) hover:text-(--brand-orange) transition-colors duration-200 font-medium"
+                    href="https://kyd.kryasolutions.com/control-sense"
+                    class="text-white hover:text-(--brand-orange) transition-colors duration-200 font-medium"
                 >
-                    Weekly Digest
+                    Control Sense
                 </a>
 
                 <button
                     on:click={(e) => scrollToSection(e, "#contact-section")}
-                    class="bg-(--brand-blue) text-white px-6 py-2.5 rounded-full font-semibold transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl"
+                    class="bg-(--brand-orange) text-white px-6 py-2.5 rounded-full font-semibold transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl"
                 >
                     Contact Us
                 </button>

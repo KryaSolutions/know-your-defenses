@@ -131,22 +131,6 @@ const SocThreatIntelligence = () => {
 
     return (
         <>
-            <style>{`
-                @keyframes fadeIn {
-                    from { opacity: 0; transform: translateY(10px); }
-                    to { opacity: 1; transform: translateY(0); }
-                }
-                @keyframes slideIn {
-                    from { opacity: 0; transform: translateX(-10px); }
-                    to { opacity: 1; transform: translateX(0); }
-                }
-                .animate-fadeIn {
-                    animation: fadeIn 0.5s ease-out;
-                }
-                .animate-slideIn {
-                    animation: slideIn 0.3s ease-out;
-                }
-            `}</style>
             <div className="max-w-3xl mx-auto p-6 border rounded-2xl bg-white relative">
                 <h2 className="text-xl font-semibold text-gray-800 mb-4">
                     Threat Intelligence & Detection
@@ -245,11 +229,10 @@ const SocThreatIntelligence = () => {
                             <button
                                 onClick={calculate}
                                 disabled={validation.hasError}
-                                className={`px-4 py-2 rounded-lg text-sm font-medium text-white transition-all duration-200 ${
-                                    validation.hasError
-                                        ? "bg-gray-400 cursor-not-allowed"
-                                        : "bg-[var(--brand-blue)]"
-                                }`}
+                                className={`px-4 py-2 rounded-lg text-sm font-medium text-white transition-all duration-200 ${validation.hasError
+                                    ? "bg-gray-400 cursor-not-allowed"
+                                    : "bg-[var(--brand-blue)]"
+                                    }`}
                             >
                                 Calculate
                             </button>
