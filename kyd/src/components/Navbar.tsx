@@ -83,14 +83,6 @@ const Navbar = () => {
                         >
                             CyberSec Insights
                         </a>
-                        <a
-                            href="https://kyd.kryasolutions.com/control-sense"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-white hover:text-[var(--brand-orange)] transition-colors duration-200 font-medium"
-                        >
-                            Control Sense
-                        </a>
                         <button
                             onClick={(e) =>
                                 scrollToSection(e, "#contact-section")
@@ -127,14 +119,6 @@ const Navbar = () => {
                             className="block text-white hover:text-[var(--brand-orange)] transition-colors duration-200 font-medium py-2"
                         >
                             CyberSec Insights
-                        </a>
-                        <a
-                            href="https://kyd.kryasolutions.com/control-sense"
-                            rel="noopener noreferrer"
-                            onClick={() => setMobileMenuOpen(false)}
-                            className="block text-white hover:text-[var(--brand-orange)] transition-colors duration-200 font-medium py-2"
-                        >
-                            Control Sense
                         </a>
                         <button
                             onClick={(e) =>

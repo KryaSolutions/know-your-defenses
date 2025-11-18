@@ -72,13 +72,6 @@
                     Know Your Defenses
                 </a>
 
-                <a
-                    href="https://kyd.kryasolutions.com/control-sense"
-                    class="text-white hover:text-(--brand-orange) transition-colors duration-200 font-medium"
-                >
-                    Control Sense
-                </a>
-
                 <button
                     on:click={(e) => scrollToSection(e, "#contact-section")}
                     class="bg-(--brand-orange) text-white px-6 py-2.5 rounded-full font-semibold transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl"
@@ -131,19 +124,11 @@
         <div class="md:hidden border-t border-white/10 backdrop-blur-md">
             <div class="px-4 py-4 space-y-3">
                 <a
-                    href="https://kys.kryasolutions.com"
+                    href="https://kyd.kryasolutions.com"
                     on:click={() => (mobileMenuOpen = false)}
                     class="block text-(--brand-blue) hover:text-(--brand-orange) transition-colors duration-200 font-medium py-2"
                 >
                     Know Your Defenses
-                </a>
-
-                <a
-                    href="#digest-section"
-                    on:click={(e) => scrollToSection(e, "#digest-section")}
-                    class="block text-(--brand-blue) hover:text-(--brand-orange) transition-colors duration-200 font-medium py-2"
-                >
-                    Weekly Digest
                 </a>
 
                 <button

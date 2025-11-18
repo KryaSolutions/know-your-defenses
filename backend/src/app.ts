@@ -5,6 +5,7 @@ import cors from "cors";
 import express from "express";
 import type { Request, Response } from "express";
 import config from "./config.js";
+import middleware from "./middleware.js";
 import { fileURLToPath } from "url";
 
 const corsOptions = {
@@ -14,6 +15,7 @@ const corsOptions = {
 };
 
 const app = express();
+app.use(middleware);
 app.use(cors(corsOptions));
 app.use(express.json());
 
