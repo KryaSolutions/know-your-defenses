@@ -26,10 +26,7 @@ export default defineConfig(({ mode }) => {
                 "@": path.resolve(__dirname, "./src"),
             },
         },
-        base:
-            mode === "development"
-                ? "http://localhost:10100/newsletters"
-                : "https://kyd.kryasolutions.com/newsletters",
+        base: mode === "development" ? "/" : "/",
         server: {
             port: 10201,
             host: true,

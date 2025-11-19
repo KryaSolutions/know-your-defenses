@@ -1,5 +1,5 @@
 <script lang="ts">
-    import introOutro from "../assets/intro-outro.json";
+    import introOutro from "../../assets/intro-outro.json";
     const { intro } = introOutro[0];
 
     const formattedDate = new Date().toLocaleDateString("en-US", {
@@ -51,60 +51,8 @@
         >
             <span class="relative z-10">Read This Week's Updates</span>
             <span
-                class="absolute inset-0 bg-gradient-to-b from-white/10 to-transparent pointer-events-none"
+                class="absolute inset-0 bg-linear-to-b from-white/10 to-transparent pointer-events-none"
             ></span>
         </button>
     </div>
 </section>
-
-<style>
-    @keyframes fadeIn {
-        from {
-            opacity: 0;
-            transform: translateY(20px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-
-    .animate-fade-in {
-        animation: fadeIn 1s ease-out forwards;
-    }
-
-    .pulse-dot {
-        width: 6px;
-        height: 6px;
-        background-color: var(--brand-orange);
-        border-radius: 50%;
-        position: relative;
-    }
-
-    .pulse-dot::after {
-        content: "";
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        background-color: var(--brand-orange);
-        border-radius: 50%;
-        animation: pulse 2s infinite;
-    }
-
-    @keyframes pulse {
-        0% {
-            transform: scale(1);
-            opacity: 0.8;
-        }
-        100% {
-            transform: scale(2.5);
-            opacity: 0;
-        }
-    }
-
-    p {
-        hyphens: auto;
-        -webkit-hyphens: auto;
-        -ms-hyphens: auto;
-    }
-</style>
