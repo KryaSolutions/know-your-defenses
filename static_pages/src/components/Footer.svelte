@@ -181,7 +181,7 @@
     </div>
 
     <div
-        class="mt-8 sm:mt-12 border-t border-slate-200 pt-4 text-center text-xs sm:text-sm text-slate-100"
+        class="mt-8 sm:mt-12 pt-4 text-center text-xs sm:text-sm text-slate-100"
     >
         © {new Date().getFullYear()} Krya Solutions. All rights reserved.
     </div>

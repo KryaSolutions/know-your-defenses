@@ -8,6 +8,7 @@
     --brand-green: #bfd730;
     --brand-yellow: #ffdd00;
     --brand-grey: #dddddd;
+    --font-mono: "JetBrains Mono";
     font-family: Poppins, system-ui, Avenir, Helvetica, Arial, sans-serif;
 }
 

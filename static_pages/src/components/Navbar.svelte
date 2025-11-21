@@ -66,6 +66,12 @@
             <!-- Desktop Navigation Links -->
             <div class="hidden md:flex items-center space-x-8">
                 <a
+                    href="https://kyd.kryasolutions.com/static/#/trixus"
+                    class="text-white hover:text-(--brand-orange) transition-colors duration-200 font-medium"
+                >
+                    Trixus
+                </a>
+                <a
                     href="https://kyd.kryasolutions.com"
                     class="text-white hover:text-(--brand-orange) transition-colors duration-200 font-medium"
                 >
@@ -123,6 +129,13 @@
     {#if mobileMenuOpen}
         <div class="md:hidden border-t border-white/10 backdrop-blur-md">
             <div class="px-4 py-4 space-y-3">
+                <a
+                    href="https://kyd.kryasolutions.com/static/#/trixus"
+                    on:click={() => (mobileMenuOpen = false)}
+                    class="block text-(--brand-blue) hover:text-(--brand-orange) transition-colors duration-200 font-medium py-2"
+                >
+                    Trixus
+                </a>
                 <a
                     href="https://kyd.kryasolutions.com"
                     on:click={() => (mobileMenuOpen = false)}

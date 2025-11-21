@@ -153,8 +153,8 @@ const Footer = () => {
                             {status === "loading"
                                 ? "Sending..."
                                 : status === "success"
-                                  ? "Sent!"
-                                  : "Submit"}
+                                    ? "Sent!"
+                                    : "Submit"}
                         </button>
 
                         {status === "success" && (
@@ -171,7 +171,7 @@ const Footer = () => {
                 </div>
             </div>
 
-            <div className="mt-12 border-t border-slate-700 pt-4 text-center text-sm text-slate-300">
+            <div className="mt-12 pt-4 text-center text-sm text-slate-300">
                 © {new Date().getFullYear()} Krya Solutions. All rights
                 reserved.
             </div>

@@ -77,7 +77,14 @@ const Navbar = () => {
                     {/* Desktop Navigation Links */}
                     <div className="hidden md:flex items-center space-x-8">
                         <a
-                            href="https://kyd.kryasolutions.com/newsletters"
+                            href="https://kyd.kryasolutions.com/static/#/trixus"
+                            rel="noopener noreferrer"
+                            className="text-white hover:text-[var(--brand-orange)] transition-colors duration-200 font-medium"
+                        >
+                            Trixus
+                        </a>
+                        <a
+                            href="https://kyd.kryasolutions.com/static/#/newsletters"
                             rel="noopener noreferrer"
                             className="text-white hover:text-[var(--brand-orange)] transition-colors duration-200 font-medium"
                         >
@@ -113,7 +120,15 @@ const Navbar = () => {
                 <div className="md:hidden border-t border-white/10 backdrop-blur-md bg-white/5">
                     <div className="px-4 py-4 space-y-3">
                         <a
-                            href="https://kyd.kryasolutions.com/newsletters"
+                            href="https://kyd.kryasolutions.com/static/#/trixus"
+                            rel="noopener noreferrer"
+                            onClick={() => setMobileMenuOpen(false)}
+                            className="block text-white hover:text-[var(--brand-orange)] transition-colors duration-200 font-medium py-2"
+                        >
+                            Trixus
+                        </a>
+                        <a
+                            href="https://kyd.kryasolutions.com/static/#/newsletters"
                             rel="noopener noreferrer"
                             onClick={() => setMobileMenuOpen(false)}
                             className="block text-white hover:text-[var(--brand-orange)] transition-colors duration-200 font-medium py-2"

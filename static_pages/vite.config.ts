@@ -26,7 +26,10 @@ export default defineConfig(({ mode }) => {
                 "@": path.resolve(__dirname, "./src"),
             },
         },
-        base: mode === "development" ? "/" : "/",
+        base:
+            mode === "development"
+                ? "http://localhost:10100/static"
+                : "https://kyd.kryasolutions.com/static",
         server: {
             port: 10201,
             host: true,

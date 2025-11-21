@@ -1,30 +1,30 @@
 backend/logs
 kyd/logs
-newsletter/logs
+static_pages/logs
 
 backend/*.log
 kyd/*.log
-newsletter/*.log
+static_pages/*.log
 
 backend/npm-debug.log*
 kyd/npm-debug.log*
-newsletter/npm-debug.log*
+static_pages/npm-debug.log*
 
 backend/node_modules
 kyd/node_modules
-newsletter/node_modules
+static_pages/node_modules
 
 backend/dist
 kyd/dist
-newsletter/dist
+static_pages/dist
 
 backend/dist-ssr
 kyd/dist-ssr
-newsletter/dist-ssr
+static_pages/dist-ssr
 
 backend/*.local
 kyd/*.local
-newsletter/*.local
+static_pages/*.local
 
 backend/server.crt
 backend/server.key

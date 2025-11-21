@@ -1,9 +1,15 @@
-<script>
+<script lang="ts">
     import Card from "./Card.svelte";
     import ImageSlider from "./ImageSlider.svelte";
-    import { Shield } from "lucide-svelte";
+    import { ShieldCheck } from "lucide-svelte";
 
-    export let items = [
+    type Item = {
+        image: string;
+        title: string;
+        description: string;
+    };
+
+    export let items: Item[] = [
         {
             image: "dataIngestion",
             title: "Data Collection & Ingestion",
@@ -56,20 +62,20 @@
             image: "insights",
             title: "Insights & Reports",
             description:
-                "Provides actionable insights and comprehensive reports for security teams.",
+                "Provides actionable insights and comprehensive reports for security teams, along with customisable chatbots",
         },
     ];
 </script>
 
 <div class="py-16 px-4 lg:py-24">
-    <div class="max-w-7xl mx-auto relative">
+    <div class="max-w-screen mx-auto relative">
         <!-- Flow Start Icon -->
         <div class="flex justify-center mb-8 lg:mb-12">
             <div
                 class="inline-flex items-center gap-2 px-4 py-2 animate-slide-left mx-auto"
             >
                 <p
-                    class="text-transparent text-xl sm:text-2xl lg:text-3xl font-bold bg-clip-text bg-linear-to-r from-blue-400 via-red-400 to-purple-400"
+                    class="text-transparent text-2xl sm:text-3xl lg:text-4xl font-bold bg-clip-text bg-linear-to-r from-blue-400 via-red-400 to-purple-400"
                 >
                     AI-Powered SOC Pipeline
                 </p>
@@ -98,7 +104,6 @@
                         >
                             <div class="card-wrapper">
                                 <Card
-                                    image={item.image}
                                     title={item.title}
                                     description={item.description}
                                 />
@@ -122,9 +127,11 @@
         </div>
 
         <!-- Flow End Icon -->
-        <div class="flex justify-center mt-8 lg:mt-12">
-            <div class="end-icon-wrapper bg-green-500/20">
-                <Shield class="w-8 h-8 lg:w-10 lg:h-10 text-green-400" />
+        <div class="flex justify-center mt-32">
+            <div
+                class="end-icon-wrapper bg-green-500/20 transition-all hover:scale-105"
+            >
+                <ShieldCheck class="w-16 h-16 lg:w-16 lg:h-16 text-green-400" />
             </div>
         </div>
     </div>
@@ -136,8 +143,8 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        width: 64px;
-        height: 64px;
+        width: 106px;
+        height: 106px;
         border-radius: 50%;
         box-shadow:
             0 4px 6px -1px rgb(0 0 0 / 0.1),
@@ -146,31 +153,21 @@
         z-index: 20;
     }
 
-    .end-icon-wrapper:hover {
-        transform: scale(1.1);
-        box-shadow:
-            0 10px 15px -3px rgb(0 0 0 / 0.1),
-            0 4px 6px -4px rgb(0 0 0 / 0.1);
-    }
-
-    .end-icon-wrapper {
-        border-color: #16a34a;
-    }
-
     /* Central Flow Line */
     .central-line {
         position: absolute;
         left: 50%;
         top: 80px;
         bottom: 80px;
-        width: 4px;
+        width: 2px;
         background: linear-gradient(
             to bottom,
             transparent 0%,
-            #e5e7eb 5%,
-            #3b82f6 10%,
-            #3b82f6 90%,
-            #16a34a 95%,
+            #e5e7eb 20%,
+            #3b82f6 40%,
+            #16a34a 55%,
+            #3b82f6 70%,
+            #e5e7eb 80%,
             transparent 100%
         );
         transform: translateX(-50%);
@@ -235,7 +232,7 @@
         display: flex;
         flex-direction: row;
         gap: 2.5rem; /* Reduced gap slightly for less clutter, but still spacious */
-        align-items: flex-start;
+        align-items: center;
         flex: 1;
         width: 100%;
         max-width: 1200px; /* Slightly wider container for better breathing room */
@@ -266,12 +263,17 @@
         justify-content: flex-start;
     }
 
-    .card-wrapper,
-    .slider-wrapper {
+    .card-wrapper {
         transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); /* Consistent subtle shadow */
         border-radius: 12px; /* Rounded corners for appeal */
         overflow: hidden; /* Clip any overflowing content */
+    }
+
+    .slider-wrapper {
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        border-radius: 12px;
+        overflow: hidden;
     }
 
     .card-wrapper {
@@ -282,7 +284,10 @@
         width: 100%;
     }
 
-    .flow-step:hover .card-wrapper,
+    .flow-step:hover .card-wrapper {
+        transform: translateY(-4px);
+    }
+
     .flow-step:hover .slider-wrapper {
         transform: translateY(-4px);
         box-shadow: 0 10px 25px -3px rgba(0, 0, 0, 0.1);
@@ -337,12 +342,6 @@
             height: 12px;
         }
 
-        .start-icon-wrapper,
-        .end-icon-wrapper {
-            width: 56px;
-            height: 56px;
-        }
-
         .central-line {
             top: 72px;
             bottom: 72px;
@@ -373,7 +372,6 @@
         }
     }
 
-    /* Smooth animations */
     @media (prefers-reduced-motion: no-preference) {
         .flow-step {
             animation: fadeInUp 0.6s ease-out backwards;
@@ -428,6 +426,24 @@
         .flow-step {
             transition: none !important;
             animation: none !important;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .central-line {
+            display: none;
+        }
+
+        .bullet-point {
+            display: none;
+        }
+
+        .flow-step:first-child .content-row {
+            margin-top: 2rem;
+        }
+
+        .flow-step {
+            margin-bottom: 4rem;
         }
     }
 </style>

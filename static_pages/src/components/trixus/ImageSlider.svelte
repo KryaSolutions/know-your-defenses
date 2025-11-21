@@ -41,17 +41,19 @@
     });
 </script>
 
-<div class="w-full relative overflow-hidden rounded-lg">
+<div
+    class="w-full relative overflow-hidden rounded-lg flex justify-center items-center bg-gray-50"
+>
     <img
         src={slideBuffer[currentSlide]}
         {alt}
-        class="w-full h-64 object-cover transition-all duration-500"
+        class="w-auto max-w-full object-contain transition-all duration-500 drop-shadow-md"
     />
 
     {#if slideBuffer.length > 1}
         <!-- Prev Button -->
         <button
-            class="absolute top-1/2 left-2 -translate-y-1/2 bg-black/40 text-white p-2 rounded-full hover:bg-black/60"
+            class="absolute top-1/2 left-2 -translate-y-1/2 bg-black/40 text-white p-3 rounded-full hover:bg-black/60"
             on:click={prev}
         >
             ‹
@@ -59,7 +61,7 @@
 
         <!-- Next Button -->
         <button
-            class="absolute top-1/2 right-2 -translate-y-1/2 bg-black/40 text-white p-2 rounded-full hover:bg-black/60"
+            class="absolute top-1/2 right-2 -translate-y-1/2 bg-black/40 text-white p-3 rounded-full hover:bg-black/60"
             on:click={next}
         >
             ›
@@ -70,10 +72,11 @@
             {#each slideBuffer as _, index}
                 <button
                     aria-label="Indexer"
-                    class={`w-3 h-3 rounded-full border border-slate-600 ${index === currentSlide ? "bg-slate-400" : "bg-white"}`}
+                    class={`w-3 h-3 rounded-full border border-slate-600 ${
+                        index === currentSlide ? "bg-slate-400" : "bg-white"
+                    }`}
                     on:click={() => (currentSlide = index)}
-                >
-                </button>
+                ></button>
             {/each}
         </div>
     {/if}
