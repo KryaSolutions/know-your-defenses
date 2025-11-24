@@ -1,11 +1,11 @@
-import { defineConfig } from "vite";
 import path from "path";
-import { svelte } from "@sveltejs/vite-plugin-svelte";
+import { defineConfig } from "vite";
 import tailwindcss from "@tailwindcss/vite";
+import { sveltekit } from "@sveltejs/kit/vite";
 
 export default defineConfig(({ mode }) => {
     return {
-        plugins: [svelte(), tailwindcss()],
+        plugins: [sveltekit(), tailwindcss()],
         build: {
             rollupOptions: {
                 output: {
@@ -26,10 +26,6 @@ export default defineConfig(({ mode }) => {
                 "@": path.resolve(__dirname, "./src"),
             },
         },
-        base:
-            mode === "development"
-                ? "http://localhost:10100/static"
-                : "https://kyd.kryasolutions.com/static",
         server: {
             port: 10201,
             host: true,

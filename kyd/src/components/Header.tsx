@@ -70,7 +70,7 @@ const Header = () => {
 
                             <a
                                 className="group flex flex-col items-start space-y-1 p-3 bg-white/5 rounded-lg border border-white/10 transition-all duration-300 hover:scale-102 hover:bg-white/10 text-left"
-                                href="https://kyd.kryasolutions.com/static/#/newsletters"
+                                href="https://kyd.kryasolutions.com/newsletters"
                                 target="_blank"
                                 rel="noopener noreferrer"
                             >

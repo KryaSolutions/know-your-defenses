@@ -6,22 +6,31 @@
     export let alt: string = "";
     export let interval: number = 3000;
 
-    let timer: number | undefined;
+    const allImages = import.meta.glob("$lib/assets/*.png", {
+        eager: true,
+        import: "default",
+    });
+
+    let timer: ReturnType<typeof setInterval> | undefined;
     let currentSlide = 0;
 
-    let slideBuffer: string[] = [];
+    let slideNames: string[] = [];
 
     if (subSlides.length > 0) {
-        slideBuffer = subSlides.map(
-            (num) =>
-                new URL(`../../assets/${slides}.${num}.png`, import.meta.url)
-                    .href
-        );
+        slideNames = subSlides.map((num) => `${slides}.${num}.png`);
     } else {
-        slideBuffer = [
-            new URL(`../../assets/${slides}.png`, import.meta.url).href,
-        ];
+        slideNames = [`${slides}.png`];
     }
+
+    let slideBuffer: string[] = slideNames
+        .map((name) => {
+            const match = Object.entries(allImages).find(([path]) => {
+                const filename = path.split("/").pop();
+                return filename === name;
+            });
+            return match ? match[1] : null;
+        })
+        .filter(Boolean) as string[];
 
     if (slideBuffer.length > 1) {
         timer = setInterval(next, interval);

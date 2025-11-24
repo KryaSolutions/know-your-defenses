@@ -1,6 +1,6 @@
 <script lang="ts">
     import { onMount } from "svelte";
-    import krya from "../assets/krya.svg";
+    import krya from "$lib/assets/krya.svg";
 
     let isVisible = true;
     let lastScrollY = 0;
@@ -53,6 +53,8 @@
             <div class="flex items-center">
                 <a
                     href="https://kryasolutions.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     class="text-2xl font-bold text-white hover:text-(--brand-orange) transition-colors duration-200"
                 >
                     <img
@@ -66,16 +68,28 @@
             <!-- Desktop Navigation Links -->
             <div class="hidden md:flex items-center space-x-8">
                 <a
-                    href="https://kyd.kryasolutions.com/static/#/trixus"
+                    href="https://kyd.kryasolutions.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="text-white hover:text-(--brand-orange) transition-colors duration-200 font-medium"
+                >
+                    Know Your Defenses
+                </a>
+                <a
+                    href="https://kyd.kryasolutions.com/trixus"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     class="text-white hover:text-(--brand-orange) transition-colors duration-200 font-medium"
                 >
                     Trixus
                 </a>
                 <a
-                    href="https://kyd.kryasolutions.com"
+                    href="https://kyd.kryasolutions.com/newsletters"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     class="text-white hover:text-(--brand-orange) transition-colors duration-200 font-medium"
                 >
-                    Know Your Defenses
+                    CyberSec Insights
                 </a>
 
                 <button
@@ -130,7 +144,9 @@
         <div class="md:hidden border-t border-white/10 backdrop-blur-md">
             <div class="px-4 py-4 space-y-3">
                 <a
-                    href="https://kyd.kryasolutions.com/static/#/trixus"
+                    href="https://kyd.kryasolutions.com/trixus"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     on:click={() => (mobileMenuOpen = false)}
                     class="block text-(--brand-blue) hover:text-(--brand-orange) transition-colors duration-200 font-medium py-2"
                 >
@@ -138,6 +154,8 @@
                 </a>
                 <a
                     href="https://kyd.kryasolutions.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     on:click={() => (mobileMenuOpen = false)}
                     class="block text-(--brand-blue) hover:text-(--brand-orange) transition-colors duration-200 font-medium py-2"
                 >

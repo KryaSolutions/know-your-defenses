@@ -1,11 +1,11 @@
 <script lang="ts">
     import { fly } from "svelte/transition";
-    import latestNews from "../assets/news-articles-latest.json";
-    import leftOvers from "../assets/news-articles-leftovers.json";
-    import Footer from "../components/Footer.svelte";
-    import Navbar from "../components/Navbar.svelte";
-    import Hero from "../components/newsletters/Hero.svelte";
-    import Articles from "../components/newsletters/Articles.svelte";
+    import latestNews from "$lib/assets/news-articles-latest.json";
+    import leftOvers from "$lib/assets/news-articles-leftovers.json";
+    import Footer from "$lib/components/Footer.svelte";
+    import Navbar from "$lib/components/Navbar.svelte";
+    import Hero from "$lib/components/newsletters/Hero.svelte";
+    import Articles from "$lib/components/newsletters/Articles.svelte";
 </script>
 
 <main class="min-h-screen">

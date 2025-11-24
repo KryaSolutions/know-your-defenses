@@ -29,7 +29,7 @@ export default defineConfig(({ mode }) => {
         base:
             mode === "development"
                 ? "http://localhost:10100"
-                : "https://kyd.kryasolutions.com/static",
+                : "https://kyd.kryasolutions.com",
         server: {
             port: 10200,
             host: true,

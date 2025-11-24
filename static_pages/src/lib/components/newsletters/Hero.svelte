@@ -1,5 +1,5 @@
 <script lang="ts">
-    import introOutro from "../../assets/intro-outro.json";
+    import introOutro from "$lib/assets/intro-outro.json";
     const { intro } = introOutro[0];
 
     const formattedDate = new Date().toLocaleDateString("en-US", {

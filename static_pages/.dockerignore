@@ -1,7 +1,8 @@
-dist
+build
 node_modules
 Dockerfile
+.npmrc
 .dockerignore
 .prettierrc
 .env.example
-
+.svelte-kit
