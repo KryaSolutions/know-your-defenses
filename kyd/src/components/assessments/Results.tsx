@@ -126,7 +126,7 @@ const Results = () => {
                 {/* Rank Section */}
                 <div className="bg-white/5 p-8 text-center">
                     <div className="inline-flex flex-col items-center">
-                        <p className="text-white/80 text-sm font-medium tracking-wide mb-2">
+                        <p className="text-(--brand-blue) text-sm font-medium tracking-wide mb-2">
                             Your Security Strength is at
                         </p>
                         <div
@@ -194,9 +194,9 @@ const Results = () => {
                                                 key={`cell-${index}`}
                                                 fill={
                                                     COLORS.gradient[
-                                                        index === 0
-                                                            ? "addressed"
-                                                            : "ignored"
+                                                    index === 0
+                                                        ? "addressed"
+                                                        : "ignored"
                                                     ]
                                                 }
                                                 stroke="#ffffff"
@@ -218,10 +218,10 @@ const Results = () => {
                         {/* Center Label */}
                         <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
                             <div className="text-center">
-                                <div className="text-3xl font-medium text-white">
+                                <div className="text-3xl font-medium text-slate-700">
                                     {Math.round(percentage)}%
                                 </div>
-                                <div className="text-sm text-white font-medium">
+                                <div className="text-sm text-slate-700 font-medium">
                                     Addressed
                                 </div>
                             </div>
@@ -229,7 +229,7 @@ const Results = () => {
                     </div>
                     {/* Assessments Attended */}
                     <div className="bg-gray-50/5 rounded-xl p-6">
-                        <h3 className="text-lg font-semibold text-white mb-4">
+                        <h3 className="text-lg font-semibold text-(--brand-blue) mb-4">
                             Assessments Attended
                         </h3>
                         <div className="space-y-3">
@@ -247,7 +247,7 @@ const Results = () => {
                                             key={title}
                                             className="flex justify-between items-center border-b pb-2 last:border-none"
                                         >
-                                            <span className="text-white">
+                                            <span className="text-(--brand-blue)">
                                                 {title}
                                             </span>
                                             <span className="font-medium text-(--brand-orange)">
@@ -257,7 +257,7 @@ const Results = () => {
                                     );
                                 })
                             ) : (
-                                <p className="text-sm text-white">
+                                <p className="text-sm text-slate-700">
                                     No assessments attended yet.
                                 </p>
                             )}
@@ -265,7 +265,7 @@ const Results = () => {
                     </div>
                     {/* Rank Description */}
                     <div className="bg-blue-50/5 rounded-xl p-6 mt-6">
-                        <h4 className="font-semibold text-white mb-2">
+                        <h4 className="font-semibold text-(--brand-blue) mb-2">
                             {rankDescriptions[rank]}
                         </h4>
                     </div>

@@ -43,7 +43,7 @@
 
 <footer
     id="trixus-footer"
-    class="w-full py-8 sm:py-12 px-4 sm:px-6 bg-transparent text-slate-100"
+    class="w-full py-8 sm:py-12 px-4 sm:px-6 bg-transparent text-slate-700"
 >
     <div
         class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10"
@@ -52,7 +52,7 @@
         <div
             class="flex flex-col justify-center text-center md:text-left space-y-4 sm:space-y-6"
         >
-            <h2 class="text-xl sm:text-2xl font-semibold text-white">
+            <h2 class="text-xl sm:text-2xl font-semibold text-(--brand-blue)">
                 Protect your data, infrastructure, and operations.
             </h2>
             <p class="text-base sm:text-lg">
@@ -64,7 +64,7 @@
             </p>
 
             <div
-                class="flex flex-col items-center md:items-start gap-3 sm:gap-4 mt-2 text-white"
+                class="flex flex-col items-center md:items-start gap-3 sm:gap-4 mt-2 text-(--brand-blue)"
             >
                 <a
                     href="tel:+914466692727"
@@ -86,9 +86,7 @@
         </div>
 
         <!-- Right Section - Contact Form -->
-        <div
-            class="rounded-2xl border border-white/10 shadow-xl bg-white/5 p-4 sm:p-6 md:p-8"
-        >
+        <div class="rounded-2xl shadow-xl bg-white/5 p-4 sm:p-6 md:p-8">
             <h3
                 class="text-lg sm:text-xl font-semibold mb-4 text-center md:text-left"
             >
@@ -108,7 +106,7 @@
                         bind:value={formData.name}
                         on:input={handleChange}
                         required
-                        class="w-full px-3 sm:px-4 py-2 text-sm sm:text-base rounded-md border border-white/10 focus:outline-none focus:border-white text-white placeholder-slate-400 transition-colors duration-200"
+                        class="w-full px-3 sm:px-4 py-2 text-sm sm:text-base rounded-md border border-(--brand-blue)/10 focus:outline-none focus:border-(--brand-blue)/40 text-slate-700 placeholder-slate-400 transition-colors duration-200"
                     />
                 </div>
                 <div>
@@ -121,7 +119,7 @@
                         bind:value={formData.email}
                         on:input={handleChange}
                         required
-                        class="w-full px-3 sm:px-4 py-2 text-sm sm:text-base rounded-md border border-white/10 focus:outline-none focus:border-white text-white placeholder-slate-400 transition-colors duration-200"
+                        class="w-full px-3 sm:px-4 py-2 text-sm sm:text-base rounded-md border border-(--brand-blue)/10 focus:outline-none focus:border-(--brand-blue)/40 text-slate-700 placeholder-slate-400 transition-colors duration-200"
                     />
                 </div>
                 <div>
@@ -134,7 +132,7 @@
                         bind:value={formData.mobile}
                         on:input={handleChange}
                         required
-                        class="w-full px-3 sm:px-4 py-2 text-sm sm:text-base rounded-md border border-white/10 focus:outline-none focus:border-white text-white placeholder-slate-400 transition-colors duration-200"
+                        class="w-full px-3 sm:px-4 py-2 text-sm sm:text-base rounded-md border border-(--brand-blue)/10 focus:outline-none focus:border-(--brand-blue)/40 text-slate-700 placeholder-slate-400 transition-colors duration-200"
                     />
                 </div>
                 <div>
@@ -147,7 +145,7 @@
                         bind:value={formData.thought}
                         on:input={handleChange}
                         required
-                        class="w-full px-3 sm:px-4 py-2 text-sm sm:text-base rounded-md border border-white/10 focus:outline-none focus:border-white text-white placeholder-slate-400 transition-colors duration-200"
+                        class="w-full px-3 sm:px-4 py-2 text-sm sm:text-base rounded-md border border-(--brand-blue)/10 focus:outline-none focus:border-(--brand-blue)/40 text-slate-700 placeholder-slate-400 transition-colors duration-200"
                     ></textarea>
                 </div>
                 <button
@@ -166,7 +164,7 @@
 
                 {#if status === "success"}
                     <p
-                        class="text-(--brand-orange) text-xs sm:text-sm text-center mt-2 font-medium"
+                        class="text-(--brand-blue) text-xs sm:text-sm text-center mt-2 font-medium"
                     >
                         Message sent successfully!
                     </p>
@@ -181,7 +179,7 @@
     </div>
 
     <div
-        class="mt-8 sm:mt-12 pt-4 text-center text-xs sm:text-sm text-slate-100"
+        class="mt-8 sm:mt-12 pt-4 text-center text-xs sm:text-sm text-slate-500"
     >
         © {new Date().getFullYear()} Krya Solutions. All rights reserved.
     </div>

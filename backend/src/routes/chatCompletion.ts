@@ -3,7 +3,9 @@ import { Router } from "express";
 import type { Request, Response } from "express";
 import { Mistral } from "@mistralai/mistralai";
 import knowledgeBase from "./knowledgeBase.js";
+import initializeEmbeddings from "./createEmbeddings.js";
 
+initializeEmbeddings();
 export const router = Router();
 
 async function getCompletion(message: string): Promise<string> {

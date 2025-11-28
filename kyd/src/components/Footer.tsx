@@ -53,33 +53,33 @@ const Footer = () => {
     return (
         <footer
             id="contact-section"
-            className="w-full bg-[var(--brand-blue)] py-12 px-6 text-white"
+            className="w-full py-12 px-6 text-slate-700"
         >
             <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10">
                 {/* Left Section */}
                 <div className="flex flex-col justify-center text-center md:text-left space-y-6">
-                    <h2 className="text-2xl font-semibold text-white">
+                    <h2 className="text-2xl font-semibold text-(--brand-blue)">
                         Protect your data, infrastructure, and operations.
                     </h2>
-                    <p className="text-slate-200 text-lg">
+                    <p className="text-lg">
                         Partner with{" "}
-                        <span className="font-semibold text-white">
+                        <span className="font-semibold text-(--brand-orange)">
                             Krya Solutions
                         </span>{" "}
                         for end-to-end cyber protection tailored to your needs.
                     </p>
 
-                    <div className="flex flex-col sm:flex-row sm:justify-start justify-center gap-4 mt-2 text-slate-100">
+                    <div className="flex flex-col sm:flex-row sm:justify-start justify-center gap-4 mt-2 text-(--brand-blue)">
                         <a
                             href="tel:+914466692727"
-                            className="flex items-center justify-center gap-2 hover:text-[var(--brand-orange)] transition"
+                            className="flex items-center justify-center gap-2 hover:text-(--brand-orange) transition"
                         >
                             <Phone className="w-5 h-5" />
                             <span>+91 44 6669 2727</span>
                         </a>
                         <a
                             href="mailto:ks-info@kryasolutions.com"
-                            className="flex items-center justify-center gap-2 transition hover:text-[var(--brand-orange)]"
+                            className="flex items-center justify-center gap-2 transition hover:text-(--brand-orange)"
                         >
                             <Mail className="w-5 h-5" />
                             <span>ks-info@kryasolutions.com</span>
@@ -88,13 +88,13 @@ const Footer = () => {
                 </div>
 
                 {/* Right Section - Contact Form */}
-                <div className="bg-white/5 border border-white/10 rounded-2xl shadow-lg p-6 md:p-8">
-                    <h3 className="text-xl font-semibold mb-4 text-white text-center md:text-left">
+                <div className="bg-white/5 text-slate-700 rounded-2xl shadow-lg p-6 md:p-8">
+                    <h3 className="text-xl font-semibold mb-4 text-center md:text-left">
                         Contact Us
                     </h3>
                     <form onSubmit={handleSubmit} className="space-y-4">
                         <div>
-                            <label className="block text-sm mb-1 text-white">
+                            <label className="block text-sm mb-1">
                                 Name
                             </label>
                             <input
@@ -103,11 +103,11 @@ const Footer = () => {
                                 value={formData.name}
                                 onChange={handleChange}
                                 required
-                                className="w-full px-4 py-2 rounded-md border border-white/10 focus:outline-none focus:border-white text-white"
+                                className="w-full px-4 py-2 rounded-md border border-(--brand-blue)/10 focus:outline-none focus:border-(--brand-blue)/40 text-slate-700"
                             />
                         </div>
                         <div>
-                            <label className="block text-sm mb-1 text-white">
+                            <label className="block text-sm mb-1">
                                 Email
                             </label>
                             <input
@@ -116,11 +116,11 @@ const Footer = () => {
                                 value={formData.email}
                                 onChange={handleChange}
                                 required
-                                className="w-full px-4 py-2 rounded-md border border-white/10 focus:outline-none focus:border-white text-white"
+                                className="w-full px-4 py-2 rounded-md border border-(--brand-blue)/10 focus:outline-none focus:border-(--brand-blue)/40 text-slate-700"
                             />
                         </div>
                         <div>
-                            <label className="block text-sm mb-1 text-white">
+                            <label className="block text-sm mb-1">
                                 Mobile No.
                             </label>
                             <input
@@ -129,11 +129,11 @@ const Footer = () => {
                                 value={formData.mobile}
                                 onChange={handleChange}
                                 required
-                                className="w-full px-4 py-2 rounded-md border border-white/10 focus:outline-none focus:border-white text-white"
+                                className="w-full px-4 py-2 rounded-md border border-(--brand-blue)/10 focus:outline-none focus:border-(--brand-blue)/40 text-slate-700"
                             />
                         </div>
                         <div>
-                            <label className="block text-sm mb-1 text-white">
+                            <label className="block text-sm mb-1">
                                 Share your thoughts
                             </label>
                             <textarea
@@ -142,13 +142,13 @@ const Footer = () => {
                                 value={formData.thought}
                                 onChange={handleChange}
                                 required
-                                className="w-full px-4 py-2 rounded-md border border-white/10 focus:outline-none focus:border-white text-white resize-none"
+                                className="w-full px-4 py-2 rounded-md border border-(--brand-blue)/10 focus:outline-none focus:border-(--brand-blue)/40 text-slate-700"
                             ></textarea>
                         </div>
                         <button
                             type="submit"
                             disabled={status === "loading"}
-                            className="w-full bg-[var(--brand-orange)] text-white py-2 rounded-md font-medium transition-transform duration-300 disabled:opacity-60 hover:scale-105"
+                            className="w-full bg-(--brand-orange) text-white py-2 rounded-md font-medium transition-transform duration-300 disabled:opacity-60 hover:scale-105"
                         >
                             {status === "loading"
                                 ? "Sending..."
@@ -171,7 +171,7 @@ const Footer = () => {
                 </div>
             </div>
 
-            <div className="mt-12 pt-4 text-center text-sm text-slate-300">
+            <div className="mt-12 pt-4 text-center text-sm text-slate-500">
                 © {new Date().getFullYear()} Krya Solutions. All rights
                 reserved.
             </div>

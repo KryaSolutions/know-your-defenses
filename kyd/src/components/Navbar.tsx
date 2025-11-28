@@ -62,8 +62,6 @@ const Navbar = () => {
                     <div className="flex items-center">
                         <a
                             href="https://kryasolutions.com"
-                            target="_blank"
-                            rel="noopener noreferrer"
                             className="hover:opacity-80 transition-opacity duration-200"
                         >
                             <img
@@ -77,18 +75,14 @@ const Navbar = () => {
                     {/* Desktop Navigation Links */}
                     <div className="hidden md:flex items-center space-x-8">
                         <a
-                            href="https://kyd.kryasolutions.com/trixus"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-white hover:text-[var(--brand-orange)] transition-colors duration-200 font-medium"
+                            href="https://kyd.kryasolutions.com/aisoc"
+                            className="text-(--brand-blue) hover:text-(--brand-orange) transition-colors duration-200 font-medium"
                         >
-                            Trixus
+                            AI-SOC
                         </a>
                         <a
                             href="https://kyd.kryasolutions.com/newsletters"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-white hover:text-[var(--brand-orange)] transition-colors duration-200 font-medium"
+                            className="text-(--brand-blue) hover:text-(--brand-orange) transition-colors duration-200 font-medium"
                         >
                             CyberSec Insights
                         </a>
@@ -96,7 +90,7 @@ const Navbar = () => {
                             onClick={(e) =>
                                 scrollToSection(e, "#contact-section")
                             }
-                            className="bg-[var(--brand-orange)] text-white px-6 py-2.5 rounded-full font-semibold transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl"
+                            className="bg-(--brand-orange) text-white px-6 py-2.5 rounded-full font-semibold transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl"
                         >
                             Contact Us
                         </button>
@@ -105,7 +99,7 @@ const Navbar = () => {
                     {/* Mobile Menu Button */}
                     <button
                         onClick={toggleMobileMenu}
-                        className="md:hidden text-white p-2 rounded-lg hover:bg-white/10 transition-colors"
+                        className="md:hidden text-(--brand-blue) p-2 rounded-lg hover:bg-white/10 transition-colors"
                         aria-label="Toggle menu"
                     >
                         {mobileMenuOpen ? (
@@ -122,20 +116,16 @@ const Navbar = () => {
                 <div className="md:hidden border-t border-white/10 backdrop-blur-md bg-white/5">
                     <div className="px-4 py-4 space-y-3">
                         <a
-                            href="https://kyd.kryasolutions.com/trixus"
-                            target="_blank"
-                            rel="noopener noreferrer"
+                            href="https://kyd.kryasolutions.com/aisoc"
                             onClick={() => setMobileMenuOpen(false)}
-                            className="block text-white hover:text-[var(--brand-orange)] transition-colors duration-200 font-medium py-2"
+                            className="block text-(--brand-blue) hover:text-[var(--brand-orange)] transition-colors duration-200 font-medium py-2"
                         >
-                            Trixus
+                            AI-SOC
                         </a>
                         <a
                             href="https://kyd.kryasolutions.com/newsletters"
-                            target="_blank"
-                            rel="noopener noreferrer"
                             onClick={() => setMobileMenuOpen(false)}
-                            className="block text-white hover:text-[var(--brand-orange)] transition-colors duration-200 font-medium py-2"
+                            className="block text-(--brand-blue) hover:text-[var(--brand-orange)] transition-colors duration-200 font-medium py-2"
                         >
                             CyberSec Insights
                         </a>
@@ -143,7 +133,7 @@ const Navbar = () => {
                             onClick={(e) =>
                                 scrollToSection(e, "#contact-section")
                             }
-                            className="w-full bg-[var(--brand-orange)] text-white px-6 py-2.5 rounded-full font-semibold transition-all duration-300 shadow-lg"
+                            className="w-full bg-(--brand-orange) text-white px-6 py-2.5 rounded-full font-semibold transition-all duration-300 shadow-lg"
                         >
                             Contact Us
                         </button>
@@ -155,4 +145,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-

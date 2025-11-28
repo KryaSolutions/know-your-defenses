@@ -46,16 +46,16 @@ const SurveyWrapper = () => {
     }, []);
 
     return (
-        <div className="flex-grow flex-shrink p-4 sm:p-6 md:p-8 lg:p-10 bg-[var(--brand-blue)]">
-            <div className="max-w-6xl mx-auto bg-white/5 border border-white/10 rounded-2xl shadow-xl overflow-hidden flex flex-col">
+        <div className="flex-grow flex-shrink p-4 sm:p-6 md:p-8 lg:p-10">
+            <div className="max-w-6xl mx-auto bg-white/5 rounded-2xl shadow-xl overflow-hidden flex flex-col">
                 <ResponseContext.Provider value={{ response, setResponse }}>
                     {/* Header Section */}
                     <div id="survey-section" className="p-6 sm:p-8">
                         <div className="flex items-center justify-center space-x-3 sm:space-x-4">
-                            <div className="p-2 sm:p-3 bg-white rounded-full flex-shrink-0">
+                            <div className="p-2 sm:p-3 bg-(--brand-blue)/10 rounded-full flex-shrink-0">
                                 <Shield className="w-6 h-6 sm:w-8 sm:h-8 text-(--brand-blue)" />
                             </div>
-                            <h2 className="text-2xl sm:text-3xl font-bold text-white text-center">
+                            <h2 className="text-2xl sm:text-3xl font-bold text-(--brand-blue) text-center">
                                 {!showResults
                                     ? "Discover your Security Posture"
                                     : "Your Defense stats"}
@@ -71,7 +71,7 @@ const SurveyWrapper = () => {
                             <div className="space-y-6">
                                 {!showResults && (
                                     <div className="text-center">
-                                        <p className="text-white text-base sm:text-lg">
+                                        <p className="text-slate-700 text-base sm:text-lg">
                                             Take the quick assessments to
                                             understand your organization's
                                             current security posture.

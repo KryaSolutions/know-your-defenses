@@ -167,16 +167,16 @@ const CalcWrapper = () => {
         <MetricsContext.Provider value={{ calcMetrics, setCalcMetrics }}>
             <div
                 id="calcs-section"
-                className="flex-grow flex-shrink p-4 sm:p-6 md:p-8 lg:p-10 bg-[var(--brand-blue)]"
+                className="flex-grow flex-shrink p-4 sm:p-6 md:p-8 lg:p-10"
             >
-                <div className="max-w-6xl mx-auto border border-white/10 bg-white/5 rounded-2xl shadow-xl overflow-hidden flex flex-col">
+                <div className="max-w-6xl mx-auto bg-white/5 rounded-2xl shadow-xl overflow-hidden flex flex-col">
                     {/* Header Section */}
                     <div className="p-6 sm:p-8">
                         <div className="flex items-center justify-center space-x-3 sm:space-x-4">
-                            <div className="p-2 sm:p-3 bg-white rounded-full flex-shrink-0">
+                            <div className="p-2 sm:p-3 bg-(--brand-blue)/10 rounded-full flex-shrink-0">
                                 <Calculator className="w-6 h-6 sm:w-8 sm:h-8 text-(--brand-blue)" />
                             </div>
-                            <h2 className="text-2xl sm:text-3xl font-bold text-white text-center">
+                            <h2 className="text-2xl sm:text-3xl font-bold text-(--brand-blue) text-center">
                                 Sec-Ops Efficiency
                             </h2>
                         </div>
@@ -186,7 +186,7 @@ const CalcWrapper = () => {
                     <div className="flex-1 pt-3 pb-6 sm:pt-3 sm:pb-6 px-6 sm:px-8 overflow-y-auto">
                         <div className="space-y-6">
                             <div className="text-center">
-                                <p className="text-white text-base sm:text-lg">
+                                <p className="text-slate-700 text-base sm:text-lg">
                                     Fiddle with our suite of security operation
                                     calculators
                                 </p>
@@ -200,7 +200,7 @@ const CalcWrapper = () => {
                                             key={calc.id}
                                             onClick={() => openDialog(calc)}
                                             className={`group relative p-5 sm:p-6 rounded-xl transition-all duration-300 ease-out
-                                                bg-(--brand-light-blue)/20 border-blue-200 backdrop-blur-sm 
+                                                bg-(--brand-light-blue)/20 backdrop-blur-sm 
                                                 hover:shadow-lg hover:scale-105 active:scale-100`}
                                         >
                                             <div className="flex flex-col items-start space-y-3">
@@ -211,24 +211,9 @@ const CalcWrapper = () => {
                                                         className={`w-5 h-5 sm:w-6 sm:h-6 `}
                                                     />
                                                 </div>
-                                                <h3 className="text-base text-white sm:text-lg font-semibold text-left">
+                                                <h3 className="text-base text-slate-700 sm:text-lg font-semibold text-left">
                                                     {calc.name}
                                                 </h3>
-                                            </div>
-                                            <div className="absolute text-white bottom-4 right-4 transition-opacity duration-300">
-                                                <svg
-                                                    className="w-4 h-4 sm:w-5 sm:h-5"
-                                                    fill="none"
-                                                    viewBox="0 0 24 24"
-                                                    stroke="currentColor"
-                                                >
-                                                    <path
-                                                        strokeLinecap="round"
-                                                        strokeLinejoin="round"
-                                                        strokeWidth={2}
-                                                        d="M9 5l7 7-7 7"
-                                                    />
-                                                </svg>
                                             </div>
                                         </button>
                                     );
@@ -270,8 +255,8 @@ const CalcWrapper = () => {
                             <div className="flex items-center justify-between p-4 sm:p-6 border-b border-gray-200 bg-gradient-to-r from-blue-50 to-indigo-50">
                                 <div className="flex items-center space-x-3">
                                     {selectedCalc.icon && (
-                                        <div className="p-2 bg-(brand-blue) rounded-lg flex-shrink-0">
-                                            <selectedCalc.icon className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
+                                        <div className="p-2 bg-(--brand-blue)/10 rounded-lg flex-shrink-0">
+                                            <selectedCalc.icon className="w-5 h-5 sm:w-6 sm:h-6 text-(--brand-blue)" />
                                         </div>
                                     )}
                                     <h3 className="text-xl sm:text-2xl font-bold text-gray-800">

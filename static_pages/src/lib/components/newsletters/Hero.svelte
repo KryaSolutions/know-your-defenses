@@ -18,7 +18,7 @@
             class="mb-8 sm:mb-12 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6"
         >
             <h1
-                class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight m-0"
+                class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-(--brand-blue) tracking-tight m-0"
             >
                 Cybersecurity Weekly
             </h1>
@@ -34,7 +34,7 @@
         <!-- Hero Summary -->
         <div class="max-w-4xl mx-auto mb-6 sm:mb-8 px-4 sm:px-6">
             <p
-                class="text-base sm:text-lg lg:text-xl leading-snug text-slate-100 text-justify hyphens-auto"
+                class="text-base sm:text-lg lg:text-xl leading-snug text-slate-700 text-justify hyphens-auto"
             >
                 {intro}
             </p>

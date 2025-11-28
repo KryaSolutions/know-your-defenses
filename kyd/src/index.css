@@ -41,9 +41,84 @@
     --color-sidebar-ring: var(--sidebar-ring);
 }
 
+body,
+#root {
+    position: relative;
+    background-color: #f8f8ff;
+    background-image:
+        linear-gradient(0deg, rgba(224, 224, 240, 0.3) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(224, 224, 240, 0.3) 1px, transparent 1px);
+    background-size: 20px 20px;
+    background-attachment: fixed;
+}
+
+/* Animated gradient overlay */
+body::before,
+#root::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        135deg,
+        rgba(248, 248, 255, 0.5) 0%,
+        rgba(232, 232, 255, 0.5) 50%,
+        rgba(240, 240, 255, 0.5) 100%
+    );
+    animation: gradientShift 15s ease infinite;
+    pointer-events: none;
+    z-index: -1;
+}
+
+@keyframes gradientShift {
+    0%,
+    100% {
+        opacity: 0.3;
+    }
+    50% {
+        opacity: 0.5;
+    }
+}
+
+/* Floating orbs */
+body::after,
+#root::after {
+    content: "";
+    position: fixed;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(
+        circle,
+        rgba(200, 200, 255, 0.15) 0%,
+        transparent 70%
+    );
+    border-radius: 50%;
+    filter: blur(60px);
+    top: -100px;
+    left: -100px;
+    animation: float 20s ease-in-out infinite;
+    pointer-events: none;
+    z-index: -1;
+}
+
+@keyframes float {
+    0%,
+    100% {
+        transform: translate(0, 0) scale(1);
+    }
+    33% {
+        transform: translate(50px, -50px) scale(1.1);
+    }
+    66% {
+        transform: translate(-30px, 30px) scale(0.9);
+    }
+}
+
 :root {
+    background-color: #f8f8ff;
     font-family: Poppins, Arial, system-ui, sans-serif;
-    background-color: #173962;
     --brand-blue: #173962;
     --brand-orange: #f38144;
     --brand-light-blue: #489cbf;

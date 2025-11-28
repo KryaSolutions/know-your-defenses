@@ -77,8 +77,8 @@ const Survey = () => {
                         const progressPercent =
                             totalQuestions > 0
                                 ? Math.round(
-                                      (answeredCount / totalQuestions) * 100
-                                  )
+                                    (answeredCount / totalQuestions) * 100
+                                )
                                 : 0;
 
                         return (
@@ -87,7 +87,7 @@ const Survey = () => {
                                 onClick={() =>
                                     handleStartAssessment(assessment)
                                 }
-                                className={`group relative p-5 sm:p-6 rounded-xl transition-all duration-300 ease-out bg-(--brand-light-blue)/20 text-white backdrop-blur-sm hover:shadow-lg hover:scale-105 active:scale-100 text-left`}
+                                className={`group relative p-5 sm:p-6 rounded-xl transition-all duration-300 ease-out bg-(--brand-light-blue)/20 text-(--brand-blue) backdrop-blur-sm hover:shadow-lg hover:scale-105 active:scale-100 text-left`}
                             >
                                 <div className="flex flex-col space-y-3">
                                     {/* Assessment Title */}

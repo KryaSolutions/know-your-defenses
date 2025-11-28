@@ -30,7 +30,7 @@
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
         {#each visibleArticles as article, i}
             <article
-                class="backdrop-blur-md bg-white/5 border border-white/20 rounded-2xl shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 h-full opacity-0 animate-fade-in-up"
+                class="backdrop-blur-md bg-white/5 rounded-2xl shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 h-full opacity-0 animate-fade-in-up"
                 style="animation-delay: {i * 0.05}s;"
             >
                 <a
@@ -41,25 +41,25 @@
                 >
                     <div class="p-5 sm:p-6 h-full flex flex-col">
                         <div class="flex justify-end mb-3">
-                            <span class="text-xs text-slate-100">
+                            <span class="text-xs text-slate-900">
                                 {formatDate(article.date)}
                             </span>
                         </div>
 
                         <h2
-                            class="text-lg sm:text-xl font-bold leading-snug mb-3 text-white group-hover:text-(--brand-orange) transition-colors duration-200"
+                            class="text-lg sm:text-xl font-bold leading-snug mb-3 text-slate-700 group-hover:text-(--brand-orange) transition-colors duration-200"
                         >
                             {article.title}
                         </h2>
 
                         <p
-                            class="grow text-slate-100 leading-relaxed mb-4 text-sm sm:text-base line-clamp-4"
+                            class="grow text-slate-700 leading-relaxed mb-4 text-sm sm:text-base line-clamp-4"
                         >
                             {article.content}
                         </p>
 
                         <div
-                            class="flex items-center gap-2 text-(--brand-light-blue) font-semibold text-sm mt-auto group"
+                            class="flex items-center gap-2 text-(--brand-blue) font-semibold text-sm mt-auto group"
                         >
                             <span>See post</span>
                             <svg

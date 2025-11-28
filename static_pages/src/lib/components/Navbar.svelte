@@ -53,9 +53,7 @@
             <div class="flex items-center">
                 <a
                     href="https://kryasolutions.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="text-2xl font-bold text-white hover:text-(--brand-orange) transition-colors duration-200"
+                    class="text-2xl font-bold text-(--brand-blue) hover:text-(--brand-orange) transition-colors duration-200"
                 >
                     <img
                         src={krya}
@@ -69,25 +67,19 @@
             <div class="hidden md:flex items-center space-x-8">
                 <a
                     href="https://kyd.kryasolutions.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="text-white hover:text-(--brand-orange) transition-colors duration-200 font-medium"
+                    class="text-(--brand-blue) hover:text-(--brand-orange) transition-colors duration-200 font-medium"
                 >
                     Know Your Defenses
                 </a>
                 <a
-                    href="https://kyd.kryasolutions.com/trixus"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="text-white hover:text-(--brand-orange) transition-colors duration-200 font-medium"
+                    href="https://kyd.kryasolutions.com/aisoc"
+                    class="text-(--brand-blue) hover:text-(--brand-orange) transition-colors duration-200 font-medium"
                 >
-                    Trixus
+                    AI-SOC
                 </a>
                 <a
                     href="https://kyd.kryasolutions.com/newsletters"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="text-white hover:text-(--brand-orange) transition-colors duration-200 font-medium"
+                    class="text-(--brand-blue) hover:text-(--brand-orange) transition-colors duration-200 font-medium"
                 >
                     CyberSec Insights
                 </a>
@@ -144,18 +136,14 @@
         <div class="md:hidden border-t border-white/10 backdrop-blur-md">
             <div class="px-4 py-4 space-y-3">
                 <a
-                    href="https://kyd.kryasolutions.com/trixus"
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    href="https://kyd.kryasolutions.com/aisoc"
                     on:click={() => (mobileMenuOpen = false)}
                     class="block text-(--brand-blue) hover:text-(--brand-orange) transition-colors duration-200 font-medium py-2"
                 >
-                    Trixus
+                    AI-SOC
                 </a>
                 <a
                     href="https://kyd.kryasolutions.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
                     on:click={() => (mobileMenuOpen = false)}
                     class="block text-(--brand-blue) hover:text-(--brand-orange) transition-colors duration-200 font-medium py-2"
                 >

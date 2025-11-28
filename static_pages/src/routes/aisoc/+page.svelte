@@ -1,5 +1,6 @@
 <script lang="ts">
     import Navbar from "$lib/components/Navbar.svelte";
+    import Temp from "$lib/components/trixus/Temp.svelte";
     import FlowChart from "$lib/components/trixus/FlowChart.svelte";
     import Header from "$lib/components/trixus/Header.svelte";
     import Footer from "$lib/components/trixus/Footer.svelte";
@@ -7,5 +8,5 @@
 
 <Navbar />
 <Header />
-<FlowChart />
+<Temp />
 <Footer />

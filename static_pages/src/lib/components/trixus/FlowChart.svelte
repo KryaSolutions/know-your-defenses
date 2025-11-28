@@ -75,7 +75,7 @@
                 class="inline-flex items-center gap-2 px-4 py-2 animate-slide-left mx-auto"
             >
                 <p
-                    class="text-transparent text-2xl sm:text-3xl lg:text-4xl font-bold bg-clip-text bg-linear-to-r from-blue-400 via-red-400 to-purple-400"
+                    class="text-transparent text-2xl sm:text-3xl lg:text-4xl font-bold bg-clip-text bg-linear-to-r from-red-400 via-purple-400 to-sky-500"
                 >
                     AI-Powered SOC Pipeline
                 </p>
@@ -282,15 +282,6 @@
 
     .slider-wrapper {
         width: 100%;
-    }
-
-    .flow-step:hover .card-wrapper {
-        transform: translateY(-4px);
-    }
-
-    .flow-step:hover .slider-wrapper {
-        transform: translateY(-4px);
-        box-shadow: 0 10px 25px -3px rgba(0, 0, 0, 0.1);
     }
 
     /* Responsive Design */
