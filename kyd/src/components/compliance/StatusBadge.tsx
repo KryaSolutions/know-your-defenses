@@ -1,9 +1,4 @@
-import {
-    AlertCircle,
-    CheckCircle,
-    Clock,
-    XCircle,
-} from "lucide-react";
+import { AlertCircle, CheckCircle, Clock, XCircle } from "lucide-react";
 
 interface StatusBadgeType {
     status: string;
@@ -15,8 +10,8 @@ const StatusBadge: React.ComponentType<StatusBadgeType> = ({ status }) => {
             color: string;
             bg: string;
             icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
-        }
-    }
+        };
+    };
 
     const config: Config = {
         Compliant: {

@@ -9,7 +9,13 @@ interface FilterDropDownType {
     icon: React.ComponentType<{ className: string }>;
 }
 
-const FilterDropdown: React.FC<FilterDropDownType> = ({ label, value, options, onChange, icon: Icon }) => {
+const FilterDropdown: React.FC<FilterDropDownType> = ({
+    label,
+    value,
+    options,
+    onChange,
+    icon: Icon,
+}) => {
     const [isOpen, setIsOpen] = useState(false);
 
     return (
@@ -42,10 +48,11 @@ const FilterDropdown: React.FC<FilterDropDownType> = ({ label, value, options, o
                                     onChange(option);
                                     setIsOpen(false);
                                 }}
-                                className={`w-full px-4 py-2 text-left text-sm hover:bg-white/10 transition-colors ${value === option
-                                    ? "bg-white/5 text-white font-medium"
-                                    : "text-white/80"
-                                    }`}
+                                className={`w-full px-4 py-2 text-left text-sm hover:bg-white/10 transition-colors ${
+                                    value === option
+                                        ? "bg-white/5 text-white font-medium"
+                                        : "text-white/80"
+                                }`}
                             >
                                 {option}
                             </button>

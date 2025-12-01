@@ -22,16 +22,16 @@ const middleware = (req: Request, res: Response, next: NextFunction): void => {
     res.set(
         "Permissions-Policy",
         "geolocation=(), " +
-        "microphone=(), " +
-        "camera=(), " +
-        "payment=(), " +
-        "usb=(), " +
-        "fullscreen=(), " +
-        "vibrate=(), " +
-        "magnetometer=(), " +
-        "gyroscope=(), " +
-        "speaker=(), " +
-        "display-capture=()"
+            "microphone=(), " +
+            "camera=(), " +
+            "payment=(), " +
+            "usb=(), " +
+            "fullscreen=(), " +
+            "vibrate=(), " +
+            "magnetometer=(), " +
+            "gyroscope=(), " +
+            "speaker=(), " +
+            "display-capture=()"
     );
 
     next();

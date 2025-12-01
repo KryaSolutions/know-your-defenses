@@ -97,7 +97,7 @@ const Compliance = () => {
             "Physical Security",
             "Supplier Relationships",
         ],
-        "GDPR": [
+        GDPR: [
             "Privacy",
             "Data Management",
             "Data Security",
@@ -105,7 +105,7 @@ const Compliance = () => {
             "Third Party",
             "Governance",
         ],
-        "HIPAA": [
+        HIPAA: [
             "Access Control",
             "Data Security",
             "Privacy",
@@ -120,13 +120,7 @@ const Compliance = () => {
             "Monitoring",
             "Compliance Management",
         ],
-        "NIST CSF": [
-            "Identify",
-            "Protect",
-            "Detect",
-            "Respond",
-            "Recover",
-        ],
+        "NIST CSF": ["Identify", "Protect", "Detect", "Respond", "Recover"],
         "CIS Controls": [
             "Inventory and Control of Assets",
             "Data Protection",
@@ -200,7 +194,10 @@ const Compliance = () => {
             const dueDate = new Date(c.dueDate);
             if (c.status === "Compliant") {
                 return false;
-            } else if (c.status === "In-Progress" || c.status === "Partial Gap") {
+            } else if (
+                c.status === "In-Progress" ||
+                c.status === "Partial Gap"
+            ) {
                 return dueDate < new Date();
             }
             return dueDate < new Date();
@@ -214,7 +211,7 @@ const Compliance = () => {
         };
     }, [controls, stats]);
 
-    const handleAddControl = (controlData: Omit<Control, 'id'>) => {
+    const handleAddControl = (controlData: Omit<Control, "id">) => {
         if (editingControl) {
             setControls((prev) =>
                 prev.map((c) =>
@@ -277,7 +274,9 @@ const Compliance = () => {
         }, 500);
     };
 
-    const modalAnimationClass = isClosing ? "animate-fadeOut" : "animate-fadeIn";
+    const modalAnimationClass = isClosing
+        ? "animate-fadeOut"
+        : "animate-fadeIn";
 
     return (
         <div className="min-h-screen bg-(--brand-blue) p-6 mt-20 animate-fadeIn">
@@ -305,7 +304,7 @@ const Compliance = () => {
                         <EmailDialog
                             triggerButtonText="Get an AI-powered Report"
                             title="Generate Your Efficiency Report"
-                            onSubmit={() => { }}
+                            onSubmit={() => {}}
                             apiRoute={`${apiUrl}/api/evaluateControls`}
                             blob={controls}
                         />
@@ -329,19 +328,71 @@ const Compliance = () => {
                                         <div className="w-full max-w-sm">
                                             <PieDonut
                                                 data={[
-                                                    { label: "Compliant", value: stats.compliant, color: "#10B981" },
-                                                    { label: "Partial Gap", value: stats.partialGap, color: "#F59E0B" },
-                                                    { label: "Non-Compliant", value: stats.nonCompliant, color: "#EF4444" },
-                                                    { label: "In Progress", value: stats.inProgress, color: "#60A5FA" },
+                                                    {
+                                                        label: "Compliant",
+                                                        value: stats.compliant,
+                                                        color: "#10B981",
+                                                    },
+                                                    {
+                                                        label: "Partial Gap",
+                                                        value: stats.partialGap,
+                                                        color: "#F59E0B",
+                                                    },
+                                                    {
+                                                        label: "Non-Compliant",
+                                                        value: stats.nonCompliant,
+                                                        color: "#EF4444",
+                                                    },
+                                                    {
+                                                        label: "In Progress",
+                                                        value: stats.inProgress,
+                                                        color: "#60A5FA",
+                                                    },
                                                 ]}
                                                 height={260}
                                             />
                                             {/* Legend */}
                                             <div className="mt-4 grid grid-cols-2 gap-2 text-sm text-white/80 animate-slideIn">
-                                                <span className="flex items-center gap-2"><span className="w-3 h-3 rounded" style={{ background: "#10B981" }} /> Compliant</span>
-                                                <span className="flex items-center gap-2"><span className="w-3 h-3 rounded" style={{ background: "#F59E0B" }} /> Partial Gap</span>
-                                                <span className="flex items-center gap-2"><span className="w-3 h-3 rounded" style={{ background: "#EF4444" }} /> Non-Compliant</span>
-                                                <span className="flex items-center gap-2"><span className="w-3 h-3 rounded" style={{ background: "#60A5FA" }} /> In Progress</span>
+                                                <span className="flex items-center gap-2">
+                                                    <span
+                                                        className="w-3 h-3 rounded"
+                                                        style={{
+                                                            background:
+                                                                "#10B981",
+                                                        }}
+                                                    />{" "}
+                                                    Compliant
+                                                </span>
+                                                <span className="flex items-center gap-2">
+                                                    <span
+                                                        className="w-3 h-3 rounded"
+                                                        style={{
+                                                            background:
+                                                                "#F59E0B",
+                                                        }}
+                                                    />{" "}
+                                                    Partial Gap
+                                                </span>
+                                                <span className="flex items-center gap-2">
+                                                    <span
+                                                        className="w-3 h-3 rounded"
+                                                        style={{
+                                                            background:
+                                                                "#EF4444",
+                                                        }}
+                                                    />{" "}
+                                                    Non-Compliant
+                                                </span>
+                                                <span className="flex items-center gap-2">
+                                                    <span
+                                                        className="w-3 h-3 rounded"
+                                                        style={{
+                                                            background:
+                                                                "#60A5FA",
+                                                        }}
+                                                    />{" "}
+                                                    In Progress
+                                                </span>
                                             </div>
                                         </div>
                                     </div>
@@ -351,7 +402,9 @@ const Compliance = () => {
                                             <InsightCard
                                                 icon={AlertTriangle}
                                                 title="Critical Priority Items"
-                                                value={insights?.criticalItems ?? 0}
+                                                value={
+                                                    insights?.criticalItems ?? 0
+                                                }
                                                 description="Non-compliant critical controls need immediate attention"
                                                 color="text-red-400"
                                                 className="animate-fadeIn"
@@ -359,7 +412,9 @@ const Compliance = () => {
                                             <InsightCard
                                                 icon={Target}
                                                 title="High Risk Controls"
-                                                value={insights?.highRiskItems ?? 0}
+                                                value={
+                                                    insights?.highRiskItems ?? 0
+                                                }
                                                 description="Controls with high or critical risk levels"
                                                 color="text-orange-400"
                                                 className="animate-slideIn"
@@ -367,7 +422,9 @@ const Compliance = () => {
                                             <InsightCard
                                                 icon={Calendar}
                                                 title="Overdue Controls"
-                                                value={insights?.overdueCtrls ?? 0}
+                                                value={
+                                                    insights?.overdueCtrls ?? 0
+                                                }
                                                 description="Past due date and not yet compliant"
                                                 color="text-purple-400"
                                                 className="animate-fadeIn"
@@ -508,7 +565,9 @@ const Compliance = () => {
                                             <tr
                                                 key={item.id}
                                                 className="hover:bg-white/5 transition-colors animate-slideIn"
-                                                style={{ animationDelay: `${index * 0.05}s` }}
+                                                style={{
+                                                    animationDelay: `${index * 0.05}s`,
+                                                }}
                                             >
                                                 <td className="px-4 py-3 text-sm font-mono text-white animate-fadeIn">
                                                     {item.control}
@@ -603,6 +662,6 @@ const Compliance = () => {
             </div>
         </div>
     );
-}
+};
 
 export default Compliance;

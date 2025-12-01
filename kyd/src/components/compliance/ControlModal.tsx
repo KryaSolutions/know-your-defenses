@@ -40,27 +40,27 @@ const ControlModal: React.FC<ControlModalProps> = ({
 
     const initialForm: NewControl = control
         ? {
-            control: control.control,
-            description: control.description,
-            framework: control.framework,
-            category: getInitialCategory(control.framework, control.category),
-            status: control.status,
-            priority: control.priority,
-            riskLevel: control.riskLevel,
-            owner: control.owner,
-            dueDate: control.dueDate,
-        }
+              control: control.control,
+              description: control.description,
+              framework: control.framework,
+              category: getInitialCategory(control.framework, control.category),
+              status: control.status,
+              priority: control.priority,
+              riskLevel: control.riskLevel,
+              owner: control.owner,
+              dueDate: control.dueDate,
+          }
         : {
-            control: "",
-            description: "",
-            framework: "SOC 2",
-            category: getInitialCategory("SOC 2"),
-            status: "Not Assessed",
-            priority: "Medium",
-            riskLevel: "Medium",
-            owner: "",
-            dueDate: "",
-        };
+              control: "",
+              description: "",
+              framework: "SOC 2",
+              category: getInitialCategory("SOC 2"),
+              status: "Not Assessed",
+              priority: "Medium",
+              riskLevel: "Medium",
+              owner: "",
+              dueDate: "",
+          };
 
     const [formData, setFormData] = useState<NewControl>(initialForm);
 
@@ -85,7 +85,9 @@ const ControlModal: React.FC<ControlModalProps> = ({
     const currentCategories = categories[formData.framework] || [];
 
     return (
-        <div className={`fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4 ${animationClass || ''}`}>
+        <div
+            className={`fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4 ${animationClass || ""}`}
+        >
             <div className="bg-white rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto">
                 <div className="p-6">
                     <h2 className="text-2xl font-bold text-gray-800 mb-6">
@@ -181,7 +183,9 @@ const ControlModal: React.FC<ControlModalProps> = ({
                                             </option>
                                         ))
                                     ) : (
-                                        <option value="" disabled>No categories available</option>
+                                        <option value="" disabled>
+                                            No categories available
+                                        </option>
                                     )}
                                 </select>
                             </div>

@@ -94,9 +94,7 @@ const Footer = () => {
                     </h3>
                     <form onSubmit={handleSubmit} className="space-y-4">
                         <div>
-                            <label className="block text-sm mb-1">
-                                Name
-                            </label>
+                            <label className="block text-sm mb-1">Name</label>
                             <input
                                 type="text"
                                 name="name"
@@ -107,9 +105,7 @@ const Footer = () => {
                             />
                         </div>
                         <div>
-                            <label className="block text-sm mb-1">
-                                Email
-                            </label>
+                            <label className="block text-sm mb-1">Email</label>
                             <input
                                 type="email"
                                 name="email"
@@ -153,8 +149,8 @@ const Footer = () => {
                             {status === "loading"
                                 ? "Sending..."
                                 : status === "success"
-                                    ? "Sent!"
-                                    : "Submit"}
+                                  ? "Sent!"
+                                  : "Submit"}
                         </button>
 
                         {status === "success" && (

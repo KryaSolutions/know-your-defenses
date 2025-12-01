@@ -10,7 +10,7 @@ createRoot(document.getElementById("root")!).render(
     <StrictMode>
         <BrowserRouter>
             <Routes>
-                <Route path="/" element={<Landing />} />
+                <Route path="/kyd" element={<Landing />} />
                 <Route path="/control-sense" element={<ControlSense />} />
             </Routes>
         </BrowserRouter>

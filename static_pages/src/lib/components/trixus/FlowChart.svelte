@@ -2,6 +2,7 @@
     import Card from "./Card.svelte";
     import ImageSlider from "./ImageSlider.svelte";
     import { ShieldCheck } from "lucide-svelte";
+    import { onMount, tick } from "svelte";
 
     type Item = {
         image: string;
@@ -65,11 +66,172 @@
                 "Provides actionable insights and comprehensive reports for security teams, along with customisable chatbots",
         },
     ];
+
+    let containerRef: HTMLDivElement;
+    let relativeRef: HTMLDivElement;
+    let bulletRefs: HTMLDivElement[] = [];
+    let segmentRefs: HTMLDivElement[] = [];
+    let segmentStyles: { top: string; height: string }[] = [];
+    let segmentProgress: number[] = [];
+    let bulletStates: { active: boolean; filled: boolean }[] = items.map(
+        () => ({ active: false, filled: false })
+    );
+    let endRef: HTMLDivElement;
+    let endFilled = false;
+    let mounted = false;
+
+    const computeLayout = async () => {
+        // Wait for DOM to be ready
+        await tick();
+
+        if (!relativeRef) return;
+
+        // Collect bullet & segment elements from the container to ensure correct ordering
+        const bullets = Array.from(
+            relativeRef.querySelectorAll(".bullet-point")
+        ) as HTMLDivElement[];
+        const segments = Array.from(
+            relativeRef.querySelectorAll(".line-segment")
+        ) as HTMLDivElement[];
+
+        bulletRefs = bullets;
+        segmentRefs = segments;
+
+        const containerRect = relativeRef.getBoundingClientRect();
+
+        // compute centers of bullets relative to container
+        const centers: number[] = bulletRefs.map((b) => {
+            const r = b.getBoundingClientRect();
+            return r.top - containerRect.top + r.height / 2;
+        });
+
+        // Build segments between consecutive bullet centers and add final segment to end icon
+        const positions: { top: string; height: string }[] = [];
+
+        for (let i = 0; i < centers.length - 1; i++) {
+            const top = centers[i];
+            const height = Math.max(0, centers[i + 1] - centers[i]);
+            positions.push({ top: `${top}px`, height: `${height}px` });
+        }
+
+        // find end icon center and add final segment from last bullet to end icon
+        const endEl = relativeRef.querySelector(
+            ".end-icon-wrapper"
+        ) as HTMLDivElement | null;
+        let endCenter = null;
+        if (endEl) {
+            const eRect = endEl.getBoundingClientRect();
+            endCenter = eRect.top - containerRect.top + eRect.height / 2;
+        }
+
+        if (endCenter != null && centers.length > 0) {
+            const lastCenter = centers[centers.length - 1];
+            const top = lastCenter;
+            const height = Math.max(0, endCenter - lastCenter);
+            positions.push({ top: `${top}px`, height: `${height}px` });
+        }
+
+        segmentStyles = positions;
+
+        // reset progress arrays to match segments
+        segmentProgress = new Array(positions.length).fill(0);
+        bulletStates = items.map(() => ({ active: false, filled: false }));
+
+        // after DOM update, collect segment refs
+        await tick();
+        segmentRefs = Array.from(
+            relativeRef.querySelectorAll(".line-segment")
+        ) as HTMLDivElement[];
+        endRef = relativeRef.querySelector(
+            ".end-icon-wrapper"
+        ) as HTMLDivElement;
+    };
+
+    const handleScroll = () => {
+        if (!mounted || segmentStyles.length === 0) return;
+
+        const viewportHeight = window.innerHeight;
+        const fillTriggerLine = viewportHeight * 0.5; // center of viewport
+        const activeZoneTop = viewportHeight * 0.45;
+        const activeZoneBottom = viewportHeight * 0.55;
+
+        // compute segment progress
+        for (let i = 0; i < segmentRefs.length; i++) {
+            const segmentEl = segmentRefs[i];
+            let progress = 0;
+            if (segmentEl) {
+                const rect = segmentEl.getBoundingClientRect();
+                if (rect.top > fillTriggerLine) {
+                    progress = 0;
+                } else if (rect.bottom < fillTriggerLine) {
+                    progress = 1;
+                } else {
+                    const intersection = fillTriggerLine - rect.top;
+                    progress = intersection / rect.height;
+                    progress = Math.max(0, Math.min(1, progress));
+                }
+            }
+            segmentProgress[i] = progress;
+        }
+
+        // compute bullet states (active/filled)
+        for (let i = 0; i < bulletRefs.length; i++) {
+            const bullet = bulletRefs[i];
+            if (!bullet) continue;
+            const bRect = bullet.getBoundingClientRect();
+            const bCenter = bRect.top + bRect.height / 2;
+
+            const active =
+                bCenter >= activeZoneTop && bCenter <= activeZoneBottom;
+            const filled = bCenter < fillTriggerLine;
+
+            bulletStates[i] = { active, filled };
+        }
+
+        // set endFilled true when final segment is fully filled
+        if (segmentProgress.length > 0) {
+            const lastIdx = segmentProgress.length - 1;
+            endFilled = segmentProgress[lastIdx] >= 1;
+        } else {
+            endFilled = false;
+        }
+    };
+
+    onMount(() => {
+        mounted = true;
+
+        const init = async () => {
+            await tick();
+
+            // Small delay to ensure all elements are positioned
+            setTimeout(async () => {
+                await computeLayout();
+                handleScroll();
+            }, 100);
+        };
+
+        init();
+
+        // Event listeners
+        window.addEventListener("scroll", handleScroll, { passive: true });
+
+        const resizeHandler = async () => {
+            await computeLayout();
+            handleScroll();
+        };
+
+        window.addEventListener("resize", resizeHandler);
+
+        return () => {
+            mounted = false;
+            window.removeEventListener("scroll", handleScroll);
+            window.removeEventListener("resize", resizeHandler);
+        };
+    });
 </script>
 
-<div class="py-16 px-4 lg:py-24">
-    <div class="max-w-screen mx-auto relative">
-        <!-- Flow Start Icon -->
+<div class="py-16 px-4 lg:py-24" bind:this={containerRef}>
+    <div class="max-w-screen mx-auto relative" bind:this={relativeRef}>
         <div class="flex justify-center mb-8 lg:mb-12">
             <div
                 class="inline-flex items-center gap-2 px-4 py-2 animate-slide-left mx-auto"
@@ -82,8 +244,19 @@
             </div>
         </div>
 
-        <!-- Central Flow Line -->
-        <div class="central-line"></div>
+        <div class="central-line-container">
+            <div class="central-line-bg"></div>
+            {#each items as item, index}
+                {#each segmentStyles as style, sIndex}
+                    <div
+                        class="line-segment"
+                        style="top: {style.top}; height: {style.height}; transform: scaleY({segmentProgress[
+                            sIndex
+                        ] || 0});"
+                    ></div>
+                {/each}
+            {/each}
+        </div>
 
         <div class="flow-container">
             {#each items as item, index}
@@ -92,10 +265,12 @@
                     role="article"
                     aria-label={`Step ${index + 1}: ${item.title}`}
                 >
-                    <!-- Bullet Point -->
-                    <div class="bullet-point"></div>
+                    <div
+                        class="bullet-point {bulletStates[index]?.active
+                            ? 'active'
+                            : ''} {bulletStates[index]?.filled ? 'filled' : ''}"
+                    ></div>
 
-                    <!-- Content Row -->
                     <div class="content-row {index % 2 === 0 ? '' : 'reverse'}">
                         <div
                             class="card-side {index % 2 === 0
@@ -109,6 +284,7 @@
                                 />
                             </div>
                         </div>
+
                         <div class="slider-side">
                             <div class="slider-wrapper">
                                 <ImageSlider
@@ -126,12 +302,14 @@
             {/each}
         </div>
 
-        <!-- Flow End Icon -->
         <div class="flex justify-center mt-32">
             <div
-                class="end-icon-wrapper bg-green-500/20 transition-all hover:scale-105"
+                class="end-icon-wrapper bg-orange-500 transition-all hover:scale-105 {endFilled
+                    ? 'filled'
+                    : ''}"
+                bind:this={endRef}
             >
-                <ShieldCheck class="w-16 h-16 lg:w-16 lg:h-16 text-green-400" />
+                <ShieldCheck class="w-16 h-16 lg:w-16 lg:h-16 text-green-200" />
             </div>
         </div>
     </div>
@@ -153,26 +331,110 @@
         z-index: 20;
     }
 
-    /* Central Flow Line */
-    .central-line {
+    .end-icon-wrapper.filled {
+        background: linear-gradient(135deg, #10b981, #059669);
+        box-shadow:
+            0 0 30px rgba(16, 185, 129, 0.45),
+            0 0 60px rgba(6, 182, 164, 0.25);
+        transform: scale(1.06);
+    }
+
+    /* Central Flow Line Container */
+    .central-line-container {
         position: absolute;
         left: 50%;
-        top: 80px;
+        top: 0;
         bottom: 80px;
-        width: 2px;
-        background: linear-gradient(
-            to bottom,
-            transparent 0%,
-            #e5e7eb 20%,
-            #3b82f6 40%,
-            #16a34a 55%,
-            #3b82f6 70%,
-            #e5e7eb 80%,
-            transparent 100%
-        );
+        width: 4px;
         transform: translateX(-50%);
         z-index: 5;
+    }
+
+    /* Background line (inactive/gray) */
+    .central-line-bg {
+        position: absolute;
+        left: 0;
+        top: 80px;
+        bottom: 0;
+        width: 100%;
+        background: #e5e7eb;
         border-radius: 2px;
+    }
+
+    /* Animated line segments */
+    .line-segment {
+        position: absolute;
+        left: 0;
+        width: 100%;
+        background: linear-gradient(
+            to bottom,
+            #1e3a8a 0%,
+            #1e40af 25%,
+            #3b82f6 50%,
+            #60a5fa 75%,
+            #2563eb 100%
+        );
+        border-radius: 2px;
+        transform-origin: top;
+        transition: transform 360ms cubic-bezier(0.4, 0, 0.2, 1);
+        will-change: transform;
+        z-index: 6;
+        overflow: hidden;
+    }
+
+    .line-segment::before {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 10px;
+        top: 0;
+        background: radial-gradient(
+            circle,
+            rgba(255, 255, 255, 0.8),
+            rgba(59, 130, 246, 0.5)
+        );
+        opacity: 0.9;
+        animation: flicker 2s infinite linear;
+    }
+
+    @keyframes flicker {
+        0%,
+        100% {
+            opacity: 0.9;
+            transform: scale(1);
+        }
+        50% {
+            opacity: 0.5;
+            transform: scale(1.1);
+        }
+    }
+
+    .line-segment::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: -10%;
+        height: 20%;
+        background: radial-gradient(
+            circle,
+            rgba(255, 255, 255, 0.4),
+            rgba(255, 255, 255, 0)
+        );
+        animation: bubblePulse 1.5s infinite ease-in-out;
+        opacity: 0.8;
+    }
+
+    @keyframes bubblePulse {
+        0%,
+        100% {
+            transform: translateY(0) scale(1);
+            opacity: 0.8;
+        }
+        50% {
+            transform: translateY(-10px) scale(1.2);
+            opacity: 1;
+        }
     }
 
     /* Flow Container */
@@ -182,7 +444,7 @@
         align-items: center;
         position: relative;
         z-index: 10;
-        padding: 0 2rem; /* Add horizontal padding to prevent edge overlap */
+        padding: 0 2rem;
     }
 
     /* Flow Step */
@@ -191,8 +453,8 @@
         display: flex;
         justify-content: center;
         width: 100%;
-        margin-bottom: 3rem; /* Increased for better vertical spacing */
-        padding: 0 1rem; /* Inner padding to avoid tight edges */
+        margin-bottom: 3rem;
+        padding: 0 1rem;
     }
 
     /* Bullet Point */
@@ -201,43 +463,61 @@
         left: 50%;
         top: 0;
         transform: translateX(-50%);
-        width: 16px; /* Slightly larger for better visibility */
+        width: 16px;
         height: 16px;
         border-radius: 50%;
-        background: linear-gradient(
-            135deg,
-            #3b82f6,
-            #1d4ed8
-        ); /* Gradient for appeal */
+        background: #e5e7eb;
         border: 3px solid white;
         box-shadow:
             0 0 0 3px #e5e7eb,
-            0 4px 8px rgba(0, 0, 0, 0.1); /* Enhanced shadow */
+            0 4px 8px rgba(0, 0, 0, 0.1);
         flex-shrink: 0;
-        transition: all 0.3s ease;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         z-index: 15;
     }
 
-    .flow-step:hover .bullet-point {
-        transform: translateX(-50%) scale(1.2);
+    .bullet-point.active {
+        background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+        transform: translateX(-50%) scale(1.4);
         box-shadow:
-            0 0 0 4px #dbeafe,
-            0 0 16px rgba(59, 130, 246, 0.4),
-            0 4px 12px rgba(0, 0, 0, 0.15);
-        background: linear-gradient(135deg, #2563eb, #1d4ed8);
+            0 0 0 6px rgba(59, 130, 246, 0.25),
+            0 0 25px rgba(59, 130, 246, 0.6),
+            0 0 40px rgba(59, 130, 246, 0.3);
+        animation: pulseGlow 1.8s infinite ease-in-out;
+    }
+
+    @keyframes pulseGlow {
+        0%,
+        100% {
+            box-shadow:
+                0 0 0 6px rgba(59, 130, 246, 0.25),
+                0 0 25px rgba(59, 130, 246, 0.6);
+        }
+        50% {
+            box-shadow:
+                0 0 0 10px rgba(59, 130, 246, 0.15),
+                0 0 35px rgba(59, 130, 246, 0.5);
+        }
+    }
+
+    .bullet-point.filled {
+        background: #2563eb;
+        box-shadow:
+            0 0 0 3px #bfdbfe,
+            0 0 15px rgba(37, 99, 235, 0.7);
     }
 
     /* Content Row */
     .content-row {
         display: flex;
         flex-direction: row;
-        gap: 2.5rem; /* Reduced gap slightly for less clutter, but still spacious */
+        gap: 2.5rem;
         align-items: center;
         flex: 1;
         width: 100%;
-        max-width: 1200px; /* Slightly wider container for better breathing room */
-        margin-top: 4rem; /* Increased top margin to clear bullet and line better */
-        padding: 0 2rem; /* Side padding to keep content away from edges/line */
+        max-width: 1200px;
+        margin-top: 4rem;
+        padding: 0 2rem;
         position: relative;
         z-index: 10;
     }
@@ -249,8 +529,8 @@
     .card-side,
     .slider-side {
         flex: 1;
-        max-width: 48%; /* Constrain to prevent overlap with center */
-        min-width: 0; /* Allow flex shrink */
+        max-width: 48%;
+        min-width: 0;
         display: flex;
         align-items: flex-start;
     }
@@ -265,8 +545,9 @@
 
     .card-wrapper {
         transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        border-radius: 12px; /* Rounded corners for appeal */
-        overflow: hidden; /* Clip any overflowing content */
+        border-radius: 12px;
+        overflow: hidden;
+        width: fit-content;
     }
 
     .slider-wrapper {
@@ -274,13 +555,6 @@
         box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
         border-radius: 12px;
         overflow: hidden;
-    }
-
-    .card-wrapper {
-        width: fit-content;
-    }
-
-    .slider-wrapper {
         width: 100%;
     }
 
@@ -331,12 +605,21 @@
         .bullet-point {
             width: 12px;
             height: 12px;
+            display: none;
         }
 
-        .central-line {
-            top: 72px;
-            bottom: 72px;
-            width: 3px;
+        .central-line-container,
+        .central-line-bg,
+        .line-segment {
+            display: none;
+        }
+
+        .flow-step:first-child .content-row {
+            margin-top: 2rem;
+        }
+
+        .flow-step {
+            margin-bottom: 4rem;
         }
     }
 
@@ -355,57 +638,6 @@
             width: 10px;
             height: 10px;
         }
-
-        .central-line {
-            width: 2px;
-            top: 64px;
-            bottom: 64px;
-        }
-    }
-
-    @media (prefers-reduced-motion: no-preference) {
-        .flow-step {
-            animation: fadeInUp 0.6s ease-out backwards;
-        }
-
-        .flow-step:nth-child(1) {
-            animation-delay: 0.05s;
-        }
-        .flow-step:nth-child(2) {
-            animation-delay: 0.1s;
-        }
-        .flow-step:nth-child(3) {
-            animation-delay: 0.15s;
-        }
-        .flow-step:nth-child(4) {
-            animation-delay: 0.2s;
-        }
-        .flow-step:nth-child(5) {
-            animation-delay: 0.25s;
-        }
-        .flow-step:nth-child(6) {
-            animation-delay: 0.3s;
-        }
-        .flow-step:nth-child(7) {
-            animation-delay: 0.35s;
-        }
-        .flow-step:nth-child(8) {
-            animation-delay: 0.4s;
-        }
-        .flow-step:nth-child(9) {
-            animation-delay: 0.45s;
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
     }
 
     /* Accessibility */
@@ -414,27 +646,9 @@
         .slider-wrapper,
         .bullet-point,
         .end-icon-wrapper,
-        .flow-step {
+        .line-segment {
             transition: none !important;
             animation: none !important;
-        }
-    }
-
-    @media (max-width: 768px) {
-        .central-line {
-            display: none;
-        }
-
-        .bullet-point {
-            display: none;
-        }
-
-        .flow-step:first-child .content-row {
-            margin-top: 2rem;
-        }
-
-        .flow-step {
-            margin-bottom: 4rem;
         }
     }
 </style>

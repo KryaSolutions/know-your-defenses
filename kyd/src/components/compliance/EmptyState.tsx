@@ -2,7 +2,7 @@ import { Plus, Target } from "lucide-react";
 
 type EmptyStateType = {
     onAddControl: () => void;
-}
+};
 
 const EmptyState: React.FC<EmptyStateType> = ({ onAddControl }) => {
     return (

@@ -112,7 +112,7 @@ const EmailDialog: React.FC<ReportDialogProps> = ({
         } catch (err: any) {
             setEmailError(
                 err.response?.data?.message ??
-                "Invalid email, please enter a valid email"
+                    "Invalid email, please enter a valid email"
             );
             return false;
         }

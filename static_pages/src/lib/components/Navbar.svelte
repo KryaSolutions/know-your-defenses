@@ -66,16 +66,10 @@
             <!-- Desktop Navigation Links -->
             <div class="hidden md:flex items-center space-x-8">
                 <a
-                    href="https://kyd.kryasolutions.com"
+                    href="https://kyd.kryasolutions.com/kyd"
                     class="text-(--brand-blue) hover:text-(--brand-orange) transition-colors duration-200 font-medium"
                 >
                     Know Your Defenses
-                </a>
-                <a
-                    href="https://kyd.kryasolutions.com/aisoc"
-                    class="text-(--brand-blue) hover:text-(--brand-orange) transition-colors duration-200 font-medium"
-                >
-                    AI-SOC
                 </a>
                 <a
                     href="https://kyd.kryasolutions.com/newsletters"
@@ -136,14 +130,7 @@
         <div class="md:hidden border-t border-white/10 backdrop-blur-md">
             <div class="px-4 py-4 space-y-3">
                 <a
-                    href="https://kyd.kryasolutions.com/aisoc"
-                    on:click={() => (mobileMenuOpen = false)}
-                    class="block text-(--brand-blue) hover:text-(--brand-orange) transition-colors duration-200 font-medium py-2"
-                >
-                    AI-SOC
-                </a>
-                <a
-                    href="https://kyd.kryasolutions.com"
+                    href="https://kyd.kryasolutions.com/kyd"
                     on:click={() => (mobileMenuOpen = false)}
                     class="block text-(--brand-blue) hover:text-(--brand-orange) transition-colors duration-200 font-medium py-2"
                 >

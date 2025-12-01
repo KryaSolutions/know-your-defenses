@@ -7,7 +7,14 @@ interface StatsCardProps {
     subtitle: string;
 }
 
-const StatsCard: React.ComponentType<StatsCardProps> = ({ label, value, total, color, icon: Icon, subtitle }) => {
+const StatsCard: React.ComponentType<StatsCardProps> = ({
+    label,
+    value,
+    total,
+    color,
+    icon: Icon,
+    subtitle,
+}) => {
     const percentage = total > 0 ? ((value / total) * 100).toFixed(0) : 0;
 
     return (

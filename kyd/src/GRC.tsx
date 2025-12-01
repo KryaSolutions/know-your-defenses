@@ -6,6 +6,6 @@ const ControlSense = () => {
             <Compliance />
         </div>
     );
-}
+};
 
 export default ControlSense;
