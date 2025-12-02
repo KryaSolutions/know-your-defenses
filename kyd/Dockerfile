@@ -1,19 +1,22 @@
-FROM node:trixie-slim AS builder
+FROM oven/bun:latest AS builder
 
 WORKDIR /app
 
 COPY ./package*.json /app/
-RUN npm install -g bun
 
 COPY . /app/
 RUN bun ci
 RUN bun run build
 
-FROM nginx AS production
-WORKDIR /usr/share/nginx/html
+FROM oven/bun:latest AS production
+WORKDIR /app
 
-RUN rm -rf ./*
+COPY --from=builder /app/dist dist/
+COPY --from=builder /app/node_modules node_modules/
+COPY package.json .
 
-COPY --from=builder /app/dist /usr/share/nginx/html
+RUN bun add -g serve
 
-ENTRYPOINT ["nginx", "-g", "daemon off;"]
+ENV PORT=10200
+ENV NODE_ENV=production
+CMD ["serve", "-s", "dist", "-l", "10200"]

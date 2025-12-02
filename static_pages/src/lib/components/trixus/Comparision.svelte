@@ -18,12 +18,8 @@
             highlight: true,
         },
         {
-            id: "other",
+            id: "others",
             header: "Other AI SOC platforms",
-        },
-        {
-            id: "soar",
-            header: "SOAR",
         },
     ];
 
@@ -31,7 +27,6 @@
         feature: string;
         radiant: string;
         other: string;
-        soar: string;
     };
 
     const rows: Rows[] = [
@@ -39,43 +34,36 @@
             feature: "Automation",
             radiant: "Enrichment, triage, investigation, and response",
             other: "Enrichment, triage",
-            soar: "Manual enrichment and response",
         },
         {
             feature: "Security use-case",
             radiant: "Agnostic",
             other: "6 types",
-            soar: "Enrichment and response",
         },
         {
             feature: "Technology",
             radiant: "Adaptive security research agent",
             other: "Limited pre-training questions",
-            soar: "Zapier for security",
         },
         {
             feature: "Alert types",
             radiant: "Any security tool",
             other: "Limited",
-            soar: "Anything users define",
         },
         {
             feature: "Vendor support",
             radiant: "Any vendor",
             other: "Limited",
-            soar: "100s of integrations",
         },
         {
             feature: "Incident response",
             radiant: "Any vendor",
             other: "Manual",
-            soar: "Anything users define",
         },
         {
             feature: "Pricing",
             radiant: "Predictable, by security use-case",
             other: "By volume, unexpected billing surprise",
-            soar: "Volume-based, by action ran",
         },
     ];
 </script>

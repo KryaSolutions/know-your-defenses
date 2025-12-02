@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
+import krya from "../assets/krya.svg";
 
 const Navbar = () => {
     const [isVisible, setIsVisible] = useState(true);
@@ -53,9 +54,8 @@ const Navbar = () => {
 
     return (
         <nav
-            className={`fixed top-0 left-0 right-0 z-50 border-b border-white/10 backdrop-blur-md bg-white/5 transition-transform duration-300 shadow-lg ${
-                isVisible ? "translate-y-0" : "-translate-y-full"
-            }`}
+            className={`fixed top-0 left-0 right-0 z-50 border-b border-white/10 backdrop-blur-md bg-white/5 transition-transform duration-300 shadow-lg ${isVisible ? "translate-y-0" : "-translate-y-full"
+                }`}
         >
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex items-center justify-between h-16 lg:h-20">
@@ -66,7 +66,7 @@ const Navbar = () => {
                             className="hover:opacity-80 transition-opacity duration-200"
                         >
                             <img
-                                src="/krya.svg"
+                                src={krya}
                                 alt="Krya Logo"
                                 className="h-10 sm:h-12 w-auto object-contain"
                             />

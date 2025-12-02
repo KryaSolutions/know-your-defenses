@@ -1,9 +1,8 @@
-FROM node:trixie-slim
+FROM oven/bun:latest
 
 WORKDIR /app
 COPY ./package*.json /app/
 
-RUN npm install -g bun
 RUN bun ci
 
 COPY . .

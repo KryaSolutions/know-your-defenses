@@ -1,56 +1,55 @@
 services:
-    backend:
-        build:
-            context: ./backend
-            dockerfile: Dockerfile
-        working_dir: /app
-        ports:
-            - "10300:10300"
-        env_file:
-            - ".env"
-        restart: unless-stopped
-        deploy:
-            resources:
-                limits:
-                    cpus: "1.0"
-                    memory: 1G
-                reservations:
-                    cpus: "0.5"
-                    memory: 512M
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    working_dir: /app
+    ports:
+      - "10300:10300"
+    env_file:
+      - ".env"
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          cpus: "1.0"
+          memory: 1G
+        reservations:
+          cpus: "0.5"
+          memory: 512M
 
-    kyd:
-        build:
-            context: ./kyd
-            dockerfile: Dockerfile
-        working_dir: /usr/share/nginx/html
-        ports:
-            - "10200:80"
-        depends_on:
-            - backend
-        restart: on-failure
-        deploy:
-            resources:
-                limits:
-                    cpus: "0.5"
-                    memory: 512M
-                reservations:
-                    cpus: "0.25"
-                    memory: 256M
+  kyd:
+    build:
+      context: ./kyd
+      dockerfile: Dockerfile
+    ports:
+      - "10200:10200"
+    depends_on:
+      - backend
+    restart: on-failure
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: 512M
+        reservations:
+          cpus: "0.25"
+          memory: 256M
 
-    static_pages:
-        build:
-            context: ./static_pages
-            dockerfile: Dockerfile
-        ports:
-            - "10201:10201"
-        depends_on:
-            - backend
-        restart: on-failure
-        deploy:
-            resources:
-                limits:
-                    cpus: "0.5"
-                    memory: 512M
-                reservations:
-                    cpus: "0.25"
-                    memory: 256M
+  static_pages:
+    build:
+      context: ./static_pages
+      dockerfile: Dockerfile
+    ports:
+      - "10201:10201"
+    depends_on:
+      - backend
+    restart: on-failure
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: 512M
+        reservations:
+          cpus: "0.25"
+          memory: 256M
