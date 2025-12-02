@@ -3,11 +3,12 @@ FROM node:trixie-slim
 WORKDIR /app
 COPY ./package*.json /app/
 
-RUN npm ci
+RUN npm install -g bun
+RUN bun ci
 
 COPY . .
 
-RUN npm run build
+RUN bun run build
 
-ENTRYPOINT ["npm", "run"]
+ENTRYPOINT ["bun", "run"]
 CMD ["server"]

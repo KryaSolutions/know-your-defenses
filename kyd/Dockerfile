@@ -3,10 +3,11 @@ FROM node:trixie-slim AS builder
 WORKDIR /app
 
 COPY ./package*.json /app/
-RUN npm ci
+RUN npm install -g bun
 
 COPY . /app/
-RUN npm run build
+RUN bun ci
+RUN bun run build
 
 FROM nginx AS production
 WORKDIR /usr/share/nginx/html
