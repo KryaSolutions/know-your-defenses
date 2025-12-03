@@ -133,9 +133,9 @@ const Bot = () => {
             {!isOpen && (
                 <button
                     onClick={() => setIsOpen(true)}
-                    className="relative bg-white/5 hover:opacity-90 text-white rounded-full w-16 h-16 flex items-center justify-center shadow-2xl transition-transform hover:scale-110"
+                    className="relative bg-(--brand-blue)/25 hover:opacity-90 text-white rounded-full w-16 h-16 flex items-center justify-center shadow-2xl transition-transform hover:scale-110"
                 >
-                    <BotIcon className="text-white" />
+                    <BotIcon className="text-(--brand-blue)" />
                 </button>
             )}
 
@@ -152,7 +152,6 @@ const Bot = () => {
                                 <h3 className="font-semibold text-base">
                                     Krya AI Assistant
                                 </h3>
-                                <p className="text-xs opacity-90">🟢 Online</p>
                             </div>
                         </div>
                         <button
