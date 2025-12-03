@@ -6,6 +6,7 @@
     import Navbar from "$lib/components/Navbar.svelte";
     import Hero from "$lib/components/newsletters/Hero.svelte";
     import Articles from "$lib/components/newsletters/Articles.svelte";
+    import Bot from "$lib/components/Bot.svelte";
 </script>
 
 <main class="min-h-screen">
@@ -37,3 +38,4 @@
         <Footer />
     </div>
 </main>
+<Bot />

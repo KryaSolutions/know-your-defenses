@@ -1,5 +1,6 @@
 <script lang="ts">
     import { tick } from "svelte";
+    import { cubicOut } from "svelte/easing";
     import axios from "axios";
     import { CircleX, Bot as BotIcon } from "lucide-svelte";
     import { fetchKnowledgeBase, quickReplies } from "./quickResponses";
@@ -10,11 +11,28 @@
             : import.meta.env.VITE_PROD_URL;
 
     let isOpen = false;
+    let showButton = true;
     let messages: { text: string; isUser: boolean; hasLink?: boolean }[] = [];
     let input = "";
     let isLoading = false;
     let hasInteracted = false;
     let messagesEndRef: HTMLDivElement | null = null;
+
+    // Custom transition for slideUp (works for both in and out)
+    function slideUp(
+        _node: Element,
+        { delay = 0, duration = 300, easing = cubicOut } = {}
+    ) {
+        return {
+            delay,
+            duration,
+            easing,
+            css: (t: number) => `
+                opacity: ${t};
+                transform: translateY(${20 * (1 - t)}px) scale(${0.95 + 0.05 * t});
+            `,
+        };
+    }
 
     // Auto-scroll to bottom when messages change
     $: if (messages.length >= 0) {
@@ -136,9 +154,12 @@
 
 <div class="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 font-sans">
     <!-- Floating Chat Button -->
-    {#if !isOpen}
+    {#if showButton}
         <button
-            on:click={() => (isOpen = true)}
+            on:click={() => {
+                showButton = false;
+                isOpen = true;
+            }}
             class="relative bg-(--brand-blue)/25 hover:bg-(--brand-blue)/35 text-white rounded-full w-14 h-14 sm:w-16 sm:h-16 flex items-center justify-center shadow-2xl transition-all duration-300 hover:scale-110 active:scale-95 group"
             aria-label="Open chat"
         >
@@ -149,11 +170,12 @@
     <!-- Chat Window -->
     {#if isOpen}
         <div
-            class="w-[calc(100vw-2rem)] sm:w-[400px] lg:w-[420px] bg-white shadow-2xl rounded-2xl sm:rounded-3xl flex flex-col max-h-[85vh] sm:max-h-[650px] animate-slideUp overflow-hidden border border-gray-100"
+            class="w-[calc(100vw-2rem)] sm:w-[400px] lg:w-[420px] bg-white shadow-2xl rounded-2xl sm:rounded-3xl flex flex-col max-h-[85vh] sm:max-h-[650px] overflow-hidden border border-gray-100"
+            transition:slideUp
         >
             <!-- Header -->
             <div
-                class="bg-(--brand-blue) p-4 sm:p-5 rounded-t-2xl sm:rounded-t-3xl flex justify-between items-center shadow-lg"
+                class="bg-linear-to-br from-(--brand-blue) via-(--brand-blue) to-blue-600 text-white p-4 sm:p-5 rounded-t-2xl sm:rounded-t-3xl flex justify-between items-center shadow-lg"
             >
                 <div class="flex items-center gap-3">
                     <div
@@ -170,8 +192,13 @@
                     </div>
                 </div>
                 <button
-                    on:click={() => (isOpen = false)}
-                    class="text-white hover:bg-white/20 rounded-full p-1.5 transition-all duration-200 hover:scale:105"
+                    on:click={() => {
+                        isOpen = false;
+                        setTimeout(() => {
+                            showButton = true;
+                        }, 300);
+                    }}
+                    class="text-white hover:bg-white/20 rounded-full p-1.5 transition-all duration-200 hover:scale-105"
                     aria-label="Close chat"
                 >
                     <CircleX class="text-white" />
@@ -202,7 +229,7 @@
                             <button
                                 type="button"
                                 on:click={handleStartAssessment}
-                                class="inline-flex items-center gap-2 w-full justify-center mt-3 px-4 py-2.5 bg-(--brand-blue) text-white rounded-xl text-sm font-medium hover:bg-blue-600 transition-all shadow-md hover:shadow-lg active:scale-95"
+                                class="inline-flex items-center gap-2 w-full justify-center mt-3 px-4 py-2.5 bg-(--brand-blue) text-white rounded-xl text-sm font-medium hover:scale-105 transition-all shadow-md hover:shadow-lg active:scale-95"
                             >
                                 <span>🔒</span>
                                 <span>Take Free Assessment</span>
@@ -221,7 +248,7 @@
                                 </svg>
                             </button>
                             <div class="flex flex-wrap gap-2 mt-4">
-                                {#each quickReplies as reply, i}
+                                {#each quickReplies as reply, _}
                                     <button
                                         on:click={() =>
                                             sendMessageWithText(reply)}
@@ -238,7 +265,7 @@
                     </div>
                 {/if}
 
-                {#each messages as msg, i}
+                {#each messages as msg, _}
                     <div
                         class="flex {msg.isUser
                             ? 'justify-end'
@@ -335,17 +362,6 @@
 </div>
 
 <style>
-    @keyframes slideUp {
-        from {
-            opacity: 0;
-            transform: translateY(20px) scale(0.95);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0) scale(1);
-        }
-    }
-
     @keyframes fadeIn {
         from {
             opacity: 0;
@@ -355,10 +371,6 @@
             opacity: 1;
             transform: translateY(0);
         }
-    }
-
-    .animate-slideUp {
-        animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     .animate-fadeIn {
