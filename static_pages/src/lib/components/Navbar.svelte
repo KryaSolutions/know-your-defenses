@@ -43,7 +43,7 @@
 </script>
 
 <nav
-    class="fixed top-0 left-0 right-0 z-50 border-b border-white/10 backdrop-blur-md transition-transform duration-300 shadow-lg"
+    class="fixed top-0 left-0 right-0 z-50 border-b border-white/10 bg-(--brand-blue) transition-transform duration-300"
     class:translate-y-0={isVisible}
     class:-translate-y-full={!isVisible}
 >
@@ -53,7 +53,7 @@
             <div class="flex items-center">
                 <a
                     href="https://kryasolutions.com"
-                    class="text-2xl font-bold text-(--brand-blue) hover:text-(--brand-orange) transition-colors duration-200"
+                    class="text-2xl font-bold text-white hover:text-(--brand-orange) transition-colors duration-200"
                 >
                     <img
                         src={krya}
@@ -66,14 +66,20 @@
             <!-- Desktop Navigation Links -->
             <div class="hidden md:flex items-center space-x-8">
                 <a
+                    href="https://kyd.kryasolutions.com"
+                    class="text-white hover:text-(--brand-blue) transition-colors duration-200 font-medium"
+                >
+                    SOC
+                </a>
+                <a
                     href="https://kyd.kryasolutions.com/kyd"
-                    class="text-(--brand-blue) hover:text-(--brand-orange) transition-colors duration-200 font-medium"
+                    class="text-white hover:text-(--brand-orange) transition-colors duration-200 font-medium"
                 >
                     Know Your Defenses
                 </a>
                 <a
                     href="https://kyd.kryasolutions.com/newsletters"
-                    class="text-(--brand-blue) hover:text-(--brand-orange) transition-colors duration-200 font-medium"
+                    class="text-white hover:text-(--brand-orange) transition-colors duration-200 font-medium"
                 >
                     CyberSec Insights
                 </a>
@@ -89,7 +95,7 @@
             <!-- Mobile Menu Button -->
             <button
                 on:click={toggleMobileMenu}
-                class="md:hidden text-(--brand-blue) p-2 rounded-lg hover:bg-(--brand-blue)/10 transition-colors"
+                class="md:hidden text-white p-2 rounded-lg hover:bg-(--brand-blue)/10 transition-colors"
                 aria-label="Toggle menu"
             >
                 {#if !mobileMenuOpen}
@@ -130,16 +136,30 @@
         <div class="md:hidden border-t border-white/10 backdrop-blur-md">
             <div class="px-4 py-4 space-y-3">
                 <a
+                    href="https://kyd.kryasolutions.com"
+                    on:click={() => (mobileMenuOpen = false)}
+                    class="block text-white hover:text-(--brand-orange) transition-colors duration-200 font-medium py-2"
+                >
+                    SOC
+                </a>
+                <a
                     href="https://kyd.kryasolutions.com/kyd"
                     on:click={() => (mobileMenuOpen = false)}
-                    class="block text-(--brand-blue) hover:text-(--brand-orange) transition-colors duration-200 font-medium py-2"
+                    class="block text-white hover:text-(--brand-orange) transition-colors duration-200 font-medium py-2"
                 >
                     Know Your Defenses
+                </a>
+                <a
+                    href="https://kyd.kryasolutions.com/newsletters"
+                    on:click={() => (mobileMenuOpen = false)}
+                    class="block text-white hover:text-(--brand-orange) transition-colors duration-200 font-medium py-2"
+                >
+                    CyberSec Insights
                 </a>
 
                 <button
                     on:click={(e) => scrollToSection(e, "#contact-section")}
-                    class="w-full bg-(--brand-blue) text-white px-6 py-2.5 rounded-full font-semibold transition-all duration-300 shadow-lg"
+                    class="w-full bg-(--brand-orange) text-white px-6 py-2.5 rounded-full font-semibold transition-all duration-300 shadow-lg"
                 >
                     Contact Us
                 </button>

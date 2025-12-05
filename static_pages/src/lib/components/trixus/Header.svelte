@@ -10,7 +10,7 @@
 
 <div class="min-h-screen w-full flex flex-col items-center justify-center">
     <!-- Main title section -->
-    <div class="flex items-center justify-center px-6 py-6 sm:py-8">
+    <div class="flex items-center justify-center mt-16 px-6 py-2 sm:py-3">
         <div class="max-w-5xl w-full text-center">
             <h1
                 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-transparent pt-6 bg-clip-text bg-linear-to-r from-red-400 via-purple-400 to-sky-500 animate-fade-up"
@@ -22,9 +22,9 @@
 
     <!-- Two-column content section -->
     <div
-        class="max-w-7xl mx-auto flex flex-col lg:flex-row items-stretch gap-10 px-6 py-16 min-h-[60vh]"
+        class="max-w-7xl mx-auto flex flex-col lg:flex-row items-stretch gap-10 px-6 py-8 min-h-[60vh]"
     >
-        <!-- Left column: Paragraph, Quote, Button (improved UI/UX) -->
+        <!-- Left column: Paragraph, Quote (improved UI/UX) -->
         <div class="lg:w-2/5 flex animate-slide-left delay-200">
             <div
                 class="left-panel w-full flex flex-col justify-center gap-6 p-8 sm:p-10 rounded-2xl"
@@ -46,18 +46,6 @@
                     "From legacy SOC to AI automation, with no-code and zero
                     scripting."
                 </div>
-
-                <!-- CTA Button -->
-                <div class="flex justify-center animate-fade-up delay-500">
-                    <button
-                        class="cta-button inline-flex items-center gap-3 px-6 sm:px-7 py-3 sm:py-3 rounded-lg bg-(--brand-orange) text-white font-medium text-sm sm:text-base shadow-md hover:shadow-lg hover:scale-105 transition-transform active:scale-95"
-                        on:click={() => smoothScrollTo()}
-                        aria-label="Book a demo"
-                    >
-                        <span>Book a Demo</span>
-                        <span aria-hidden="true" class="arrow">→</span>
-                    </button>
-                </div>
             </div>
         </div>
 
@@ -69,6 +57,18 @@
                 <Comparison />
             </div>
         </div>
+    </div>
+
+    <!-- CTA Button at the bottom, centered -->
+    <div class="flex justify-center py-8 animate-fade-up delay-500">
+        <button
+            class="cta-button inline-flex items-center gap-3 px-6 sm:px-7 py-3 sm:py-3 rounded-lg bg-(--brand-orange) text-white font-medium text-sm sm:text-base shadow-md hover:shadow-lg hover:scale-105 transition-transform active:scale-95"
+            on:click={() => smoothScrollTo()}
+            aria-label="Book a demo"
+        >
+            <span>Book a Demo</span>
+            <span aria-hidden="true" class="arrow">→</span>
+        </button>
     </div>
 </div>
 

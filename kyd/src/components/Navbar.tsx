@@ -54,9 +54,8 @@ const Navbar = () => {
 
     return (
         <nav
-            className={`fixed top-0 left-0 right-0 z-50 border-b border-white/10 backdrop-blur-md bg-white/5 transition-transform duration-300 shadow-lg ${
-                isVisible ? "translate-y-0" : "-translate-y-full"
-            }`}
+            className={`fixed top-0 left-0 right-0 z-50 border-b border-white/10 backdrop-blur-md bg-(--brand-blue) transition-transform duration-300 shadow-lg ${isVisible ? "translate-y-0" : "-translate-y-full"
+                }`}
         >
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex items-center justify-between h-16 lg:h-20">
@@ -77,8 +76,14 @@ const Navbar = () => {
                     {/* Desktop Navigation Links */}
                     <div className="hidden md:flex items-center space-x-8">
                         <a
+                            href="https://kyd.kryasolutions.com"
+                            className="text-white hover:text-(--brand-orange) transition-colors duration-200 font-medium"
+                        >
+                            SOC
+                        </a>
+                        <a
                             href="https://kyd.kryasolutions.com/newsletters"
-                            className="text-(--brand-blue) hover:text-(--brand-orange) transition-colors duration-200 font-medium"
+                            className="text-white hover:text-(--brand-orange) transition-colors duration-200 font-medium"
                         >
                             CyberSec Insights
                         </a>
@@ -95,7 +100,7 @@ const Navbar = () => {
                     {/* Mobile Menu Button */}
                     <button
                         onClick={toggleMobileMenu}
-                        className="md:hidden text-(--brand-blue) p-2 rounded-lg hover:bg-white/10 transition-colors"
+                        className="md:hidden text-white p-2 rounded-lg hover:bg-white/10 transition-colors"
                         aria-label="Toggle menu"
                     >
                         {mobileMenuOpen ? (
@@ -112,9 +117,16 @@ const Navbar = () => {
                 <div className="md:hidden border-t border-white/10 backdrop-blur-md bg-white/5">
                     <div className="px-4 py-4 space-y-3">
                         <a
+                            href="https://kyd.kryasolutions.com"
+                            onClick={() => setMobileMenuOpen(false)}
+                            className="block text-white hover:text-(--brand-orange) transition-colors duration-200 font-medium py-2"
+                        >
+                            SOC
+                        </a>
+                        <a
                             href="https://kyd.kryasolutions.com/newsletters"
                             onClick={() => setMobileMenuOpen(false)}
-                            className="block text-(--brand-blue) hover:text-(--brand-orange) transition-colors duration-200 font-medium py-2"
+                            className="block text-white hover:text-(--brand-orange) transition-colors duration-200 font-medium py-2"
                         >
                             CyberSec Insights
                         </a>

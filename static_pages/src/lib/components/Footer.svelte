@@ -42,7 +42,7 @@
 </script>
 
 <footer
-    id="trixus-footer"
+    id="contact-section"
     class="w-full py-8 sm:py-12 px-4 sm:px-6 bg-transparent text-slate-700"
 >
     <div
